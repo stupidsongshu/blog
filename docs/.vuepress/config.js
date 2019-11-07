@@ -31,6 +31,10 @@ module.exports = {
         ]
       },
       {
+        text: 'HTTP',
+        link: '/http/'
+      },
+      {
         text: 'ALG',
         items: [
           { text: '复杂度分析（上）', link: '/alg/复杂度分析（上）' },
