@@ -23,3 +23,21 @@
 - 动态库：Windows系统下是.dll文件，Linux系统下是.so文件
 - 静态库：Windows和Linux系统下都是.lib文件
 :::
+
+### Mac VMware Fusion
+- [联网问题](https://garryshield.github.io/2016/11/01/mac-vmware-network/)
+- 重启网络命令
+  - systemctl restart network
+  - service restart network
+:::tip
+centos8重启网络命令报错：Failed to restart network.service: Unit network.service not found.
+
+改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
+:::
+
+### nginx
+- service nginx start
+- service nginx reload
+- service nginx stop
+
+- 查看端口: netstat -ntlp | grep :80
