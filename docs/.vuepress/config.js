@@ -8,10 +8,15 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
+      { text: 'FrontEnd', items: [
+          { text: '前端工程化', link: '/fe/engineering'}
+        ]
+      },
       { text: 'Linux', items: [
           { text: '基本命令', link: '/linux/基本命令' },
           { text: 'vi/vim', link: '/linux/vi&vim' },
           { text: 'centos', link: '/linux/centos' },
+          { text: 'Node.js', link: '/linux/nodejs' },
         ]
       },
       {
@@ -66,7 +71,8 @@ module.exports = {
         children: [
           '/linux/基本命令',
           '/linux/vi&vim',
-          '/linux/centos'
+          '/linux/centos',
+          '/linux/nodejs'
         ]
       },
       '/movie',

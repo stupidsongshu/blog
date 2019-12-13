@@ -1,18 +1,6 @@
-### nginx
-- service nginx start
-- service nginx reload
-- service nginx stop
-
-- 查看端口: netstat -ntlp | grep :80
+## Node.js
 
 ### node.js上线部署
-ps aux | grep node
-ps -ef | grep node
-
-lsof -i tcp:8081
-
-kill -9 pid
-
 ssh 用户名@地址（免密登陆）
 
 scp course-map.json root@IP地址:/路径
