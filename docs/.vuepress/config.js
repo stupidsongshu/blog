@@ -9,13 +9,14 @@ module.exports = {
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
       { text: 'FrontEnd', items: [
-          { text: '前端工程化', link: '/fe/engineering'}
+          { text: '前端工程化', link: '/fe/engineering'},
+          { text: '前端模块化', link: '/fe/module'},
         ]
       },
       { text: 'Linux', items: [
-          { text: '基本命令', link: '/linux/基本命令' },
+          { text: '基本命令', link: '/linux/command' },
           { text: 'vi/vim', link: '/linux/vi&vim' },
-          { text: 'centos', link: '/linux/centos' },
+          { text: 'CentOS', link: '/linux/centos' },
           { text: 'Node.js', link: '/linux/nodejs' },
         ]
       },
@@ -69,7 +70,7 @@ module.exports = {
       {
         title: 'Linux',
         children: [
-          '/linux/基本命令',
+          '/linux/command',
           '/linux/vi&vim',
           '/linux/centos',
           '/linux/nodejs'

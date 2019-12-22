@@ -116,29 +116,53 @@ ip是一个命令集，如`ip address`
 route路由管理
 
 ### ps
-- ps aux | grep node
-- ps -ef | grep node
+- ```sh
+  ps aux | grep node
+  ```
+- ```sh
+  ps -ef | grep node
+  ```
 
 ### netstat
-- netstat -anp | grep 80: 查看端口为80的进程id
-- netstat -ntlp | grep :80
+- ```sh
+  # 查看端口为80的进程id
+  netstat -anp | grep 80
+  ```
+- ```sh
+  netstat -tulpn | grep :80
+  ```
 
 ### lsof
-- lsof -i tcp:80
+- ```sh
+  lsof -i tcp:80
+  ```
 
 ### systemctl
-服务管理：
-- systemctl status 服务名（如ngnix）：查看服务状态
-- systemctl start 服务名：启动服务
-- systemctl stop 服务名：停止服务
-- systemctl restart 服务名：重启服务
+服务管理
+- ```sh
+  # 查看服务状态
+  systemctl status 服务名（如ngnix）
+  # 启动服务
+  systemctl start 服务名
+  # 停止服务
+  systemctl stop 服务名
+  # 重启服务
+  systemctl restart 服务名
+  ```
 
 ### pkill
-- pkill 服务名：停止服务
+- ```sh
+  # 停止服务
+  pkill 服务名
+  ```
 
 ### kill
-- kill pid: 杀掉进程Id为pid的进程
-- kill -9 pid: 强行杀掉进程Id为pid的进程
+- ```sh
+  # 杀掉进程Id为pid的进程
+  kill pid
+  # 强行杀掉进程Id为pid的进程
+  kill -9 pid
+  ```
 
 ### 安装
 - debian:  `apt`或`apt-get`
@@ -149,11 +173,12 @@ route路由管理
 ### 下载
 - curl
 - wget
-::: tip
-`wget 地址`：下载失败后需重新下载
-
-`wget -c 地址`：断点续传
-:::
+  ```sh
+  # 下载失败后需重新下载
+  wget 地址
+  # 断点续传
+  wget -c 地址
+  ```
 
 ### 查看帮助文档
 - --help，如：`wget --help`
@@ -216,7 +241,10 @@ bzip2不能压缩目录
 - logout: 退出登录
 
 ### 查看所有用户列表
-- cat /etc/passwd
+- ```sh
+  cat /etc/passwd
+  cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
+  ```
 
 ### 查看登录用户信息
 #### w

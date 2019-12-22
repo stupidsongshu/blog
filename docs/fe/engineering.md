@@ -8,7 +8,7 @@
   # -C 在生成的key中添加标识
   # -f 指定生成的文件名（默认为id_rsa）
   # 注意：引号不能用单引号，必须是双引号
-  ssh-keygen -t rsa -b 4096 -C "指定标识" -f "指定文件名"
+  ssh-keygen -t rsa -b 4096 -C "指定标识" -f 指定文件名
   ```
   - 然后直接按连续两次回车
 - 2. 上传配置公钥
@@ -121,3 +121,9 @@ and the repository exists.
   - 将私钥添加到jenkins的配置中（Manage Jenkins -> Configure System -> Publish over SSH）
 
 #### [su jenkins 无法切换到jenkins用户](https://blog.csdn.net/u013066244/article/details/52694772)
+
+### SonarQube
+- [官网](https://www.sonarqube.org/)
+- [docs](https://docs.sonarqube.org/latest/)
+- [参考链接](https://blog.csdn.net/weixin_42018258/article/details/102806089)
+- [参考链接](https://notebook.yasithab.com/centos/centos-7-install-sonarqube)
