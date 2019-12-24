@@ -62,6 +62,8 @@ LogLevel INFO
 ```
 
 ## CI/CD
+- CI/CD (Continuous Integration/Continuous Delivery) 
+
 ### jenkins
 - [wiki](https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions)
 - [系统要求 Java 8](https://jenkins.io/zh/doc/book/installing/#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82)
@@ -127,3 +129,32 @@ and the repository exists.
 - [docs](https://docs.sonarqube.org/latest/)
 - [参考链接](https://blog.csdn.net/weixin_42018258/article/details/102806089)
 - [参考链接](https://notebook.yasithab.com/centos/centos-7-install-sonarqube)
+
+### drone
+```sh
+# 安装必要的系统工具
+yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# 添加软件源
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+# 更新yum缓存
+yum makecache fast
+
+# 安装docker
+yum -y install docker-ce
+
+# 配置国内镜像源
+# https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy
+# curl -sSL http://oyh1cogl9.bkt.clouddn.com/setmirror.sh | sh -s <镜像加速地址>
+curl -sSL http://oyh1cogl9.bkt.clouddn.com/setmirror.sh | sh -s http://dockerhub.azk8s.cn # Azure
+
+# 启动Docker
+systemctl start docker
+
+# 安装docker compose
+curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# 给docker compose可执行权限
+chmod +x /usr/local/bin/docker-compose
+```
