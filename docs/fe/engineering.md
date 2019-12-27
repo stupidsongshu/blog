@@ -175,3 +175,9 @@ docker run \
   --name=drone \
   drone/drone:1
 ```
+
+### docker
+```sh
+docker ps -a
+docker rm 容器名
+```
