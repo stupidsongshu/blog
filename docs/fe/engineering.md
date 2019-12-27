@@ -158,6 +158,8 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compo
 # 给docker compose可执行权限
 chmod +x /usr/local/bin/docker-compose
 
+# github 配置认证信息: Settings - Developer settings - OAuth Apps
+
 # 安装 docker server
 docker run \
   --volume=/var/lib/drone:/data \
