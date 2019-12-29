@@ -62,7 +62,7 @@ LogLevel INFO
 ```
 
 ## CI/CD
-- CI/CD (Continuous Integration/Continuous Delivery) 
+- CI/CD (Continuous Integration/Continuous Delivery)
 
 ### jenkins
 - [wiki](https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions)
@@ -130,7 +130,24 @@ and the repository exists.
 - [参考链接](https://blog.csdn.net/weixin_42018258/article/details/102806089)
 - [参考链接](https://notebook.yasithab.com/centos/centos-7-install-sonarqube)
 
+### docker
+```sh
+docker
+docker info
+docker ps
+docker ps -a
+docker ps -l
+docker start 容器名
+docker stop 容器名
+docker rm 容器名
+```
+
 ### drone
+:::warning
+[drone](https://drone.io)官网文档资料不全，许多命令及api需要看[源码](https://github.com/drone/drone)
+:::
+
+#### 基于docker及github安装drone
 ```sh
 # 安装必要的系统工具
 yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -153,33 +170,182 @@ curl -sSL http://oyh1cogl9.bkt.clouddn.com/setmirror.sh | sh -s http://dockerhub
 systemctl start docker
 
 # 安装docker compose
-curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 # 给docker compose可执行权限
-chmod +x /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
 
 # github 配置认证信息: Settings - Developer settings - OAuth Apps
 
-# 安装 docker server
+# 安装 drone server
 docker run \
   --volume=/var/lib/drone:/data \
   --env=DRONE_AGENTS_ENABLED=true \
   --env=DRONE_GITHUB_SERVER=https://github.com \
-  --env=DRONE_GITHUB_CLIENT_ID=f13429f784f3315391b3 \
-  --env=DRONE_GITHUB_CLIENT_SECRET=929dff15b90c1c8de2f487622c47f2eb02003c09 \
+  --env=DRONE_GITHUB_CLIENT_ID=355e068718b368c85388 \
+  --env=DRONE_GITHUB_CLIENT_SECRET=7244892c28295ae9e9b7cb83913aa2ac8d2d5af7 \
   --env=DRONE_RPC_SECRET=9a3e564e1d6d8649d4111f14332c0292 \
   --env=DRONE_SERVER_HOST=111.229.81.101 \
   --env=DRONE_SERVER_PROTO=http \
+  --env=DRONE_YAML_ENDPOINT=http://111.229.81.101:3001/ \
+  --env=DRONE_YAML_SECRET=123456 \
   --publish=80:80 \
   --publish=443:443 \
   --restart=always \
   --detach=true \
   --name=drone \
   drone/drone:1
+
+# 安装 drone agent
+docker run -d \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -e DRONE_RPC_PROTO=http \
+  -e DRONE_RPC_HOST=111.229.81.101 \
+  -e DRONE_RPC_SECRET=9a3e564e1d6d8649d4111f14332c0292 \
+  -e DRONE_RUNNER_CAPACITY=2 \
+  -e DRONE_RUNNER_NAME=node \
+  -p 3000:3000 \
+  --restart always \
+  --name runner \
+  drone/drone-runner-docker:1
 ```
 
-### docker
+#### [安装drone CLI](https://docs.drone.io/cli/install)
 ```sh
-docker ps -a
-docker rm 容器名
+# 安装 drone cli
+curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz | tar zx
+sudo install -t /usr/local/bin drone
+
+# 查看版本
+drone --version
+
+# authorization token 在 Drone account settings.
+export DRONE_SERVER=http://drone.mycompany.com
+export DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# 查看信息
+drone info
+
+# 查看仓库
+drone repo ls
+
+# drone build promote -h
+# drone build promote [command options] <repo/name> <build> <environment>
+drone build promote stupidsongshu/CICD-drone 6 staging
+
+# 查看秘钥
+# drone secret ls -h
+drone secret ls --repository stupidsongshu/CICD-drone
+
+# 生成秘钥
+# drone secret add --repository <MY_REPO> --name deploy_key --value @/home/<USERNAME>/.ssh/id_rsa
+drone secret add --repository stupidsongshu/CICD-drone --name deploy_key --data @/root/.ssh/id_rsa
+
+# 删除秘钥
+drone secret rm --repository stupidsongshu/CICD-drone --name deploy_key
 ```
+
+#### .drone.yml pipeline 范例
+```yml
+---
+kind: pipeline
+type: docker
+name: web
+
+steps:
+  - name: install
+    image: node:alpine
+    commands:
+      - npm i --registry=https://registry.npm.taobao.org
+
+  - name: test
+    image: node:alpine
+    commands:
+      - npm run test
+
+  - name: build
+    image: node:alpine
+    commands:
+      - npm run build
+      - ls -al
+    # script:
+      # - echo $USER
+      # - cd ~/.ssh
+      # - ls -al
+      # - rm -rf /root/docs
+      # - mkdir /root/docs
+      # - cp -r .vuepress/dist/* /root/docs
+
+  # 同一台机器
+  # - name: deploy
+  #   image: appleboy/drone-scp
+  #   settings:
+  #     host:
+  #       - 111.229.81.101
+  #     username: root
+  #     password: !1qaz@2WSX
+  #     password:
+  #       from_secret: ssh_key
+  #     port: 22
+  #     source:
+  #       - .vuepress/dist/*
+  #     target: /root/docs
+  #     rm: true
+      # secrets: [ deploy_key ]
+      # key_path: /root/.ssh/ssh_key
+      # secrets:
+      #   - source: deploy_key
+      #     target: ssh_key
+
+  - name: rsync production
+    image: drillster/drone-rsync
+    environment:
+      RSYNC_KEY:
+        from_secret: rsync_key
+    settings:
+      user: root
+      hosts:
+        - 111.229.81.101
+      source: .vuepress/dist/*
+      target: /root/docs
+      secrets: [ rsync_key ]
+    when:
+      target:
+        - production
+      event:
+        - promote
+
+  - name: rsync staging
+    image: drillster/drone-rsync
+    environment:
+      RSYNC_KEY:
+        from_secret: rsync_key
+    settings:
+      user: root
+      hosts:
+        - 111.229.81.101
+      source: .vuepress/dist/*
+      target: /root/docs
+      secrets: [ rsync_key ]
+    when:
+      target:
+        - staging
+      event:
+        - promote
+
+  - name: notify
+    image: curlimages/curl
+    commands:
+      - |
+        curl 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=dbb3fa53-29f8-4394-bfa1-ecce009e8cbb' -H 'Content-Type: application/json' -d '{"msgtype": "text", "text": {"content": "ok"}}'
+    when:
+      status:
+        - failure
+        - success
+```
+
+#### 使用jsonnet解决yaml中多环境配置复用问题
+- [jsonnet](https://jsonnet.org/)
+- ```sh
+  drone jsonnet --stream --stdout
+  ```
