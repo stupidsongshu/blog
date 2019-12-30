@@ -11,13 +11,13 @@ module.exports = {
       { text: 'FrontEnd', items: [
           { text: '前端工程化', link: '/fe/engineering'},
           { text: '前端模块化', link: '/fe/module'},
+          { text: 'Node.js', link: '/fe/nodejs'},
         ]
       },
       { text: 'Linux', items: [
           { text: '基本命令', link: '/linux/command' },
           { text: 'vi/vim', link: '/linux/vi&vim' },
           { text: 'CentOS', link: '/linux/centos' },
-          { text: 'Node.js', link: '/linux/nodejs' },
         ]
       },
       {
@@ -73,7 +73,6 @@ module.exports = {
           '/linux/command',
           '/linux/vi&vim',
           '/linux/centos',
-          '/linux/nodejs'
         ]
       },
       '/movie',
