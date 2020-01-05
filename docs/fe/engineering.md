@@ -75,12 +75,12 @@ LogLevel INFO
 - java版本的升级或降级
   - 检查已安装的包(rpm -qa | grep java)
   ```sh
-  [root@VM_0_8_centos ~]# rpm -qa | grep java
-  javapackages-tools-3.4.1-11.el7.noarch
-  tzdata-java-2019c-1.el7.noarch
-  python-javapackages-3.4.1-11.el7.noarch
-  java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
-  java-1.8.0-openjdk-headless-1.8.0.232.b09-0.el7_7.x86_64
+  rpm -qa | grep java
+  > javapackages-tools-3.4.1-11.el7.noarch
+  > tzdata-java-2019c-1.el7.noarch
+  > python-javapackages-3.4.1-11.el7.noarch
+  > java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+  > java-1.8.0-openjdk-headless-1.8.0.232.b09-0.el7_7.x86_64
   ```
   - 删除包(rpm -e --nodeps 包名)
   ```sh
@@ -349,3 +349,8 @@ steps:
 - ```sh
   drone jsonnet --stream --stdout
   ```
+
+
+## IOC
+- [awilix](https://github.com/jeffijoe/awilix)
+- [inversify](https://github.com/inversify/InversifyJS)

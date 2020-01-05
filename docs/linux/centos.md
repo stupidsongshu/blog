@@ -35,3 +35,13 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 
 改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
 :::
+
+- [Linux权限管理之基本权限](http://www.imooc.com/learn/481)
+- [Linux软件安装管理](http://www.imooc.com/learn/447)
+- [Linux达人养成计划 I](http://www.imooc.com/learn/175)
+- [Linux服务管理](http://www.imooc.com/learn/537)
+- [用iptables搭建一套强大的安全防护盾](http://www.imooc.com/learn/389)
+- [版本管理工具介绍—Git篇](http://www.imooc.com/learn/208)
+- [JAVA遇见HTML——JSP篇](http://www.imooc.com/learn/166)
+- [项目管理利器——maven](http://www.imooc.com/learn/443)
+- [与MySQL的零距离接触](http://www.imooc.com/learn/122)
