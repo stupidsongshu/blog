@@ -11,6 +11,7 @@ module.exports = {
       { text: 'FrontEnd', items: [
           { text: '前端工程化', link: '/fe/engineering'},
           { text: '前端模块化', link: '/fe/module'},
+          { text: '性能优化', link: '/fe/performance'},
           { text: 'Node.js', link: '/fe/nodejs'},
         ]
       },
