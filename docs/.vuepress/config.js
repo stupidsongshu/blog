@@ -9,9 +9,11 @@ module.exports = {
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
       { text: 'FrontEnd', items: [
+          { text: '前端组件化', link: '/fe/component'},
           { text: '前端工程化', link: '/fe/engineering'},
           { text: '前端模块化', link: '/fe/module'},
           { text: '性能优化', link: '/fe/performance'},
+          { text: 'CLI', link: '/fe/cli'},
           { text: 'Node.js', link: '/fe/nodejs'},
         ]
       },
@@ -21,6 +23,17 @@ module.exports = {
           { text: 'CentOS', link: '/linux/centos' },
         ]
       },
+      { text: 'Java', link: '/java/' },
+      { text: 'HTTP', link: '/http/' },
+      {
+        text: 'ALG',
+        items: [
+          { text: '复杂度分析（上）', link: '/alg/复杂度分析（上）' },
+          { text: '复杂度分析（下）', link: '/alg/复杂度分析（下）' },
+        ]
+      },
+      { text: 'movie', link: '/movie' },
+      { text: 'GitHub', link: 'https://github.com/stupidsongshu' },
       {
         text: 'Languages',
         ariaLabel: 'Language Menu',
@@ -37,19 +50,6 @@ module.exports = {
         }
         ]
       },
-      {
-        text: 'HTTP',
-        link: '/http/'
-      },
-      {
-        text: 'ALG',
-        items: [
-          { text: '复杂度分析（上）', link: '/alg/复杂度分析（上）' },
-          { text: '复杂度分析（下）', link: '/alg/复杂度分析（下）' },
-        ]
-      },
-      { text: 'movie', link: '/movie' },
-      { text: 'GitHub', link: 'https://github.com/stupidsongshu' },
     ],
 
     // 侧边栏
