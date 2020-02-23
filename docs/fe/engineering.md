@@ -350,7 +350,43 @@ steps:
   drone jsonnet --stream --stdout
   ```
 
+### Travis CI
+- [Travis CI](https://travis-ci.com/)
+- [Travis CI](https://travis-ci.org/)
+- [docs](https://docs.travis-ci.com/user/tutorial/)
+
+- 在 github Marketplace 安装 travis
+- 新增 .travis.yml 配置文件
+```yml
+# .travis.yml
+language: node_js
+
+sudo: false
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+node_js: stable
+
+install:
+  - npm install -D
+  - cd ./test/smoke/template
+  - npm install -D
+  - cd ../../../
+
+scripts:
+  - npm run test
+  - npm run build
+```
 
 ## IOC
 - [awilix](https://github.com/jeffijoe/awilix)
 - [inversify](https://github.com/inversify/InversifyJS)
+
+
+## 测试
+### e2e
+- [nightwatch](https://github.com/nightwatchjs/nightwatch)
+- [rize](https://github.com/g-plane/rize)
