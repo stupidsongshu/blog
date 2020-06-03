@@ -8,6 +8,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
+      { text: 'Git', link: '/git/'},
       { text: 'FrontEnd', items: [
           { text: '片段', link: '/fe/snippet'},
           { text: '前端组件化', link: '/fe/component'},
