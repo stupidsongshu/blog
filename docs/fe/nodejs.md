@@ -46,3 +46,7 @@ Unix domain Socket 走IPC
 ### pr规范：
 - branch name: fix/gh-{number: issue id}
 - commit message: "module name: description"
+
+
+- 开启debug模式 `node --debug app.js`
+- [node-inspector](https://www.npmjs.com/package/node-inspector)

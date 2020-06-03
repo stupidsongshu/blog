@@ -1,5 +1,17 @@
 # 性能优化
 
+- 抛开场景谈性能都是耍流氓！
+- 业务特性：读写频率、数据模型特点、用户特点 .etc
+- 目标
+  - 提升用户体验
+  - 提升执行效率
+  - 减轻服务器压力
+- 限制
+  - 安全性
+  - 一致性
+  - 可维护性
+  - 成本
+
 ## w3c
 - [web-performance](https://github.com/w3c/web-performance)
 - [navigation-timing](https://www.w3.org/TR/navigation-timing)
@@ -95,3 +107,73 @@ PerformanceTiming
 
 ## quicklink
 - [Faster subsequent page-loads by prefetching in-viewport links during idle time](https://github.com/GoogleChromeLabs/quicklink)
+
+## Google AMP
+- AMP: Accelerated Mobile Pages
+- 场景：Mobile、资讯页面（非SPA）
+- 场景特点：
+  - 机器性能
+  - 浏览器性能
+  - 网速受限
+  - 非刚性需求
+- 权衡
+  - 减少请求
+  - 减少体积
+  - 牺牲一部分UE
+  - 牺牲一部分开发效率
+
+## css-triggers
+- [Github](https://github.com/GoogleChromeLabs/css-triggers)
+- [csstriggers](https://csstriggers.com/)
+
+## 重排
+### 导致原因
+- 读取某些CSS属性
+  - clientWidth/clientHeight/clientLeft/clientTop
+  - offsetWidth/offsetHeight/offsetLeft/offsetTop
+  - scrollWidth/scrollHeight/scrollLeft/scrollTop
+  - getBoundingClientRect()/getClientRects()
+  - innerText/outerText
+  - scrollIntoView()/scrollIntoViewIfNeeded()
+  - scrollByLines()/scrollByPages()
+  - focus()
+### 解决方案
+- 使用transform代替top/left动画
+- DOM读写分离，尽量不要把读操作和写操作放在一个语句里面
+  - 面对解耦代码，使用requestAnimationFrame达到读写分离
+  - 使用 [fastdom](https://github.com/wilsonpage/fastdom) 进行优化，在每一帧，先将读操作批量运行，再批量运行写操作
+- 样式表越简单，重排和重绘越快
+- 重排和重绘的DOM元素层级越高，成本就越高
+- table元素的重排和重绘成本高于div
+- 统一改变样式
+- 缓存重排结果
+- 离线DOM Fragment/clone
+- 虚拟DOM
+- 必要的时候display: none不可见元素不影响重排重绘，visibility会影响重排
+
+## 重绘
+### 解决方案
+- 减少不必要的paint
+  - gif图即使被其他layer盖住不可见，也可能导致paint，不需要时应将gif图的display属性设为none
+  - 减少绘制区域，为引起大范围paint的元素生成独立的layer以减少paint的范围
+
+## [BFC](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+BFC是页面上一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也是。
+- BFC(Block Formatting Context)块格式化上下文
+- IFC(Inline Formatting Context)内联格式化上下文。IFC的line box(线框)高度由其包含的行内元素中的最高的实际高度计算而来(不受到垂直方向的padding/margin影响)。
+- FFC(Flex Formatting Context)自适应格式化上下文。display为flex/inline-flex的元素将会生成自适应容器。
+- GFC(GridLayout Formatting Context)网格格式化上下文。当为一个元素设置display为grid的时候，此元素将会获得一个独立的渲染区域，我们可以通过在网格容器(grid container)上定义网格定义行(grid definition rows)和网格定义列(grid definition columns)属性各在网格项目(grid item)上定义网格行(grid rows)和网格列(grid columns)为每一个网格项目(grid item)定义位置和空间。
+### 生成BFC元素
+- html根元素
+- display为inline-block/table-cell/table-caption
+- float为left/right，不为none
+- position为absolute/fixed
+- overflow为auto/scroll/hidden
+
+### 计算BFC的高度时，浮动元素也参与计算
+### Margin collapsing
+- 盒子垂直方向的距离由margin决定，属于同一个BFC的两个相邻盒子的margin会发生重叠合并
+
+
+css阻塞js执行，js阻塞DOM解析
+有js时css会阻塞页面；无js时css不会阻塞页面

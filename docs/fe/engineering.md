@@ -65,6 +65,8 @@ LogLevel INFO
 - CI/CD (Continuous Integration/Continuous Delivery)
 
 ### jenkins
+[http://111.229.81.101:8080/](http://111.229.81.101:8080/) (root root | jenkins hao123456)
+
 - [wiki](https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions)
 - [系统要求 Java 8](https://jenkins.io/zh/doc/book/installing/#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82)
 - [oracle官方下载地址](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -133,21 +135,87 @@ and the repository exists.
 ### docker
 ```sh
 docker
+docker version
 docker info
-docker ps
-docker ps -a
-docker ps -l
-docker start 容器名
-docker stop 容器名
-docker rm 容器名
+
+docker images      # 查看本地镜像列表
+docker search      # 从Docker Hub查找镜像
+docker pull        # 从镜像仓库中拉取或者更新指定镜像
+docker build       # 使用 Dockerfile 创建镜像
+docker run         # 创建一个新的容器并运行一个命令
+docker rmi 镜像名   # 删除一个镜像
+
+docker ps          # 查看启动的容器，加参数 -a 查看所有的容器
+docker start 容器名 # 启动容器
+docker stop  容器名 # 停止容器
+docker rm    容器名 # 删除容器
+
+docker inspect 容器名/镜像名 # 获取容器/镜像的元数据
+
+docker logs -f 容器名/容器id # 查看日志
+
+cat /etc/docker/daemon.json # 查看镜像源
+
+# 修改为国内镜像源 https://juejin.im/post/5cd2cf01f265da0374189441
+# https://qujwc3yg.mirror.aliyuncs.com # 阿里云 https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+# http://f1361db2.m.daocloud.io        # DaoCloud
+# https://docker.mirrors.ustc.edu.cn   # 中科大
+# https://hub-mirror.c.163.com         # 网易
+# https://registry.docker-cn.com       # docker 官方中国区
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": [
+    "https://qujwc3yg.mirror.aliyuncs.com",
+    "http://f1361db2.m.daocloud.io",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://hub-mirror.c.163.com",
+    "https://registry.docker-cn.com"
+  ]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+docker run -d -p 9000:3000 docker_demo # 启动镜像：-d 表示后台执⾏，-p 9000:3000 表示指定本地的9000端⼝映射到容器内的3000端⼝，docker_demo 为镜像名称
+```
+
+#### docker 练习
+```sh
+# Open a command-line terminal and test that your installation works by running the simple Docker image, hello-world:
+docker run hello-world
+
+# Start a Dockerized web server. Like the hello-world image above, if the image is not found locally, Docker pulls it from Docker Hub.
+docker run --detach --publish=80:80 --name=webserver nginx
+
+# 项目：getting-started
+git clone https://github.com/docker/getting-started.git
+docker build -t docker101tutorial .
+docker run -dp 80:80 docker/getting-started
+
+# 项目：doodle
+# 1. This repository contains everything you need to create your first container.
+git clone https://github.com/docker/doodle.git
+# 2. Now let's build and tag a Docker image.
+# A Docker image is a private filesystem, just for your container. It provides all the files and code your container will need. Running the docker build command creates a Docker image using the Dockerfile. This built image is in your machine's local Docker image registry.
+cd doodle/cheers2019 && docker build -t summerycicada/cheers2019 .
+# 3. Now let's run your first container.
+# Running a container launches your software with private resources, securely isolated from the rest of your machine.
+docker run -it --rm summerycicada/cheers2019
+# 4. Share your image on Docker Hub 
+# Once you're ready to share your container with the world, push the image that describes it to Docker Hub.
+docker login && docker push summerycicada/cheers2019
 ```
 
 ### drone
+[http://111.229.81.101/](http://111.229.81.101/)
+
 :::warning
 [drone](https://drone.io)官网文档资料不全，许多命令及api需要看[源码](https://github.com/drone/drone)
 :::
 
 #### 基于docker及github安装drone
+[aliyun Docker CE 镜像源站](https://yq.aliyun.com/articles/110806)
 ```sh
 # 安装必要的系统工具
 yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -159,7 +227,7 @@ yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/d
 yum makecache fast
 
 # 安装docker
-yum -y install docker-ce
+yum install -y docker-ce
 
 # 配置国内镜像源
 # https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy
@@ -167,7 +235,7 @@ yum -y install docker-ce
 curl -sSL http://oyh1cogl9.bkt.clouddn.com/setmirror.sh | sh -s http://dockerhub.azk8s.cn # Azure
 
 # 启动Docker
-systemctl start docker
+sudo systemctl start docker
 
 # 安装docker compose
 # curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
