@@ -1,40 +1,9 @@
-## 移动端兼容性坑
+## 移动端兼容性
 
 ### iOS 12.0 Beta 1 WKWebview cross origin requests fail
 - [axios](https://github.com/axios/axios/issues/1598)
 - [Open Radar](http://www.openradar.me/40807782)
 - [stackoverflow](https://stackoverflow.com/questions/50707146/ios-v12-https-requests-errors)
-
-### 手机号
-- 第一种写法（v-model可以用修饰符trim）
-```html
-<input
-  type="text"
-  placeholder="手机号"
-  v-model.trim="phone"
-  oninput="if(value.length>11){value=value.slice(0,11);return;}value=value.replace(/[^\d]/g,'');"
->
-```
-- 第二种写法（v-model不可以用修饰符trim，否则trim与自定义的会有冲突）
-```html
-<input
-  type="text"
-  placeholder="手机号"
-  v-model="phone"
-  @input="validateNumber"
->
-```
-```js
-validateNumber () {
-  if (this.phone.length > 11) {
-    this.phone = this.phone.slice(0, 11)
-    // this.phone = this.phone.substr(0, 11)
-    // this.phone = this.phone.substring(0, 11)
-    return
-  }
-  this.phone = this.phone.replace(/[^\d]/g, '')
-}
-```
 
 ### input
 #### type=file
@@ -268,6 +237,167 @@ var Utils = {
 };
 ```
 
+### 包裹 Promise
+```js
+const awaitWrap = promise => promise.then(data => [null, data]).catch(err => [err, null])
+```
+
+### sleep
+```js
+function sleep (time) {
+  return new Promise(resolve => setTimeout(resolve, time))
+}
+```
+
+### 平台设备
+```js
+const deviceType = () => {
+  const u = navigator.userAgent
+  return {
+    trident: u.indexOf('Trident') > -1,
+    presto: u.indexOf('Presto') > -1,
+    webkit: u.indexOf('AppleWebkit') > -1,
+    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1,
+    mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+    iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
+    iPad: u.indexOf('iPad') > -1,
+    webApp: u.indexOf('Safari') === -1,
+    wechat: u.indexOf('MicroMessenger') > -1,
+    // qq: u.indexOf('QQ/') > -1 && u.indexOf('MQQBrowser/') === -1, // qq内置浏览器
+    qq: u.indexOf('QQ/') > -1 // qq内置浏览器
+  }
+}
+```
+
+### 节流
+```js
+function throttle (func, wait, mustRun) {
+  var timeout
+  var startTime = new Date()
+
+  return function () {
+    var context = this
+    var args = arguments
+    var curTime = new Date()
+
+    clearTimeout(timeout)
+    // 如果达到了规定的触发时间间隔，触发 handler
+    if (curTime - startTime >= mustRun) {
+      func.apply(context, args)
+      startTime = curTime
+    // 没达到触发间隔，重新设定定时器
+    } else {
+      timeout = setTimeout(func, wait)
+    }
+  }
+}
+```
+
+### 防抖
+```js
+function debounce (func, wait = 50, immediate = true) {
+  let timer, context, args
+  // 延迟执行函数
+  const later = () => setTimeout(() => {
+    // 延迟函数执行完毕，清空缓存的定时器序号
+    timer = null
+    // 延迟执行的情况下，函数会在延迟函数中执行
+    // 使用到之前缓存的参数和上下文
+    if (!immediate) {
+      func.apply(context, args)
+      context = args = null
+    }
+  }, wait)
+
+  // 这里返回的函数是每次实际调用的函数
+  return function () {
+    args = arguments
+    // 如果没有创建延迟执行函数（later），就创建一个
+    if (!timer) {
+      timer = later()
+      // 如果是立即执行，调用函数
+      // 否则缓存参数和调用上下文
+      if (immediate) {
+        func.apply(this, args)
+      } else {
+        context = this
+      }
+    // 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个
+    // 这样做延迟函数会重新计时
+    } else {
+      clearTimeout(timer)
+      timer = later()
+    }
+  }
+}
+```
+
+### uuid
+```js
+function uuidv4 () {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = Math.random() * 16 | 0
+    const v = c === 'x' ? r : (r & 0x3 | 0x8)
+    return v.toString(16)
+  })
+}
+```
+
+### 滚动到指定位置
+```js
+const scrollTo = ({ left = 0, top = 0 } = {}) => {
+  setTimeout(() => {
+    try {
+      window.scrollTo({
+        left,
+        top,
+        behavior: 'smooth'
+      })
+    } catch (err) {
+      if (err instanceof TypeError) {
+        window.scrollTo(left, top)
+      } else {
+        throw err
+      }
+    }
+  }, 100)
+}
+```
+
+### 手机号
+- 第一种写法（v-model可以用修饰符trim）
+```html
+<input
+  type="text"
+  placeholder="手机号"
+  v-model.trim="phone"
+  oninput="if(value.length>11){value=value.slice(0,11);return;}value=value.replace(/[^\d]/g,'');"
+>
+```
+- 第二种写法（v-model不可以用修饰符trim，否则trim与自定义的会有冲突）
+```html
+<input
+  type="text"
+  placeholder="手机号"
+  v-model="phone"
+  @input="validateNumber"
+>
+```
+```js
+validateNumber () {
+  if (this.phone.length > 11) {
+    this.phone = this.phone.slice(0, 11)
+    // this.phone = this.phone.substr(0, 11)
+    // this.phone = this.phone.substring(0, 11)
+    return
+  }
+  this.phone = this.phone.replace(/[^\d]/g, '')
+}
+```
+
+## 正则校验
 - 手机号
 ```js
 /^1[3-9]\d{9}$/.test(mobile)
@@ -354,134 +484,5 @@ function checkCHNCardId (sNo) {
       }
   }
   return true
-}
-```
-
-- 节流
-```js
-function throttle (func, wait, mustRun) {
-  var timeout
-  var startTime = new Date()
-
-  return function () {
-    var context = this
-    var args = arguments
-    var curTime = new Date()
-
-    clearTimeout(timeout)
-    // 如果达到了规定的触发时间间隔，触发 handler
-    if (curTime - startTime >= mustRun) {
-      func.apply(context, args)
-      startTime = curTime
-    // 没达到触发间隔，重新设定定时器
-    } else {
-      timeout = setTimeout(func, wait)
-    }
-  }
-}
-```
-
-- 防抖
-```js
-function debounce (func, wait = 50, immediate = true) {
-  let timer, context, args
-  // 延迟执行函数
-  const later = () => setTimeout(() => {
-    // 延迟函数执行完毕，清空缓存的定时器序号
-    timer = null
-    // 延迟执行的情况下，函数会在延迟函数中执行
-    // 使用到之前缓存的参数和上下文
-    if (!immediate) {
-      func.apply(context, args)
-      context = args = null
-    }
-  }, wait)
-
-  // 这里返回的函数是每次实际调用的函数
-  return function () {
-    args = arguments
-    // 如果没有创建延迟执行函数（later），就创建一个
-    if (!timer) {
-      timer = later()
-      // 如果是立即执行，调用函数
-      // 否则缓存参数和调用上下文
-      if (immediate) {
-        func.apply(this, args)
-      } else {
-        context = this
-      }
-    // 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个
-    // 这样做延迟函数会重新计时
-    } else {
-      clearTimeout(timer)
-      timer = later()
-    }
-  }
-}
-```
-
-- sleep
-```js
-function sleep (time) {
-  return new Promise(resolve => setTimeout(resolve, time))
-}
-```
-
-- uuid
-```js
-function uuidv4 () {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = Math.random() * 16 | 0
-    const v = c === 'x' ? r : (r & 0x3 | 0x8)
-    return v.toString(16)
-  })
-}
-```
-
-- 包裹 Promise
-```js
-const awaitWrap = promise => promise.then(data => [null, data]).catch(err => [err, null])
-```
-
-- 平台设备
-```js
-const deviceType = () => {
-  const u = navigator.userAgent
-  return {
-    trident: u.indexOf('Trident') > -1,
-    presto: u.indexOf('Presto') > -1,
-    webkit: u.indexOf('AppleWebkit') > -1,
-    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1,
-    mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
-    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
-    iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
-    iPad: u.indexOf('iPad') > -1,
-    webApp: u.indexOf('Safari') === -1,
-    wechat: u.indexOf('MicroMessenger') > -1,
-    // qq: u.indexOf('QQ/') > -1 && u.indexOf('MQQBrowser/') === -1, // qq内置浏览器
-    qq: u.indexOf('QQ/') > -1 // qq内置浏览器
-  }
-}
-```
-
-- 滚动到指定位置
-```js
-const scrollTo = ({ left = 0, top = 0 } = {}) => {
-  setTimeout(() => {
-    try {
-      window.scrollTo({
-        left,
-        top,
-        behavior: 'smooth'
-      })
-    } catch (err) {
-      if (err instanceof TypeError) {
-        window.scrollTo(left, top)
-      } else {
-        throw err
-      }
-    }
-  }, 100)
 }
 ```

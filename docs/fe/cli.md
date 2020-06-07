@@ -1,4 +1,5 @@
 # CLI
+[Node.js CLI 应用程序最佳实践](https://github.com/lirantal/nodejs-cli-apps-best-practices/blob/master/README_zh-CN.md)
 
 ## 本地开发
 - npm init -y

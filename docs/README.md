@@ -1,9 +1,9 @@
 ---
 home: true
-heroImage: /hero.png
+heroImage: /panda.jpeg
 heroText: 我的博客
 tagline: 记录笔迹
-actionText: 快速上手 →
+actionText: 我来喽 →
 actionLink: /guide/
 features:
 - title: 简洁至上

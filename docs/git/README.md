@@ -1,9 +1,16 @@
+## learnGitBranching
+- [learnGitBranching Github](https://github.com/pcottle/learnGitBranching/)
+- [learnGitBranching Website](https://learngitbranching.js.org/?demo=&locale=zh_CN)
+
+:::tip
 - Worksapce: 工作区
 - Index/Stage: 暂存区
 - Repository: 本地仓库
 - Remote: 远程仓库
 
 HEAD: 始终指向当前所处分支的最新的提交点，实质上是一个指针，指向最新放入仓库的版本。
+:::
+
 
 ### 新建代码库
 - git init: 在当前目录新建一个git代码库

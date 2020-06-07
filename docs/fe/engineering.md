@@ -1,14 +1,14 @@
 # 前端工程化
 
 ## 免密登录
-- 1. 生成秘钥对
+- 1. [生成秘钥对](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
   ```sh
   # -t 指定生成算法
   # -b 生成长度（默认为2048）
   # -C 在生成的key中添加标识
   # -f 指定生成的文件名（默认为id_rsa）
   # 注意：引号不能用单引号，必须是双引号
-  ssh-keygen -t rsa -b 4096 -C "指定标识" -f 指定文件名
+  ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f 指定文件名
   ```
   - 然后直接按连续两次回车
 - 2. 上传配置公钥
@@ -150,9 +150,12 @@ docker start 容器名 # 启动容器
 docker stop  容器名 # 停止容器
 docker rm    容器名 # 删除容器
 
-docker inspect 容器名/镜像名 # 获取容器/镜像的元数据
+docker network ls  # 网络列表
 
-docker logs -f 容器名/容器id # 查看日志
+docker inspect 容器名/镜像名/网络名称 # 获取容器/镜像/网络的元数据
+
+docker logs 容器名/容器id # 查看容器日志
+docker logs -f 容器名/容器id # 查看容器日志
 
 cat /etc/docker/daemon.json # 查看镜像源
 
@@ -177,7 +180,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-docker run -d -p 9000:3000 docker_demo # 启动镜像：-d 表示后台执⾏，-p 9000:3000 表示指定本地的9000端⼝映射到容器内的3000端⼝，docker_demo 为镜像名称
+docker run -d -p 9000:3000 docker_demo # 启动镜像：-d 后台执⾏；-p 9000:3000 指定宿主机的9000端⼝映射到docker容器内的3000端⼝；docker_demo 为镜像名称
 ```
 
 #### docker 练习
@@ -458,3 +461,140 @@ scripts:
 ### e2e
 - [nightwatch](https://github.com/nightwatchjs/nightwatch)
 - [rize](https://github.com/g-plane/rize)
+
+
+## [基于Docker、Git、Node.js的CI/CD、DevOps](https://mp.weixin.qq.com/s/00xwOLL9HTN210bkdy-KNw)
+[gogs](https://gogs.io/)
+### 一、基于Docker gogs搭建一个git服务
+```sh
+# 拉取gogs镜像创建git服务
+docker pull gogs/gogs
+# 创建gogs存储目录
+sudo mkdir /var/gogs
+# 所有者为当前用户
+sudo chown -R ${USER} /var/gogs
+# 创建docker网络便于容器进行通信
+docker network create cicd_net
+# 启动gogs容器
+docker run -d --name=gogs --network cicd_net -p 8888:3000 -p 9999:22 -v /var/gogs:/data gogs/gogs
+```
+
+访问 `http://localhost:8888/`，首次访问需进行配置安装，注册登录，添加SSH密钥
+
+### 二、编写web服务
+创建一个git仓库（仓库名为 **cicd-web**），clone到本地后，编写一个node.js web服务：
+```js
+// index.js
+const http = require('http')
+
+const PORT = 3000
+
+http.createServer((req, res) => {
+  res.end('Hello World!')
+}).listen(PORT, () => {
+  console.log(`Web Server is running on port ${PORT}`)
+})
+```
+
+创建Dockerfile文件，生成web服务docker镜像：
+```Dockerfile
+FROM node:14.4.0-alpine3.11
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+CMD ["node","index.js"]
+```
+
+手动构建镜像并运行容器，访问node.js web服务 `http://localhost:3000/`，可以看到页面输出 `Hello World!`
+```sh
+docker build -t cicd-web-image .
+docker run -d -p 3000:3000 --name=cicd-web-container cicd-web-image
+```
+
+### 三、编写deploy服务
+```sh
+touch deploy.sh
+chmod +x deploy.sh
+```
+```sh
+#! /bin/sh
+
+projectName='cicd-web'
+userName='cicada'
+dockerImageName='cicd-web-image'
+dockerContainerName='cicd-web-container'
+
+if [ ! -d "www/${projectName}" ];then
+  echo '======git clone======'
+  cd www
+  git clone http://gogs:3000/${userName}/${projectName}
+  cd ${projectName}
+else
+  echo '======git pull======'
+  cd www/${projectName}
+  git pull
+fi
+
+# 删掉旧的容器和镜像
+docker stop ${dockerContainerName}
+docker rm -f ${dockerContainerName}
+docker rmi -f ${dockerImageName}
+
+# 如果deploy部署服务与生产环境不在同一台docker宿主机，deploy应该publish镜像到远程镜像仓库，然后ssh远程登录执行shell，生产环境执行拉取镜像、构建镜像、运行容器等等
+# docker publish
+# ssh root@ip
+# docker pull image
+
+# 重新构建镜像并运行容器
+docker build -t ${dockerImageName} .
+docker run -d -p 3000:3000 --name=${dockerContainerName} ${dockerImageName}
+```
+修改node.js
+```js
+const http = require('http')
+const cp = require('child_process')
+
+const PORT = 4000
+
+http.createServer((req, res) => {
+  const proc = cp.exec('./deploy.sh', () => {})
+  proc.stdout.pipe(process.stdout)
+  proc.stderr.pipe(process.stdout)
+
+  res.end('Deploy Server')
+}).listen(PORT, () => {
+  console.log(`Deploy Server is running on port ${PORT}`)
+})
+```
+由于deploy.sh需要git，所以需要添加git镜像，Dockerfile增加`RUN apk add git`：
+```Dockerfile
+FROM node:14.4.0-alpine3.11
+
+RUN apk add git
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+CMD ["node","index.js"]
+```
+
+```sh
+# 构建部署镜像
+docker build -t cicd-deploy-container .
+# 部署容器需要使用宿主机docker命令构建docker镜像
+docker run -d --network cicd_net -p 4000:4000 -v /usr/local/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock --user root --name=cicd-deploy-container cicd-deploy-container
+```
+
+### 四、git hook让deploy自动构建镜像生成web容器
+仓库设置 -> 管理 Web 钩子 ->Discord -> 推送地址填写：`http://cicd-deploy-container:4000` -> 添加 Web 钩子

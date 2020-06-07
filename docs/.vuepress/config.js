@@ -10,6 +10,7 @@ module.exports = {
       { text: 'Guide', link: '/guide/' },
       { text: 'Git', link: '/git/'},
       { text: 'FrontEnd', items: [
+          { text: 'frontend-road', link: '/fe/'},
           { text: '片段', link: '/fe/snippet'},
           { text: '前端组件化', link: '/fe/component'},
           { text: '前端工程化', link: '/fe/engineering'},
