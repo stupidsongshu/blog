@@ -24,6 +24,7 @@ module.exports = {
           { text: '基本命令', link: '/linux/command' },
           { text: 'vi/vim', link: '/linux/vi&vim' },
           { text: 'CentOS', link: '/linux/centos' },
+          { text: 'MySQL', link: '/linux/mysql' },
         ]
       },
       { text: 'Java', link: '/java/' },

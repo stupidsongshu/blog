@@ -59,10 +59,10 @@ drwxr-xr-x. 133 root root 8192 Oct  1 09:54 etc
 
 1️⃣文件类型
 - \- 普通文件
-- b 块设备文件(block)
-- c 字符设备文件(char)
 - d 目录文件(directory)
 - l 符号链接文件(link)
+- b 块设备文件(block)
+- c 字符设备文件(char)
 - p 命名管道文件(pipe)
 - s socket文件
 
@@ -91,11 +91,11 @@ x|排它方式
 
 ### cd
 - cd [目录]: change directory 切换目录
-  - 家目录
-  - ~家目录
-  - -上次目录
-  - .当前目录
-  - ..上级目录
+  - / 根目录
+  - ~ 家目录（或者直接 `cd` 不跟目录名）
+  - . 当前目录
+  - .. 上级目录
+  - \- 上次目录
 - 相对路径参照当前所在目录；绝对路径参照根目录
 
 ### pwd
@@ -132,53 +132,53 @@ ip是一个命令集，如`ip address`
 route路由管理
 
 ### ps
-- ```sh
-  ps aux | grep node
-  ```
-- ```sh
-  ps -ef | grep node
-  ```
+```sh
+ps aux | grep node
+```
+```sh
+ps -ef | grep node
+```
 
 ### netstat
-- ```sh
-  # 查看端口为80的进程id
-  netstat -anp | grep 80
-  ```
-- ```sh
-  netstat -tulpn | grep :80
-  ```
+```sh
+# 查看端口为80的进程id
+netstat -anp | grep 80
+```
+```sh
+netstat -tulpn | grep :80
+```
 
 ### lsof
-- ```sh
-  lsof -i tcp:80
-  ```
+```sh
+lsof -i tcp:80
+```
 
 ### systemctl
 服务管理
-- ```sh
-  # 查看服务状态
-  systemctl status 服务名（如ngnix）
-  # 启动服务
-  systemctl start 服务名
-  # 停止服务
-  systemctl stop 服务名
-  # 重启服务
-  systemctl restart 服务名
-  ```
+```sh
+# 查看服务状态
+systemctl status 服务名（如ngnix）
+# 启动服务
+systemctl start 服务名
+# 停止服务
+systemctl stop 服务名
+# 重启服务
+systemctl restart 服务名
+```
 
 ### pkill
-- ```sh
-  # 停止服务
-  pkill 服务名
-  ```
+```sh
+# 停止服务
+pkill 服务名
+```
 
 ### kill
-- ```sh
-  # 杀掉进程Id为pid的进程
-  kill pid
-  # 强行杀掉进程Id为pid的进程
-  kill -9 pid
-  ```
+```sh
+# 杀掉进程Id为pid的进程
+kill pid
+# 强行杀掉进程Id为pid的进程
+kill -9 pid
+```
 
 ### 安装
 - debian:  `apt`或`apt-get`
@@ -257,10 +257,10 @@ bzip2不能压缩目录
 - logout: 退出登录
 
 ### 查看所有用户列表
-- ```sh
-  cat /etc/passwd
-  cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
-  ```
+```sh
+cat /etc/passwd
+cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
+```
 
 ### 查看登录用户信息
 #### w
