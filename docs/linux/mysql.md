@@ -1,3 +1,5 @@
+> [练习数据](./mysql-practice-data.md)
+
 ## MySQL 目录结构
 - bin: 可执行文件
 - data: 数据文件
@@ -322,6 +324,56 @@ INSERT INTO t_users VALUES
 ### 更新记录-多表更新
 `UPDATE table_references SET col_name1={expr1 | DEFAULT}[,col_name2={expr2 | DEFAULT},...] [WHERE where_condition]`
 
+:::tip
+### table_references 语法结构
+```sql
+table_reference
+{[INNER | CROSS] JOIN | {LEFT | RIGHT} [OUTER] JOIN}
+table_reference
+ON condition_expr
+```
+
+###  数据表参照
+table_reference
+
+`table_name [[AS] alias] | table_subquery [AS] alias`
+
+数据表可以使用 `table_name AS alias_name` 或 `tabel_name alias_name` 赋予别名；table_subquery 可以作为子查询使用在 FROM 子句中，这样的子查询必须为其赋予别名。
+
+### 连接类型
+- 使用关键字 `ON` 来设定连接条件，也可以使用 `WHERE` 来代替。
+- 通常使用关键字 `ON` 来设定连接条件，使用关键字 `WHERE` 进行结果集记录的过滤。
+#### INNER JOIN
+内连接：显示左表及右表符合连接条件的记录（左表和右表的交集）
+
+在 MySQL 中，`INNER JOIN`、`CROSS JOIN`、 `JOIN` 是等价的
+#### LEFT [OUTER] JOIN
+左外连接：显示左表的全部记录及右表符合连接条件的记录
+#### RIGHT [OUTER] JOIN
+右外连接：显示右表的全部记录及左表符合连接条件的记录
+
+### 外链接
+以左外连接为例：A LEFT JOIN B join_condition
+
+数据表 B 的结果集依赖数据表 A
+
+数据表 A 的结果集根据左连接条件依赖所有数据表（B 表除外）
+
+左外链接条件决定如何检索数据表 B（在没有指定 WHERE 条件的情况下）
+
+如果数据表 A 的某条记录符合 WHERE 条件，但是在数据表 B 不存在符合连接条件的记录，将生成一个所有列为空的额外的 B 行
+
+如果使用内连接查找的记录在连接数据表中不存在，并且在 `WHERE` 子句中尝试以下操作：`col_name IS NULL`，如果 col_name 被定义为 `NOT NULL`，MySQL 将在找到符合连接条件的记录后停止搜索更多的行。
+
+```sql
+# 多表连接
+SELECT goods_id,goods_name,goods_price,cate_name,brand_name
+FROM tdb_goods AS g
+INNER JOIN tdb_goods_cates AS c ON g.cate_id=c.cate_id
+INNER JOIN tdb_goods_brands AS b ON g.brand_id=b.brand_id;
+```
+:::
+
 ```sql
 # 例如
 CREATE TABLE tdb_goods_cates(
@@ -336,24 +388,6 @@ UPDATE tdb_goods INNER JOIN tdb_goods_cates
 ON goods_cate=cate_name
 SET goods_cate=cate_id;
 ```
-
-:::tip
-### table_references 语法结构
-```sql
-table_reference
-{[INNER | CROSS] JOIN | {LEFT | RIGHT} [OUTER] JOIN}
-table_reference
-ON condition_expr
-```
-
-### 连接类型
-#### INNER JOIN
-内连接，在 MySQL 中，INNER JOIN, CROSS JOIN, JOIN 是等价的
-#### LEFT [OUTER] JOIN
-左外连接
-#### RIGHT [OUTER] JOIN
-右外连接
-:::
 
 ### 更新记录-多表更新之一步到位
 创建数据表的同时将查询结果写入到数据表
