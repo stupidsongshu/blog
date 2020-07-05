@@ -18,6 +18,7 @@ module.exports = {
           { text: '性能优化', link: '/fe/performance'},
           { text: 'CLI', link: '/fe/cli'},
           { text: 'Node.js', link: '/fe/nodejs'},
+          { text: 'React', link: '/fe/react'},
         ]
       },
       { text: 'Linux', items: [

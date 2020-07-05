@@ -158,14 +158,14 @@ CHANGE 比 MODIFY 更强大，除了可以改列定义，还能修改列名称�
 - 添加：`ALTER TABLE table_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY] [index_name] [index_type] (index_col_name,...);`
 - 删除：`ALTER TABLE table_name DROP {INDEX | KEY} index_name;`
   :::tip
-  index_name 索引名称 可以通过 `SHOW INDEXES FROM table_name;\G` 进行查看
+  index_name: 索引名称，可以通过 `SHOW INDEXES FROM table_name;\G` 进行查看
   :::
 
 外键约束
 - 添加：`ALTER TABLE table_name ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (index_col_name,...) reference_definition;`
 - 删除：`ALTER TABLE table_name DROP FOREIGN KEY fk_symbol;`
   :::tip
-  fk_symbol 外键约束名称 可以通过 `SHOW CREATE TABLE table_name;` 进行查看
+  fk_symbol: 外键约束名称，可以通过 `SHOW CREATE TABLE table_name;` 进行查看
   :::
 
 默认约束
@@ -194,20 +194,17 @@ CHANGE 比 MODIFY 更强大，除了可以改列定义，还能修改列名称�
   :::
 
 #### UNSIGNED
-无符号，只能针对数值型字段，包括整型和浮点型
+无符号
+- 只能针对数值型字段，包括整型和浮点型
 
 #### AUTO_INCREMENT
 自动编号
 - 必须与主键组合使用
 - 默认情况下，起始值为1，每次的增量为1
+- 只能针对数值型字段，包括整型和浮点型
 :::warning
-AUTO_INCREMENT 字段必须也是 PRIMARY KEY；
-
-但 PRIMARY KEY 字段不一定必须是 AUTO_INCREMENT
-:::
-:::warning
-AUTO_INCREMENT 字段类型必须是数值类型（整型、浮点型），
-如果是浮点型，那么小数位位数必须是零
+- AUTO_INCREMENT 字段必须也是 PRIMARY KEY；但 PRIMARY KEY 字段不一定必须是 AUTO_INCREMENT
+- AUTO_INCREMENT 字段类型必须是数值类型（整型、浮点型），如果是浮点型，那么小数位位数必须是零
 :::
 
 #### NOT NULL
@@ -220,16 +217,16 @@ AUTO_INCREMENT 字段类型必须是数值类型（整型、浮点型），
 #### PRIMARY KEY
 主键约束
 - 主键保证记录的唯一性
-- 主键自动为 NOT NULL
+- 主键自动为 `NOT NULL`
 - 每张数据表只能存在一个主键
 
 #### UNIQUE KEY
 唯一约束
 - 唯一约束可以保证记录的唯一性
-- 唯一约束的字段可以为空值 NULL
+- 唯一约束的字段可以为空值 `NULL`
 - 每张数据表可以存在多个唯一约束
 :::tip
-唯一约束的字段可以为空值 NULL，表明多个字段都可以是空值，但实际存储时只有一个为空
+唯一约束的字段可以为空值 `NULL`，表明多个字段都可以是空值，但实际存储时只有一个为空
 :::
 
 #### FOREIGN KEY
@@ -322,38 +319,32 @@ INSERT INTO t_users VALUES
 ### 更新记录-多表更新
 `UPDATE table_references SET col_name1={expr1 | DEFAULT}[,col_name2={expr2 | DEFAULT},...] [WHERE where_condition]`
 
-```sql
-# 例如
-CREATE TABLE tdb_goods_cates(
-  cate_id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  cate_name VARCHAR(40) NOT NULL
-);
-
-INSERT tdb_goods_cates (cate_name)
-SELECT goods_cate FROM tdb_goods GROUP BY goods_cate;
-
-UPDATE tdb_goods INNER JOIN tdb_goods_cates
-ON goods_cate=cate_name
-SET goods_cate=cate_id;
-```
-
 :::tip
-### table_references 语法结构
+table_references 语法结构：
 ```sql
 table_reference
 {[INNER | CROSS] JOIN | {LEFT | RIGHT} [OUTER] JOIN}
 table_reference
 ON condition_expr
 ```
-
-### 连接类型
-#### INNER JOIN
-内连接，在 MySQL 中，INNER JOIN, CROSS JOIN, JOIN 是等价的
-#### LEFT [OUTER] JOIN
-左外连接
-#### RIGHT [OUTER] JOIN
-右外连接
 :::
+
+```sql
+# 创建表
+CREATE TABLE tdb_goods_cates(
+  cate_id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  cate_name VARCHAR(40) NOT NULL
+);
+
+# 写入结果
+INSERT tdb_goods_cates (cate_name)
+SELECT goods_cate FROM tdb_goods GROUP BY goods_cate;
+
+# 多表更新
+UPDATE tdb_goods INNER JOIN tdb_goods_cates
+ON goods_cate=cate_name
+SET goods_cate=cate_id;
+```
 
 ### 更新记录-多表更新之一步到位
 创建数据表的同时将查询结果写入到数据表
@@ -363,13 +354,14 @@ CREATE TABLE [IF NOT EXISTS] table_name
 select_statement
 ```
 ```sql
-# 例如
+# 创建表并写入结果
 CREATE TABLE tdb_goods_brands(
   brand_id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   brand_name VARCHAR(40) NOT NULL
 )
 SELECT brand_name FROM tdb_goods GROUP BY brand_name;
 
+# 多表更新
 UPDATE tdb_goods AS g INNER JOIN tdb_goods_brands AS b
 ON g.brand_name=b.brand_name
 SET g.brand_name=b.brand_id;
@@ -380,6 +372,23 @@ SET g.brand_name=b.brand_id;
 :::warning
 如果没有 WHERE 条件，所有记录的都将被删除
 :::
+
+### 删除记录-多表删除
+语法：
+```sql
+DELETE table_name[.*] [, table_name[.*], ...]
+FROM table_references
+[WHERE where_condition]
+```
+例如，删除表 tdb_goods 中相同名称重复的商品记录，保留 id 较小的记录：
+```sql
+DELETE t1
+FROM tdb_goods AS t1
+LEFT JOIN
+(SELECT goods_id,goods_name FROM tdb_goods GROUP BY goods_name HAVING count(goods_name)>=2) AS t2
+ON t1.goods_name = t2.goods_name
+WHERE t1.goods_id > t2.goods_id;
+```
 
 ### 查找记录
 ```sql
@@ -443,7 +452,7 @@ SELECT * FROM t1 WHERE col1=(SELECT col2 FROM t2);
 
 语法结构：operand comparison_operator [ANY | SOME | ALL] (subquery)
 
-用 `ANY`, `SOME`, `ALL` 修饰(`ANY` 与 `SOME` 相同)
+用 `ANY`, `SOME`, `ALL` 修饰（`ANY` 与 `SOME` 相同）
 
 ![子查询](/mysql-subquery-any-some-all.jpg)
 ### 使用 IN 或 NOT IN 的子查询
@@ -456,3 +465,170 @@ SELECT * FROM t1 WHERE col1=(SELECT col2 FROM t2);
 ### 使用 EXISTS 或 NOT EXISTS 的子查询
 如果子查询返回任何行，EXISTS 将返回 TRUE，否则返回 FALSE
 
+
+## 连接类型
+### 内连接 INNER JOIN
+在 MySQL 中，INNER JOIN, CROSS JOIN, JOIN 是等价的
+### 左外连接 LEFT [OUTER] JOIN
+显示左表中的全部记录，且右表中符合连接条件的记录
+### 右外连接 RIGHT [OUTER] JOIN
+显示右表中的全部记录，且左表中符合连接条件的记录
+### 自身连接
+自身连接时必须给表起别名
+
+## 字符函数
+|函数名称|描述|
+|-|-|
+|CONCAT()|字符连接|
+|CONCAT_WS()|使用指定的分隔符进行字符连接|
+|FORMAT()|数字格式化|
+|LOWER()|转换称小写字符|
+|UPPER()|转换称大写字符|
+|LEFT()|获取左侧字符|
+|RIGHT()|获取右侧字符|
+|LENGTH()|获取字符长度|
+|LTRIM()|删除前导空格|
+|RTRIM()|删除后续空格|
+|TRIM()|删除前导和后续空格|
+|SUBSTRING(str,pos,len)|字符串截取<br>pos为截取位置，可为负值；<br>len为截取长度，不能为负值|
+|REPLACE()|字符串替换|
+|[NOT] LIKE()|模式匹配<br>`%` 代表任意个字符<br>`_` 代表任意一个字符|
+
+```sql
+# 删除前导指定字符
+SELECT TRIM(LEADING '?' FROM '??Hello? MySQL???');
+Hello? MySQL???
+
+# 删除后续指定字符
+SELECT TRIM(TRAILING '?' FROM '??Hello? MySQL???');
+Hello? MySQL???
+
+# 删除前导和后续指定字符
+SELECT TRIM(BOTH '?' FROM '??Hello? MySQL???');
+Hello? MySQL
+
+SELECT REPLACE('??Hello? MySQL???','?','');
+Hello MySQL
+
+SELECT REPLACE('??Hello? MySQL???','??','!');
+!Hello? MySQL!?
+
+# 查找包含 % 的记录（由于 % 表示任意个字符有特殊意义，所以需要结合使用 ESCAPE）
+SELECT * FROM tdb_goods WHERE goods_name LIKE '%1%%' ESCAPE '1';
+```
+
+## 数值运算符与函数
+|名称|描述|
+|-|-|
+|CEIL()|进一取整，又叫向上取整|
+|FLOOR()|舍一取整，又叫向下取整|
+|ROUND()|四舍五入|
+|DIV|整数除法|
+|MOD 或者 %|取余数，又叫取模|
+|POWER()|幂运算|
+|TRUNCATE()|数字截取|
+
+```sql
+SELECT CEIL(3.1415926); // 4
+SELECT FLOOR(3.1415926); // 3
+SELECT ROUND(3.1415926); // 3
+SELECT ROUND(3.1415926,0); // 3
+SELECT ROUND(3.1415926,1); // 3.1
+SELECT ROUND(3.1415926,2); // 3.14
+SELECT ROUND(3.1415926,3); // 3.142
+SELECT ROUND(3.1415926,-1); // 0
+
+SELECT 4 / 3; // 1/3333
+SELECT 4 DIV 3; // 1
+
+SELECT 4 % 3; // 1
+SELECT 4 MOD 3; // 1
+
+SELECT POWER(2,10); // 1024
+
+SELECT TRUNCATE(3333.1415926,3); // 3333.141
+SELECT TRUNCATE(3333.1415926,2); // 3333.14
+SELECT TRUNCATE(3333.1415926,1); // 3333.1
+SELECT TRUNCATE(3333.1415926,0); // 3333
+SELECT TRUNCATE(3333.1415926,-1); // 3330
+SELECT TRUNCATE(3333.1415926,-2); // 3300
+```
+
+## 比较运算符与函数
+|名称|描述|
+|-|-|
+|[NOT] BETWEEN ... AND ...|[不]在范围之内|
+|[NOT] IN()|[不]在列出值范围内|
+|IS [NOT] NULL|[不]为空|
+
+```sql
+SELECT 15 BETWEEN 10 AND 20; // 1
+SELECT 20 BETWEEN 10 AND 20; // 1
+SELECT 25 BETWEEN 10 AND 20; // 0
+
+SELECT 15 IN(5,10,15,20); // 1
+SELECT 13 IN(5,10,15,20); // 0
+
+SELECT NULL IS NULL; // 1
+SELECT '' IS NULL; // 0
+SELECT 0 IS NULL; // 0
+```
+
+## 日期时间函数
+|名称|描述|
+|-|-|
+|NOW()|当前日期和时间|
+|CURDATE()|当前日期|
+|CURTIME()|当前时间|
+|DATEDIFF()|日期差值|
+|DATE_ADD()|日期变化|
+|DATE_FORMAT()|日期格式化|
+
+```sql
+SELECT NOW(); // 2020-07-05 23:02:09
+
+SELECT DATEDIFF('2020-01-23','2020-04-12'); // -80
+SELECT DATEDIFF('2020-10-01','2020-07-05'); // 88
+
+SELECT DATE_ADD('2020-07-05', interval 1 YEAR); // 2021-07-05
+SELECT DATE_ADD('2020-07-05', interval 12 MONTH); // 2021-07-05
+SELECT DATE_ADD('2020-07-05', interval 365 DAY); // 2021-07-05
+SELECT DATE_ADD('2020-07-05', interval -365 DAY); // 2019-07-06
+SELECT DATE_ADD('2020-07-05', interval 4 WEEK); // 2020-08-02
+
+SELECT DATE_FORMAT('2020-7-5 23:24:9','%m/%d/%Y %H:%i:%s'); // 07/05/2020 23:24:09
+SELECT DATE_FORMAT(NOW(),'%m/%d/%Y %H:%i:%s'); // 07/05/2020 23:30:04
+```
+
+## 信息函数
+|名称|描述|
+|-|-|
+|DATABASE()|当前数据库|
+|VERSION()|版本信息|
+|USER()|当前用户|
+|CONNECTION_ID()|连接ID|
+|LAST_INSERT_ID()|最后插入记录的ID号|
+
+## 聚合函数
+|名称|描述|
+|-|-|
+|AVG()|平均值|
+|SUM()|求和|
+|MIN()|最小值|
+|MAX()|最大值|
+|COUNT()|计数|
+
+## 加密函数
+|名称|描述|
+|-|-|
+|MD5()|信息摘要算法|
+|PASSWORD()|密码算法|
+:::warning
+在 mysql 5.7.9 以后移除了 PASSWORD() 函数
+:::
+```sql
+SELECT MD5('root'); // 63a9f0ea7bb98050796b649e85481845
+
+# 修改 MySQL 客户端用户密码[有版本兼容性问题]
+SET PASSWORD=PASSWORD('root');
+```
