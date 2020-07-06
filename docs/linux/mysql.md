@@ -668,3 +668,87 @@ SELECT MD5('root'); // 63a9f0ea7bb98050796b649e85481845
 # 修改 MySQL 客户端用户密码[有版本兼容性问题]
 SET PASSWORD=PASSWORD('root');
 ```
+
+## 自定义函数
+用户自定义函数（user-defined function, UDF）是一种对 MySQL 扩展的途径，其用法与内置函数相同。
+
+```sql
+# 创建自定义函数
+CREATE FUNCTION function_name
+RETURNS
+{STRING|INTEGER|REAL|DECIMAL}
+routine_body
+
+# 删除自定义函数
+DROP FUNCTION [IF EXISTS] function_name;
+```
+
+:::tip
+关于函数体
+- 函数体由合法的 SQL 语句构成
+- 函数体可以是简单的 SELECT 或 INSERT 语句
+- 函数体如果为复合结构则使用 BEGIN...END 语句
+- 复合结构可以包含声明，循环，控制结构
+:::
+
+## 创建不带参数的自定义函数
+```sql
+# 设置编码
+ALTER DATABASE db_name CHARACTER SET gbk;
+
+CREATE FUNCTION f1()
+RETURNS varchar(30)
+RETURN DATE_FORMAT(NOW(),'%Y年%m月%d日 %H时:%i分:%s秒');
+
+SELECT f1(); // 2020年07月06日 23点45分01秒
+```
+
+:::tip
+`SHOW FUNCTION STATUS LIKE "function_name%";`
+
+查看数据库编码: `show variables like 'char%';`
+
+设置数据库编码: `SET character_set_database=gbk;`
+:::
+
+## 创建带参数的自定义函数
+```sql
+CREATE FUNCTION f2(num1 SMALLINT UNSIGNED, num2 SMALLINT UNSIGNED)
+RETURNS FLOAT(10,2) UNSIGNED
+RETURN (num1+num2)/2;
+
+SELECT f2(13,14); # 13.50
+```
+
+## 创建具有复合结构函数体的自定义函数
+```sql
+CREATE TABLE t_user(id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name varchar(10) NOT NULL);
+
+INSERT INTO t_user(name) VALUES('hello');
+INSERT INTO t_user(name) VALUES('world');
+
+# 将分隔符由默认的 ; 修改为 //
+DELIMITER //
+
+# 自定义函数：新增用户，并返回插入 id
+CREATE FUNCTION f3(username varchar(10))
+RETURNS INT UNSIGNED
+BEGIN
+  INSERT INTO t_user(name) VALUES(username);
+  RETURN LAST_INSERT_ID();
+END;
+
+# 将分隔符修改为默认的 ;
+DELIMITER ;
+
+SELECT f3('mysql'); # 3
+
+SELECT * FROM t_user;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | hello |
+|  2 | world |
+|  3 | mysql |
++----+-------+
+```
