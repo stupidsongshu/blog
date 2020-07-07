@@ -352,7 +352,7 @@ table_reference
 #### RIGHT [OUTER] JOIN
 右外连接：显示右表的全部记录及左表符合连接条件的记录
 
-### 外链接
+### 外连接
 以左外连接为例：A LEFT JOIN B join_condition
 
 数据表 B 的结果集依赖数据表 A
@@ -372,6 +372,10 @@ FROM tdb_goods AS g
 INNER JOIN tdb_goods_cates AS c ON g.cate_id=c.cate_id
 INNER JOIN tdb_goods_brands AS b ON g.brand_id=b.brand_id;
 ```
+
+### 自身连接
+同一个数据表对其自身进行连接，自身连接时表必须起别名
+
 :::
 
 ```sql
