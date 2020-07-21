@@ -213,7 +213,7 @@ kill -9 pid
   - zip 1.txt
   - zip -r book
   - unzip book.zip
-#### tar
+#### [tar](https://www.runoob.com/linux/linux-comm-tar.html)
 - 压缩: tar -cvf 压缩文件名 源文件/源目录
 - 解压缩: tar -xvf 压缩文件名
   - -c压缩

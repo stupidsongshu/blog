@@ -1,21 +1,30 @@
 # vi/vim
+[vim](https://www.vim.org/)
+
+[vim doc](http://vimdoc.sourceforge.net/)
+
 分为两种模式：
 - 查看模式 (i)
 - 编辑模式 (esc)
 
-```
-:w 保存
-:q 退出
-:wq 保存后退出
-:q! 不保存退出
-:! 强制保存
-:ls 列出所有的文件
-:n 下一个
-:N 上一个
-:10 跳到指定行
-/xxx 从光标位置开始向后搜索xxx字符串
-?xxx 从光标位置开始向前搜索xxx字符串
-```
+配置文件：~/.vimrc
+
+| vim Command | Description/Purpose |
+| - | - |
+| :syntax on  | Enabling vi/vim syntax colors |
+| :syntax off | Disabling vi/vim syntax colors |
+| :colorscheme foo | Specifying a colorscheme called foo.<br/>Use ‘/usr/share/vim/vim*/colors/’ to find installed color scheme |
+| :w | 保存 |
+| :q | 退出 |
+| :wq | 保存后退出 |
+| :q! | 不保存退出 |
+| :! | 强制保存 |
+| :ls | 列出所有的文件 |
+| :n | 下一个 |
+| :N | 上一个 |
+| :10 | 跳到指定行 |
+| /xxx | 从光标位置开始向后搜索xxx字符串 |
+| ?xxx | 从光标位置开始向前搜索xxx字符串 |
 
 ## iterm2
 - `command + d` 垂直分屏
