@@ -50,3 +50,13 @@ Unix domain Socket 走IPC
 
 - 开启debug模式 `node --debug app.js`
 - [node-inspector](https://www.npmjs.com/package/node-inspector)
+
+## [PM2](https://pm2.io/)
+```sh
+pm2 start server.js --name my-server
+pm2 list # pm2 ls
+pm2 restart my-server
+pm2 stop my-server
+pm2 monit
+pm2 logs my-server
+```
