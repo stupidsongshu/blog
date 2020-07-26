@@ -12,6 +12,8 @@
   - 可维护性
   - 成本
 
+## [https://web.dev](https://web.dev)
+
 ## w3c
 - [web-performance](https://github.com/w3c/web-performance)
 - [navigation-timing](https://www.w3.org/TR/navigation-timing)
@@ -83,17 +85,69 @@ serviceWorker缓存
 serviceWorker拦截请求需在本地开发及https域名条件下
 :::
 
-## 渲染优化
+## 渲染指标
 gpu.js
 
-TTFP
-FP
-FCP
-FMP
-TTI
+[https://web.dev/metrics](https://web.dev/metrics)
 
-PerformanceObserver
-PerformanceTiming
+| name | description |
+| - | - |
+| TTFP | |
+| FP   | First Paint 首次绘制 |
+| FCP  | First Contentful Paint 首次内容绘制 |
+| FMP  | First Meaningful Paint 首次有效绘制 |
+| LCP  | Largest Contentful Paint 最大内容绘制（替代FMP） |
+| TTI  | Time to Interactive 可交互时间 |
+
+PerformanceObserver 为我们提供的新功能是，能够在性能事件发生时订阅这些事件，并以异步方式响应事件。 此 API 取代旧的 [PerformanceTiming](https://www.w3.org/TR/navigation-timing/#sec-navigation-timing-interface) 界面，后者通常需要执行轮询才能查看数据可用的时间。
+
+```js
+// 使用 PerformanceObserver 获取 FP
+const observerWithPromise = new Promise((resolve, reject) => {
+  // return new PerformanceObserver((...rest) => {
+  //   console.log('rest', rest)
+  //   resolve(rest[0])
+  // }).observe({
+  //   entryTypes: ['paint'] // 注册 paint 性能事件
+  // })
+  return new PerformanceObserver(resolve).observe({
+    entryTypes: ['paint'] // 注册 paint 性能事件
+  })
+}).then(entryList => { // 获得实体列表
+  console.log('entries:', entryList.getEntries())
+  return entryList.getEntries().find((entry) => {
+    return entry.name === 'first-paint'
+  })
+}).then((entry) => {
+  console.log('startTime:', entry.startTime)
+})
+
+// 使用 PerformanceObserver 获取 FCP
+new Promise((resolve) => (
+  new PerformanceObserver(resolve).observe({ entryTypes: ['paint'] })
+))
+.then((list) => (list.getEntries().find(entry => entry.name === 'first-contentful-paint')))
+.then((entry) => console.log(entry.startTime))
+```
+
+[Lighthouse](https://developers.google.com/web/tools/lighthouse)
+```sh
+npm install -g lighthouse
+# yarn global add lighthouse
+
+lighthouse --help
+
+lighthouse https://www.baidu.com --output-path=./lighthouse-results.json --output=json
+```
+
+[Web Page Test](https://www.webpagetest.org/)
+
+- 参考资料
+  - [w3c/paint-timing](https://github.com/w3c/paint-timing)
+  - [performance - developers.google.com](https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics?hl=zh-cn)
+  - [性能指标都是些什么鬼?](https://llp0574.github.io/2017/10/19/performance-metrics-whats-this-all-about/)
+  - [前端黑科技：美团网页首帧优化实践](https://segmentfault.com/a/1190000017040216)
+  - [FCP/FMP/FP 分别是怎样定义，如何统计](https://github.com/LuckyWinty/fe-weekly-questions/issues/56)
 
 ## 刷新SSR，切页SPA
 ### pjax
@@ -177,3 +231,6 @@ BFC是页面上一个隔离的独立容器，容器里面的子元素不会影�
 
 css阻塞js执行，js阻塞DOM解析
 有js时css会阻塞页面；无js时css不会阻塞页面
+
+### BEM
+[getbem.com](http://getbem.com/)
