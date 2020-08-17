@@ -26,6 +26,20 @@ $('input,textarea').on('blur', function() {
   ['input', 'textarea'].indexOf(e.target.localName) !== -1 && document.body.scrollIntoView(false); // 4
 }, true)
 ```
+#### 微信公众号签名问题 - 单页应用 history 下的 invalid signature
+Android 需要使用当前 URL 进行注册（即当场调用 location.href.split('#')[0]）；
+iOS 需要使用进入页面的初始 URL 进行注册（即在任何 pushstate 前调用 location.href.split('#')[0]）
+
+- [JS-SDK使用权限签名算法](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62)
+- [关于html5-History模式在微信浏览器内的问题](https://github.com/vuejs/vue-router/issues/481)
+- [微信 jssdk 签名错误 invalid signature](https://www.fengerzh.com/jssdk-invalid-signature)
+- [https://zhuanlan.zhihu.com/p/32227843](https://zhuanlan.zhihu.com/p/32227843)
+- [https://segmentfault.com/a/1190000012339148](https://segmentfault.com/a/1190000012339148)
+
+#### 微信公众号网页跳转小程序
+[微信公众号 开放标签说明文档](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html)
+
+[VUE中使用Wx-Open-Launch-Weapp采坑记](https://www.dengwz.com/archives/137)
 
 ## 工具类
 ```js
@@ -484,5 +498,39 @@ function checkCHNCardId (sNo) {
       }
   }
   return true
+}
+
+
+/**
+  * hasClass
+  * @param {Object} ele   HTML Object
+  * @param {String} cls   className
+  * @return {Boolean}
+  */
+function hasClass(ele, cls) {
+  if (!ele || !cls) return false;
+  if (ele.classList) {
+    return ele.classList.contains(cls);
+  } else {
+    return ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+  }
+}
+
+// addClass
+function addClass(ele, cls) {
+  if (ele.classList) {
+    ele.classList.add(cls);
+  } else {
+    if (!hasClass(ele, cls)) ele.className += '' + cls;
+  }
+}
+
+// removeClass
+function removeClass(ele, cls) {
+  if (ele.classList) {
+    ele.classList.remove(cls);
+  } else {
+    ele.className = ele.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  }
 }
 ```
