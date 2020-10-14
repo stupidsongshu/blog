@@ -35,3 +35,5 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 
 改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
 :::
+
+CentOS 7 安装 MySQL: [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)

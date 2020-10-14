@@ -15,6 +15,7 @@
 ## [https://web.dev](https://web.dev)
 
 ## w3c
+- [MDN-performance](https://developer.mozilla.org/zh-CN/docs/Web/Performance)
 - [web-performance](https://github.com/w3c/web-performance)
 - [navigation-timing](https://www.w3.org/TR/navigation-timing)
 

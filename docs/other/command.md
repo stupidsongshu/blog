@@ -1,4 +1,4 @@
-# 基本命令
+# 命令
 
 ## 远程登录
 ### Windows系统
@@ -139,17 +139,26 @@ ps aux | grep node
 ps -ef | grep node
 ```
 
+[LINUX中如何查看某个端口是否被占用](https://www.cnblogs.com/hindy/p/7249234.html)
+
 ### netstat
 ```sh
 # 查看端口为80的进程id
 netstat -anp | grep 80
 ```
 ```sh
-netstat -tulpn | grep :80
+# 查看当前所有已经使用的端口情况(不用加端口号)
+# -t (tcp) 仅显示tcp相关选项
+# -u (udp) 仅显示udp相关选项
+# -n 拒绝显示别名，能显示数字的全部转化为数字
+# -l 仅列出在Listen(监听)的服务状态
+# -p 显示建立相关链接的程序名
+netstat -tunlp
 ```
 
 ### lsof
 ```sh
+lsof -i :80
 lsof -i tcp:80
 ```
 

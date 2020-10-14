@@ -2,7 +2,7 @@
 
 [freeCodeCamp](https://github.com/FreeCodeCamp/FreeCodeCamp/)
 
-[my Github](https://github.com/frontend-road)
+[my Github](https://github.com/stupidsongshu)
 
 ## Vue 源码
 - [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/)
