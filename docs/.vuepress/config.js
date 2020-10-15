@@ -33,7 +33,7 @@ module.exports = {
       },
       { text: '其他', items: [
         { text: 'Git', link: '/other/git' },
-          { text: '命令', link: '/other/command' },
+          { text: 'Linux', link: '/other/linux' },
           { text: 'Shell', link: '/other/shell' },
           { text: 'CentOS', link: '/other/centos' },
           { text: 'MySQL', link: '/other/mysql' },
@@ -122,7 +122,7 @@ module.exports = {
         title: '其他',
         children: [
           '/other/git',
-          '/other/command',
+          '/other/linux',
           '/other/shell',
           '/other/centos',
           {
