@@ -1,6 +1,7 @@
 # CentOS
 
-### [FHS (Filesystem Hierarchy Standard) 文件系统层次结构标准](https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%A0%87%E5%87%86)
+## FHS
+[FHS (Filesystem Hierarchy Standard) 文件系统层次结构标准](https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%A0%87%E5%87%86)
 | Name | Description |
 | :--: | ----------- |
 | /bin | 存放二进制可执行文件 |
@@ -25,7 +26,7 @@
 - 静态库：Windows和Linux系统下都是.lib文件
 :::
 
-### Mac VMware Fusion
+## Mac VMware Fusion
 - [联网问题](https://garryshield.github.io/2016/11/01/mac-vmware-network/)
 - 重启网络命令
   - systemctl restart network
@@ -36,4 +37,5 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
 :::
 
-CentOS 7 安装 MySQL: [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
+## CentOS 7 安装 MySQL
+[How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)

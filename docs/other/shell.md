@@ -1,40 +1,4 @@
 # Shell
-[vim](https://www.vim.org/)
-
-[vim doc](http://vimdoc.sourceforge.net/)
-
-分为两种模式：
-- 查看模式 (i)
-- 编辑模式 (esc)
-
-配置文件：~/.vimrc
-
-| vim Command | Description/Purpose |
-| - | - |
-| :syntax on  | Enabling vi/vim syntax colors |
-| :syntax off | Disabling vi/vim syntax colors |
-| :colorscheme foo | Specifying a colorscheme called foo.<br/>Use ‘/usr/share/vim/vim*/colors/’ to find installed color scheme |
-| :w | 保存 |
-| :q | 退出 |
-| :wq | 保存后退出 |
-| :q! | 不保存退出 |
-| :! | 强制保存 |
-| :ls | 列出所有的文件 |
-| :n | 下一个 |
-| :N | 上一个 |
-| :10 | 跳到指定行 |
-| /xxx | 从光标位置开始向后搜索xxx字符串 |
-| ?xxx | 从光标位置开始向前搜索xxx字符串 |
-
-## 通配符
-shell 内建的符号，用于操作多个相似有规律的文件
-
-常用通配符：
-- * 匹配任意字符
-- ? 匹配任意一个字符
-- [xyz] 匹配xyz中的任意一个字符
-- [a-z] 匹配范围a-z中的任意一个字符
-- [!xyz] 或 [^xyz] 不匹配
 
 ## iterm2
 - `command + d` 垂直分屏
@@ -82,7 +46,28 @@ curl http://cip.cc
 curl -i https://www.google.com
 ```
 
+## 通配符
+shell 内建的符号，用于操作多个相似有规律的文件
+
+常用通配符：
+- * 匹配任意字符
+- ? 匹配任意一个字符
+- [xyz] 匹配xyz中的任意一个字符
+- [a-z] 匹配范围a-z中的任意一个字符
+- [!xyz] 或 [^xyz] 不匹配
 ### shell 脚本示例
+```sh
+# 编写可执行 shell
+vim hello.sh
+
+#!/bin/bash
+echo -e "\e[1;34m hello world \e[0m"
+chmod 755 hello.sh
+./hello.sh
+#或通过Bash调用执行脚本
+bash ./hello.sh
+```
+
 ```sh
 #!/bin/bash
 # error_log.sh: 统计当天错误日志数量（error 包括接口、cli脚本）

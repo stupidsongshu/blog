@@ -60,7 +60,7 @@ module.exports = {
     ],
 
     // 侧边栏
-    sidebarDepth: 0,
+    sidebarDepth: 1,
     sidebar: [
       // '/guide/',
       // '/guide/page-a',
