@@ -245,16 +245,38 @@ chomd u+x /tmp/testfile
 chmod 755 /tmp/testfile
 
 # 修改属主、属组权限
-chown
+chown 属主名:属组名 文件名或目录名
 
 # 单独更改属组，不常用
-chgrp
+chgrp 属组名 文件名或目录名
 ```
 
+### 特殊权限
+#### SUID
+用于二进制可执行文件，执行命令时取得文件属主权限，如 /usr/bin/passwd
 ```sh
+ls -l /usr/bin/passwd
+> -rwsr-xr-x. 1 root root 27832 6月  10 2014 /usr/bin/passwd
+
+# 4加上权限
+chmod 4755 /test/testfile
+```
+#### SGID
+用于目录，在该目录下创建新的文件和目录，权限自动更改为该目录的数组
+#### SBIT
+用于目录，在该目录下新建的文件和目录，只有 root 和自己可以删除，如 /tmp
+```sh
+ls -ld /tmp
+> drwxrwxrwt. 10 root root 12288 10月 19 22:39 /tmp
+
+# 1加上权限
+chmod 1777 /test
+```
+
+<!-- ```sh
 # 修改权限
 who am i~chmod 777 用户名
-```
+``` -->
 
 标识位flag|说明
 -|-
@@ -486,21 +508,49 @@ vimtutor
   - 按 `d` 进行删除
 
 
-## 其他
+## 网络管理
+### 网络状态查看
+#### net-tools
+- ifconfig
+- route
+- netstat
+
+#### iproute2
+- ip
+- ss
+
+### 网络接口命名修改
+网卡命名规则受 biosdevname 和 net.ifnames 两个参数影响
+|      | biosdevname | net.ifnames | 网卡名 |
+| -    | -           | -           | -     |
+| 默认  |      0      |       1     | ens33 |
+| 组合1 |      1      |       0     | em1   |
+| 组合2 |      0      |       0     | eth0 |
+- 1. 编辑 /etc/default/grub 文件，增加 biosdevname=0 net.ifnames=0
+- 2. 更新 grub: grub2-mkconfig -o /boot/grub2/grub.cfg
+- 3. 重启: reboot
+
+### 查看网卡物理连接情况
+```sh
+mii-tool eth0
+ethtool eth0
+```
+
 ### ip
-ip是一个命令集，如 `ip address`
+ip 是一个命令集，如 `ip address`
 
 ### route
-route路由管理
+route 路由管理，查看网关
+```sh
+# 使用 -n 参数不解析主机名
+route -n
+```
 
 ### ps
 ```sh
 ps aux | grep node
 ps -ef | grep node
 ```
-
-### ss
-
 ### netstat
 [LINUX中如何查看某个端口是否被占用](https://www.cnblogs.com/hindy/p/7249234.html)
 ```sh
