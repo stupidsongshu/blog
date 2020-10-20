@@ -508,18 +508,30 @@ vimtutor
   - 按 `d` 进行删除
 
 
-## 网络管理
-### 网络状态查看
-#### net-tools
+# 网络管理
+## 网络状态查看
+### net-tools
 - ifconfig
 - route
 - netstat
 
-#### iproute2
+```sh
+ifconfig <接口> <IP地址> [netmask 子网掩码]
+ifup <接口>
+ifdown <接口>
+
+# 查看所有网卡
+ifconfig
+# 查看指定网卡 eht0
+ifconfig eth0
+# 设置 网卡 eth0 的 ip
+ifconfig eth0 172.17.0.2
+```
+### iproute2
 - ip
 - ss
 
-### 网络接口命名修改
+## 网络接口命名修改
 网卡命名规则受 biosdevname 和 net.ifnames 两个参数影响
 |      | biosdevname | net.ifnames | 网卡名 |
 | -    | -           | -           | -     |
@@ -530,20 +542,28 @@ vimtutor
 - 2. 更新 grub: grub2-mkconfig -o /boot/grub2/grub.cfg
 - 3. 重启: reboot
 
-### 查看网卡物理连接情况
+## 查看网卡物理连接情况
 ```sh
 mii-tool eth0
 ethtool eth0
 ```
 
-### ip
+## ip
 ip 是一个命令集，如 `ip address`
 
-### route
+## route
 route 路由管理，查看网关
 ```sh
-# 使用 -n 参数不解析主机名
+# 查看网关，使用 -n 参数不解析主机名
 route -n
+
+# 删除网关
+route del default gw <网关ip>
+
+# 添加网关
+route add default gw <网关ip>
+route add -host <指定ip> gw <网关ip>
+route add -net <指定网段> netmask <子网掩码> gw <网关ip>
 ```
 
 ### ps
@@ -571,6 +591,47 @@ netstat -tunlp
 lsof -i :80
 lsof -i tcp:80
 ```
+
+## 网络故障排除
+### ping
+```sh
+ping www.baidu.com
+```
+### traceroute
+```sh
+# -w 等待时间（秒）
+traceroute -w 1 www.baidu.com
+```
+### mtr
+### nslookup
+```sh
+# 域名解析 ip 地址
+nslookup www.baidu.com
+```
+### telnet
+```sh
+yum install -y telnet
+# 检查本机到 www.baidu.com 的80端口是否畅通
+telnet www.baidu.com 80
+```
+### tcpdump
+- -i: 监听 interface
+- -n: 不要把地址转换成名字（指的是主机地址，端口号等）
+- -w: 把原始报文存进文件
+
+```sh
+# 抓包，本机到主机10.0.0.1
+tcpdump -i any -n host 10.0.0.1
+# 本机到端口80
+tcpdump -i any -n port 80
+# 本机到10.0.0.1的80端口
+tcpdump -i any -n host 10.0.0.1 and port 80
+# -w 写入到文件
+tcpdump -i any -n host 10.0.0.1 and port 80 -w /tmp/tcpdumpfile
+```
+### netstat
+### ss
+
 
 ### systemctl
 服务管理
