@@ -660,7 +660,11 @@ kill pid
 kill -9 pid
 ```
 
-### 安装
+## 软件安装
+### 软件包管理
+- CentOS、RedHat 使用 yum 包管理器，软件安装包格式为 rpm
+- Debian、Ubuntu 使用 apt 包管理器，软件安装包格式为 deb
+
 - debian:  `apt`或`apt-get`
 - unbuntu: `apt`或`apt-get`
 - fedora:  `yum`或`dnf`
