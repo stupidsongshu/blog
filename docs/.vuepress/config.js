@@ -37,6 +37,7 @@ module.exports = {
           { text: 'Shell', link: '/other/shell' },
           { text: 'CentOS', link: '/other/centos' },
           { text: 'MySQL', link: '/other/mysql' },
+          { text: 'SQL', link: '/other/sql' },
         ]
       },
       { text: 'movie', link: '/movie' },

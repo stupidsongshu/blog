@@ -516,20 +516,21 @@ SELECT * FROM t1 WHERE col1=(SELECT col2 FROM t2);
 ## 字符函数
 |函数名称|描述|
 |-|-|
-|CONCAT()|字符连接|
+|CONCAT()|字符串拼接|
 |CONCAT_WS()|使用指定的分隔符进行字符连接|
-|FORMAT()|数字格式化|
 |LOWER()|转换称小写字符|
 |UPPER()|转换称大写字符|
 |LEFT()|获取左侧字符|
 |RIGHT()|获取右侧字符|
-|LENGTH()|获取字符长度|
+|LENGTH()|获取字段长度，1个汉字算3个字符，1个数字或字母算1个字符|
+|CHAR_LENGTH()|获取字段长度，1个汉字、数字、字母都算1个字符|
 |LTRIM()|删除前导空格|
 |RTRIM()|删除后续空格|
 |TRIM()|删除前导和后续空格|
 |SUBSTRING(str,pos,len)|字符串截取<br>pos为截取位置，可为负值；<br>len为截取长度，不能为负值|
 |REPLACE()|字符串替换|
 |[NOT] LIKE()|模式匹配<br>`%` 代表任意个字符<br>`_` 代表任意一个字符|
+|FORMAT()|数字格式化|
 
 ```sql
 # 删除前导指定字符
@@ -557,15 +558,18 @@ SELECT * FROM tdb_goods WHERE goods_name LIKE '%1%%' ESCAPE '1';
 ## 数值运算符与函数
 |名称|描述|
 |-|-|
+|ABS()|取绝对值|
 |CEIL()|进一取整，又叫向上取整|
 |FLOOR()|舍一取整，又叫向下取整|
 |ROUND()|四舍五入|
 |DIV|整数除法|
 |MOD 或者 %|取余数，又叫取模|
+|MOD()|取余函数|
 |POWER()|幂运算|
 |TRUNCATE()|数字截取|
 
 ```sql
+SELECT ABS(-1); // 1
 SELECT CEIL(3.1415926); // 4
 SELECT FLOOR(3.1415926); // 3
 SELECT ROUND(3.1415926); // 3
@@ -575,11 +579,11 @@ SELECT ROUND(3.1415926,2); // 3.14
 SELECT ROUND(3.1415926,3); // 3.142
 SELECT ROUND(3.1415926,-1); // 0
 
-SELECT 4 / 3; // 1/3333
-SELECT 4 DIV 3; // 1
+SELECT 5 / 3; // 1/6667
+SELECT 5 DIV 3; // 1
 
-SELECT 4 % 3; // 1
-SELECT 4 MOD 3; // 1
+SELECT 5 % 3; // 2
+SELECT 5 MOD 3; // 2
 
 SELECT POWER(2,10); // 1024
 
@@ -614,15 +618,56 @@ SELECT 0 IS NULL; // 0
 ## 日期时间函数
 |名称|描述|
 |-|-|
-|NOW()|当前日期和时间|
-|CURDATE()|当前日期|
-|CURTIME()|当前时间|
+|CURDATE() CURRENT_DATE()|系统当前日期|
+|CURTIME() CURRENT_TIME()|系统当前时间，不包含具体的日期|
+|NOW() CURRENT_TIMESTAMP()|系统当前时间，包含具体的日期+时间|
+|DATE()|返回时间的日期部分|
+|YEAR()|返回时间的年份部分|
+|MONTH()|返回时间的月份部分|
+|DAY()|返回时间的天数部分|
+|HOUR()|返回时间的小时部分|
+|MINUTE()|返回时间的分钟部分|
+|SECOND()|返回时间的秒部分|
+|EXTRACT()|抽取具体的年、月、日、时、分、秒|
 |DATEDIFF()|日期差值|
 |DATE_ADD()|日期变化|
 |DATE_FORMAT()|日期格式化|
-
+:::warning
+`DATE` 日期格式必须是 yyyy-mm-dd 的形式。如果要进行日期比较，就要使用 `DATE` 函数，不要直接使用日期与字符串进行比较
+:::
 ```sql
-SELECT NOW(); // 2020-07-05 23:02:09
+SELECT CURDATE(); # 2020-12-05
+SELECT CURRENT_DATE; # 2020-12-05
+SELECT CURRENT_DATE(); # 2020-12-05
+
+SELECT CURTIME(); # 17:25:03
+SELECT CURRENT_TIME; # 17:25:03
+SELECT CURRENT_TIME(); # 17:25:03
+
+SELECT NOW(); # 2020-12-05 17:25:03
+SELECT CURRENT_TIMESTAMP; # 2020-12-05 17:25:03
+SELECT CURRENT_TIMESTAMP(); # 2020-12-05 17:25:03
+
+SELECT DATE('2020-12-05 17:25:03'); # 2020-12-05
+SELECT DATE('2020/12/05 17:25:03'); # 2020-12-05
+SELECT TIME('2020-12-05 17:25:03'); # 17:25:29
+SELECT TIMESTAMP('2020-12-05 17:25:03'); # 2020-12-05 17:25:03
+SELECT TIMESTAMP('2020-12-5'); # 2020-12-05 00:00:00
+
+SELECT YEAR('2020-12-05'); # 2020
+SELECT YEAR('2020-12-05 17:25:03'); # 2020
+SELECT MONTH('2020-12-05 17:25:03'); # 12
+SELECT DAY('2020-12-05 17:25:03'); # 5
+SELECT HOUR('2020-12-05 17:25:03'); # 17
+SELECT MINUTE('2020-12-05 17:25:03'); # 25
+SELECT SECOND('2020-12-05 17:25:03'); # 3
+
+SELECT EXTRACT(YEAR FROM '2020-12-05 17:25:03'); # 2020
+SELECT EXTRACT(MONTH FROM '2020-12-05 17:25:03'); # 12
+SELECT EXTRACT(DAY FROM '2020-12-05 17:25:03'); # 5
+SELECT EXTRACT(HOUR FROM '2020-12-05 17:25:03'); # 17
+SELECT EXTRACT(MINUTE FROM '2020-12-05 17:25:03'); # 25
+SELECT EXTRACT(SECOND FROM '2020-12-05 17:25:03'); # 3
 
 SELECT DATEDIFF('2020-01-23','2020-04-12'); // -80
 SELECT DATEDIFF('2020-10-01','2020-07-05'); // 88
@@ -636,6 +681,23 @@ SELECT DATE_ADD('2020-07-05', interval 4 WEEK); // 2020-08-02
 SELECT DATE_FORMAT('2020-7-5 23:24:9','%m/%d/%Y %H:%i:%s'); // 07/05/2020 23:24:09
 SELECT DATE_FORMAT(NOW(),'%m/%d/%Y %H:%i:%s'); // 07/05/2020 23:30:04
 ```
+
+## 转换函数
+转换函数可以转换数据之间的类型
+|名称|描述|
+|-|-|
+|CAST()|数据类型转换，参数是一个表达式，表达式通过 AS 关键词分割了两个参数，分别是原始数据和目标数据类型|
+|COALESCE()|返回第一个非空数值|
+```sql
+SELECT CAST(123.123 AS INT)  -- 运行结果会报错
+SELECT CAST(123.123 AS DECIMAL(8,2)); # 123.12
+
+SELECT COALESCE(NULL,1,2); # 1
+SELECT COALESCE(null,1,2); # 1
+SELECT COALESCE(null,'1',2); # '1'
+SELECT COALESCE(null,'Hello',2); # Hello
+```
+`CAST` 函数在转换数据类型的时候，不会四舍五入，如果原数值有小数，那么转换为整数类型的时候就会报错。不过你可以指定转化的小数类型，在 MySQL 和 SQL Server 中，可以用 `DECIMAL(a,b)` 来指定，其中 a 代表整数部分和小数部分加起来最大的位数，b 代表小数位数，比如 `DECIMAL(8,2)` 代表的是精度为 8 位（整数加小数位数最多为 8 位），小数位数为 2 位的数据类型。所以 `SELECT CAST(123.123 AS DECIMAL(8,2))` 的转换结果为 123.12。
 
 ## 信息函数
 |名称|描述|
