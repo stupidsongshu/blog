@@ -19,7 +19,7 @@ module.exports = {
           { text: 'React', link: '/fe/react'},
         ]
       },
-      { text: 'Node.js', link: '/nodejs'},
+      { text: 'Node.js', link: '/nodejs/'},
       { text: 'Java', link: '/java/' },
       { text: 'PHP', link: '/php/' },
       { text: 'Python', link: '/python/' },

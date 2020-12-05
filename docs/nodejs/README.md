@@ -166,3 +166,8 @@ setImmediate(function(){
 
 console.log(++pos + " last");
 ```
+
+[node事件循环](https://www.taopoppy.cn/node/one_eventLoop.html)
+
+## 宏任务 微任务
+[Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
