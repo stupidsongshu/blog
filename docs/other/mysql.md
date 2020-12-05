@@ -363,7 +363,7 @@ table_reference
 如果使用内连接查找的记录在连接数据表中不存在，并且在 `WHERE` 子句中尝试以下操作：`col_name IS NULL`，如果 col_name 被定义为 `NOT NULL`，MySQL 将在找到符合连接条件的记录后停止搜索更多的行。
 
 ### 自身连接
-自身连接时必须给表起别名
+同一个数据表对其自身进行连接，自身连接时必须给表起别名
 
 ```sql
 # 多表连接
@@ -372,9 +372,6 @@ FROM tdb_goods AS g
 INNER JOIN tdb_goods_cates AS c ON g.cate_id=c.cate_id
 INNER JOIN tdb_goods_brands AS b ON g.brand_id=b.brand_id;
 ```
-
-### 自身连接
-同一个数据表对其自身进行连接，自身连接时表必须起别名
 
 :::
 
@@ -756,3 +753,16 @@ SELECT * FROM t_user;
 |  3 | mysql |
 +----+-------+
 ```
+
+## Join
+JOIN 类型分为：内连接（INNER）、全外连接（FULL OUTER）、左外连接（LEFT OUTER）、右外连接（RIGHT OUTER）、交叉连接（CROSS）
+
+![INNER JOIN](/mysql/inner_join.jpg)
+
+![LEFT OUTER JOIN](/mysql/left_outer_join.jpg)
+
+![RIGHT OUTER JOIN](/mysql/right_outer_join.jpg)
+
+![FULL OUTER JOIN](/mysql/full_outer_join.jpg)
+
+![UNION ALL](/mysql/full_outer_join_union_all.jpg)
