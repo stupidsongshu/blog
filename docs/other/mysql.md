@@ -712,11 +712,27 @@ SELECT COALESCE(null,'Hello',2); # Hello
 |名称|描述|
 |-|-|
 |AVG()|平均值|
-|SUM()|求和|
-|MIN()|最小值|
 |MAX()|最大值|
-|COUNT()|计数|
+|MIN()|最小值|
+|SUM()|求和|
+|COUNT()|总行数|
+:::tip
+`AVG`、`MAX`、`MIN` 等聚集函数会自动忽略值为 `NULL` 的数据行，`MAX` 和 `MIN` 函数也可以用于字符串类型数据的统计，如果是英文字母，则按照 A—Z 的顺序排列，越往后数值越大。如果是汉字则按照全拼拼音进行排列。
+```sql
+SELECT MIN(CONVERT(`name` USING gbk)),MAX(CONVERT(`name` USING gbk)) FROM heros;
+```
 
+`COUNT(字段名)` 会忽略值为 `NULL` 的数据行，而 `COUNT(*)` 只是统计数据行数，不管某个字段是否为 `NULL`
+```sql
+-- 查询最大生命值(hp_max)大于 6000，且有次要定位(role_assist)的英雄数量
+SELECT COUNT(role_assist) FROM heros WHERE hp_max > 6000;
+```
+:::
+```sql
+-- 对数据行中不同的取值进行聚集：先用 DISTINCT 函数取不同的数据，然后再使用聚集函数
+-- 查询不同的生命最大值的英雄数量
+SELECT COUNT(DISTINCT hp_max) FROM heros;
+```
 ## 加密函数
 |名称|描述|
 |-|-|
