@@ -31,13 +31,21 @@ module.exports = {
           { text: '复杂度分析（下）', link: '/alg/复杂度分析（下）' },
         ]
       },
+      {
+        text: 'MySQL',
+        items: [
+          { text: '基础', link: '/mysql/mysql' },
+          { text: '函数', link: '/mysql/function' },
+          { text: '子查询', link: '/mysql/subquery' },
+          { text: '连接查询', link: '/mysql/join' },
+          { text: 'SQL必知必会', link: '/mysql/sql' },
+        ]
+      },
       { text: '其他', items: [
         { text: 'Git', link: '/other/git' },
           { text: 'Linux', link: '/other/linux' },
           { text: 'Shell', link: '/other/shell' },
           { text: 'CentOS', link: '/other/centos' },
-          { text: 'MySQL', link: '/other/mysql' },
-          { text: 'SQL', link: '/other/sql' },
         ]
       },
       { text: 'movie', link: '/movie' },
@@ -125,11 +133,7 @@ module.exports = {
           '/other/git',
           '/other/linux',
           '/other/shell',
-          '/other/centos',
-          {
-            title: 'MySQL',
-            path: '/other/mysql',
-          }
+          '/other/centos'
         ]
       },
       '/movie',
