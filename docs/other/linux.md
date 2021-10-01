@@ -687,11 +687,30 @@ kill -9 pid
   wget -c 地址
   ```
 
-### 进程管理相关命令
+### 进程管理
 - top
+  - top -p pid: 查看指定进程ID
 - ps
-- kill/pkill
-- w
+  - ps -e | more
+  - ps -ef
+  - ps -eLf
+- pstree
+- nice
+  - nice 范围从-20到19，值越小优先级越高，抢占资源就越多
+  - nice -n 10 ./test.sh
+- renice 重新调整优先级
+  - renice -n 15 ./test.sh
+- &: 脚本在后台运行
+  - ./test.sh &
+- jobs 进程的作业控制
+  - fg: 进入前台运行
+  - bg: 进入后台运行
+  - ctrl + z: 进程暂停进入挂起
+- kill（进程间通信-信号）
+  - kill -l 查看可发送的信号
+  - SIGINT 通知前台进程俎终止进程 ctrl+c
+  - SIGKILL 立即结束程序，不能被阻塞和处理 kill -9 pid
+- pkill
 
 ### 打包与压缩
 扩展名：

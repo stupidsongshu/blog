@@ -41,6 +41,74 @@ iOS 需要使用进入页面的初始 URL 进行注册（即在任何 pushstate 
 
 [VUE中使用Wx-Open-Launch-Weapp采坑记](https://www.dengwz.com/archives/137)
 
+## Flex 单行省略不生效
+[参考](https://www.cnblogs.com/tgxh/p/6916930.html)
+```html
+<div class="book-wrap">
+  <div class="book-icon"></div>
+  <div class="book-content">
+    <div class="book-title">这个标题好长好长长长长长长长长长长长长长长长长长长长长长长长长长长长长啊</div>
+    <div class="book-intro">2021-09-29 10:08:31 再上两天班就可以一起给祖国母亲庆祝生日了，但是不知道去干什么，待会看看图书馆假期是否开放吧</div>
+    <div class="book-other">
+      <span class="book-category">校园</span>
+      <span class="book-tag">武侠</span>
+      <span class="book-over-type">连载中</span>
+    </div>
+  </div>
+</div>
+<style>
+  .book-wrap {
+    display: flex;
+    background-color: #abcdef;
+  }
+  .book-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 120px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #2077ce;
+  }
+  .book-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+    /* flex布局的问题，猜测省略符需要对父元素限定宽度，
+    设置 width: 0 或者 overflow: hidden 可行 */
+    /* width: 0; */
+    overflow: hidden;
+  }
+  .book-title {
+    font-size: 16px;
+    color: #333;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .book-intro {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  .book-other {
+    display: flex;
+    font-size: 12px;
+    color: #888;
+  }
+  .book-tag, .book-over-type {
+    margin-left: 5px;
+  }
+</style>
+```
+
 ## 工具类
 ```js
 var Utils = {
@@ -161,7 +229,7 @@ var Utils = {
       });
     });
   },
-  createXHR: function () {
+  createXHR: function() {
     if (typeof XMLHttpRequest !== 'undefined') {
       return new XMLHttpRequest();
     } else if (typeof ActiveXObject !== 'undefined') {
@@ -258,12 +326,13 @@ const awaitWrap = promise => promise.then(data => [null, data]).catch(err => [er
 
 ### sleep
 ```js
-function sleep (time) {
-  return new Promise(resolve => setTimeout(resolve, time))
+function sleep (milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 ```
 
 ### 平台设备
+- [参考：https://github.com/mumuy/browser](https://github.com/mumuy/browser)
 ```js
 const deviceType = () => {
   const u = navigator.userAgent
@@ -412,10 +481,29 @@ validateNumber () {
 ```
 
 ## 正则校验
+- 中文
+```js
+/[\u4e00-\u9fa5]/g
+```
+[Poorman-通用规范汉字表-unicode码位](https://gist.github.com/JLHwung/06fca92ddd73a0acb2a738237fc431df)
+
+Add Unicode Codepoint mapping alongside the ideograph in Table of General Standard Chinese Characters ([通用规范汉字表](https://zh.wikisource.org/wiki/%E9%80%9A%E7%94%A8%E8%A7%84%E8%8C%83%E6%B1%89%E5%AD%97%E8%A1%A8))
+
+Run the snippet in the console when opening [通用规范汉字表](https://zh.wikisource.org/wiki/%E9%80%9A%E7%94%A8%E8%A7%84%E8%8C%83%E6%B1%89%E5%AD%97%E8%A1%A8).
+
+```js
+$(".mw-parser-output dl dd").each(function(){$(this).append(`<small style="margin-left:1rem"><code>U+${$(this).text().replace(/[\d\s]+/i, "").codePointAt(0).toString(16).toUpperCase()}</code></small>`)})
+```
+
 - 手机号
 ```js
 /^1[3-9]\d{9}$/.test(mobile)
 mobile.match(/^1[3-9]\d{9}$/)
+```
+
+- 以数字开头或结尾，多个数字用英文逗号间隔
+```js
+/^(\d,?)*\d$/
 ```
 
 - 身份证号
@@ -499,8 +587,9 @@ function checkCHNCardId (sNo) {
   }
   return true
 }
+```
 
-
+```js
 /**
   * hasClass
   * @param {Object} ele   HTML Object
@@ -532,5 +621,72 @@ function removeClass(ele, cls) {
   } else {
     ele.className = ele.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
   }
+}
+```
+
+- 复制
+```js
+function copyToBoard(value) {
+  const element = document.createElement('textarea')
+  document.body.appendChild(element)
+  element.value = value
+  element.select()
+  if (document.execCommand('copy')) {
+      document.execCommand('copy')
+      document.body.removeChild(element)
+      return true
+  }
+  document.body.removeChild(element)
+  return false
+}
+```
+
+- 获取文件后缀名
+```js
+function getFileExt(filename) {
+  if (typeof filename !== 'string') {
+    throw new Error('filename must be a string type')
+  }
+  return filename.split('.').pop().toLowerCase()
+}
+```
+
+- 对象转化为 FormData
+```js
+// 使用场景：上传文件时我们要新建一个FormData对象，然后有多少个参数就append多少次，使用该函数可以简化逻辑
+function object2FormData(object) {
+  const formData = new FormData()
+  Object.keys(object).forEach(key => {
+    const value = object[key]
+    if (Array.isArray(value)) {
+      value.forEach((subValue, i) =>
+        formData.append(key + `[${i}]`, subValue)
+      )
+    } else {
+      formData.append(key, object[key])
+    }
+  })
+  return formData
+}
+```
+
+- 去除对象中值为空('',null,undefined)的属性
+```js
+// 使用场景：请求接口时不传空值字段
+const isFalsy = value => value === 0 ? false : !value
+const isVolid = value => value === '' || value === null || value === undefined
+
+function cleanParams(object) {
+  if (!object) {
+    return {}
+  }
+  const result = {...object}
+  Object.keys(result).forEach(key => {
+    const value = result[key]
+    if (isVolid(value)) {
+      delete reslut[key]
+    }
+  })
+  return result
 }
 ```

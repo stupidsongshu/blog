@@ -17,6 +17,8 @@ module.exports = {
           { text: '性能优化', link: '/fe/performance'},
           { text: 'CLI', link: '/fe/cli'},
           { text: 'React', link: '/fe/react'},
+          { text: '工具库', link: '/fe/util'},
+          { text: '编译', link: '/fe/compile'},
         ]
       },
       { text: 'Node.js', link: '/nodejs/'},
@@ -27,6 +29,7 @@ module.exports = {
       {
         text: 'ALG',
         items: [
+          { text: '算法与数据结构', link: '/alg/' },
           { text: '复杂度分析（上）', link: '/alg/复杂度分析（上）' },
           { text: '复杂度分析（下）', link: '/alg/复杂度分析（下）' },
         ]
