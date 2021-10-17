@@ -1,3 +1,5 @@
+# MySQL
+
 > [练习数据](./practice-data.md)
 
 ## MySQL 目录结构

@@ -235,3 +235,6 @@ css阻塞js执行，js阻塞DOM解析
 
 ### BEM
 [getbem.com](http://getbem.com/)
+
+### 参考
+- [再战前端性能优化 超详细汇总](https://juejin.cn/post/7017009327705686029)

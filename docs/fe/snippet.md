@@ -331,8 +331,9 @@ function sleep (milliseconds) {
 }
 ```
 
-### 平台设备
-- [参考：https://github.com/mumuy/browser](https://github.com/mumuy/browser)
+### 检测平台设备
+- [https://github.com/mumuy/browser](https://github.com/mumuy/browser)
+- [https://github.com/bestiejs/platform.js](https://github.com/bestiejs/platform.js)
 ```js
 const deviceType = () => {
   const u = navigator.userAgent
@@ -483,7 +484,7 @@ validateNumber () {
 ## 正则校验
 - 中文
 ```js
-/[\u4e00-\u9fa5]/g
+/[\u4E00-\u9FA5]/g
 ```
 [Poorman-通用规范汉字表-unicode码位](https://gist.github.com/JLHwung/06fca92ddd73a0acb2a738237fc431df)
 
@@ -508,6 +509,9 @@ mobile.match(/^1[3-9]\d{9}$/)
 
 - 身份证号
 ```js
+/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+```
+```js
 function checkCHNCardId (sNo) {
   sNo = sNo.toString()
   if (!/^[0-9]{17}[X0-9]$/.test(sNo)) {
@@ -531,59 +535,27 @@ function checkCHNCardId (sNo) {
 
   switch (b) {
     case 0:
-      if (c !== 1) {
-        return false
-      }
-      break
+      if (c !== 1) return false
     case 1:
-      if (c !== 0) {
-        return false
-      }
-      break
+      if (c !== 0) return false
     case 2:
-      if (c !== 'X') {
-        return false
-      }
-      break
+      if (c !== 'X') return false
     case 3:
-      if (c !== 9) {
-        return false
-      }
-      break
+      if (c !== 9) return false
     case 4:
-      if (c !== 8) {
-        return false
-      }
-      break
+      if (c !== 8) return false
     case 5:
-      if (c !== 7) {
-        return false
-      }
-      break
+      if (c !== 7) return false
     case 6:
-      if (c !== 6) {
-        return false
-      }
-      break
+      if (c !== 6) return false
     case 7:
-      if (c !== 5) {
-        return false
-      }
-      break
+      if (c !== 5) return false
     case 8:
-      if (c !== 4) {
-        return false
-      }
-      break
+      if (c !== 4) return false
     case 9:
-      if (c !== 3) {
-        return false
-      }
-      break
+      if (c !== 3) return false
     case 10:
-      if (c !== 2) {
-        return false
-      }
+      if (c !== 2) return false
   }
   return true
 }
