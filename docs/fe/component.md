@@ -1,4 +1,4 @@
-# 前端组件化
+# 组件化
 
 ## Web Components
 - [webcomponents](https://www.webcomponents.org/)

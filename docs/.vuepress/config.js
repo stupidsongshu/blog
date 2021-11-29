@@ -10,22 +10,22 @@ module.exports = {
       { text: 'Guide', link: '/guide/' },
       { text: 'FrontEnd', items: [
           { text: 'frontend-road', link: '/fe/'},
-          { text: '面试', link: '/interview/'},
-          { text: '移动端兼容性', link: '/fe/snippet'},
-          { text: '前端组件化', link: '/fe/component'},
-          { text: '前端工程化', link: '/fe/engineering'},
-          { text: '前端模块化', link: '/fe/module'},
-          { text: '性能优化', link: '/fe/performance'},
-          { text: 'CLI', link: '/fe/cli'},
-          { text: 'React', link: '/fe/react'},
-          { text: '工具库', link: '/fe/util'},
-          { text: '编译', link: '/fe/compile'},
           { text: 'TypeScript', link: '/fe/typescript'},
+          { text: 'React', link: '/fe/react'},
+          { text: '工具', link: '/fe/util'},
+          { text: '编译', link: '/fe/compile'},
+          { text: '面试', link: '/fe/interview'},
+          { text: '兼容性', link: '/fe/snippet'},
+          { text: '组件化', link: '/fe/component'},
+          { text: '工程化', link: '/fe/engineering'},
+          { text: '模块化', link: '/fe/module'},
+          { text: '性能优化', link: '/fe/performance'},
         ]
       },
       { text: 'Node.js', items: [
           { text: 'Node.js', link: '/nodejs/' },
-          { text: '事件循环', link: '/nodejs/eventloop' },
+          { text: 'EventLoop', link: '/nodejs/eventloop' },
+          { text: 'CLI', link: '/nodejs/cli'},
         ]
       },
       { text: 'Java', link: '/java/' },
@@ -103,7 +103,7 @@ module.exports = {
     //       //   path: '/fe/'
     //       // },
     //       // {
-    //       //   title: '移动端兼容性',
+    //       //   title: '兼容性',
     //       //   path: '/fe/snippet'
     //       // },
     //       '/fe/',
@@ -160,14 +160,16 @@ module.exports = {
       ],
       '/fe/': [
         '',
+        'typescript',
+        'react',
+        'util',
+        'compile',
         'interview',
         'snippet',
         'component',
         'engineering',
         'module',
         'performance',
-        'cli',
-        'react',
       ],
       '/mysql/': [
         '',
@@ -178,7 +180,8 @@ module.exports = {
       ],
       '/nodejs/': [
         '',
-        'eventloop'
+        'eventloop',
+        'cli',
       ],
       '/java/': [
         ''

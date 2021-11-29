@@ -4,6 +4,11 @@
 - [learnGitBranching Github](https://github.com/pcottle/learnGitBranching/)
 - [learnGitBranching Website](https://learngitbranching.js.org/?demo=&locale=zh_CN)
 
+### Tig
+text-mode interface for Git
+- [tig](https://github.com/jonas/tig)
+- [如何使用 Tig 浏览 Git 日志](https://linux.cn/article-11069-1.html)
+
 :::tip
 - Worksapce: 工作区
 - Index/Stage: 暂存区
