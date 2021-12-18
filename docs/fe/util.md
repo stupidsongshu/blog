@@ -1,9 +1,7 @@
 # 工具
 
 - [quickappcn/quickapp-dsl-vue](https://github.com/quickappcn/quickapp-dsl-vue/blob/4cfc8f065d/src/shared/util.js)
-
-### Pub/Sub
-- [快应用-框架-组件](https://doc.quickapp.cn/tutorial/framework/parent-child-component-communication.html#%E5%85%84%E5%BC%9F%E8%B7%A8%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1)
+- [https://juejin.cn/post/7023906112843808804](https://juejin.cn/post/7023906112843808804)
 
 ### 组件通信：
 一、父子组件
@@ -36,7 +34,7 @@
 参考：
 1. https://doc.quickapp.cn/tutorial/framework/parent-child-component-communication.html
 
-2. https://doc.quickapp.cn/framework/script.html#%E6%B6%88%E6%81%AF%E9%80%9A%E9%81%93broadcastchannel-1000
+2. https://doc.quickapp.cn/framework/script.html#消息通道broadcastchannel-1000
 :::
 
 ### 上传下载
@@ -61,8 +59,22 @@ sql 公众号管理：投放书籍取公众号取其下最新的一条记录【�
 
 【2021-05-07】快应用、微信公众号网页主题皮肤 // TODO
 
-### lodash
-- []()
+### Lodash
+- [https://lodash.com/](https://lodash.com/)
+
+```js
+/**
+ * 根据key获取对象对应的Value
+ * @param {object} target 目标对象
+ * @param {string} key 需要获取的key，格式如'a.b'
+ */
+function getValue(target, key) {
+  const keys = key.split('.')
+  return keys.reduce(function(o, item) {
+    return o[item]
+  }, target)
+}
+```
 
 ### 平台检测
 - [https://github.com/mumuy/browser](https://github.com/mumuy/browser)

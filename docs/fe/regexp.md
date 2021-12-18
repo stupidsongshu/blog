@@ -7,9 +7,9 @@
 ```
 [Poorman-通用规范汉字表-unicode码位](https://gist.github.com/JLHwung/06fca92ddd73a0acb2a738237fc431df)
 
-Add Unicode Codepoint mapping alongside the ideograph in Table of General Standard Chinese Characters ([通用规范汉字表](https://zh.wikisource.org/wiki/%E9%80%9A%E7%94%A8%E8%A7%84%E8%8C%83%E6%B1%89%E5%AD%97%E8%A1%A8))
+Add Unicode Codepoint mapping alongside the ideograph in Table of General Standard Chinese Characters ([通用规范汉字表](https://zh.wikisource.org/wiki/通用规范汉字表))
 
-Run the snippet in the console when opening [通用规范汉字表](https://zh.wikisource.org/wiki/%E9%80%9A%E7%94%A8%E8%A7%84%E8%8C%83%E6%B1%89%E5%AD%97%E8%A1%A8).
+Run the snippet in the console when opening [通用规范汉字表](https://zh.wikisource.org/wiki/通用规范汉字表).
 
 ```js
 $(".mw-parser-output dl dd").each(function(){$(this).append(`<small style="margin-left:1rem"><code>U+${$(this).text().replace(/[\d\s]+/i, "").codePointAt(0).toString(16).toUpperCase()}</code></small>`)})

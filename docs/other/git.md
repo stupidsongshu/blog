@@ -20,69 +20,91 @@ HEAD: 始终指向当前所处分支的最新的提交点，实质上是一个�
 
 
 ### 新建仓库
-- git init: 在当前目录新建一个git代码库
-- git init [project-name]: 新建一个目录，将其初始化为git代码库
+- `git init`: 在当前目录新建一个git代码库
+- `git init <project name>`: 新建一个目录，将其初始化为git代码库
 
 ### 工作区向暂存区添加
-- git add [file1] [file2]: 添加工作区的指定文件到暂存区
-- git add *.html: 添加工作区的指定类型文件（使用通配符方式批量提交）到暂存区
-- git add [dir]: 添加工作区的指定目录到暂存区
-- git add .: 添加工作区当前目录下的所有存在更改文件到暂存区（包括提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件）
-- git add -u: 添加已经被add的文件且存在更改的文件（Git根路径以下所有文件）到暂存区（提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)）
-- git add --all(简写git add -A): 添加所有变化（Git根路径以下所有文件）到暂存区（包括提交新文件(new)、被修改(modified)文件以及被删除(deleted)文件）
+- `git add [file1] [file2]`: 添加工作区的指定文件到暂存区
+- `git add *.html`: 添加工作区的指定类型文件（使用通配符方式批量提交）到暂存区
+- `git add [dir]`: 添加工作区的指定目录到暂存区
+- `git add .`: 添加工作区当前目录下的所有存在更改文件到暂存区（包括提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件）
+- `git add -u`: 添加已经被add的文件且存在更改的文件（Git根路径以下所有文件）到暂存区（提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)）
+- `git add --all`: (简写为`git add -A`)添加所有变化（Git根路径以下所有文件）到暂存区（包括提交新文件(new)、被修改(modified)文件以及被删除(deleted)文件）
 
 ### 暂存区向本地仓库提交
-- git commit -m [message]: 提交暂存区到仓库区
-- git commit [file1] [file2] -m [message]: 提交暂存区的指定文件到仓库区
-- git commit -a: 提交工作区自上次commit之后的变化，直接到仓库区
-- git commit -v: 提交时显示所有的diff信息
-- git commit --amend: 修改上一次commit
-- git commit --amend -m [message]: 使用一次新的commit，替代上一次提交，如果代码没有任何变化，则用来改写上一次commit的提交信息
-- git commit --amend [file1] [file2]: 修改上一次commit，并包括指定文件的新变化
+- `git commit -m <message>`: 提交暂存区到仓库区
+- `git commit [file1] [file2] -m <message>`: 提交暂存区的指定文件到仓库区
+- `git commit -a`: 提交工作区自上次commit之后的变化，直接到仓库区
+- `git commit -v`: 提交时显示所有的diff信息
+- `git commit --amend`: 修改上一次commit
+- `git commit --amend -m <message>`: 使用一次新的commit，替代上一次提交，如果代码没有任何变化，则用来改写上一次commit的提交信息
+- `git commit --amend [file1] [file2]`: 修改上一次commit，并包括指定文件的新变化
 
 ### 分支
-- `git branch`: 查看所有本地分支
-- git branch -r: 查看所有远程分支
-- git branch -a: 查看所有本地分支和远程分支
-- git branch [branch-name]: 新建一个分支，但依然停留在当前分支
-- git branch -d [branch]: 删除本地分支
-- git branch -dr [remote-branch]: 删除远程分支
-- git branch --track [remote-branch] [branch]: 新建一个分支，并与指定远程分支建立追踪关系
-- git branch --set-upstream-to [remote-branch] [branch]: 将现有的指定分支与远程分支建立追踪关系
-- git checkout [branch-name]: 切换到指定分支，并更新工作区
-- git checkout -b [branch-name]: 新建一个分支，并切换到这个新建的分支
-- git checkout -: 切换到上一分支
-- git merge [branch]: 合并指定分支到当前分支
-- git cherry-pick [commit]: 选择一个commit，合并进当前分支
+- `git branch [-v]`: 查看本地分支
+- `git branch -r`: 查看远程分支
+- `git branch -a`: 查看本地分支和远程分支
+- `git branch <branch name>`: 新建一个分支，但依然停留在当前分支
+- `git branch -d <branch name>`: 删除本地分支
+- `git branch -dr <remote branch name>`: 删除远程分支
+- `git branch --track <remote branch name> <branch name>`: 新建一个分支，并与指定远程分支建立追踪关系
+- `git branch --set-upstream-to <remote branch name> <branch name>`: 将现有的指定分支与远程分支建立追踪关系
+- `git checkout <branch name>`: 切换到指定分支，并更新工作区
+- `git checkout -b <branch name>`: 【以当前分支为基础】新建一个分支，并切换到这个新建的分支
+- `git checkout -b <branch name> <commit>`: 以指定的提交为基础，新建分支并切换到新建的分支
+- `git checkout -`: 切换到上一分支
+- `git merge <branch name>`: 合并指定分支到当前分支
+- `git cherry-pick <commit>`: 选择一个commit，合并进当前分支
 
 ### 远程仓库
-- git remote -v: 显示所有远程仓库
+- `git remote -v`: 显示远程仓库
 - git remote show [remote]: 显示指定远程仓库信息
-- `git remote add origin <server>`: 将本地仓库连接到指定远程服务器
+- `git remote add origin <server address>`: 将本地仓库连接到指定远程服务器
 - git remote add [shortname] [url]: 增加一个新的远程仓库，并命名
 - git remote update: 更新远程仓库
-- git pull [remote] [branch]: 拉取远程仓库的变化，并与本地分支合并
-- git push [remote] [branch]: 推送本地分支到远程仓库
+- git pull [remote] [branch name]: 拉取远程仓库的变化，并与本地分支合并
+- git push [remote] [branch name]: 推送本地分支到远程仓库
 - git push [remote] --force: 强行推送当前分支到远程仓库
 - git push [remote] --all: 推送所有分支到远程仓库
 
 ### 查看commit历史
 ```sh
+man git-log
+git help log
+git help log --web
 git log --help
 ```
-- `git log`: 查看提交历史
-- git log -p: 查看每个commit的具体改动
-- git log --stat: 查看每次更新的修改文件的统计信息
-- git log --shortstat: 只显示--stat中最后的行数添加修改删除统计
-- git log --name-only: 只在已修改的提交信息后显示文件清单
-- git log --name-status: 显示新增、修改和删除的文件清单
-- git log --abbrev-commit: 仅显示SHA-1的前几个字符，而非所有的40个字符
-- git log --relative-date: 使用较短的相对时间显示
-- git log --graph: 使用ASCII艺术的树形结构来展示分支
-- git log --pretty=oneline: 每一条提交记录只占一行
-- git log --pretty [--oneline]: 使用其他格式显示历史提交信息[一行]
-- git show: 查看最新commit的改动
-- git show [commit]: 查看指定commit的改动
+
+- `git log`: 查看当前分支的提交历史
+- `git log <branch name>`: 查看指定分支的提交历史
+- `git log --all`: 查看所有分支的提交历史
+- `git log -n4`: 查看最近4条
+- `git log -p`: 查看每个commit的具体改动
+- `git log --stat`: 查看每次更新的修改文件的统计信息
+- `git log --shortstat`: 只显示--stat中最后的行数添加修改删除统计
+- `git log --name-only`: 只在已修改的提交信息后显示文件清单
+- `git log --name-status`: 显示新增、修改和删除的文件清单
+- `git log --graph`: 使用ASCII艺术的树形结构来展示分支
+- `git log --abbrev-commit`: 仅显示SHA-1的前几个字符，而非所有的40个字符
+- `git log --oneline`: (`git log --pretty=oneline --abbrev-commit`的简写)每一条提交记录只占一行
+- `git log --pretty=[oneline, short, medium, full, fuller, reference, email, raw, format:<string>]`: 每一条提交记录只占一行
+  - [PRETTY FORMATS](https://git-scm.com/docs/git-log#_pretty_formats)
+- `git log --date=<default, iso8601, local, relative, short, format:, iso8601-strict, raw, rfc2822, unix>`: 修改时间格式
+- `git log --relative-date`: (与`git log --date=relative`同义)使用相对时间显示
+- `git show`: 查看最新commit的改动
+- `git show <commit>`: 查看指定commit的改动
+
+```sh
+git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+```
+
+[(stackoverflow) Can I get git to tell me all the files one user has modified?](https://stackoverflow.com/questions/6349139/can-i-get-git-to-tell-me-all-the-files-one-user-has-modified)
+
+```sh
+git log --pretty="%H" --author="yusong zhou" | while read commit_hash; do git show --oneline --name-only $commit_hash | tail -n+2; done | sort | uniq
+
+git log develop --pretty="%H" --committer="yusong zhou" --after="2021-12-01" --before="2021-12-31" | while read commit_hash; do git show --oneline --name-only $commit_hash | tail -n+2; done | sort | uniq
+```
 
 ### 查看工作区、暂存区、本地仓库之间的代码差异
 - `git diff`: 工作区和暂存区的代码差异
@@ -102,6 +124,7 @@ git log --help
 ### 撤销
 - `git checkout -- <filename>`: 使用 HEAD 中的最新内容替换掉你的工作目录中的文件，已添加到暂存区的改动以及新文件都不会受到影响。
 - git checkout [commit] [file]: 恢复暂存区的指定文件到工作区
+- git reset --hard: 清空工作区和暂存区中的修改
 
 :::warning
 **git reset --hard 注意事项**
@@ -112,6 +135,9 @@ git log --help
   - 第一步：`git fsck --lost-found`
   - 第二步：`git show [blob] > 文件`
 - 之前的修改进行了 `commit` 提交，这种最简单，执行 `git reflog` 拿到哈希值后再 `git reset` 即可
+
+### 重命名文件
+- git mv source destination
 
 参考链接：
 - [https://juejin.im/post/5af0438f5188251b8015967e](https://juejin.im/post/5af0438f5188251b8015967e)
