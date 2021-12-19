@@ -1,10 +1,12 @@
 # Git
-- [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)
+- [官方文档](https://git-scm.com/doc)
+- 《Git权威指南》
+  - [Github](https://github.com/gotgit/gotgit)
+  - [Website](https://www.worldhello.net/gotgit/)
 - [git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)
-- [learnGitBranching Github](https://github.com/pcottle/learnGitBranching/)
-- [learnGitBranching Website](https://learngitbranching.js.org/?demo=&locale=zh_CN)
+- [learnGitBranching](https://learngitbranching.js.org/?demo=&locale=zh_CN)
 
-### Tig
+## Tig
 text-mode interface for Git
 - [tig](https://github.com/jonas/tig)
 - [如何使用 Tig 浏览 Git 日志](https://linux.cn/article-11069-1.html)
@@ -18,7 +20,55 @@ text-mode interface for Git
 HEAD: 始终指向当前所处分支的最新的提交点，实质上是一个指针，指向最新放入仓库的版本。
 :::
 
+## .git
+```sh
+-rw-r--r--   1 squirrel  staff    9 12 18 23:59 COMMIT_EDITMSG
+-rw-r--r--   1 squirrel  staff   21 12 19 17:44 HEAD
+-rw-r--r--   1 squirrel  staff   41 12 18 23:49 ORIG_HEAD
+-rw-r--r--   1 squirrel  staff  137 12 18 23:19 config
+-rw-r--r--   1 squirrel  staff   73 12 18 23:19 description
+drwxr-xr-x  15 squirrel  staff  480 12 18 23:19 hooks
+-rw-r--r--   1 squirrel  staff  554 12 19 01:26 index
+drwxr-xr-x   3 squirrel  staff   96 12 18 23:19 info
+drwxr-xr-x   4 squirrel  staff  128 12 18 23:35 logs
+drwxr-xr-x  25 squirrel  staff  800 12 18 23:59 objects
+drwxr-xr-x   4 squirrel  staff  128 12 18 23:19 refs
+```
+### config
+本地配置
+```sh
+# 查看所有列表
+git config --local --list
+# 查看指定属性的值
+git config --local user.name
+# 修改指定属性的值
+git config --local user.name 'squirrel'
+```
 
+### HEAD
+指向 refs/heads
+
+### refs
+- heads
+- tags
+### objects
+可以通过`git cat-file`查看对象
+
+[Git对象](https://github.com/gotgit/gotgit/blob/master/02-git-solo/030-head-master-commit-refs.rst)
+
+```sh
+# 查看 git 对象的类型，可能为 commit tree blob tag
+git cat-file -t c1b64e40e5cab82f5e20dd83b1aa8c00ab4606e7
+# 查看 git 对象的内容
+git cat-file -p c1b64e40e5cab82f5e20dd83b1aa8c00ab4606e7
+# 查看 git 对象的大小
+git cat-file -s c1b64e40e5cab82f5e20dd83b1aa8c00ab4606e7
+
+# 显示暂存区所有文件对应的属性，包括blob的hash值
+git ls-files --stage
+```
+
+## 命令
 ### 新建仓库
 - `git init`: 在当前目录新建一个git代码库
 - `git init <project name>`: 新建一个目录，将其初始化为git代码库
@@ -44,16 +94,17 @@ HEAD: 始终指向当前所处分支的最新的提交点，实质上是一个�
 - `git branch [-v]`: 查看本地分支
 - `git branch -r`: 查看远程分支
 - `git branch -a`: 查看本地分支和远程分支
-- `git branch <branch name>`: 新建一个分支，但依然停留在当前分支
-- `git branch -d <branch name>`: 删除本地分支
+- `git branch <new-branch-name>`: 【以当前分支为基础】新建分支，但依然停留在当前分支
+- `git branch <new-branch-name> <commit>`: 以指定的提交为基础，新建分支，但依然停留在当前分支
+- `git branch -d <branch-name>`: 删除本地分支
 - `git branch -dr <remote branch name>`: 删除远程分支
-- `git branch --track <remote branch name> <branch name>`: 新建一个分支，并与指定远程分支建立追踪关系
+- `git branch --track <remote branch name> <branch name>`: 新建分支，并与指定远程分支建立追踪关系
 - `git branch --set-upstream-to <remote branch name> <branch name>`: 将现有的指定分支与远程分支建立追踪关系
-- `git checkout <branch name>`: 切换到指定分支，并更新工作区
-- `git checkout -b <branch name>`: 【以当前分支为基础】新建一个分支，并切换到这个新建的分支
-- `git checkout -b <branch name> <commit>`: 以指定的提交为基础，新建分支并切换到新建的分支
+- `git checkout <branch-name>`: 切换到指定分支，并更新工作区
+- `git checkout -b <new-branch-name>`: 【以当前分支为基础】新建分支，并切换到新建的分支
+- `git checkout -b <new-branch-name> <commit>`: 以指定的提交为基础，新建分支，并切换到新建的分支
 - `git checkout -`: 切换到上一分支
-- `git merge <branch name>`: 合并指定分支到当前分支
+- `git merge <branch-name>`: 合并指定分支到当前分支
 - `git cherry-pick <commit>`: 选择一个commit，合并进当前分支
 
 ### 远程仓库
@@ -76,7 +127,7 @@ git log --help
 ```
 
 - `git log`: 查看当前分支的提交历史
-- `git log <branch name>`: 查看指定分支的提交历史
+- `git log <branch-name>`: 查看指定分支的提交历史
 - `git log --all`: 查看所有分支的提交历史
 - `git log -n4`: 查看最近4条
 - `git log -p`: 查看每个commit的具体改动
@@ -113,18 +164,18 @@ git log develop --pretty="%H" --committer="yusong zhou" --after="2021-12-01" --b
 
 ### 储藏
 - `git stash`: 储藏
-- git stash list: 查看现有的储藏
-- git stash apply [stash@{0}}: 应用储藏(但是被暂存的文件没有重新被暂存)
-- git stash apply --index: 应用储藏(在运行 git stash apply 命令时带上一个 --index 的选项来告诉命令重新应用被暂存的变更)
-- git stash show -p [stash@{0}] | git apply -R: 取消储藏
-- git stash drop: 删除指定储藏内容
-- git stash pop: 恢复并删除指定储藏内容
-- git stash branch [branch]: 从储藏中创建分支，检出你储藏工作时的所处的提交，重新应用你的工作，如果成功，将会丢弃储藏。
+- `git stash list`: 查看现有的储藏
+- `git stash apply [stash@{0}}`: 应用储藏(但是被暂存的文件没有重新被暂存)
+- `git stash apply --index`: 应用储藏(在运行 git stash apply 命令时带上一个 --index 的选项来告诉命令重新应用被暂存的变更)
+- `git stash show -p [stash@{0}] | git apply -R`: 取消储藏
+- `git stash drop`: 删除指定储藏内容
+- `git stash pop`: 恢复并删除指定储藏内容
+- `git stash branch <branch-name>`: 从储藏中创建分支，检出你储藏工作时的所处的提交，重新应用你的工作，如果成功，将会丢弃储藏。
 
 ### 撤销
 - `git checkout -- <filename>`: 使用 HEAD 中的最新内容替换掉你的工作目录中的文件，已添加到暂存区的改动以及新文件都不会受到影响。
-- git checkout [commit] [file]: 恢复暂存区的指定文件到工作区
-- git reset --hard: 清空工作区和暂存区中的修改
+- `git checkout [commit] [file]`: 恢复暂存区的指定文件到工作区
+- `git reset --hard`: 清空工作区和暂存区中的修改
 
 :::warning
 **git reset --hard 注意事项**
