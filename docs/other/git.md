@@ -91,12 +91,18 @@ git ls-files --stage
 - `git commit --amend [file1] [file2]`: 修改上一次commit，并包括指定文件的新变化
 
 ### 分支
+```sh
+git branch -h
+```
 - `git branch [-v]`: 查看本地分支
 - `git branch -r`: 查看远程分支
 - `git branch -a`: 查看本地分支和远程分支
 - `git branch <new-branch-name>`: 【以当前分支为基础】新建分支，但依然停留在当前分支
 - `git branch <new-branch-name> <commit>`: 以指定的提交为基础，新建分支，但依然停留在当前分支
 - `git branch -d <branch-name>`: 删除本地分支
+- `git branch -D <branch-name>`: 强制删除本地分支
+  - [恢复被删除的分支](https://stackoverflow.com/questions/3640764/can-i-recover-a-branch-after-its-deletion-in-git
+)
 - `git branch -dr <remote branch name>`: 删除远程分支
 - `git branch --track <remote branch name> <branch name>`: 新建分支，并与指定远程分支建立追踪关系
 - `git branch --set-upstream-to <remote branch name> <branch name>`: 将现有的指定分支与远程分支建立追踪关系
