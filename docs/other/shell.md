@@ -46,6 +46,23 @@ curl http://cip.cc
 curl -i https://www.google.com
 ```
 
+## bash
+```sh
+echo $SHELL
+
+echo $HISTSIZE
+
+echo $HISTFILE # 存放历史命令的文件地址
+
+history # 查看历史命令
+
+history -c # 清除历史
+
+history -r # 恢复历史
+
+!6750 # !历史id，快速执行历史命令
+```
+
 ## 通配符
 shell 内建的符号，用于操作多个相似有规律的文件
 
@@ -56,6 +73,11 @@ shell 内建的符号，用于操作多个相似有规律的文件
 - [a-z] 匹配范围a-z中的任意一个字符
 - [!xyz] 或 [^xyz] 不匹配
 ### shell 脚本示例
+```sh
+# 删除三天前那一天的文件
+ls /data/logs/test/* | grep `date -d "3 days ago" +%Y%m%d` | xargs rm -rf 
+```
+
 ```sh
 # 编写可执行 shell
 vim hello.sh

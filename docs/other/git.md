@@ -165,8 +165,30 @@ git log develop --pretty="%H" --committer="yusong zhou" --after="2021-12-01" --b
 
 ### 查看工作区、暂存区、本地仓库之间的代码差异
 - `git diff`: 工作区和暂存区的代码差异
+- `git diff <commit1> <commit2>`: commit1 和 commit2 的代码差异
 - git diff HEAD: 工作区和当前分支最新commit的代码差异
 - git diff --cached [file]: 暂存区和上一个commit的代码差异
+
+```sh
+git diff HEAD HEAD^
+git diff HEAD HEAD^1
+git diff HEAD HEAD^^
+
+git diff HEAD HEAD~
+git diff HEAD HEAD~1
+git diff HEAD HEAD~2
+```
+:::tip
+PARENT 符号 ^ 和 ~
+1 一个节点，可以包含多个子节点（checkout 出多个分支）
+2 一个节点可以有多个父节点（多个分支合并）
+3 ^是~都是父节点，区别是跟随数字时候，^2 是第二个父节点，而~2是父节点的父节点
+4 ^和~可以组合使用,例如 HEAD~2^2
+
+参考：
+[git在回退版本时HEAD~和HEAD^的作用和区别](https://blog.csdn.net/albertsh/article/details/106448035)
+[stackoverflow What's the difference between HEAD^ and HEAD~ in Git?](https://stackoverflow.com/questions/2221658/whats-the-difference-between-head-and-head-in-git)
+:::
 
 ### 储藏
 - `git stash`: 储藏
@@ -183,6 +205,12 @@ git log develop --pretty="%H" --committer="yusong zhou" --after="2021-12-01" --b
 - `git checkout [commit] [file]`: 恢复暂存区的指定文件到工作区
 - `git reset --hard`: 清空工作区和暂存区中的修改
 
+### detached HEAD
+分离头指针：执行 git checkout commitId 会出现分离头指针的情况，这种情况下比较危险，因为此时提交的代码没有对应的分支，当切换到其他分支后容易丢失代码。
+
+分离头指针应用场景：
+如果临时想基于某个commit做变更，试试新方案是否可行，就可以采用分离头指针的方式。测试后发现新方案不成熟，直接reset回其他分支即可，省却了建、删分支的麻烦；如果觉得有用，那么可以新建一个分支，使用 git branch <新分支名称> <在分离头指针上提交的commitId>
+
 :::warning
 **git reset --hard 注意事项**
 
@@ -195,6 +223,11 @@ git log develop --pretty="%H" --committer="yusong zhou" --after="2021-12-01" --b
 
 ### 重命名文件
 - git mv source destination
+
+### commit 规范
+- [Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
+- [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+- [你可能已经忽略的git commit规范](https://www.quanzhan.co/archives/168)
 
 参考链接：
 - [https://juejin.im/post/5af0438f5188251b8015967e](https://juejin.im/post/5af0438f5188251b8015967e)

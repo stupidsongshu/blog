@@ -3,6 +3,123 @@
 - [quickappcn/quickapp-dsl-vue](https://github.com/quickappcn/quickapp-dsl-vue/blob/4cfc8f065d/src/shared/util.js)
 - [https://juejin.cn/post/7023906112843808804](https://juejin.cn/post/7023906112843808804)
 
+### 项目总结-重难点【不定期更新】
+后台系统使用jsx封装table-ai组件
+
+sql 公众号管理：投放书籍取公众号取其下最新的一条记录【启用状态下按最后投放日期倒序排序，在同一段期间内一个公众号在一个投放媒体下只会投放一本书】
+
+【2021-03-15】sql事务：quick/book/read 付费章节扣除书币时并发导致 8803用户余额不足；加桌奖励并发导致发放多次
+
+快应用：充值、推送push
+
+【2021-04-06--2021-05-07】快应用优化，首页Tab每次重进页面使用if判断重新渲染需要重新请求接口导致白屏时间很长，体验和网页一样很差，使用 tabs/tab-bar/tab-content 组件进行重构，有多个选项卡的页面同样类似处理【注意：首页中的书城页面比较特殊，属于tabs中嵌套tabs组件，嵌套的子级中的tab-bar不会生效，需要使用自定义div模拟实现】，将数据缓存到内存实现APP般丝滑体验，页面数据更新策略详情见以下部分。
+
+【2021-05-07】快应用页面数据更新策略-接口懒加载-首页tab页面性能优化：
+需求：用户行为【比如登录、阅读、充值等】导致有页面需要更新数据时，通过 BroadcastChannel 消息通道通知到对应页面，等到用户切到这个页面后再开始请求接口更新数据。
+方案：1. 页面（比如阅读历史页面 /history）可以在生命周期 onShow 时直接刷新数据；2. 自定义组件（比如首页 /home 中的四个 Tab）由于没有 onShow，改为采用在父组件 onShow 时通过 $broadcast 发送事件通知子组件，在子组件使用 $on 进行监听
+
+【2021-05-07】书城骨架按后台配置生成：公众号网页使用 render(安装插件使用 jsx 语法) 函数，快应用在模板template中使用 if 匹配加载对应骨架组件
+
+公众号防封：vue-router 结合正则在 path 后面加上随机串
+```js
+let hexPathPattern = ''
+if (routerMode === 0) {
+  hexPathPattern = ''
+} else if (routerMode === 1) {
+  hexPathPattern = '(/[a-f0-9]+)?'
+}
+
+{
+  path: '/read' + hexPathPattern,
+  name: 'Read',
+  // component: Read
+  component: () => import(/* webpackChunkName: "read" */ '../views/read.vue')
+},
+```
+
+【2021-05-07】快应用、微信公众号网页主题皮肤
+- 快应用：
+  - template 模板控制页面布局结构，通过配置文件 config.template 获取当前使用的模板
+  - 将包名作为 theme主题（如包名为 com.hnyxa.fr 时，theme 为 fr），theme.less 文件定义包的颜色，通过 this.$app.getThemeClass() 生成当前包使用主题的 class 类名
+- 公众号：mixin，接口返回当前公众号使用的模板 style，需要准备所有模板主题的变量，然后再根据 style 值返回当前模板的主题颜色
+
+【2022-05-09】快应用页面网页化：
+重难点在于快应用页面与网页的双向通信。
+[Web组件发消息给H5页面时报错](https://developer.huawei.com/consumer/cn/doc/development/quickApp-Guides/quickapp-case-0000001082020374#section1795616555)
+优点是不用发布版本，可以减小包体积；缺点是体验相比要差一点，仅适用偏展示或交互简单的页面，比如活动页面，列表页面。
+[H5网页弹出软键盘后页面没有上移](https://developer.huawei.com/consumer/cn/doc/development/quickApp-Guides/quickapp-case-0000001082020374#section777715528107)
+
+【2022-05-09】快应用消息通道 BroadcastChannel：[消息通道页面退出再进入异常或页面间无法通信](https://developer.huawei.com/consumer/cn/doc/development/quickApp-Guides/quickapp-case-0000001082020374#section1579091515517)
+
+【2022-05-17】快应用 PageAOP: udid 为公共参数，在请求时从缓存中获取，当没有时进行生成，生成后需保证唯一（使用 md5 加密设备参数），应用启动后由于接口并发请求可能生成多个，造成服务端生成无用的用户记录，使用 AOP 思想解决（串行化，js 中无法使用锁进行解决）
+```js
+let apiStartSuccessed = false // api/start 接口是否请求成功
+function PageAOP(o) {
+  if (o) {
+    const originFn = o.onInit
+    o.onInit = async function (...t) {
+      try {
+        this.themeClass = this.$app.getThemeClass() // fix: 异步阻塞导致原始 onInit 执行后界面异常
+        if (!apiStartSuccessed) {
+          const [err, res] = await Api.apiStart()
+          if (!err && res) {
+            apiStartSuccessed = true
+          }
+        }
+      } catch (e) {}
+
+      if (originFn) return originFn.apply(this, t)
+    }
+  }
+  return o
+}
+
+// 使用
+export default PageAOP({
+  public: {
+    type: '',
+    book_id: '',
+    number: ''
+  },
+  private: {
+    title: '',
+    content: ''
+  },
+  async onInit(query) {
+    console.log('页面生命周期：监听页面初始化。当页面完成初始化时调用，只触发一次', query)
+    this.getBookRead()
+  },
+  onShow() {
+    console.log('页面生命周期：监听页面显示。当进入页面时触发')
+  },
+  async getBookRead() {
+    const [err, res] = await Api.bookRead({
+      type: this.type,
+      book_id: this.book_id,
+      number: this.number
+    })
+    if (err) {
+      switch (err.statusCode) {
+        case 400:
+          // token expired
+          break
+        case 401:
+          // need login
+          break
+        case 409:
+          // need charge
+          break
+      }
+      return
+    }
+    if (!res) return
+    const { data = {} } = res
+    this.title = data.title
+    this.content = data.content
+  }
+})
+```
+
 ### 组件通信：
 一、父子组件
 - 1. 父组件向子组件通信
@@ -39,25 +156,6 @@
 
 ### 上传下载
 - [上传下载](./upload-download.md)
-- [参考：]()
-
-
-### 项目总结-重难点【不定期更新】
-后台系统使用jsx封装table-ai组件
-
-sql 公众号管理：投放书籍取公众号取其下最新的一条记录【启用状态下按最后投放日期倒序排序，在同一段期间内一个公众号在一个投放媒体下只会投放一本书】
-
-【2021-03-15】sql事务：quick/book/read 付费章节扣除书币时并发导致 8803用户余额不足；加桌奖励并发导致发放多次
-
-【2021-04-06--2021-05-07】快应用优化，首页Tab每次重进页面使用if判断重新渲染需要重新请求接口导致白屏时间很长，体验和网页一样很差，使用 tabs/tab-bar/tab-content 组件进行重构，有多个选项卡的页面同样类似处理【注意：首页中的书城页面比较特殊，属于tabs中嵌套tabs组件，嵌套的子级中的tab-bar不会生效，需要使用自定义div模拟实现】，将数据缓存到内存实现APP般丝滑体验，页面数据更新策略详情见以下部分。
-
-【2021-05-07】快应用页面数据更新策略-接口懒加载-首页tab页面性能优化：
-需求：用户行为【比如登录、阅读、充值等】导致有页面需要更新数据时，通过 BroadcastChannel 消息通道通知到对应页面，等到用户切到这个页面后再开始请求接口更新数据。
-方案：1. 页面（比如阅读历史页面 /history）可以在生命周期 onShow 时直接刷新数据；2. 自定义组件（比如首页 /home 中的四个 Tab）由于没有 onShow，改为采用在父组件 onShow 时通过 $broadcast 发送事件通知子组件，在子组件使用 $on 进行监听
-
-【2021-05-07】书城骨架按后台配置生成：公众号网页使用jsx render函数，快应用在模板template中使用if判断加载对应骨架组件
-
-【2021-05-07】快应用、微信公众号网页主题皮肤 // TODO
 
 ### Lodash
 - [https://lodash.com/](https://lodash.com/)
@@ -322,6 +420,9 @@ function sleep (milliseconds) {
 ```
 
 ### 节流
+- [npm install throttle-debounce --save](https://github.com/niksy/throttle-debounce)
+- [lodash throttle](https://github.com/lodash/lodash/blob/master/throttle.js)
+
 ```js
 function throttle (func, wait, mustRun) {
   var timeout
@@ -346,6 +447,8 @@ function throttle (func, wait, mustRun) {
 ```
 
 ### 防抖
+- [lodash debounce](https://github.com/lodash/lodash/blob/master/debounce.js)
+
 ```js
 function debounce (func, wait = 50, immediate = true) {
   let timer, context, args
@@ -546,5 +649,292 @@ function cleanParams(object) {
     }
   })
   return result
+}
+```
+
+- cookie
+```js
+const cookie = {
+  get: function getCookie(name) {
+    let arr;
+    const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+    if ((arr = document.cookie.match(reg))) return unescape(arr[2]);
+    return null;
+  },
+  set(name, value, option = {}) {
+    const Days = option.days != void 0 ? option.days : 30;
+    const exp = new Date();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    const domain = option.domain ? `;domain=${option.domain}` : '';
+    const path = option.path != void 0 ? `;path=${option.path}` : ';path=/';
+    const cookie = `${name}=${escape(
+      value
+    )};expires=${exp.toGMTString()}${domain}${path}`;
+    document.cookie = cookie;
+  },
+  setCookie(name, value, option = {}) {
+    const domain = option.domain ? `;domain=${option.domain}` : '';
+    const path = option.path != void 0 ? `;path=${option.path}` : ';path=/';
+    const date = new Date();
+    date.setTime(date.getTime() - 1 * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${escape(
+      value
+    )}; expire=${date.toGMTString()};${domain}${path}`;
+  },
+  setGuide(name, value, option = {}) {
+    const Days = 1;
+    const exp = new Date();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    const domain = option.domain ? `;domain=${option.domain}` : '';
+    const path = option.path != void 0 ? `;path=${option.path}` : ';path=/';
+    const cookie = `${name}=${escape(
+      value
+    )};expires=${exp.toGMTString()}${domain}${path}`;
+    document.cookie = cookie;
+  },
+  remove(name) {
+    this.setCookie(name, '');
+  }
+};
+
+export default cookie;
+```
+
+- 日期
+```js
+const dateUtil = {
+  format(date, format) {
+    let dates = new Date(date.replace(/\-/g, '/'));
+    if (dates == 'Invalid Date') {
+      dates = new Date(date);
+    }
+    const map = {
+      yyyy() {
+        return dates.getFullYear();
+      },
+      MM() {
+        const val = dates.getMonth() + 1;
+        return val < 10 ? `0${val}` : val;
+      },
+      dd() {
+        const val = dates.getDate();
+        return val < 10 ? `0${val}` : val;
+      },
+      hh() {
+        const val = dates.getHours();
+        return val < 10 ? `0${val}` : val;
+      },
+      mm() {
+        const val = dates.getMinutes();
+        return val < 10 ? `0${val}` : val;
+      },
+      ss() {
+        const val = dates.getSeconds();
+        return val < 10 ? `0${val}` : val;
+      }
+    };
+    for (const k in map) {
+      format = format.replace(k, map[k]);
+    }
+    return format;
+  },
+  /*
+    根据日期返回今天，昨天，前天，或者日期
+  */
+  dateToCN(date, format) {
+    // 是否是今天
+    function isToday(str) {
+      let d = new Date(str.replace(/\-/g, '/'));
+      if (d == 'Invalid Date') {
+        d = new Date(str);
+      }
+      const todaysDate = new Date();
+      if (d.setHours(0, 0, 0, 0) == todaysDate.setHours(0, 0, 0, 0)) {
+        return true;
+      }
+      return false;
+    }
+
+    // 是否昨天
+    function isYestday(date) {
+      let d = new Date(date.replace(/\-/g, '/'));
+      if (d == 'Invalid Date') {
+        d = new Date(date);
+      }
+      const dates = new Date(); // 当前时间
+      const today = new Date(
+        dates.getFullYear(),
+        dates.getMonth(),
+        dates.getDate()
+      ).getTime(); // 今天凌晨
+      const yestday = new Date(today - 24 * 3600 * 1000).getTime();
+      return d.getTime() < today && yestday <= d.getTime();
+    }
+    // 是否是前天
+    function isBeforeYestday(date) {
+      let d = new Date(date.replace(/\-/g, '/'));
+      if (d == 'Invalid Date') {
+        d = new Date(date);
+      }
+      const dates = new Date(); // 当前时间
+      const today = new Date(
+        dates.getFullYear(),
+        dates.getMonth(),
+        dates.getDate()
+      ).getTime(); // 今天凌晨
+      const yestday = new Date(today - 24 * 3600 * 1000).getTime();
+      const beforeYestday = new Date(today - 48 * 3600 * 1000).getTime();
+      return d.getTime() < yestday && beforeYestday <= d.getTime();
+    }
+
+    function getShowData(date) {
+      if (isToday(date)) {
+        // return '今天';
+        return dateUtil.format(date, 'yyyy-MM-dd hh:mm:ss');
+      } else if (isYestday(date)) {
+        return '昨天';
+      } else if (isBeforeYestday(date)) {
+        return '前天';
+      }
+      return dateUtil.format(date, format);
+    }
+
+    return getShowData(date);
+  },
+
+  fetchTime(value) {
+    const second = value; // 时间差的毫秒数
+    let result = '';
+
+    // 计算出相差天数
+    const days = Math.floor(second / (24 * 3600 * 1000));
+
+    // 计算出小时数
+
+    const leave1 = second % (24 * 3600 * 1000); // 计算天数后剩余的毫秒数
+    const hours = Math.floor(leave1 / (3600 * 1000));
+    // 计算相差分钟数
+    const leave2 = leave1 % (3600 * 1000); // 计算小时数后剩余的毫秒数
+    const minutes = Math.floor(leave2 / (60 * 1000));
+
+    // 计算相差秒数
+    const leave3 = leave2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
+    const seconds = Math.round(leave3 / 1000);
+
+    if (days && days >= 1) {
+      result += `${days}天`;
+    }
+    if (hours && hours >= 1) {
+      result += `${hours}小时`;
+    }
+
+    if (minutes && minutes >= 1) {
+      result += `${minutes}分钟`;
+    }
+
+    if (seconds && seconds >= 1) {
+      result += `${seconds}秒`;
+    }
+    return result || '1秒';
+  },
+  fetchdayTime(date) {
+    const second = Date.parse(new Date()) - new Date(date).getTime();
+    // 计算出相差天数
+    const days = Math.floor(second / (24 * 3600 * 1000));
+    // 计算出小时数
+
+    const leave1 = second % (24 * 3600 * 1000); // 计算天数后剩余的毫秒数
+    const hours = Math.floor(leave1 / (3600 * 1000));
+    // 计算相差分钟数
+    const leave2 = leave1 % (3600 * 1000); // 计算小时数后剩余的毫秒数
+    const minutes = Math.floor(leave2 / (60 * 1000));
+
+    // 计算相差秒数
+    const leave3 = leave2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
+    const seconds = Math.round(leave3 / 1000);
+
+    let result = '';
+    if (days && days > 7) {
+      result = moment(date)
+        .locale('zh-cn')
+        .format('YYYY-MM-DD');
+    } else if (days && days >= 1 && days < 7) {
+      result += `${days}天前`;
+    } else if (hours && hours >= 1 && hours <= 23) {
+      result += `${hours}小时前`;
+    } else if (minutes && minutes >= 1 && minutes <= 59) {
+      result += `${minutes}分钟前`;
+    } else if (seconds && seconds >= 1 && seconds <= 59) {
+      result += `${seconds}秒前`;
+    } else {
+      result = '1秒前';
+    }
+    return result;
+  },
+
+  paddingZero: function(val) {
+    return val >= 10 ? val : '0' + val;
+  },
+  getTime: function(time) {
+    if (!time) {
+      return Date.now();
+    }
+    if (typeof time !== 'string' && typeof time !== 'number') {
+      throw new Error('parameter time need to be string or number');
+    }
+    if (typeof time === 'string') {
+      time = time.replace(/-/g, '/'); // 兼容 safari
+    }
+    return new Date(time).getTime();
+  },
+  getCountDownTime: function(time) {
+    var nowTime = this.getTime();
+    var targetTime = this.getTime(time);
+    var diffTime = Math.ceil((targetTime - nowTime) / 1000);
+
+    if (diffTime <= 0) {
+      return '';
+    }
+
+    var date = 0;
+    var hour = 0;
+    var minute = 0;
+    var second = 0;
+    if (diffTime < 60) { // < 1m
+      // console.warn('< 1m')
+      second = this.paddingZero(diffTime);
+    } else if (diffTime < 60 * 60) { // < 1h
+      // console.warn('< 1h')
+      var m = Math.floor(diffTime / 60);
+      var s = diffTime % 60;
+      minute = this.paddingZero(m);
+      second = this.paddingZero(s);
+    } else if (diffTime < 60 * 60 * 24) { // < 1d
+      // console.warn('< 1d')
+      var h = Math.floor(diffTime / 3600);
+      var m = Math.floor((diffTime - h * 3600) / 60);
+      var s = (diffTime - h * 3600 - m * 60) % 60;
+      hour = this.paddingZero(h);
+      minute = this.paddingZero(m);
+      second = this.paddingZero(s);
+    } else {
+      // console.warn('>= 1d')
+      var d = Math.floor(diffTime / 86400);
+      var h = Math.floor((diffTime - d * 86400) / 3600);
+      var m = Math.floor((diffTime - d * 86400 - h * 3600) / 60);
+      var s = Math.floor((diffTime - d * 86400 - h * 3600 - m * 60) % 60);
+      date = d;
+      hour = this.paddingZero(h);
+      minute = this.paddingZero(m);
+      second = this.paddingZero(s);
+    }
+
+    var str = '';
+    if (date) {
+      str += date + '天';
+    }
+    str += hour + '小时' + minute + '分' + second + '秒';
+    return str;
+  },
 }
 ```

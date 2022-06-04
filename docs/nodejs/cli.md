@@ -12,7 +12,10 @@
 - @darkobits/lolcatjs
 
 ## 依赖库
-- commander
+- commander ([yargs](https://github.com/yargs/yargs) [minimist](https://github.com/substack/minimist))
 - inquirer
 - shelljs
 - ora
+- clear
+- chalk
+- semver

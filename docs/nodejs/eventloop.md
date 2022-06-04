@@ -1,6 +1,7 @@
 # 事件循环
-
+chrome 浏览器基于 [message pump](https://source.chromium.org/chromium/chromium/src/+/main:base/message_loop/message_pump_default.cc;l=29) 实现，Node.js 基于 libuv 实现
 ## 参考资料
+- [从Chrome源码看事件循环](https://www.yinchengli.com/2018/11/04/chrome-event-loop/)
 - [node事件循环](https://www.taopoppy.cn/node/one_eventLoop.html)
 - [拉勾教育-面试率超高的JS事件循环，看这篇就够了](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=1076#/detail/pc?id=8363)
 
@@ -24,9 +25,9 @@ Node.js event-loop 六大阶段，每个阶段存在 FIFO 队列
 
 ![示意图](/node/libuv3.jpg)
 
-浏览器 与 Node.js(版本<12) event-loop 比较：
-- 浏览器环境下，microtask 的任务队列是每个 macrotask 执行完之后执行
-- Node.js 中，microtask 会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行 microtask 队列的任务
+浏览器 与 Node.js 的 event-loop 比较：
+- Node.js 版本 **<= 10**：浏览器环境下，microtask 的任务队列是每个 macrotask 执行完之后执行；Node.js 中，microtask 会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行 microtask 队列的任务
+- Node.js 版本 **>= 11**：和浏览器保持一致
 
 ```js
 setTimeout(() => {
@@ -38,13 +39,13 @@ setTimeout(() => {
 
 setTimeout(() => {
   console.log('time2');
-  new Promise((resolve) => {resolve()}).then(() => {
+  Promise.resolve().then(() => {
     console.log('promise2')
   })
 }, 0);
 
 // Node.js <= 10: time1 time2 promise1 promise2
-// Node.js > 12 或浏览器环境： time1 promise1 time2 promise2
+// Node.js >= 11 或浏览器环境： time1 promise1 time2 promise2
 ```
 
 ### process.nextTick 与 setImmediate
@@ -111,4 +112,19 @@ console.log(++pos + " last");
 ```
 
 ## 宏任务 微任务
-[Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+- [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+- [微任务、宏任务与Event-Loop](https://juejin.cn/post/6844903657264136200)
+
+宏任务包括：
+- script(整体代码)
+- I/O (addEventListener add ajax fetch fs)
+- `setTimeout`
+- `setInterval`
+- `setImmediate`(仅 Node)
+- `requestAnimationFrame`(仅浏览器)
+
+微任务包括：
+- `Promise.then catch finally`
+- `Object.observe`(仅浏览器，已废弃)
+- `MutationObserver`(仅浏览器)
+- `process.nextTick`(仅 Node)

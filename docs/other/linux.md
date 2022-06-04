@@ -1,5 +1,8 @@
 # Linux
 
+## 参考
+- [一份前端够用的 Linux 命令](https://mp.weixin.qq.com/s/fuDUfmdEZeZ3HRNOyNaI8A)
+
 ## 远程登录
 ### Windows系统
 - putty
