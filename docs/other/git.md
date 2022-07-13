@@ -90,6 +90,13 @@ git ls-files --stage
 - `git commit --amend -m <message>`: 使用一次新的commit，替代上一次提交，如果代码没有任何变化，则用来改写上一次commit的提交信息
 - `git commit --amend [file1] [file2]`: 修改上一次commit，并包括指定文件的新变化
 
+:::tip
+**commit 规范**
+- [Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
+- [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+- [你可能已经忽略的git commit规范](https://www.quanzhan.co/archives/168)
+:::
+
 ### 分支
 ```sh
 git branch -h
@@ -220,20 +227,14 @@ PARENT 符号 ^ 和 ~
   - 第一步：`git fsck --lost-found`
   - 第二步：`git show [blob] > 文件`
 - 之前的修改进行了 `commit` 提交，这种最简单，执行 `git reflog` 拿到哈希值后再 `git reset` 即可
+:::
 
 ### 重命名文件
 - git mv source destination
 
-### commit 规范
-- [Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
-- [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
-- [你可能已经忽略的git commit规范](https://www.quanzhan.co/archives/168)
-
-参考链接：
+### 参考链接
 - [https://juejin.im/post/5af0438f5188251b8015967e](https://juejin.im/post/5af0438f5188251b8015967e)
 - [https://juejin.im/post/5ce4ddb351882532e9631951](https://juejin.im/post/5ce4ddb351882532e9631951)
 - [http://gitready.com/advanced/2009/01/17/restoring-lost-commits.html](http://gitready.com/advanced/2009/01/17/restoring-lost-commits.html)
 - [http://www.programblings.com/2008/06/07/the-illustrated-guide-to-recovering-lost-commits-with-git/](http://www.programblings.com/2008/06/07/the-illustrated-guide-to-recovering-lost-commits-with-git/)
-:::
-
 - [https://github.com/521xueweihan/git-tips](https://github.com/521xueweihan/git-tips)

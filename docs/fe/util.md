@@ -57,7 +57,7 @@ let apiStartSuccessed = false // api/start 接口是否请求成功
 function PageAOP(o) {
   if (o) {
     const originFn = o.onInit
-    o.onInit = async function (...t) {
+    o.onInit = async function (...args) {
       try {
         this.themeClass = this.$app.getThemeClass() // fix: 异步阻塞导致原始 onInit 执行后界面异常
         if (!apiStartSuccessed) {
@@ -68,7 +68,7 @@ function PageAOP(o) {
         }
       } catch (e) {}
 
-      if (originFn) return originFn.apply(this, t)
+      if (originFn) return originFn.apply(this, args)
     }
   }
   return o
