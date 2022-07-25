@@ -94,6 +94,47 @@ find .git/objects -type f
 - `git init [<directory>]`: 将目录（不存在时先新建）初始化为一个 git 代码库
 
 ### clone
+常用的传输协议
+| 传输协议 | 语法格式 | 说明 |
+| - | - | - |
+| 本地协议(1) | /path/to/repo.git | 哑协议 |
+| 本地协议(2) | file:///path/to/repo.git | 智能协议 |
+| http/https 协议 | http://git-server.com:port/path/to/repo.git<br>https://git-server.com:port/path/to/repo.git | 平时接触到的都是智能协议（用户名密码） |
+| ssh 协议 | user@git-server.com:path/to/repo.git | 工作中最常用的智能协议（公私钥） |
+
+哑协议与智能协议
+- 直观区别：哑协议传输进度不可见；智能协议传输进度可见
+- 传输速度：智能协议比哑协议传输速度快
+
+```sh
+# git clone --bare 创建裸仓库，不包含工作区，可作为远端备份
+# http://www.worldhello.net/gotgit/02-git-solo/100-git-clone.html#id4
+git clone --bare /Users/squirrel/practice/git-demo/.git ya.git
+
+# 把裸仓库变为普通仓库
+mkdir ya
+mv ya.git ya
+cd ya
+mv ya.git .git
+git config core.bare false
+```
+
+### remote
+```sh
+man git-remote
+git help remote
+git help remote --web
+git remote --help
+```
+- `git remote -v`: 显示远程仓库
+- git remote show [remote]: 显示指定远程仓库信息
+- `git remote add <origin name> <server URL>`: 将本地仓库连接到指定远程服务器
+- git remote add [shortname] [url]: 增加一个新的远程仓库，并命名
+- git remote update: 更新远程仓库
+- git pull [remote] [branch]: 拉取远程仓库的变化，并与本地分支合并
+- git push [remote] [branch]: 推送本地分支到远程仓库
+- git push [remote] --force: 强行推送当前分支到远程仓库
+- git push [remote] --all: 推送所有分支到远程仓库
 
 ### add
 - `git add <file | directory>`: 添加工作区的指定目录或文件到暂存区
@@ -146,17 +187,6 @@ git branch --help
 - `git checkout -b <new-branch> <commit>`: 以指定的提交为基础，新建分支，并切换到新建的分支
 - `git merge <branch>`: 合并指定分支到当前分支
 - `git cherry-pick <commit>`: 选择一个commit，合并进当前分支
-
-### remote
-- `git remote -v`: 显示远程仓库
-- git remote show [remote]: 显示指定远程仓库信息
-- `git remote add origin <server address>`: 将本地仓库连接到指定远程服务器
-- git remote add [shortname] [url]: 增加一个新的远程仓库，并命名
-- git remote update: 更新远程仓库
-- git pull [remote] [branch]: 拉取远程仓库的变化，并与本地分支合并
-- git push [remote] [branch]: 推送本地分支到远程仓库
-- git push [remote] --force: 强行推送当前分支到远程仓库
-- git push [remote] --all: 推送所有分支到远程仓库
 
 ### log
 ```sh
