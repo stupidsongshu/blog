@@ -1,8 +1,71 @@
 # React
+- [github](https://github.com/facebook/react/)
+- [官方文档](https://reactjs.org/)
+- [中文文档](https://zh-hans.reactjs.org/)
 
-[极客时间 每日一课，为什么 React 不推荐使用 Mixin?](https://time.geekbang.org/dailylesson/detail/100028476)
+## cli
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [rekit](https://github.com/supnate/rekit/)
+- [codesandbox](https://codesandbox.io/)
+- [dva]()
+
+## Flux
+Flux 架构：单向数据流
+- [github/facebook](https://github.com/facebook/flux)
+### Redux
+- [https://redux.js.org/](https://redux.js.org/)
+- [https://cn.redux.js.org/](https://cn.redux.js.org/)
+
+![redux](/react/redux.png)
+
+#### immutable
+Redux 文档
+- [Immutable Update Patterns](https://redux.js.org/usage/structuring-reducers/immutable-update-patterns)
+- [Immutable 不可变更新模式](https://cn.redux.js.org/usage/structuring-reducers/immutable-update-patterns)
+
+操作方法：
+- 原生写法：`{...}` / `Object.assign()`
+- [immer](https://github.com/immerjs/immer)
+- [immutability-helper](https://github.com/kolodny/immutability-helper)
+- [更多](https://github.com/markerikson/redux-ecosystem-links/blob/master/immutable-data.md#immutable-update-utilities)
+
+## component
+- [React 哲学](https://zh-hans.reactjs.org/docs/thinking-in-react.html)
+- [组件 & Props](https://zh-hans.reactjs.org/docs/components-and-props.html)
+
+## JSX
+[JSX 简介](https://zh-hans.reactjs.org/docs/introducing-jsx.html)
+- JSX: 能够在 JavaScript 代码中直接写 HTML 标记，是动态创建组件 React.createElement 的语法糖
+- React 约定小写的 tag 是原生 DOM 节点（如 div），大些字母开头的为自定义组件
+- JSX 标记可以直接使用属性语法（这种情况不需要遵循大写字母开头的约定），如 <menu.Item />
+
+## lifecycle
+[生命周期图谱](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+![生命周期](/react/lifecycle.png)
+
+## Virtual DOM
+- [协调](https://zh-hans.reactjs.org/docs/reconciliation.html)
+- [Virtual DOM 及内核](https://zh-hans.reactjs.org/docs/faq-internals.html)
+- [supnate/react-dom-diff](https://supnate.github.io/react-dom-diff/index.html)
+
+虚拟 DOM 的两个假设
+- 组件的 DOM 结构是相对稳定的
+- 类型相同的兄弟节点可以被唯一标识（key 属性）
+## Render Props
+[Render Props](https://zh-hans.reactjs.org/docs/render-props.html)
+
+### function as a child
+函数子组件是工厂方法设计模式的应用
+
+函数子组件相当于向外暴露了 render 逻辑，所以更灵活。
+
+[使用 Props 而非 render](https://zh-hans.reactjs.org/docs/render-props.html#using-props-other-than-render)
 
 ## mixin
+- [Mixins](https://zh-hans.reactjs.org/docs/react-without-es6.html#mixins)
+- [极客时间 每日一课，为什么 React 不推荐使用 Mixin?](https://time.geekbang.org/dailylesson/detail/100028476)
+
 ```js
 // mixin 实现原理
 function mixin(target, mixins = []) {
@@ -85,7 +148,66 @@ var TickTok = createReactClass({
 2. JavaScript 是一种动态语言，这也就意味着在语言层面是无法追踪和管理这些依赖的。
 
 ## HOC
+- [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html)
+- [Render Props](https://zh-hans.reactjs.org/docs/render-props.html)
+
+高阶组件是装饰器设计模式的应用
+
 高阶组件是从函数式编程中的高阶函数演变而来，高阶组件与高阶函数类似，它本身也是一个函数，接收一个组件作为参数，并返回一个新的组件。
+
+```jsx
+// const EnhancedComponent = higherOrderComponent(WrappedComponent)
+
+// hoc-clock.js
+function higherOrderComponent(WrappedComponent) {
+  return class extends React.Component{
+    state = { time: new Date() }
+    componentDidMount() {
+      this.timerID = setInterval(() => this.tick(), 1000)
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timerID)
+    }
+
+    tick() {
+      this.setState({ time: new Date() })
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} time={this.state.time} />
+    }
+  }
+}
+
+// clock1.js
+class Clock1 extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>Time1:</p>
+        <p>{this.props.time.toLocaleString()}</p>
+      </div>
+    )
+  }
+}
+const EnhancedClock1 = higherOrderComponent(Clock1)
+export default EnhancedClock1
+
+// clock2.js
+class Clock2 extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>Time2:</p>
+        <p>{this.props.time.toLocaleTimeString()}</p>
+      </div>
+    )
+  }
+}
+const EnhancedClock2 = higherOrderComponent(Clock2)
+export default EnhancedClock2
+```
 
 ```jsx
 const List = () => {
@@ -211,7 +333,7 @@ Hooks 的出现是为了解决组件间复用逻辑的问题，这点与 Mixin �
 - 不能在循环中调用
 - 不能在嵌套函数中调用
 
-原因：所有 Hooks 函数必须按顺序执行
+原因：**所有 Hooks 函数必须按顺序执行**
 - Hooks 是 React 函数内部的函数
   - 找到正在执行中的 React 函数
 - 所有 Hooks 函数必须按顺序执行
@@ -297,3 +419,10 @@ function useState<S>(initalState: S | (() => S)): [S, Dispatch<SetStateAction<S>
   return hook.state // 已经创建 hook 就直接返回
 }
 ```
+
+## React Router
+- [官网](https://reactrouter.com/)
+- [path-to-regexp](https://github.com/pillarjs/path-to-regexp)
+
+## Next.js
+- [官网](https://nextjs.org/)
