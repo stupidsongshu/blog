@@ -11,3 +11,21 @@
 - [Angular](https://github.com/angular/angular)
 - [x-tag](https://github.com/x-tag/core)
 - [Polymer](https://github.com/Polymer/polymer)
+
+### webpack
+[自动引入](https://webpack.js.org/guides/dependency-management/#requirecontext)
+
+```js
+function importAll(requireContext) {
+  requireContext.keys().forEach(path => {
+    let component = requireContext(path)
+    component = component.default || component
+    Vue.component(component.name, component)
+  })
+}
+
+const requireContextFilter = require.context('./filter', false, /\.vue$/)
+const requireContextComponents = require.context('./components', false, /\.vue$/)
+importAll(requireContextFilter)
+importAll(requireContextComponents)
+```
