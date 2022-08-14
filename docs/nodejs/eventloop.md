@@ -7,7 +7,8 @@ chrome 浏览器基于 [message pump](https://source.chromium.org/chromium/chrom
 
 ## libuv
 ### event-loop
-![示意图](/node/libuv1.jpg)
+<!-- ![event-loop](/node/libuv1.jpg) -->
+<img :src="$withBase('/node/libuv1.jpg')" alt="event-loop">
 
 Node.js event-loop 六大阶段，每个阶段存在 FIFO 队列
 - timers 阶段：setTimeout、setInterval 回调入此队列
@@ -19,11 +20,13 @@ Node.js event-loop 六大阶段，每个阶段存在 FIFO 队列
 
 [https://github.com/nodejs/node/blob/master/deps/uv/src/unix/core.c](https://github.com/nodejs/node/blob/master/deps/uv/src/unix/core.c#L365)
 
-![示意图](/node/libuv2.jpg)
+<!-- ![示意图](/node/libuv2.jpg) -->
+<img :src="$withBase('/node/libuv2.jpg')" alt="event-loop">
 
 [https://github.com/nodejs/node/blob/master/src/node_main_instance.cc](https://github.com/nodejs/node/blob/master/src/node_main_instance.cc#L127)
 
-![示意图](/node/libuv3.jpg)
+<!-- ![示意图](/node/libuv3.jpg) -->
+<img :src="$withBase('/node/libuv3.jpg')" alt="event-loop">
 
 浏览器 与 Node.js 的 event-loop 比较：
 - Node.js 版本 **<= 10**：浏览器环境下，microtask 的任务队列是每个 macrotask 执行完之后执行；Node.js 中，microtask 会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行 microtask 队列的任务

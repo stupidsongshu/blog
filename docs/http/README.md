@@ -117,11 +117,17 @@ IPv6主机记录（AAAA记录）|与A记录对应，⽤于将特定的主机名�
 | 物理层 | ISO2110,IEEE802,IEEE802.2 | 以二进制数据形式在物理媒体上传输数据 |
 
 ### TCP三次握手与四次挥手
-![tcp](/tcp_1.jpg)
+<!-- ![tcp](/tcp_1.jpg)
 
 ![tcp](/tcp_2.jpg)
 
-![tcp](/tcp_3.jpg)
+![tcp](/tcp_3.jpg) -->
+
+<img :src="$withBase('/tcp_1.jpg')" alt="tcp">
+
+<img :src="$withBase('/tcp_2.jpg')" alt="tcp">
+
+<img :src="$withBase('/tcp_3.jpg')" alt="tcp">
 
 ## IP
 IP (Internet Protocol)即互联网协议。IP 现在通用的版本是 IPv4 ，地址是4个 byte 的数字，用点分开（0.0.0.0 ~ 255.255.255.255）；正在实施的 IPv6地址会复杂很多。每个机器的网卡都有一个 IP 地址。IP 地址又分内网和外网地址，只有外网地址才能用来外网通讯

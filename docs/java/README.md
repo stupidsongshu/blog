@@ -1249,13 +1249,17 @@ Java 中有三代 IO 框架：
   - 程序写入数据到外部设备，就是输出、output、writer
 
 #### InputStream
-![InputStream](/IO-InputStream.jpg)
+<!-- ![InputStream](/IO-InputStream.jpg) -->
+<img :src="$withBase('/IO-InputStream.jpg')" alt="InputStream">
 #### OutputStream
-![OutputStream](/IO-OutputStream.jpg)
+<!-- ![OutputStream](/IO-OutputStream.jpg) -->
+<img :src="$withBase('/IO-OutputStream.jpg')" alt="OutputStream">
 #### Reader
-![Reader](/IO-Reader.jpg)
+<!-- ![Reader](/IO-Reader.jpg) -->
+<img :src="$withBase('/IO-Reader.jpg')" alt="Reader">
 #### Writer
-![Writer](/IO-Writer.jpg)
+<!-- ![Writer](/IO-Writer.jpg) -->
+<img :src="$withBase('/IO-Writer.jpg')" alt="Writer">
 
 :::tip
 `System.out.println()`是如何输出到控制台的？可以看看 System 类里是怎么给 out 赋值的

@@ -160,12 +160,17 @@ SQLite 是一款轻量级的数据库软件，在外连接上只支持左连接�
 ## Join
 JOIN 类型分为：内连接（INNER）、全外连接（FULL OUTER）、左外连接（LEFT OUTER）、右外连接（RIGHT OUTER）、交叉连接（CROSS）
 
-![INNER JOIN](/mysql/inner_join.jpg)
+<!-- ![INNER JOIN](/mysql/inner_join.jpg) -->
+<img :src="$withBase('/mysql/inner_join.jpg')" alt="INNER JOIN">
 
-![LEFT OUTER JOIN](/mysql/left_outer_join.jpg)
+<!-- ![LEFT OUTER JOIN](/mysql/left_outer_join.jpg) -->
+<img :src="$withBase('/mysql/left_outer_join.jpg')" alt="LEFT OUTER JOIN">
 
-![RIGHT OUTER JOIN](/mysql/right_outer_join.jpg)
+<!-- ![RIGHT OUTER JOIN](/mysql/right_outer_join.jpg) -->
+<img :src="$withBase('/mysql/right_outer_join.jpg')" alt="RIGHT OUTER JOIN">
 
-![FULL OUTER JOIN](/mysql/full_outer_join.jpg)
+<!-- ![FULL OUTER JOIN](/mysql/full_outer_join.jpg) -->
+<img :src="$withBase('/mysql/full_outer_join.jpg')" alt="FULL OUTER JOIN">
 
-![UNION ALL](/mysql/full_outer_join_union_all.jpg)
+<!-- ![UNION ALL](/mysql/full_outer_join_union_all.jpg) -->
+<img :src="$withBase('/mysql/full_outer_join_union_all.jpg')" alt="UNION ALL">

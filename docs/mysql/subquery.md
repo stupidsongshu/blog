@@ -45,7 +45,8 @@ WHERE EXISTS (SELECT player_id FROM player_score WHERE player.player_id=player_s
 
 `=ANY` 或 `=SOME` 与 `IN` 等效；`!=ALL` 或 `<>ALL` 与 `NOT IN` 等效
 
-![子查询](/mysql-subquery-any-some-all.jpg)
+<!-- ![子查询](/mysql-subquery-any-some-all.jpg) -->
+<img :src="$withBase('/mysql/subquery-any-some-all.jpg')" alt="子查询">
 
 ```sql
 -- 查询出场过的球员都有哪些，并且显示他们的姓名、球员 ID 和球队 ID

@@ -87,7 +87,8 @@ git ls-files --stage
 find .git/objects -type f
 ```
 
-![commit_tree_blob](/git/commit_tree_blob.png)
+<!-- ![commit_tree_blob](/git/commit_tree_blob.png) -->
+<img :src="$withBase('/git/commit_tree_blob.png')" alt="commit_tree_blob">
 
 ## 命令
 ### init

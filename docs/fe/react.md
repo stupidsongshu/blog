@@ -16,7 +16,8 @@ Flux 架构：单向数据流
 - [https://redux.js.org/](https://redux.js.org/)
 - [https://cn.redux.js.org/](https://cn.redux.js.org/)
 
-![redux](/react/redux.png)
+<!-- ![redux](/react/redux.png) -->
+<img :src="$withBase('/react/redux.png')" alt="redux">
 
 #### immutable
 Redux 文档
@@ -42,7 +43,8 @@ Redux 文档
 ## lifecycle
 [生命周期图谱](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
-![生命周期](/react/lifecycle.png)
+<!-- ![生命周期](/react/lifecycle.png) -->
+<img :src="$withBase('/react/lifecycle.png')" alt="生命周期">
 
 ## Virtual DOM
 - [协调](https://zh-hans.reactjs.org/docs/reconciliation.html)
@@ -309,7 +311,8 @@ function App() {
 }
 ```
 
-![mixin_HOC](/react/mixin_HOC.png)
+<!-- ![mixin_HOC](/react/mixin_HOC.png) -->
+<img :src="$withBase('/react/mixin_HOC.png')" alt="mixin_HOC">
 
 Mixin 与 HOC 的区别：
 1. HOC 这种模式是将组件进行更高一层的封装，而不是像 Mixin 那样将通用功能混入到组件中，组件并不会收到任何入侵。
@@ -321,7 +324,8 @@ HOC 存在的问题：
 2. 不要轻易更改 HOC 嵌套的顺序。因为 HOC 的本质是组合，组合就一定会涉及到执行的先后顺序，如果破坏了顺序可能就会出问题。
 3. HOC 带来了 props 传递的问题。多个 HOC 嵌套的时候，需要将顶层注入的 props 一层一层传递到最内部的组件，在传递的过程中 props 可能会在每一层的 HOC 被加工，而这样的加工是孤立的，当前的 HOC 不知道别的 HOC 对 props 做了什么，其他的 HOC 也不知道当前的 HOC 对 props 做了什么，这就带来了修改冲突。
 
-![why_hooks](/react/why_hooks.png)
+<!-- ![why_hooks](/react/why_hooks.png) -->
+<img :src="$withBase('/react/why_hooks.png')" alt="why_hooks">
 
 ## Hooks (16.8+)
 Hooks 的出现是为了解决组件间复用逻辑的问题，这点与 Mixin 和 HOC 的目标是一致的，但 Hooks 并不会像 Mixin 那样入侵你的组件，也不会像 HOC 那样打乱组件的结构。它能够以一种很自然的方式将逻辑从组件中提取出来。在大多数情况下，Hooks 都是可以取代 Mixin 和 HOC 的。

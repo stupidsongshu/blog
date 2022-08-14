@@ -45,7 +45,8 @@ interface PerformanceTiming {
 };
 ```
 
-![Processing Model](/timestamp-diagram.svg)
+<!-- ![Processing Model](/timestamp-diagram.svg) -->
+<img :src="$withBase('/timestamp-diagram.svg')" alt="Processing Model">
 
 ## 缓存
 #### 强缓存、协商缓存
