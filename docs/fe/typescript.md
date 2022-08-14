@@ -499,3 +499,9 @@ type T3a = UnionToIntersection<T2a> // { a: 'a'; } & { b: 'b'; }
 // U extends any ? (arg: U) => void : never 结果为
 type U2a = ((arg: {a: 'a'}) => void) |  ((arg: {b: 'b'}) => void)
 ```
+
+## Omit
+```ts
+type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
+```

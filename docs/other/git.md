@@ -1,5 +1,6 @@
 # Git
 - [官方文档](https://git-scm.com/doc)
+- [官方文档](https://docs.github.com/cn)
 - 《Git权威指南》
   - [Github](https://github.com/gotgit/gotgit)
   - [Website](https://www.worldhello.net/gotgit/)
