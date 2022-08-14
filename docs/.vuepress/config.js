@@ -2,6 +2,7 @@ module.exports = {
   base: '/blog/',
   title: 'Blog',
   description: 'summerycicada',
+  lastUpdated: 'Last Updated',
   themeConfig: {
     // 导航栏
     navbar: true,
@@ -208,6 +209,8 @@ module.exports = {
     displayAllHeaders: false
   },
   plugins: [
+    '@vuepress/back-to-top',
+    '@vuepress/last-updated',
     [
       'vuepress-plugin-mathjax',
       {
