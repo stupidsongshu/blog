@@ -501,7 +501,57 @@ type U2a = ((arg: {a: 'a'}) => void) |  ((arg: {b: 'b'}) => void)
 ```
 
 ## Omit
-```ts
-type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+使用 `Omit` 工具类型，可以很方便地过滤掉对象类型中不需要的属性
 
+```ts
+// Pick 实现
+type MyPick<T, K extends keyof T> = {
+  [P in K]: T[P];
+}
+// Omit 实现
+type MyOmit1<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+type MyOmit2<T, K extends keyof any> = {
+  [P in Exclude<keyof T, K>]: T[P];
+}
+type MyOmit3<T, K extends keyof any> = {
+  [P in keyof T as P extends K ? never : P]: T[P];
+}
+
+type User = {
+  id: number;
+  name: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+type MyUser0 = Pick<User, 'id' | 'name'>; // { id: number; name:strign; }
+type MyUser1 = MyPick<User, 'id' | 'name'>; // { id: number; name:strign; }
+type MyUser2 = Omit<User, 'id' | 'createdAt' | 'updatedAt'>; // { name: string; password: string; }
+type MyUser3 = MyOmit1<User, 'id' | 'createdAt' | 'updatedAt'>; // { name: string; password: string; }
+type MyUser4 = MyOmit2<User, 'id' | 'createdAt' | 'updatedAt'>; // { name: string; password: string; }
+type MyUser5 = MyOmit3<User, 'id' | 'createdAt' | 'updatedAt'>; // { name: string; password: string; }
+
+const user1: MyUser1 = {
+  id: 1,
+  name: 'hello',
+}
+const user2: MyUser5 = {
+  name: 'hello',
+  password: 'world',
+}
+```
+
+使用接口继承的方式覆盖已有对象类型中的已知属性的类型
+```ts
+type User = {
+  id: number;
+  name: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+interface UserUI extends Omit<User, 'createdAt' | 'updatedAt'> {
+  createdAt: string;
+  updatedAt: string;
+}
 ```

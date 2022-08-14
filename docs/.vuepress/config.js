@@ -1,6 +1,6 @@
 module.exports = {
   base: '/blog/',
-  title: 'site',
+  title: 'Blog',
   description: 'summerycicada',
   themeConfig: {
     // 导航栏
