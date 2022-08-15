@@ -320,21 +320,15 @@ type PersonReadonly1 = Readonly<Person>;
 type PersonReadonly2 = ReadonlyKeys<Person>;
 ```
 
-### Key Remapping
+## Key Remapping
 ```ts
 // NewKeyType 的类型必须是 string | number | symbol 联合类型的子类型
 type MappedTypeWithNewKeys<T> = {
   [K in keyof T as NewKeyType]: T[K];
 }
 ```
+
 ```ts
-type Getters<T> = {
-  // K & string: 过滤非 string 类型的键
-  [K in keyof T as `get${Capitalize<K & string>}`]: () => T[K];
-}
-type LazyPerson = Getters<Person>;
-
-
 // 键重映射时如果 as 子句返回 never 类型，该键将被剔除
 type RemoveKindField<T> = {
   [K in keyof T as Exclude<K, 'kind'>]: T[K];
@@ -344,6 +338,15 @@ interface Circle {
   radius: number;
 }
 type KindlessCircle = RemoveKindField<Circle>;
+```
+
+```ts
+// 键重映射 + 模板字面量类型
+type Getters<T> = {
+  // string & K: 过滤非 string 类型的键
+  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
+}
+type LazyPerson = Getters<Person>;
 ```
 
 ## Conditional Types
@@ -554,4 +557,90 @@ interface UserUI extends Omit<User, 'createdAt' | 'updatedAt'> {
   createdAt: string;
   updatedAt: string;
 }
+```
+
+## Template Literal Types [4.1]
+模板字面量类型：`${T}`，类型变量 T 的类型可以是 `string` `number` `boolean` `bigint`
+```ts
+// 使用模板字面量类型避免重复代码
+type CssPadding1 = 
+    | 'padding-top'
+    | 'padding-right'
+    | 'padding-bottom'
+    | 'padding-left';
+type CssMargin1 = 
+    | 'margin-top'
+    | 'margin-right'
+    | 'margin-bottom'
+    | 'margin-left';
+
+type CssPadding2 = `padding-${Direction}`; // "padding-top" | "padding-right" | "padding-bottom" | "padding-left"
+type CssMargin2 = `margin-${Direction}`; // "margin-top" | "margin-right" | "margin-bottom" | "margin-left"
+```
+
+```ts
+// 模板字符串类型可以连接字符串字面量
+type EventName<T extends string> = `${T}Changed`;
+type Concat<S1 extends string, S2 extends string> = `${S1}-${S2}`;
+// 还可以把非字符串的基本类型转换成对应的字符串字面量类型
+type ToString<T extends string | number | boolean | bigint> = `${T}`;
+
+type T0 = EventName<'foo'>; // "fooChanged"
+type T1 = Concat<'Hello', 'World'>; // "Hello-World"
+type T2 = ToString<'cicada' | 815 | true | -123n>; // "cicada" | "true" | "815" | "-123"
+// 对于模板字面量类型来说，当类型占位符的实际类型是联合类型时，如果是单个占位符，单个占位符的联合类型自动展开
+type T3 = EventName<'foo' | 'bar' | 'baz'>; // "fooChanged" | "barChanged" | "bazChanged"
+// 对于模板字面量类型来说，当类型占位符的实际类型是联合类型时，如果是多个占位符，多个占位符的联合类型解析为叉积
+type T4 = Concat<'top' | 'bottom', 'left' | 'right'>; // "top-left" | "top-right" | "bottom-left" | "bottom-right"
+```
+
+```ts
+// 使用模板字面量类型过程中，可以使用用于处理字符串类型的内置工具类型，如：Uppercase Lowercase Capitalize Uncapitalize
+type GetterName<T extends string> = `get${Capitalize<T>}`;
+type Cases<T extends string> = `${Uppercase<T>} ${Lowercase<T>} ${Capitalize<T>} ${Uncapitalize<T>}`;
+
+type T5 = GetterName<'foo'>; // "getFoo"
+type T6 = Cases<'bar'>; // "BAR bar Bar bar"
+```
+
+```ts
+// 结合条件类型和 infer 关键字实现类型推断
+type Direction = 'top' | 'right' | 'bottom' | 'left';
+type InferRoot<T> = T extends `${infer R}${Capitalize<Direction>}` ? R : T;
+
+type T7 = InferRoot<'marginTop'>; // "margin"
+type T8 = InferRoot<'paddingRight'>; // "padding"
+```
+
+```ts
+// 结合键重映射，实现简单的工具类型，如为对象类型生成对应的 getter 类型
+type Getters<T> = {
+  // string & K: 过滤非 string 类型的键
+  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
+}
+type LazyPerson = Getters<Person>;
+```
+
+```ts
+// 结合条件类型、条件链、infer 推断、递归类型，可以实现复杂的工具类型，如用于获取对象类型中任一层级属性的类型
+type PropType<T, Path extends string> = string extends Path
+  ? unknown
+  : Path extends keyof T
+    ? T[Path]
+    : Path extends `${infer K}.${infer R}`
+      ? K extends keyof T
+        ? PropType<T[K], R>
+        : unknown
+      : unknown;
+
+declare function getPropValue<T extends object, P extends string>(
+  obj: T,
+  path: P
+): PropType<T, P>;
+
+const obj = { a: {  b: { c: 'cicada', d: 666 } } }
+const a = getPropValue(obj, 'a'); // { b: { c: string; d: number; } }
+const ab = getPropValue(obj, 'a.b'); // { c: string; d: number; }
+const abc = getPropValue(obj, 'a.b.c'); // string
+const abd = getPropValue(obj, 'a.b.d'); // number
 ```
