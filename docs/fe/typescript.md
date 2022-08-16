@@ -644,3 +644,90 @@ const ab = getPropValue(obj, 'a.b'); // { c: string; d: number; }
 const abc = getPropValue(obj, 'a.b.c'); // string
 const abd = getPropValue(obj, 'a.b.d'); // number
 ```
+
+## declare
+declare 可用来声明全局变量、全局函数、全局类、全局枚举
+```ts
+// weixin js-sdk
+declare var wx = any;
+
+// wx.d.ts
+declare namespace wx {
+  // export function chooseImage(params: { count: number; }): void;
+}
+```
+
+```ts
+// packages/vite/client.d.ts
+declare module '*.css' {
+  const css: string;
+  export default css;
+}
+declare module '*.jpg' {
+  const src: string;
+  export default src;
+}
+declare module '*.ttf' {
+  const src: string;
+  export default src;
+}
+
+import css from './file.css';
+import logo from './logo.jpg';
+```
+
+```ts
+// 使用 declare module 扩展已有模块中定义的类型
+// 比如为每个 vue 组件实例增加 $axios 属性
+import { AxiosInstance } from 'axios';
+declare module '@vue/runtime-core' {
+  interface ComponentCustomPropertites {
+    $axios: AxiosInstance;
+  }
+}
+
+import { createApp } from 'vue';
+import axios from 'axios';
+import App from './App.vue';
+const app = createApp(App);
+app.config.globalPropertites.$axios = axios;
+app.mount('#app');
+
+import { getCurrentInstance, ComponentInternalInstance } from 'vue';
+const { proxy } = getCurrentInstance() as ComponentInternalInstance;
+proxy!.$axios
+  .get('https://jsonplaceholder.typicode.com/todos/1')
+  .then((response) => response.data)
+  .then((json) => console.log(json));
+```
+
+## infer
+```ts
+type FirstIsString<T> =
+  T extends [infer S, ...unknown[]]
+    ? S extends string
+      ? S
+      : never
+    : never;
+
+type S1 = FirstIsString<[string]>; // string
+type S2 = FirstIsString<[string, number]>; // string
+type S3 = FirstIsString<[number]>; // never
+type S4 = FirstIsString<[number, string]>; // never
+type S5 = FirstIsString<['hello', string]>; // "hello"
+type S6 = FirstIsString<['hello' | 'world', boolean]>; // "hello" | "world"
+```
+
+```ts
+// TypeScript 4.7 允许为 inter type 添加可选 extends 子句，用于指定类型变量的显示约束
+type FirstIsString<T> =
+  T extends [infer S extends string, ...unknown[]]
+    ? S
+    : never;
+type S1 = FirstIsString<[string]>; // string
+type S2 = FirstIsString<[string, number]>; // string
+type S3 = FirstIsString<[number]>; // never
+type S4 = FirstIsString<[number, string]>; // never
+type S5 = FirstIsString<['hello', string]>; // "hello"
+type S6 = FirstIsString<['hello' | 'world', boolean]>; // "hello" | "world"
+```
