@@ -731,3 +731,80 @@ type S4 = FirstIsString<[number, string]>; // never
 type S5 = FirstIsString<['hello', string]>; // "hello"
 type S6 = FirstIsString<['hello' | 'world', boolean]>; // "hello" | "world"
 ```
+
+## typeof
+```ts
+const user = {
+  name: 'cicada',
+  age: 18,
+  address: {
+    province: 'Shanghai',
+    city: 'Pudong New Area'
+  }
+}
+type Person = typeof user;
+type Address = typeof user.address; // { province: string; city: string; }
+```
+
+```ts
+enum HTTPMethod {
+  Get,
+  Post
+}
+const method: typeof HTTPMethod = {
+  Get: 0,
+  Post: 1
+}
+// 使用 keyof 和 typeof 操作符可以获取枚举类型的所有属性名
+type Method = keyof typeof HTTPMethod; // "Get" | "Post"
+```
+
+```ts
+// 使用 typeof 获取函数对象的类型
+function add(a: number, b: number) {
+  return a + b
+}
+type AddType = typeof add; // (a: number, b: number) => number
+type AddReturnType = ReturnType<AddType>; // number
+type AddParamsType = Parameters<AddType>; // [a: number, b: number]
+```
+
+```ts
+class Point {
+  x: number;
+  y: number;
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+}
+function createPoint(
+  Constructor: typeof Point, // new (x: number, y: number) => Point
+  x: number,
+  y: number
+) {
+  return new Constructor(x, y);
+}
+```
+
+### const assertions [3.4]
+```ts
+let requestMethod1 = 'Get';
+let requestMethod2 = 'Get' as const;
+
+type R0 = typeof requestMethod1; // string
+type R1 = typeof requestMethod2; // "Get"
+
+
+let user1 = {
+  id: 1,
+  name: 'cicada'
+};
+let user2 = {
+  id: 1,
+  name: 'cicada'
+} as const;
+
+type U0 = typeof user1; // { id: number; name: string; }
+type U1 = typeof user2; // { readonly id: 1; readonly name: "cicada"; }
+```
