@@ -92,14 +92,16 @@ gpu.js
 
 [https://web.dev/metrics](https://web.dev/metrics)
 
+[web-vitals](https://github.com/GoogleChrome/web-vitals)
+
 | name | description |
 | - | - |
-| TTFP | |
+| [TTFP](https://web.dev/ttfb/) | Time to First Byte 第一字节时间 |
 | FP   | First Paint 首次绘制 |
-| FCP  | First Contentful Paint 首次内容绘制 |
+| [FCP](https://web.dev/fcp/)  | First Contentful Paint 首次内容绘制 |
 | FMP  | First Meaningful Paint 首次有效绘制 |
-| LCP  | Largest Contentful Paint 最大内容绘制（替代FMP） |
-| TTI  | Time to Interactive 可交互时间 |
+| [LCP](https://web.dev/lcp/)  | Largest Contentful Paint 最大内容绘制（替代FMP） |
+| [TTI](https://web.dev/tti/)  | Time to Interactive 可交互时间 |
 
 PerformanceObserver 为我们提供的新功能是，能够在性能事件发生时订阅这些事件，并以异步方式响应事件。 此 API 取代旧的 [PerformanceTiming](https://www.w3.org/TR/navigation-timing/#sec-navigation-timing-interface) 界面，后者通常需要执行轮询才能查看数据可用的时间。
 

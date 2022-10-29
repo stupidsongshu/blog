@@ -427,7 +427,9 @@ function useState<S>(initalState: S | (() => S)): [S, Dispatch<SetStateAction<S>
 ### useState
 
 ### useEffect
-
+- useEffect 是在 render 完后执行(DOM 渲染后执行)
+- useEffect 接收的 callback 是在第一次以及依赖发生变化时执行;
+- return 的函数是在下一次 callback 执行之前执行，或者销毁时执行。
 ### useCallback
 ```jsx
 // fn 是定义的回调函数，deps 是依赖的变量数组。
@@ -444,7 +446,7 @@ useMemo(fn, deps)
 ```
 使用 useMemo 的好处：避免重复计算、避免子组件的重复渲染
 #### 缓存计算的结果
-除了 useCallback，useMemo 也是为了缓存而设计的。只不过，useCallback 缓存的是一个函数，而 useMemo 缓存的是计算的结果。useCallback 的功能其实是可以用 useMemo 来实现的，useCallback(fn, deps) 相当于 useMemo(() => fn, deps)
+除了 useCallback，useMemo 也是为了缓存而设计的。只不过，useCallback 缓存的是一个函数，而 useMemo 缓存的是计算的结果。useCallback 的功能其实是可以用 useMemo 来实现的，`useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`
 
 ### useRef
 ```jsx

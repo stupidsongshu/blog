@@ -21,6 +21,7 @@ module.exports = {
           { text: '工程化', link: '/fe/engineering'},
           { text: '模块化', link: '/fe/module'},
           { text: '性能优化', link: '/fe/performance'},
+          { text: '函数式编程', link: '/fe/functional-programing'},
         ]
       },
       { text: 'Node.js', items: [
@@ -171,6 +172,7 @@ module.exports = {
         'engineering',
         'module',
         'performance',
+        'functional-programing',
       ],
       '/mysql/': [
         '',
