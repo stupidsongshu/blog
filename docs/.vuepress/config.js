@@ -11,8 +11,9 @@ module.exports = {
       { text: 'Guide', link: '/guide/' },
       { text: 'FrontEnd', items: [
           { text: 'frontend-road', link: '/fe/'},
-          { text: 'TypeScript', link: '/fe/typescript'},
+          { text: 'Vue', link: '/fe/vue'},
           { text: 'React', link: '/fe/react'},
+          { text: 'TypeScript', link: '/fe/typescript'},
           { text: '工具', link: '/fe/util'},
           { text: '编译', link: '/fe/compile'},
           { text: '面试', link: '/fe/interview'},
@@ -162,8 +163,9 @@ module.exports = {
       ],
       '/fe/': [
         '',
-        'typescript',
+        'vue',
         'react',
+        'typescript',
         'util',
         'compile',
         'interview',
