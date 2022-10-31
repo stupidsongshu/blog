@@ -20,6 +20,7 @@
 
 ## Vue 源码
 - [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/)
+- [learnVue](https://github.com/answershuto/learnVue)
 - [Learn-Vue-Source-Code](https://github.com/amzhiyong/Learn-Vue-Source-Code)
 - [10个Vue开发技巧](https://juejin.im/post/5f179100f265da22e27a9833)
 

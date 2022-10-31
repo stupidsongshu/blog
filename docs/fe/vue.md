@@ -18,6 +18,7 @@ export default {
       :var1="`Hello ${name}`"
       :var2="version"
     >
+      <!-- 作用域插槽 -->
       <template v-slot="{ var1, var2 }">
         <span>{{var1}}</span>
         <span>{{var2}}</span>
