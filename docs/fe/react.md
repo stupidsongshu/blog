@@ -1,7 +1,6 @@
 # React
-- [github](https://github.com/facebook/react/)
-- [官方文档](https://reactjs.org/)
-- [中文文档](https://zh-hans.reactjs.org/)
+- [GitHub Repo](https://github.com/facebook/react/)
+- [Website](https://reactjs.org/)
 
 ## cli
 - [create-react-app](https://github.com/facebook/create-react-app)
@@ -430,6 +429,9 @@ function useState<S>(initalState: S | (() => S)): [S, Dispatch<SetStateAction<S>
 - useEffect 是在 render 完后执行(DOM 渲染后执行)
 - useEffect 接收的 callback 是在第一次以及依赖发生变化时执行;
 - return 的函数是在下一次 callback 执行之前执行，或者销毁时执行。
+
+[useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
+
 ### useCallback
 ```jsx
 // fn 是定义的回调函数，deps 是依赖的变量数组。

@@ -3,6 +3,10 @@
 - [quickappcn/quickapp-dsl-vue](https://github.com/quickappcn/quickapp-dsl-vue/blob/4cfc8f065d/src/shared/util.js)
 - [https://juejin.cn/post/7023906112843808804](https://juejin.cn/post/7023906112843808804)
 
+## IP
+- http://ip-api.com/json
+- http://pv.sohu.com/cityjson?ie=utf-8
+
 ### 项目总结-重难点【不定期更新】
 后台系统使用jsx封装table-ai组件
 
@@ -155,6 +159,7 @@ export default PageAOP({
 :::
 
 ### 上传下载
+- [二进制](./binary.md)
 - [上传下载](./upload-download.md)
 
 ### Lodash
@@ -416,6 +421,59 @@ const awaitWrap = promise => promise.then(data => [null, data]).catch(err => [er
 ```js
 function sleep (milliseconds) {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+```
+
+### deepCopy
+```js
+// https://github.com/vuejs/vuex/blob/3.x/src/util.js
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+export function find (list, f) {
+  return list.filter(f)[0]
+}
+
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+export function deepCopy (obj, cache = []) {
+  // just return if obj is immutable value
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
+
+  // if obj is hit, it is in circular structure
+  const hit = cache.filter(c => c.original === obj)[0]
+  if (hit) {
+    return hit.copy
+  }
+
+  const copy = Array.isArray(obj) ? [] : {}
+  // put the copy into cache at first
+  // because we want to refer it in recursive deepCopy
+  cache.push({
+    original: obj,
+    copy
+  })
+
+  Object.keys(obj).forEach(key => {
+    copy[key] = deepCopy(obj[key], cache)
+  })
+
+  return copy
 }
 ```
 
@@ -887,6 +945,7 @@ const dateUtil = {
     }
     return new Date(time).getTime();
   },
+  // 倒计时
   getCountDownTime: function(time) {
     var nowTime = this.getTime();
     var targetTime = this.getTime(time);
@@ -901,16 +960,13 @@ const dateUtil = {
     var minute = 0;
     var second = 0;
     if (diffTime < 60) { // < 1m
-      // console.warn('< 1m')
       second = this.paddingZero(diffTime);
     } else if (diffTime < 60 * 60) { // < 1h
-      // console.warn('< 1h')
       var m = Math.floor(diffTime / 60);
       var s = diffTime % 60;
       minute = this.paddingZero(m);
       second = this.paddingZero(s);
     } else if (diffTime < 60 * 60 * 24) { // < 1d
-      // console.warn('< 1d')
       var h = Math.floor(diffTime / 3600);
       var m = Math.floor((diffTime - h * 3600) / 60);
       var s = (diffTime - h * 3600 - m * 60) % 60;
@@ -918,7 +974,6 @@ const dateUtil = {
       minute = this.paddingZero(m);
       second = this.paddingZero(s);
     } else {
-      // console.warn('>= 1d')
       var d = Math.floor(diffTime / 86400);
       var h = Math.floor((diffTime - d * 86400) / 3600);
       var m = Math.floor((diffTime - d * 86400 - h * 3600) / 60);
@@ -927,6 +982,11 @@ const dateUtil = {
       hour = this.paddingZero(h);
       minute = this.paddingZero(m);
       second = this.paddingZero(s);
+
+      // day = Math.floor(seconds / (60 * 60 * 24))
+      // hour = Math.floor(seconds / (60 * 60)) - (day * 24)
+      // minute = Math.floor(seconds / 60) - (day * 24 * 60) - (hour * 60)
+      // second = Math.floor(seconds) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60)
     }
 
     var str = '';
@@ -973,5 +1033,15 @@ function _objectWithoutProperties(obj, keys) {
     target[i] = obj[i];
   }
   return target;
+}
+```
+
+```js
+export function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+export function isPromise (val) {
+  return val && typeof val.then === 'function'
 }
 ```

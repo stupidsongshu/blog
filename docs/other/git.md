@@ -1,8 +1,9 @@
 # Git
-- [官方文档](https://git-scm.com/doc)
-- [官方文档](https://docs.github.com/cn)
+- [GitHub](https://github.com/git/git)
+- [Website](https://git-scm.com/doc)
+- [Website](https://docs.github.com/cn)
 - 《Git权威指南》
-  - [Github](https://github.com/gotgit/gotgit)
+  - [GitHub](https://github.com/gotgit/gotgit)
   - [Website](https://www.worldhello.net/gotgit/)
 - [git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)
 - [learnGitBranching](https://learngitbranching.js.org/?demo=&locale=zh_CN)
