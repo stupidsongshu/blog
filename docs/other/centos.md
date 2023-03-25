@@ -37,5 +37,19 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
 :::
 
+## Nginx
+- [Website](https://nginx.org/)
+### 文档
+- [nginx documentation](https://nginx.org/en/docs/)
+- [Command-line parameters](https://nginx.org/en/docs/switches.html)
+### 源码安装
+- [doc](https://nginx.org/en/docs/configure.html)
+- [doc](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)
+
+### 参考
+- [Nginx详细安装及配置](https://juejin.cn/post/6991818847179243557)
+
+
 ## CentOS 7 安装 MySQL
-[How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
+- [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
+- [How To Install MySQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7)
