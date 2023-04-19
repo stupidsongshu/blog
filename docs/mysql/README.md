@@ -93,6 +93,49 @@
 说明：参数中 **{} 为必填项，[] 为可选项**
 :::
 
+[Account Management Statements](https://dev.mysql.com/doc/refman/8.0/en/account-management-statements.html)
+
+```sql
+-- 查看目前 mysql 的用户
+SELECT Host, User, password, plugin from mysql.user;
+SELECT Host, User, authentication_string, plugin from mysql.user; -- mysql8
+
+-- 删除匿名用户
+SELECT Host, User FROM mysql.user WHERE User='';
+DROP USER ''@'localhost';
+-- 或者: delete from mysql.user where user='';
+
+-- [修改密码](https://dev.mysql.com/doc/refman/8.0/en/set-password.html)
+SET PASSWORD FOR 'root'@'localhost' = 'auth_string';
+-- set password for root@localhost=password('yourpassword');
+-- set password for root@127.0.0.1=password('yourpassword');
+
+-- [创建用户](https://dev.mysql.com/doc/refman/8.0/en/create-user.html)
+-- username 为自定义的用户名， password 为密码
+-- host 为登录域名，为 localhost 时表示本机(不可远程访问)，为 % 时表示为任意IP(可远程访问)，或者填写指定的IP地址
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+
+-- [删除用户](https://dev.mysql.com/doc/refman/8.0/en/drop-user.html)
+DROP USER 'userName'@'host';
+
+-- [查看用户权限](https://dev.mysql.com/doc/refman/8.0/en/show-grants.html)
+SHOW GRANTS FOR 'userName'@'host';
+
+-- [用户授权](https://dev.mysql.com/doc/refman/8.0/en/grant.html)
+-- auth: ALL PRIVILEGES 全部权限; SELECT 查询权限; SELECT,INSERT,UPDATE,DELETE 增删改查权限
+-- database: 数据库名, * 代表全部数据库
+-- table: 表名, * 代表全部表
+GRANT auth ON database.table TO 'username'@'host';
+GRANT SELECT,INSERT,UPDATE ON testDb.* TO 'testUser'@'%'; -- 赋予用户 testUser 外网访问数据库 testDb 下所有表的增改查权限
+GRANT ALL PRIVILEGES ON `testDb2`.* TO `testUser2`@`localhost` WITH GRANT OPTION;
+
+-- [撤销授权](https://dev.mysql.com/doc/refman/8.0/en/revoke.html)
+REVOKE auth ON database.table FROM 'username'@'host';
+
+-- 刷新权限
+flush privileges;
+```
+
 ## 数据表
 数据表是二维表格，**行**也称**记录**，**列**也称**字段**。
 

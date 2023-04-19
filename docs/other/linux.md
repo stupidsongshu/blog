@@ -753,7 +753,7 @@ tar -xvf log.tar -C /root # 仅解包，并指定目录
 tar -xvf log.tar.gz
 tar -xvf log.tar.gz -C /root/tmp
 
-tar -xzvf
+tar -zxvf
 tar -xjvf
 
 # 显示压缩文件的内容

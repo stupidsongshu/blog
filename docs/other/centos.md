@@ -26,6 +26,14 @@
 - 静态库：Windows和Linux系统下都是.lib文件
 :::
 
+## command
+```sh
+# 查看系统版本
+cat /etc/redhat-release
+uname -a
+lsb_release -a
+```
+
 ## Mac VMware Fusion
 - [联网问题](https://garryshield.github.io/2016/11/01/mac-vmware-network/)
 - 重启网络命令
@@ -52,6 +60,8 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 
 ### 参考
 - [Nginx详细安装及配置](https://juejin.cn/post/6991818847179243557)
+- [一份简单够用的 Nginx Location 配置讲解](https://juejin.cn/post/7048952689601806366)
+- [nginx 这一篇就够了](https://juejin.cn/post/6844903944267759624)
 
 ### repo
 - /usr/local/nginx/config/nginx.conf
