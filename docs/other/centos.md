@@ -354,3 +354,53 @@ http {
   alias proxyon="export http_proxy=http://127.0.0.1:7893;export https_proxy=http://127.0.0.1:7893;"
   alias proxyoff="export http_proxy='';export https_proxy='';"
   ```
+
+## firewalld
+firewall 的配置文件是以 xml 的格式存储在 `/usr/lib/firewalld/` 和 `/etc/firewalld/` 目录中。
+
+firewalld 的字符界面管理工具是 `firewall-cmd`
+
+```sh
+# 查看状态
+firewall-cmd --state
+systemctl status firewalld
+
+# 启动
+systemctl start firewalld
+
+# 重启
+systemctl restart firewalld
+
+# 停止
+systemctl stop firewalld
+
+# 查看是否开机启动
+systemctl is-enabled firewalld
+
+# 开启开机自启动
+systemctl enable firewalld
+
+# 关闭开机自启动
+systemctl disable firewalld
+```
+### 配置防火墙
+- 方法一：直接修改配置文件 /etc/firewalld/zones/public.xml
+- 方法二：使用 firewall 命令
+```sh
+# 查看防火墙所有信息
+firewall-cmd --list-all
+
+# 查看所有打开的端口
+firewall-cmd --zone=public --list-ports
+
+# 查看 3306 端口是否对外开放
+firewall-cmd --zone=public --query-port=3306/tcp
+
+# 例如：对外开放/停止3306端口，供外部的计算机访问。
+# 该命令方式添加的端口，可在 /etc/firewalld/zones 中的对应配置文件中得到体现
+firewall-cmd --permanent --zone=public --add-port=3306/tcp
+firewall-cmd --permanent --zone=public --remove-port=3306/tcp
+
+# 重启防火墙
+systemctl restart firewalld
+```
