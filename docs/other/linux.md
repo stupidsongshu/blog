@@ -30,6 +30,7 @@ ssh root@192.168.199.222
 /home/squirrel
 
 # 超级用户
+# root 账号通常用于系统的维护和管理，对操作系统的所有资源具有所有访问权限
 [root@localhost ~]# pwd
 /root
 
@@ -164,12 +165,29 @@ info ls
 ```
 
 ## 用户管理
+查看用户信息
+|命令|说明|
+|-|-|
+|id [用户名]|查看用户 UID 和 GID 信息|
+|who|查看当前所有登录的用户列表|
+|whoami|查看当前登录用户的账户名|
+
+/etc/passwd 文件存放的是用户的信息，由6个分号组成的7个信息，分别是：
+1. 用户名
+2. 密码（x 表示加密的密码）
+3. UID （用户标识）
+4. GID （组标识）
+5. 用户全名或本地账号
+6. 家目录
+7. 登录使用的 Shell，即登录之后使用的终端命令，ubuntu 默认是 dash
+
 ```sh
 # 新建用户，可以在 /etc/passwd 和 /etc/shadow 中查看刚刚新建的用户
 # 新建一个用户，没有指定用户组，会创建一个与用户名同名的用户组并加入进去
 useradd 用户名
-# 新建一个用户，同时加入到指定用户组中
-useradd -g 用户组名 用户名
+# -m: 自动建立用户家目录
+# -g: 指定用户所在的组，否则会建立一个和用户名同名的组
+useradd -m -g 组名 用户名
 
 # 删除用户
 userdel 用户名 # 该用户的家目录不会被删除
@@ -178,16 +196,35 @@ userdel -r 用户名 # 该用户的家目录也会被删除
 # 修改用户密码
 passwd 用户名
 
-# 修改用户属性
-# 修改用户的用户组
-usermod -g 用户组名 用户名
+# usermod 可以用来设置用户的主组/附加组和登录Shell
+# 主组：通常在新建用户时指定，在 etc/passwd 的第4列 GID 对应的组
+# 附加组：在 /etc/group 中最后一列表示该组的用户列表，用于指定用户的附加权限
+# 提示：设置了用户的附加组之后，需要重新登录才能生效！
+
 # 修改用户家目录
 usermod -d 家目录路径 用户名
 
+# 修改用户的主组
+usermod -g 用户组名 用户名
+
+# 修改用户的附加组
+usermod -G 附加组名 用户名
+usermod -G sudo test # 将 test 用户添加到 sudo 附加组中。注意：使用 useradd 添加的用户默认没有权限使用 sudo 以 root 身份执行命令。
+# 修改用户登录 Shell
+usermod -s /bin/bash 用户名
+
 # 修改用户属性
 chage 用户名
+```
 
-# 临时用户切换，- 代表切换用户同时切换运行环境
+### 切换用户
+命令|作用|说明
+-|-|-
+su - 用户名|切换用户|- 可以同时切换到用户家目录，否则保持位置不变；不带用户名时可以切换到 root
+exit|退出当前登录账户||
+
+```sh
+# 临时切换用户，- 代表切换用户同时切换运行环境
 su - 用户名
 
 # 以 root 用户身份执行命令
@@ -196,13 +233,29 @@ sudo
 visudo # /etc/sudoers
 ```
 
+sudo
+- `su`是 substitute user 的缩写，表示使用另一个用户的身份
+- `sudo`命令用来以其他身份来执行命令，预设的身份为`root`
+- 用户使用`sudo`时必须先输入密码，之后有5分钟的有效期限，超过期限后必须重新输入密码
+- 若未经授权的用户企图使用`sudo`，则会发出警告邮件给管理员
+
 ## 用户组管理
+/etc/group
+
 ```sh
 # 新建用户组
-groupadd
+groupadd 组名
 
 # 删除用户组
-groupdel
+groupdel 组名
+
+# 确认组信息
+cat /etc/group
+
+# 修改文件/目录的所属组
+chgrp 组名 文件名或目录名
+# 递归修改文件/目录的所属组
+chgrp -R 组名 文件名或目录名
 ```
 
 ## 配置文件
@@ -244,6 +297,15 @@ date -d '1970-01-01 18246 days'
 > 2019年 12月 16日 星期一 00:00:00 CST
 ```
 
+`which` 命令查看执行命令所在的位置
+
+bin 和 sbin
+- 在 Linux 中绝大多数可执行文件都是保存在 /bin、/sbin、/usr/bin、/usr/sbin
+- /bin (binary) 是二进制执行文件目录，主要用于具体应用
+- /sbin (system binary) 是系统管理员专用的二进制代码存放目录，主要用于系统管理
+- /usr/bin (user commands for applications) 后期安装的一些软件
+- /usr/sbin (super user commands for applications) 超级用户的一些管理程序
+
 ## 文件处理
 **一切皆文件**
 ### 文件类型和权限
@@ -251,7 +313,7 @@ Windows系统默认文件可读可写不可执行(0o666)
 
 | drwxr-xr-x   | . | 133 | root | root | 8192 | Oct  1 09:54 | etc |
 | :----------: | - | --- | ---- | ---- | ---- | ------------ | --- |
-| 文件类型和权限 | ACL权限 | 硬链接引用计数 | 所属用户（属主） | 所属组（属组） | 文件大小 | 最后修改时间 | 文件名 |
+| 文件类型和权限 | ACL权限 | 硬链接引用计数 | 所属用户（属主、拥有者） | 所属组（属组） | 文件大小 | 最后修改时间 | 文件名 |
 
 ```sh
 # 创建新文件有默认权限，根据 umask 值计算，属主和属组根据当前进程的用户来设定
@@ -281,31 +343,60 @@ drwxr-xr-x. 133 root root 8192 Oct  1 09:54 etc
 写(write)    | w     | 2
 执行(execute) | x     | 1
 
+|拥有者/组/其他用户|数字|权限
+|-|-|-
+|421|7|rwx
+|420|6|rw-
+|401|5|r-x
+|400|4|r--
+|021|3|-wx
+|020|2|-w-
+|001|1|--x
+|000|0|---
+
 #### 目录权限的表示方法：
 - x: 进入目录
 - rx: 显示目录内的文件名
 - wx: 修改目录内的文件名
 
 #### 修改权限
+|命令|作用|说明
+|-|-|-
+|chown|修改拥有者|
+|chgrp|修改组|
+|chmod|修改权限|(change mode) 可以修改**用户/组**对**文件/目录**的权限
+
 ```sh
-# 修改文件、目录权限
+# 单独修改属主
+chown 用户名 文件名或目录名
+# 同时修改属主和属组
+chown 用户名:组名 文件名或目录名
+
+# 单独更改属组
+chgrp 组名 文件名或目录名
+# 递归修改文件或目录的组
+chgrp -R 组名 文件名或目录名
 
 # u: user 属主
 # g: group 属组
 # o: other 其他用户
-# a: all 所有
+# a: all 所有用户，相当于 ugo
 
 # +: 增加权限
 # -: 减少权限
 # =: 设置权限
-chomd u+x /tmp/testfile
-chmod 755 /tmp/testfile
+chmod +/-rwx 文件名或目录名 # 会同时修改拥有者和组的权限
+chmod u+x test.py # 单独修改拥有者的权限
 
-# 修改属主、属组权限
-chown 属主名:属组名 文件名或目录名
+# 使用3个数字分别设置拥有者、组、其他用户的权限
+chmod 755 file # 等同于 chmod u=rwx,go=rx file
 
-# 单独更改属组，不常用
-chgrp 属组名 文件名或目录名
+# -R: 递归修改文件或目录的权限
+chmod -R 755 文件名或目录名
+
+# 777: u=rwx,g=rwx,o=rwx
+# 755: u=rwx,g=rx,o=rx
+# 644: u=rw,g=r,o=r
 ```
 
 ### 特殊权限
@@ -349,7 +440,7 @@ x|排它方式
 ### ls
 查询目录下的文件，默认当前目录下的文件列表
 
-ls [选项] [文件或目录...]
+`ls [选项] [文件或目录...]`
 
 |选项|含义|
 |-|-|
@@ -799,10 +890,23 @@ kill -9 pid
 - CentOS、RedHat 使用 yum 包管理器，软件安装包格式为 rpm
 - Debian、Ubuntu 使用 apt 包管理器，软件安装包格式为 deb
 
+`apt` (Advanced Packaging Tool) 是 Linux 下的一款安装包管理工具
+
 - debian:  `apt`或`apt-get`
 - unbuntu: `apt`或`apt-get`
 - fedora:  `yum`或`dnf`
 - centos:  `yum`
+
+```sh
+# 安装软件
+sudo apt install 软件包
+
+# 卸载软件
+sudo apt remove 软件包
+
+# 更新已安装的包
+sudo apt upgrade
+```
 
 ### 下载
 - curl
@@ -814,7 +918,40 @@ kill -9 pid
   wget -c 地址
   ```
 
+### 时间和日期
+|命令|作用|
+|-|-|
+|date|查看系统时间|
+|cal|(calendar) 查看日历，-y 选项可以查看一年的日历|
+
+### 磁盘信息
+|命令|作用|
+|-|-|
+|df -h|disk free 显示磁盘剩余空间|
+|du -h [目录名]|disk usage 显示目录下的文件大小|
+
+选项说明
+|参数|含义|
+|-|-|
+|-h|以人性化的方式显示文件大小|
+
 ### 进程管理
+|命令|作用|
+|-|-|
+|ps aux|process status 查看进程的详细状况|
+|top|动态显示运行中的进程并且排序|
+|kill [-9] pid|终止指定 pid 的进程，-9 表示强行终止|
+
+> `ps` 默认只会显示当前用户通过终端启动的应用程序；<br/>
+> 使用 `kill` 命令时，最好值终止由当前用户开启的进程，而不要终止 root 身份开启的进程，否则可能导致系统崩溃
+
+`ps` 选项说明
+|选项|含义|
+|-|-|
+|a|显示终端上的所有进程，包括其他用户的进程|
+|u|显示进程的详细状态|
+|x|显示没有控制终端的进程|
+
 - top
   - top -p pid: 查看指定进程ID
 - ps
@@ -839,6 +976,16 @@ kill -9 pid
   - SIGKILL 立即结束程序，不能被阻塞和处理 kill -9 pid
 - pkill
 
+### 链接
+|命令|作用|
+|-|-|
+|ln -s 链接源文件 目标文件|建立文件的软链接，类似 windows 的快捷方式|
+
+> 注意：
+> 1. 没有 -s 选项时建立的是硬链接文件，两个文件占用相同大小的硬盘空间  
+> 2. 源文件要使用**绝对路径**，不能使用相对路径，这样可以在移动链接文件后仍然能够正常使用
+
+
 ### 打包与压缩
 扩展名：
 - .tar
@@ -846,39 +993,36 @@ kill -9 pid
 - .tar.bz2（或.tar.bzip2，双扩展名可缩写为 .tbz2）
 
 #### [tar](https://www.runoob.com/linux/linux-comm-tar.html)
-打包（备份）文件
+打包（备份）文件，tar 只负责打包不会压缩
 
-选项：
-- -c 或 --create: 打包，建立新的备份文件
-- -C: 用于解压缩到指定目录
-- -x 或 --extract 或 --get: 解包，还原备份文件
-- -z: 通过gzip指令处理备份文件
-- -v 或 --verbose: 显示执行过程
-- -f 或 --file: 指定操作类型为文件
+|选项|含义|
+|-|-|
+|-c (或 --create)|打包，建立新的备份文件|
+|-C|用于解压缩到指定目录，注意目录必须存在|
+|-x (或 --extract 或 --get)|解包，还原备份文件|
+|-v (或 --verbose)|显示执行过程|
+|-f (或 --file)|指定操作类型为文件|
+|-z|通过 gzip 指令处理备份文件|
+|-j|通过 bzip2 指令处理备份文件|
+
 :::warning
 -f 跟着文件，所以需要放在最后
 :::
 ```sh
-# 仅打包，不压缩
-# tar -cvf 目标备份文件名 源文件/源目录
+# 仅打包，不压缩: tar -cvf 目标备份文件名 源文件/源目录
 tar -cvf log.tar 20201017.log
 
-# 打包并压缩（tar 命令集成了 gzip(-z) 和 bzip2(-j) 压缩）
-# 1. 打包后，用 gzip 压缩
-tar -czvf log.tar.gz 20201017.log
-# 2. 打包后，用 bzip2 压缩
-tar -cjvf log.tar.bz2 20201017.log
-```
-```sh
-# 仅解包，不解压缩
-# tar -xvf 备份文件名
+# 仅解包，不解压缩: tar -xvf 备份文件名
 tar -xvf log.tar # 仅解包
 tar -xvf log.tar -C /root # 仅解包，并指定目录
-tar -xvf log.tar.gz
-tar -xvf log.tar.gz -C /root/tmp
 
-tar -zxvf
-tar -xjvf
+# 打包并压缩（tar 命令集成了 gzip(-z) 和 bzip2(-j) 压缩）
+tar -zcvf log.tar.gz 20201017.log # 打包后，用 gzip 压缩
+tar -jcvf log.tar.bz2 20201017.log # 打包后，用 bzip2 压缩
+
+# 解压缩后再解包
+tar -zxvf log.tar.gz # 用 gzip 解压缩后，再用 tar 解包
+tar -jxvf log.tar.bz2 # 用 bzip2 解压缩后，再用 tar 解包
 
 # 显示压缩文件的内容
 tar -tvf log.tar.gz
@@ -899,13 +1043,15 @@ tar -tvf log.tar.gz
 | gzip -r 目录 | gzip -r book | 压缩目录下的所有子文件，但是不压缩目录 |
 | gzip -d 压缩文件名 | gzip -d 1.txt.gz | 解压缩文件，不保留压缩包 |
 | gunzip 压缩文件名 | gunzip 1.txt.gz | 解压缩文件，不保留压缩包 |
-#### bz2
+
+#### bzip2
 | 命令 | 示例 | 含义 |
 | ---- | --- | --- |
 | bzip2 源文件 | bzip2 1.txt | 压缩为.bz2格式的压缩文件，不保留源文件 |
 | bzip2 -k 源文件 | bzip2 -k 1.txt | 压缩为.bz2格式的压缩文件，保留源文件 |
 | bzip2 -d 压缩文件名 | bzip2 -d 1.txt.bz2 | 解压压缩包，不保留压缩包 |
 | bunzip2 压缩文件名 | bunzip2 1.txt.bz2 | 解压压缩包，不保留压缩包 |
+
 :::warning
 bzip2不能压缩目录
 :::
