@@ -58,6 +58,7 @@ module.exports = {
           { text: 'Linux', link: '/other/linux' },
           { text: 'Shell', link: '/other/shell' },
           { text: 'CentOS', link: '/other/centos' },
+          { text: 'Docker', link: '/other/docker' },
         ]
       },
       { text: 'movie', link: '/movie' },
@@ -204,7 +205,8 @@ module.exports = {
         'git',
         'linux',
         'shell',
-        'centos'
+        'centos',
+        'docker',
       ],
       '/movie/': [
         ''
