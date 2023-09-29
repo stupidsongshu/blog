@@ -15,11 +15,14 @@
   ```
 - `docker ps`: 查看容器列表
   ```sh
-  # 查看容器列表，默认是运行中的
+  # 查看正在运行的容器
   docker ps
-
-  # 查看全部的容器列表
+  # 查看停止的容器
+  docker ps -f status=exited
+  # 查看全部的容器
   docker ps -a
+  # 查看最后一次运行的容器
+  docker ps -l
 
   docker ps --help
   ```
@@ -48,10 +51,12 @@
   # -e 是指定环境变量
   # -d 是后台运行
   ```
-- `docker start`: 启动一个已经停止的容器
-- `docker stop`: 停止一个容器
-- `docker rm`: 删除一个容器
-- `docker inspect`: 查看容器的详情
+- `docker rmi 镜像ID或名称`: 删除镜像
+- `docker start 容器ID或名称`: 启动已经停止的容器
+- `docker restart 容器ID或名称`: 重启容器
+- `docker stop 容器ID或名称`: 停止容器
+- `docker rm 容器ID或名称`: 删除容器
+- `docker inspect 容器ID或名称`: 查看容器的详情
   ```sh
   # 8c300a54bcca 为容器ID，可通过 docker ps -a 获取
   docker inspect 8c300a54bcca
@@ -70,10 +75,19 @@
   # 在容器内执行命令时，输入 exit 退出
   exit
   ```
+  ```sh
+  # 查看容器内部的目录结构
+  # 1. 容器状态是 UP
+  docker exec -it 容器ID或名称 /bin/bash
+  ls -l
+
+  # 2. 容器状态是 Exited：将容器内的目录拷贝到本地
+  docker cp containerID:container_path host_path
+  ```
 - `docker volume`: 管理数据卷
 
 ## Dockerfile
-```sh
+```Dockerfile
 # FROM: 基于一个基础镜像来修改
 FROM node:latest
 
@@ -146,7 +160,7 @@ node_modules/
 
 ### multi-stage build
 nestjs Dockerfile:
-```sh
+```Dockerfile
 FROM node:20.7.0
 
 WORKDIR /app
@@ -176,7 +190,7 @@ CMD [ "node", "./dist/main.js" ]
   - 之前用的基础的 linux 镜像比较大，可以换成 alpine 的，这是一个 linux 发行版，它裁剪了很多不必要的 linux 功能，使得镜像体积大幅减小。
   - 实际上运行的时候只需要 dist 目录下的文件和运行时依赖，源码和构建的依赖是不需要的，但是也保存在了镜像里。这时需要用到 dockerfile 的多阶段构建的语法，第一次构建出 dist 目录，第二次再构建出跑 dist/main.js 的镜像。
 
-```
+```Dockerfile
 # build stage
 FROM node:20.7.0-alpine3.18 as build-stage
 
@@ -237,7 +251,7 @@ docker 是分层存储的，dockerfile 里的每一行指令是一层，会做�
 如果一开始就把所有文件复制进去，那么不管 package.json 变没变，任何一个文件变了都会重新 npm install，这样没法充分利用缓存，性能不好。
 
 ### 问题二：为什么不直接删除不需要的文件？
-```
+```Dockerfile
 FROM node:20
 WORKDIR /app
 COPY . .
@@ -249,3 +263,98 @@ CMD ["node", "dist/main"]
 
 在 Docker 构建过程中，虽然可以使用 rm 命令来删除不需要的文件，但这并不意味着这些文件不再占用空间。Docker 镜像是由多层文件系统组成的，每一条 Dockerfile 指令都会创建一个新的层。当你在一个层中添加了文件，然后在下一个层中删除这些文件，这些文件仍然会在原来的层中存在，因此它们仍然会占用空间。
 :::
+
+### ARG
+```js
+// test.js
+console.log(process.env.aaa);
+console.log(process.env.bbb);
+
+// export aaa=1 bbb=2
+// node ./test.js
+```
+```Dockerfile
+# arg.Dockerfile
+FROM node:18-alpine3.14
+
+# 使用 ARG 声明构建参数，使用 ${xxx} 来取
+ARG aaa
+ARG bbb
+
+WORKDIR /app
+
+COPY ./test.js .
+
+# 用 ENV 声明环境变量（ARG 是构建时的参数，ENV 时运行时的变量）
+# dockerfile 内换行使用 \
+ENV aaa=${aaa} \
+    bbb=${bbb}
+
+CMD ["node", "/app/test.js"]
+```
+```sh
+# 构建的时候通过 --build-arg xxx=yyy 传入 ARG 参数的值
+docker build --build-arg aaa=3 --build-arg bbb=4 -t arg-test:first -f arg.Dockerfile .
+# 跑起来后可以看到容器内拿到的环境变量就是 ENV 设置的
+docker run --name arg-test_container arg-test:first
+```
+
+### CMD vs ENTRYPOINT
+CMD 和 ENTRYPOINT 都可以用来指定容器跑起来之后运行的命令
+> 区别：用 CMD 时启动命令是可以重写的，而用 ENTRYPOINT 不会
+```Dockerfile
+# cmd.Dockerfile
+FROM node:18.18.0-alpine3.18
+
+CMD ["echo", "Hello", "World"]
+
+# docker build -t cmd-test -f cmd.Dockerfile .
+# docker run --name cmd-test_container1 cmd-test # 输出: Hello World
+# docker run --name cmd-test_container2 cmd-test echo "cicada" # 输出: cicada
+# docker run --name cmd-test_container3 cmd-test node -v # （可以换成任何命令）输出: 18.18.0
+```
+```Dockerfile
+# entrypoint.Dockerfile
+FROM node:18.18.0-alpine3.18
+
+ENTRYPOINT ["echo", "Hello", "World"]
+
+# docker build -t entrypoint-test -f entrypoint.Dockerfile .
+# docker run --name entrypoint-test_container1 entrypoint-test # 输出: Hello World
+# docker run --name entrypoint-test_container2 entrypoint-test echo "cicada" # 输出: Hello World echo cicada
+```
+
+> ENTRYPOINT 和 CMD 结合使用：当没传参数的时候，执行的是 ENTRYPOINT + CMD 组合的命令，而传入参数的时候，只有 CMD 部分会被覆盖，这就起到了默认值的作用。
+```Dockerfile
+# entrypoint-cmd.Dockerfile
+FROM node:18.18.0-alpine3.18
+
+ENTRYPOINT ["echo", "Hello"]
+
+CMD ["World"]
+
+# docker build -t entrypoint-cmd-test -f entrypoint-cmd.Dockerfile .
+# docker run --name entrypoint-cmd-test_container1 entrypoint-cmd-test # 输出: Hello World
+# docker run --name entrypoint-cmd-test_container2 entrypoint-cmd-test docker # 输出: Hello docker
+```
+
+### COPY vs ADD
+COPY 和 ADD 都可以把宿主机的文件复制到容器内
+> 区别：对于 tar.gz 压缩文件的处理，ADD 是把 tar.gz 解压后的文件复制到容器内
+```sh
+mkdir test
+touch test/1
+touch test/2
+tar -zcvf test.tar.gz ./test
+```
+```Dockerfile
+# copy-add.Dockerfile
+FROM node:18.18.0-alpine3.18
+
+ADD ./test.tar.gz /a/
+
+COPY ./test.tar.gz /b/
+
+# docker build -t copy-add-test -f copy-add.Dockerfile .
+# docker run -d --name copy-add-test_container copy-add-test
+```
