@@ -358,3 +358,39 @@ COPY ./test.tar.gz /b/
 # docker build -t copy-add-test -f copy-add.Dockerfile .
 # docker run -d --name copy-add-test_container copy-add-test
 ```
+
+### pm2
+```Dockerfile
+# build-stage
+FROM node:20.8.0-alpine3.18 as build-stage
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm config set registry https://registry.npmmirror.com/
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+# production-stage
+FROM node:20.8.0-alpine3.18 as production-stage
+
+COPY --from=build-stage /app/dist /app
+COPY --from=build-stage /app/package.json /app/package.json
+
+WORKDIR /app
+
+RUN npm install --production
+
+RUN npm install --global pm2
+
+EXPOSE 3000
+
+# [前端搞部署-docker遇见pm2](https://juejin.cn/post/6976834360511037453)
+# [pm2-runtime](https://stackoverflow.com/questions/53962776/whats-the-difference-between-pm2-and-pm2-runtime)
+CMD ["pm2-runtime", "/app/main.js"]
+```

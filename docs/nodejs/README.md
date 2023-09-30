@@ -53,10 +53,18 @@ Unix domain Socket 走IPC
 
 ## [PM2](https://pm2.io/)
 ```sh
+# 进程管理
 pm2 start server.js --name my-server
 pm2 list # pm2 ls
 pm2 restart my-server
 pm2 stop my-server
-pm2 monit
+pm2 delete my-server
+# 负载均衡
+pm2 start server.js -i 0
+pm2 start server.js -i max
+# 日志管理
+pm2 logs
 pm2 logs my-server
+# 性能监控
+pm2 monit
 ```
