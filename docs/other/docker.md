@@ -359,7 +359,7 @@ COPY ./test.tar.gz /b/
 # docker run -d --name copy-add-test_container copy-add-test
 ```
 
-### pm2
+## pm2
 ```Dockerfile
 # build-stage
 FROM node:20.8.0-alpine3.18 as build-stage
@@ -393,4 +393,9 @@ EXPOSE 3000
 # [前端搞部署-docker遇见pm2](https://juejin.cn/post/6976834360511037453)
 # [pm2-runtime](https://stackoverflow.com/questions/53962776/whats-the-difference-between-pm2-and-pm2-runtime)
 CMD ["pm2-runtime", "/app/main.js"]
+```
+
+## MySQL
+```sh
+docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
 ```
