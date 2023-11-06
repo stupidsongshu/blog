@@ -124,6 +124,9 @@ export default PageAOP({
 })
 ```
 
+### 小程序
+AOP: https://github.com/wechat-miniprogram/weui-miniprogram/blob/master/src/base/CustomPage.js
+
 ### 组件通信：
 一、父子组件
 - 1. 父组件向子组件通信
@@ -761,40 +764,70 @@ export default cookie;
 - 日期
 ```js
 const dateUtil = {
-  format(date, format) {
-    let dates = new Date(date.replace(/\-/g, '/'));
-    if (dates == 'Invalid Date') {
-      dates = new Date(date);
-    }
+  format(time: Numeric, format: string) {
+    const leftPadZero = (val: number) => this.leftPad(val)
+    const date = new Date(time)
+    const yyyy = date.getFullYear()
+    const yy = leftPadZero(yyyy)
+    const M = date.getMonth() + 1
+    const MM = leftPadZero(M)
+    const d = date.getDate()
+    const dd = leftPadZero(d)
+    const H = date.getHours()
+    const HH = leftPadZero(H)
+    const m = date.getMinutes()
+    const mm = leftPadZero(m)
+    const s = date.getSeconds()
+    const ss = leftPadZero(s)
     const map = {
-      yyyy() {
-        return dates.getFullYear();
-      },
-      MM() {
-        const val = dates.getMonth() + 1;
-        return val < 10 ? `0${val}` : val;
-      },
-      dd() {
-        const val = dates.getDate();
-        return val < 10 ? `0${val}` : val;
-      },
-      hh() {
-        const val = dates.getHours();
-        return val < 10 ? `0${val}` : val;
-      },
-      mm() {
-        const val = dates.getMinutes();
-        return val < 10 ? `0${val}` : val;
-      },
-      ss() {
-        const val = dates.getSeconds();
-        return val < 10 ? `0${val}` : val;
-      }
-    };
-    for (const k in map) {
-      format = format.replace(k, map[k]);
+      yyyy: '' + yyyy,
+      yy,
+      M: '' + M,
+      MM,
+      d: '' + d,
+      dd,
+      H: '' + H,
+      HH,
+      m: '' + m,
+      mm,
+      s: '' + s,
+      ss
     }
-    return format;
+    return format.replace(/\byyyy|yy|MM|M|dd|d|HH|H|mm|m|ss|s\b/g, $1 => map[$1 as keyof typeof map])
+  },
+  leftPad: function(val: number, leftpadChar = '0') {
+    // return val >= 10 ? val : '0' + val;
+    // return (String(leftpadChar).repeat(resultLength) + String(val)).slice(String(val).length);
+    return val.toString().padStart(2, leftpadChar);
+  },
+  getTime(time: Numeric) {
+    if (!time) {
+      return Date.now();
+    }
+    if (typeof time !== 'string' && typeof time !== 'number') {
+      throw new Error('parameter time need to be string or number');
+    }
+    if (typeof time === 'string') {
+      time = time.replace(/-/g, '/'); // 兼容 safari
+    }
+    return new Date(time).getTime();
+  },
+  /**
+  * 获取两个时间的天数差
+  * @param {string|number} source 时间格式字符串(YYYY-MM-dd HH:mm:ss)或时间戳数字
+  * @param {string|number} target 时间格式字符串(YYYY-MM-dd HH:mm:ss)或时间戳数字
+  * @return {number} 0:target与source为同一天；>0:target在source之后的天数；<0:target在source之前的天数
+  */
+  getDaysDiff: (source: Numeric, target: Numeric): number => {
+    if (typeof source === 'string') {
+      source = new Date(source).getTime()
+    }
+    if (typeof target === 'string') {
+      target = new Date(target).getTime()
+    }
+    source = new Date(dateUtil.format(source, 'yyyy-MM-dd')).getTime()
+    target = new Date(dateUtil.format(target, 'yyyy-MM-dd')).getTime()
+    return (target - source) / 86400000
   },
   /*
     根据日期返回今天，昨天，前天，或者日期
@@ -929,22 +962,6 @@ const dateUtil = {
     }
     return result;
   },
-
-  paddingZero: function(val) {
-    return val >= 10 ? val : '0' + val;
-  },
-  getTime: function(time) {
-    if (!time) {
-      return Date.now();
-    }
-    if (typeof time !== 'string' && typeof time !== 'number') {
-      throw new Error('parameter time need to be string or number');
-    }
-    if (typeof time === 'string') {
-      time = time.replace(/-/g, '/'); // 兼容 safari
-    }
-    return new Date(time).getTime();
-  },
   // 倒计时
   getCountDownTime: function(time) {
     var nowTime = this.getTime();
@@ -960,28 +977,28 @@ const dateUtil = {
     var minute = 0;
     var second = 0;
     if (diffTime < 60) { // < 1m
-      second = this.paddingZero(diffTime);
+      second = this.leftPad(diffTime);
     } else if (diffTime < 60 * 60) { // < 1h
       var m = Math.floor(diffTime / 60);
       var s = diffTime % 60;
-      minute = this.paddingZero(m);
-      second = this.paddingZero(s);
+      minute = this.leftPad(m);
+      second = this.leftPad(s);
     } else if (diffTime < 60 * 60 * 24) { // < 1d
       var h = Math.floor(diffTime / 3600);
       var m = Math.floor((diffTime - h * 3600) / 60);
       var s = (diffTime - h * 3600 - m * 60) % 60;
-      hour = this.paddingZero(h);
-      minute = this.paddingZero(m);
-      second = this.paddingZero(s);
+      hour = this.leftPad(h);
+      minute = this.leftPad(m);
+      second = this.leftPad(s);
     } else {
       var d = Math.floor(diffTime / 86400);
       var h = Math.floor((diffTime - d * 86400) / 3600);
       var m = Math.floor((diffTime - d * 86400 - h * 3600) / 60);
       var s = Math.floor((diffTime - d * 86400 - h * 3600 - m * 60) % 60);
       date = d;
-      hour = this.paddingZero(h);
-      minute = this.paddingZero(m);
-      second = this.paddingZero(s);
+      hour = this.leftPad(h);
+      minute = this.leftPad(m);
+      second = this.leftPad(s);
 
       // day = Math.floor(seconds / (60 * 60 * 24))
       // hour = Math.floor(seconds / (60 * 60)) - (day * 24)
@@ -995,6 +1012,22 @@ const dateUtil = {
     }
     str += hour + '小时' + minute + '分' + second + '秒';
     return str;
+  },
+  getHowLongAgo: (time: Numeric): string => {
+    const diff = (Date.now() - new Date(time).getTime()) / 1000
+    if (diff < 0) return ''
+    let day = 0
+    let hour = 0
+    let minute = 0
+    if ((day = diff / 86400) >= 1) {
+      return Math.floor(day) + '天前'
+    } else if ((hour = diff / 3600) >= 1) {
+      return Math.floor(hour) + '小时前'
+    } else if ((minute = diff / 60) >= 1) {
+      return Math.floor(minute) + '分钟前'
+    } else {
+      return '刚刚'
+    }
   },
 }
 ```

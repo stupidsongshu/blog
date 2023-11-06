@@ -399,3 +399,57 @@ CMD ["pm2-runtime", "/app/main.js"]
 ```sh
 docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
 ```
+
+## Redis
+```sh
+# string
+set key1 hello
+set key2 world
+
+keys "*"
+get key1
+get key2
+
+
+# list
+lpush list1 1
+lpush list1 2 3
+rpush list1 4
+rpush list1 5
+
+lrange list1 0 -1 # 3 2 1 4 5
+
+lpop list1 # 3
+rpop list1 # 5
+
+lrange list1 0 -1
+
+
+# set: 无序并且元素不重复
+sadd set1 1
+sadd set1 1
+sadd set1 2
+sadd set1 2
+sadd set1 3
+
+sismember set1 1 # set 只能去重、判断包含，不能对元素排序
+
+
+# sorted set: 排序、去重
+zadd zset1 5 cicada
+zadd zset1 4 squirrel
+zadd zset1 3 hello
+zadd zset1 6 world
+
+zrange zset1 0 -1
+zrange zset1 0 2 # 取排名前三
+
+
+# hash: 类似 map
+hset hash1 key1 val1
+hset hash1 key2 val2
+hset hash1 key3 val3
+
+hget hash1 key1
+hget hash1 key2
+```
