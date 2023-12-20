@@ -402,6 +402,9 @@ docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysq
 
 ## Redis
 ```sh
+docker run -d --name redis-test -p 6379:6379 -v /Users/squirrel/docker/redis:/data redis
+```
+```sh
 # string
 set key1 hello
 set key2 world
