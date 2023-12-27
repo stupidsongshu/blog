@@ -370,6 +370,126 @@ COPY ./test.tar.gz /b/
 # docker run -d --name copy-add-test_container copy-add-test
 ```
 
+### network
+涉及到多个 docker 容器（如 mysql redis）的通信，可以通过指定宿主机 ip 和端口的方式，因为 mysql、redis 的容器都映射到了宿主机的端口，所以 nest 的容器就可以通过宿主机来实现和其他容器的通信。
+
+通过桥接网络的方式进行容器通信更为方便（宿主机 IP 可能会变）。
+
+第1步：创建桥接网络
+```sh
+# 通过 docker network 创建桥接网络
+docker network create common-network
+```
+
+第2步：启动代码的依赖容器（如 mysql redis）
+```sh
+# 跑容器的时候要指定 --network，不需要指定和宿主机的端口映射
+docker run -d --network common-network --name mysql-network-container -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
+
+docker run -d --network common-network --name redis-network-container -v /Users/squirrel/docker/redis:/data redis
+```
+
+第3步：修改代码，将 host 改为容器名
+```js
+TypeOrmModule.forRoot({
+  type: 'mysql',
+  // host: 'localhost',
+  // host: '192.168.2.7', // 通过 docker 容器跑起来时需要改成宿主机 IP
+  host: 'mysql-network-container', // docker 桥接网络
+  port: 3306,
+  username: 'hello',
+  password: 'world',
+  database: 'test',
+  entities: [User],
+  synchronize: true,
+  logging: true,
+  poolSize: 10,
+  connectorPackage: 'mysql2',
+  extra: {
+    authPlugin: 'sha256_password',
+  },
+})
+
+{
+  provide: 'REDIS_CLIENT',
+  async useFactory() {
+    const client = createClient({
+      socket: {
+        // host: 'localhost',
+        // host: '192.168.2.7', // 通过 docker 容器跑起来时需要改成宿主机 IP
+        host: 'redis-network-container', // docker 桥接网络
+        port: 6379,
+      },
+    });
+    await client.connect();
+    return client;
+  },
+}
+```
+
+第4步：依据 Dockerfile 重新构建业务代码镜像并运行
+```sh
+# 构建镜像
+docker build -t nestjs-demo-image .
+# 跑容器时要指定和宿主机的端口映射，因为宿主机要访问这个端口
+docker run -d --network common-network -p 3000:3000 --name nestjs-demo-container nestjs-demo-image
+```
+
+以上步骤比较麻烦需要按顺序启动各个容器，在 docker-compose.yml 中使用桥接网络的写法为：
+```yaml
+version: '3.8'
+services:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql-network-container
+      - redis-network-container
+    ports:
+      - '3000:3000'
+    networks:
+      - common-network
+  mysql-network-container:
+    image: mysql
+    volumes:
+      - /Users/squirrel/docker/mysql:/var/lib/mysql
+    networks:
+      - common-network
+  redis-network-container:
+    image: redis
+    volumes:
+      - /Users/squirrel/docker/redis:/data
+    networks:
+      - common-network
+networks:
+  common-network:
+    driver: bridge
+```
+
+不指定 networks 也可以，因为 docker-compose 会创建一个默认的桥接网络
+```yaml
+version: '3.8'
+services:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql-network-container
+      - redis-network-container
+    ports:
+      - '3000:3000'
+  mysql-network-container:
+    image: mysql
+    volumes:
+      - /Users/squirrel/docker/mysql:/var/lib/mysql
+  redis-network-container:
+    image: redis
+    volumes:
+      - /Users/squirrel/docker/redis:/data
+```
+
 ## pm2
 ```Dockerfile
 # build-stage
@@ -413,7 +533,7 @@ docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysq
 
 ## Redis
 ```sh
-docker run -d --name redis-test -p 6379:6379 -v /Users/squirrel/docker/redis:/data redis
+docker run -d --name redis-container -p 6379:6379 -v /Users/squirrel/docker/redis:/data redis
 ```
 ```sh
 # string
