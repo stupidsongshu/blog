@@ -85,6 +85,17 @@
   docker cp containerID:container_path host_path
   ```
 - `docker volume`: 管理数据卷
+- `docker cp`: 在容器和本地文件系统之间拷贝文件或目录
+  ```sh
+  docker cp --help
+
+  # 查看容器
+  docker ps
+  # 把nginx容器静态资源目录拷贝到本地
+  docker cp nginx-container:/usr/share/nginx/html ~/Desktop/nginx-html
+  # 把本地目录拷贝到nginx容器
+  docker cp ~/Desktop/nginx-html nginx-container:/usr/share/nginx/html-xxx
+  ```
 
 ## Dockerfile
 ```Dockerfile
@@ -435,7 +446,13 @@ sadd set1 2
 sadd set1 2
 sadd set1 3
 
-sismember set1 1 # set 只能去重、判断包含，不能对元素排序
+smembers set1 # 1 2 3
+scard set1 # 3
+
+srem set1 1
+srem set1 2 3
+
+sismember set1 1
 
 
 # sorted set: 排序、去重
@@ -447,6 +464,9 @@ zadd zset1 6 world
 zrange zset1 0 -1
 zrange zset1 0 2 # 取排名前三
 
+zincrby zset1 4 world
+
+zrem zset1 hello
 
 # hash: 类似 map
 hset hash1 key1 val1
@@ -455,4 +475,142 @@ hset hash1 key3 val3
 
 hget hash1 key1
 hget hash1 key2
+```
+
+## Nginx
+托管静态资源、反向代理动态资源
+```sh
+# 配置文件
+/etc/nginx/nginx.conf
+
+# 静态资源默认路径
+/usr/share/nginx/html
+
+# 重新加载配置文件
+nginx -s reload
+```
+
+location 匹配语法：
+- `location /aaa` 是前缀匹配 /aaa 的路由
+- `location = /bbb/` 是精确匹配 /bbb/ 的路由
+- `location ~ /ccc.*.html` 是正则匹配。可以再加个 * 表示不区分大小写 `location ~* /ccc.*.html`
+- `location ^~ /ddd` 是前缀匹配，但是优先级更高
+这 4 种语法的优先级为：精确匹配`=` > 高优先级前缀匹配`^~` > 正则匹配`～ ~*` > 普通前缀匹配
+
+```sh
+upstream nest-server {
+    # 一共有 4 种负载均衡策略：
+    # 轮询：默认方式。
+    # weight：在轮询基础上增加权重，也就是轮询到的几率不同。
+    # ip_hash：按照 ip 的 hash 分配，保证每个访客的请求固定访问一个服务器，解决 session 问题。
+    # fair：按照响应时间来分配，这个需要安装 nginx-upstream-fair 插件。
+
+    # 负载均衡策略默认为轮询
+    # server 192.168.15.62:3001;
+    # server 192.168.15.62:3002;
+
+    # 带权重的轮询
+    # server 192.168.15.62:3001;
+    # server 192.168.15.62:3002 weight=2;
+
+    # 按照 ip 的 hash 分配
+    ip_hash;
+    server 192.168.15.62:3001;
+    server 192.168.15.62:3002;
+}
+
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    # location / {
+    #    root   /usr/share/nginx/html;
+    #    index  index.html index.htm;
+    # }
+
+    # 有等号时代表精确匹配，即只有完全相同的 url 才会匹配这个路由
+    location = /111/ {
+        default_type text/plain;
+        return 200 "111 success";
+    }
+
+    # 无等号时代表前缀匹配，后面可以是任意路径
+    location /222 {
+        # alias /usr/share/nginx/html;
+        default_type text/plain;
+        # $uri 为当前路径
+        return 200 $uri;
+    }
+
+    # 前面加上 ~ 后支持正则，区分大小写
+    location ~ ^/333/bbb.*\.html$ {
+        # alias /usr/share/nginx/html/b.html;
+        default_type text/plain;
+        return 200 $uri;
+    }
+
+    # 前面加上 ~* 后支持正则，不区分大小写
+    location ~* ^/444/AAA.*\.html$ {
+        default_type text/plain;
+        return 200 $uri;
+    }
+
+    # 前面加上 ^~ 后可提高前缀匹配优先级
+    location ^~ /444 {
+        default_type text/plain;
+        return 200 '444';
+    }
+
+    # root 和 alias 的区别为拼接路径时是否包含匹配条件
+    location /520 {
+        # 访问 /520/index.html 实际查找路径为 /usr/share/nginx/html/520/index.html
+        root /usr/share/nginx/html;
+    }
+    location /521 {
+        # 访问 /521/index.html 实际查找路径为 /usr/share/nginx/html/index.html
+        alias /usr/share/nginx/html;
+    }
+
+    # 反向代理动态资源
+    location ^~ /api {
+        proxy_set_header name squirrel; # 修改请求、响应
+        # proxy_pass http://192.168.15.62:3000;
+        proxy_pass http://nest-server; # 负载均衡
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}
 ```
