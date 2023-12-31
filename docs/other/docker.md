@@ -615,6 +615,7 @@ location 匹配语法：
 - `location = /bbb/` 是精确匹配 /bbb/ 的路由
 - `location ~ /ccc.*.html` 是正则匹配。可以再加个 * 表示不区分大小写 `location ~* /ccc.*.html`
 - `location ^~ /ddd` 是前缀匹配，但是优先级更高
+
 这 4 种语法的优先级为：精确匹配`=` > 高优先级前缀匹配`^~` > 正则匹配`～ ~*` > 普通前缀匹配
 
 ```sh
