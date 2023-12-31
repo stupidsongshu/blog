@@ -529,6 +529,15 @@ CMD ["pm2-runtime", "/app/main.js"]
 ## MySQL
 ```sh
 docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
+
+# 在 mysql 容器内执行命令
+docker exec -it mysql-container /bin/bash
+
+# fix: docker mysql 不能输入中文以及中文显示问题 https://www.jianshu.com/p/c352dee7de4e
+# 查看当前容器支持的编码格式
+locale -a
+# 指定编码
+docker exec -it mysql-container env LANG=C.utf8 /bin/bash
 ```
 
 ## Redis
