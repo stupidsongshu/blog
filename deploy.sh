@@ -12,7 +12,9 @@ cd docs/.vuepress/dist
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
-git init
+# git init
+# 修复 git init 初始化分支是 main 而不是 master
+git init --initial-branch=master
 git add -A
 git commit -m 'deploy'
 
