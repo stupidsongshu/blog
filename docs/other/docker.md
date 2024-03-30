@@ -95,6 +95,10 @@
   docker cp nginx-container:/usr/share/nginx/html ~/Desktop/nginx-html
   # 把本地目录拷贝到nginx容器
   docker cp ~/Desktop/nginx-html nginx-container:/usr/share/nginx/html-xxx
+
+  docker cp nginx-container:/etc/nginx/nginx.conf ~/Desktop/nginx-conf
+  docker cp nginx-container:/etc/nginx/conf.d ~/Desktop/nginx-conf
+  docker cp ~/Desktop/nginx-conf/test.conf nginx-container:/etc/nginx/conf.d
   ```
 
 ## Dockerfile
@@ -609,11 +613,22 @@ hget hash1 key2
 ## Nginx
 托管静态资源、反向代理动态资源
 ```sh
-# 配置文件
+# 默认配置文件
 /etc/nginx/nginx.conf
 
 # 静态资源默认路径
 /usr/share/nginx/html
+
+nginx -h
+
+# show version and exit
+nginx -v
+
+# show version and configure options then exit
+nginx -V
+
+# test configuration and exit
+nginx -t
 
 # 重新加载配置文件
 nginx -s reload
@@ -742,5 +757,34 @@ server {
     #location ~ /\.ht {
     #    deny  all;
     #}
+}
+```
+
+本地开发时将本地某个端口（如：80）代理到本地其他端口（如：3000）
+```sh
+# 第1步：修改本地 host
+# sudo vim /etc/hosts
+127.0.0.1       backend-api.alpha.squirrel.com
+
+# 第2步：添加 nginx 配置
+upstream squirrel-backend-api {
+    # server 127.0.0.1:3000; # 不能使用 127.0.0.1 或 localhost，需要使用宿主机的IP
+    # server 192.168.2.35:3000; # 宿主机IP可能会变，变化之后需要修改比较麻烦
+    server host.docker.internal; # 推荐写法 [参考](https://github.com/zhangyu921/blog/issues/8)
+}
+
+server {
+    listen       80;
+    server_name  backend-api.alpha.squirrel.com;
+
+    location / {
+        proxy_pass         http://squirrel-backend-api;
+        proxy_set_header   Cookie $http_token;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    }
+
+    access_log  /tmp/access_squirrel-backend-api.log  main;
 }
 ```
