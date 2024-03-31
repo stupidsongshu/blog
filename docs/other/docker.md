@@ -7,6 +7,7 @@
 
 ## command
 - `docker --help`
+- `docker info`
 - `docker images`: 查看镜像列表
   ```sh
   docker images
@@ -770,7 +771,7 @@ server {
 upstream squirrel-backend-api {
     # server 127.0.0.1:3000; # 不能使用 127.0.0.1 或 localhost，需要使用宿主机的IP
     # server 192.168.2.35:3000; # 宿主机IP可能会变，变化之后需要修改比较麻烦
-    server host.docker.internal; # 推荐写法 [参考](https://github.com/zhangyu921/blog/issues/8)
+    server host.docker.internal:3000; # 推荐写法 [参考](https://github.com/zhangyu921/blog/issues/8)
 }
 
 server {
