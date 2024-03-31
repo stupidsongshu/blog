@@ -1,6 +1,7 @@
 # SQL 必知必会
 
-[练习数据](https://github.com/cystanford/sql_heros_data)
+[练习数据-NBA](https://github.com/cystanford/sql_nba_data)
+[练习数据-王者荣耀](https://github.com/cystanford/sql_heros_data)
 
 :::tip
 命名规范建议：
