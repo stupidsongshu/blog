@@ -79,19 +79,25 @@
 | DATETIME  | 8   | YYYY-MM-DD HH:MM:SS | 1000-01-01 00:00:00 | 9999-12-31 23:59:59 |
 
 ## 数据库
-- 显示当前版本：`SELECT VERSION();` （或 `mysql -V` 或 `mysql --version`）
-- 显示当前日期时间：`SELECT NOW();`
-- 显示当前用户：`SELECT USER();`
-- 查看当前打开的数据库：`SELECT DATABASE();`
-- 查看数据库：`SHOW DATABASES;`
-- 打开数据库：`USE db_name;`
-- 查看数据库创建信息：`SHOW CREATE DATABASE db_name;`
-- 创建数据库：`CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name;`
-- 修改数据库：`ALTER {DATABASE | SCHEMA} [db_name] [DEFAULT] character set [=] charset_name;`
-- 删除数据库：`DROP {DATABASE | SCHEMA} [IF EXISTS] db_name;`
-:::tip
+| 操作   | 命令 |
+| --------- | --- |
+| 显示当前版本      | `SELECT VERSION();` （或 `mysql -V` 或 `mysql --version`） |
+| 显示当前日期时间 | `SELECT NOW();` |
+| 显示当前用户 | `SELECT USER();` |
+| 查看当前打开的数据库 | `SELECT DATABASE();` |
+| 查看数据库 | `SHOW DATABASES;` |
+| 打开数据库 | `USE db_name;` |
+| 查看数据库创建信息 | `SHOW CREATE DATABASE db_name;` |
+| 创建数据库 | `CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name;` |
+| 修改数据库 | `ALTER {DATABASE | SCHEMA} [db_name] [DEFAULT] character set [=] charset_name;` |
+| 删除数据库 | `DROP {DATABASE | SCHEMA} [IF EXISTS] db_name;` |
+| 查看数据库支持的字符集 | `SHOW CHARSET;` |
+| 查看数据库支持的字符集校验规则 | `SHOW COLLATION;` |
+| 查看系统变量 | `SHOW VARIABLES;` |
+| 查看系统默认的字符集，若是指定数据库下使用该SQL，则查看的是该数据库对应的字符集 | `SHOW VARIABLES LIKE 'character_set_database';` |
+| 查看系统默认的字符集校验规则，指定数据库下使用该SQL，则查看的是该数据库对应的字符集校验规则 | `SHOW VARIABLES LIKE 'collation_database';` |
+
 说明：参数中 **{} 为必填项，[] 为可选项**
-:::
 
 [Account Management Statements](https://dev.mysql.com/doc/refman/8.0/en/account-management-statements.html)
 

@@ -51,6 +51,7 @@ module.exports = {
           { text: '子查询', link: '/mysql/subquery' },
           { text: '连接查询', link: '/mysql/join' },
           { text: 'SQL必知必会', link: '/mysql/sql' },
+          { text: '事务', link: '/mysql/transaction' },
         ]
       },
       { text: '其他', items: [
@@ -182,7 +183,8 @@ module.exports = {
         'function',
         'subquery',
         'join',
-        'sql'
+        'sql',
+        'transaction',
       ],
       '/nodejs/': [
         '',
