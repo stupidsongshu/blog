@@ -1,4 +1,4 @@
-# SQL 必知必会
+# 必知必会
 
 [练习数据-NBA](https://github.com/cystanford/sql_nba_data)
 [练习数据-王者荣耀](https://github.com/cystanford/sql_heros_data)
@@ -12,7 +12,7 @@
 虽然关键字和函数名称在 SQL 中不区分大小写，也就是如果小写的话同样可以执行，但是数据库名、表名和字段名在 Linux MySQL 环境下是严格区分大小写的，因此建议统一这些字段的命名规则，比如全部采用小写的方式。同时将关键词和函数名称全部大写，以便于区分数据库名、表名、字段名。
 :::
 
-
+## 执行过程
 ```sql
 -- SELECT 的执行顺序
 -- SELECT 查询时的两个顺序

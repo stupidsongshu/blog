@@ -50,13 +50,15 @@ module.exports = {
           { text: '函数', link: '/mysql/function' },
           { text: '子查询', link: '/mysql/subquery' },
           { text: '连接查询', link: '/mysql/join' },
-          { text: 'SQL必知必会', link: '/mysql/sql' },
+          { text: '必知必会', link: '/mysql/sql' },
+          { text: '索引', link: '/mysql/dbi' },
           { text: '事务', link: '/mysql/transaction' },
         ]
       },
       { text: '其他', items: [
         { text: 'Git', link: '/other/git' },
           { text: 'Linux', link: '/other/linux' },
+          { text: 'Nginx', link: '/other/nginx' },
           { text: 'Shell', link: '/other/shell' },
           { text: 'CentOS', link: '/other/centos' },
           { text: 'Docker', link: '/other/docker' },
@@ -184,6 +186,7 @@ module.exports = {
         'subquery',
         'join',
         'sql',
+        'dbi',
         'transaction',
       ],
       '/nodejs/': [
@@ -206,6 +209,7 @@ module.exports = {
       '/other/': [
         'git',
         'linux',
+        'nginx',
         'shell',
         'centos',
         'docker',

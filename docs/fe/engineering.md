@@ -61,6 +61,24 @@ ServerAliveCountMax 20
 LogLevel INFO
 ```
 
+```
+HOST github.com
+IdentityFile ~/.ssh/personal_github_rsa
+
+HOST gitee.com
+IdentityFile ~/.ssh/personal_gitee_rsa
+
+HOST git.company.net
+IdentityFile ~/.ssh/company_gitlab_rsa
+
+host alpha
+user squirrel
+hostname git.company.net
+port 22
+PreferredAuthentications publickey
+identityfile ~/.ssh/company_server_rsa
+```
+
 ## CI/CD
 - CI/CD (Continuous Integration/Continuous Delivery)
 

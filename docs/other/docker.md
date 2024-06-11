@@ -535,6 +535,9 @@ CMD ["pm2-runtime", "/app/main.js"]
 ```sh
 docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
 
+# 数据文件默认安装目录: /var/lib/mysql
+# 配置文件默认位置: /etc/my.cnf 或 /etc/mysql/my.cnf
+
 # 在 mysql 容器内执行命令
 docker exec -it mysql-container /bin/bash
 

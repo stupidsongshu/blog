@@ -61,22 +61,46 @@ echo $PATH
 ```
 
 ### 免密登录
-- 执行 `ssh-keygen` 生成 SSH 钥匙
-- 执行 `ssh-copy-id [-p port] user@remote` 上传公钥到远程服务器
-
 本地使用私钥加解密数据，远程服务器使用公钥加解密数据
 
 非对称加密算法：
-- 使用***公钥***加密的数据，需要使用***私钥***解密
-- 使用***私钥***加密的数据，需要使用***公钥***解密
+- 使用**公钥**加密的数据，需要使用**私钥**解密
+- 使用**私钥**加密的数据，需要使用**公钥**解密
 
-### ssh 别名
-在文件 ~/.ssh/config 中追加内容：
-```
-Host test_alias
-    HostName ip地址
-    User 用户名
-    Port 22
+```sh
+# 第1步：生成 SSH 公私钥
+ssh-keygen -t rsa -C "test@gmail.com"
+
+# 第2步：把本地主机的公钥复制到远程主机的 `~/.ssh/authorized_keys` 文件中
+# -i: 指定公钥文件
+ssh-copy-id [-i [identity_file]] [user@]hostname
+# 如果 `ssh-copy-id` 命令不可用，可以手动完成这个过程：
+# 复制本地主机公钥 `cat ~/.ssh/test_rsa.pub`
+# 粘贴到远程主机中 `vim ~/.ssh/authorized_keys`
+
+# 第3步：在本地主机文件 ~/.ssh/config 中设置 ssh 别名格式：
+Host 别名
+  HostName 实际主机名或IP地址
+  User 登录用户名
+  Port 端口号           # 可选，仅当非默认端口22时使用
+  IdentityFile 私钥路径 # 可选，指定用于认证的私钥文件
+
+# 具体示例：
+HOST github.com
+  IdentityFile ~/.ssh/personal_github_rsa
+
+HOST gitee.com
+  IdentityFile ~/.ssh/personal_gitee_rsa
+
+HOST git.company.net
+  IdentityFile ~/.ssh/company_gitlab_rsa
+
+HOST alpha
+  USER squirrel
+  HostName git.company.net
+  PORT 22
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/company_server_rsa
 ```
 
 ## 命令的选项风格
@@ -164,6 +188,47 @@ ls --help
 info ls
 ```
 
+## 查看用户
+### 查看所有用户列表
+```sh
+cat /etc/passwd
+cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
+```
+### w
+查看登录用户信息
+- USER 登录的用户名
+- TTY 登录的终端（tty1本地终端 pts/0远程终端）
+- FROM 登录IP
+- LOGIN@ 登录时间
+- IDLE 用户闲置时间
+- JCPU 该终端所有进程占用的时间
+- PCPU 当前进程所占用的时间
+- WHAT 正在执行的命令
+#### who
+查看登录用户信息
+- USER 登录的用户名
+- TTY 登录的终端（tty1本地终端 pts/0远程终端）
+- LOGIN 登录时间（登录IP）
+#### whoami
+- USER 登录的用户名
+#### id
+id 用户名：显示指定用户信息，包括用户编号，用户名 主要组的编号及名称，附属组列表
+#### last
+查看当前登录用户和过去登录的用户信息，默认读取`/var/log/wtmp`文件
+- 用户名
+- 登录终端
+- 登录IP
+- 登录时间
+- 退出时间（在线时间）
+#### lastb
+查看登录失败的用户名单，默认读取`/var/log/btmp`文件
+#### lastlog
+查看所有用户的最后一次登录时间
+- 用户名
+- 登录终端
+- 登录IP
+- 最后一次登录时间
+
 ## 用户管理
 查看用户信息
 |命令|说明|
@@ -189,12 +254,12 @@ useradd 用户名
 # -g: 指定用户所在的组，否则会建立一个和用户名同名的组
 useradd -m -g 组名 用户名
 
+# 修改用户密码
+passwd 用户名
+
 # 删除用户
 userdel 用户名 # 该用户的家目录不会被删除
 userdel -r 用户名 # 该用户的家目录也会被删除
-
-# 修改用户密码
-passwd 用户名
 
 # usermod 可以用来设置用户的主组/附加组和登录Shell
 # 主组：通常在新建用户时指定，在 etc/passwd 的第4列 GID 对应的组
@@ -1017,12 +1082,12 @@ tar -xvf log.tar # 仅解包
 tar -xvf log.tar -C /root # 仅解包，并指定目录
 
 # 打包并压缩（tar 命令集成了 gzip(-z) 和 bzip2(-j) 压缩）
-tar -zcvf log.tar.gz 20201017.log # 打包后，用 gzip 压缩
-tar -jcvf log.tar.bz2 20201017.log # 打包后，用 bzip2 压缩
+tar -czvf log.tar.gz 20201017.log # 打包后，用 gzip 压缩
+tar -cjvf log.tar.bz2 20201017.log # 打包后，用 bzip2 压缩
 
 # 解压缩后再解包
-tar -zxvf log.tar.gz # 用 gzip 解压缩后，再用 tar 解包
-tar -jxvf log.tar.bz2 # 用 bzip2 解压缩后，再用 tar 解包
+tar -xzvf log.tar.gz # 用 gzip 解压缩后，再用 tar 解包
+tar -xjvf log.tar.bz2 # 用 bzip2 解压缩后，再用 tar 解包
 
 # 显示压缩文件的内容
 tar -tvf log.tar.gz
@@ -1055,47 +1120,6 @@ tar -tvf log.tar.gz
 :::warning
 bzip2不能压缩目录
 :::
-
-## 查看用户
-### 查看所有用户列表
-```sh
-cat /etc/passwd
-cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
-```
-### w
-查看登录用户信息
-- USER 登录的用户名
-- TTY 登录的终端（tty1本地终端 pts/0远程终端）
-- FROM 登录IP
-- LOGIN@ 登录时间
-- IDLE 用户闲置时间
-- JCPU 该终端所有进程占用的时间
-- PCPU 当前进程所占用的时间
-- WHAT 正在执行的命令
-#### who
-查看登录用户信息
-- USER 登录的用户名
-- TTY 登录的终端（tty1本地终端 pts/0远程终端）
-- LOGIN 登录时间（登录IP）
-#### whoami
-- USER 登录的用户名
-#### id
-id 用户名：显示指定用户信息，包括用户编号，用户名 主要组的编号及名称，附属组列表
-#### last
-查看当前登录用户和过去登录的用户信息，默认读取`/var/log/wtmp`文件
-- 用户名
-- 登录终端
-- 登录IP
-- 登录时间
-- 退出时间（在线时间）
-#### lastb
-查看登录失败的用户名单，默认读取`/var/log/btmp`文件
-#### lastlog
-查看所有用户的最后一次登录时间
-- 用户名
-- 登录终端
-- 登录IP
-- 最后一次登录时间
 
 ## shell
 ### echo

@@ -338,14 +338,14 @@ CREATE TABLE t_user1(
 
 ```sql
 # SHOW CREATE TABLE t_users;
-| t_users | CREATE TABLE `t_users` (
+CREATE TABLE `t_users` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
   `age` tinyint(3) unsigned DEFAULT '18',
   `sex` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 # 例如，一次插入多条记录：
 INSERT INTO t_users VALUES

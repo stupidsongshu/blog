@@ -1,4 +1,4 @@
-# SQL 连接查询
+# 连接查询
 :::tip
 ## SQL 标准
 目前存在 SQL-86、SQL-89、SQL92、SQL99、SQL:2003、SQL:2008、SQL:2011 和 SQL:2016 等其他的标准。最重要的 SQL 标准是 SQL92 和 SQL99。
