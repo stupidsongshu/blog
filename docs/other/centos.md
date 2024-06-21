@@ -401,6 +401,9 @@ firewall-cmd --zone=public --query-port=3306/tcp
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
 firewall-cmd --permanent --zone=public --remove-port=3306/tcp
 
+# 修改配置后需要重启防火墙
+firewall-cmd --reload
+
 # 重启防火墙
 systemctl restart firewalld
 ```

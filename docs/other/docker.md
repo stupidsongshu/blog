@@ -561,6 +561,19 @@ keys "*"
 get key1
 get key2
 
+# 自增1（当 key 不存在时先初始化为0再自增1，当 key 存在但无法转为数字时将报错）
+incr num1
+# 自减1（当 key 不存在时先初始化为0再自减1，当 key 存在但无法转为数字时将报错）
+decr num2
+
+# 自增5（当 key 不存在时先初始化为0再自增5，当 key 存在但无法转为数字时将报错）
+incrby num3 5
+# 自减5（当 key 不存在时先初始化为0再自减5，当 key 存在但无法转为数字时将报错）
+decrby num4 5
+
+# 在第一个 key 后面追加字符串（拼接字符串），返回值为结果字符串的长度
+append key1 world
+append num1 23
 
 # list
 lpush list1 1
