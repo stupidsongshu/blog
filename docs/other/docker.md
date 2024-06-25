@@ -561,6 +561,9 @@ keys "*"
 get key1
 get key2
 
+# 删除 key
+del key1
+
 # 自增1（当 key 不存在时先初始化为0再自增1，当 key 存在但无法转为数字时将报错）
 incr num1
 # 自减1（当 key 不存在时先初始化为0再自减1，当 key 存在但无法转为数字时将报错）
@@ -625,6 +628,37 @@ hset hash1 key3 val3
 
 hget hash1 key1
 hget hash1 key2
+
+# 批量存储多个键值对
+hmset user1 name jack age 22 sex 1
+hmset user2 name rose age 20 sex 0
+
+# 获取多个键值对
+hmget user1 name age
+
+# 获取键值对数量
+hlen user1
+
+# 获取所有键值对
+hgetall user1
+
+# 获取所有键名
+hkeys user1
+
+# 获取所有键值
+hvals user1
+
+# 判断键是否存在
+hexists user1 name
+
+# 增加数值
+hincrby user1 age 5
+
+# 删除键值对
+hdel user1 name age
+
+# 删除整个 hash
+del user1
 ```
 
 ## Nginx
