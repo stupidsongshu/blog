@@ -45,6 +45,47 @@ centos8重启网络命令报错：Failed to restart network.service: Unit networ
 改用NetworkManager重启：[systemctl restart NetworkManager](https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/)
 :::
 
+## systemd
+systemd是目前Linux系统上主要的系统守护进程管理工具。Systemctl是一个systemd工具，主要负责控制systemd系统和服务管理器。
+
+配置文件在 `/etc/systemd/system`
+
+```sh
+# 查看服务列表
+systemctl list-unit-files
+systemctl list-unit-files --type=service | grep firewalld
+
+# 重新加载系统管理守护进程的配置文件。当systemd配置文件修改后，可使用此命令让系统重新加载配置文件
+systemctl daemon-reload
+
+# 加载某个服务的配置文件
+systemctl reload xxx.service
+
+# 启动服务
+systemctl start xxx.service
+
+# 停止服务
+systemctl stop xxx.service
+
+# 重启服务
+systemctl restart xxx.service
+
+# 开机启动
+systemctl enable xxx.service
+
+# 关闭开机启动
+systemctl disable xxx.service
+
+# 查看服务状态
+systemctl status xxx.service
+
+# 查看服务状态
+systemctl is-active xxx.service
+
+# 查看服务状态
+systemctl is-enabled xxx.service
+```
+
 ## CentOS 7 安装 MySQL
 - [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
 - [How To Install MySQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7)
@@ -302,9 +343,11 @@ http {
 
 ## Clash
 - [mbsurf.xyz linux](https://mbsurf.notion.site/Linux-83fc02864b784cca94537d775e4ddbeb)
-- [clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)
-- [/data/www/clash-dashboard](https://github.com/Dreamacro/clash-dashboard)
-- /home/root/.config/clash/config.yaml
+- ~~[clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)~~
+  - [mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.5/mihomo-linux-amd64-v1.18.5.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
+- ~~[/data/www/clash-dashboard](https://github.com/Dreamacro/clash-dashboard)~~
+  - [Yet Another Clash Dashboard](https://github.com/haishanh/yacd/archive/gh-pages.zip)
+- /root/.config/clash/config.yaml
   ```yaml
   # HTTP 代理端口
   port: 7890
@@ -331,29 +374,61 @@ http {
   # Clash 的 RESTful API
   external-controller: '0.0.0.0:9090'
 
-  # RESTful API 的口令
+  # RESTful API 的口令，请求头 Authorization: 'Bearer 123456'
   secret: '123456'
 
   # 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`
   # 参数应填写配置目录的相对路径或绝对路径。
   external-ui: /data/www/clash-dashboard
   ```
-- /etc/systemd/system/clash.service
+- 后台启动
+Linux 系统使用 systemd 作为启动服务器管理机制，首先把 Clash 可执行文件拷贝到 /usr/local/bin 目录，相关配置拷贝到 /etc/clash 目录。
+```sh
+sudo mkdir /etc/clash
+sudo cp clash /usr/local/bin
+sudo cp config.yaml /etc/clash/
+sudo cp Country.mmdb /etc/clash/
+```
+
+创建 systemd 服务配置文件 sudo vim /etc/systemd/system/clash.service：
   ```
   [Unit]
-  Description=Clash Daemon
+  Description=Clash daemon, A rule-based proxy in Go.
+  After=network.target
 
   [Service]
-  ExecStart=/usr/local/bin/clash -d /home/root/.config/clash/
+  Type=simple
+  Restart=always
+  ExecStart=/usr/local/bin/clash -d /etc/clash
+  # ExecStart=/usr/local/bin/clash -d /root/.config/clash/
+  Restart=on-failure
 
   [Install]
   WantedBy=multi-user.target
   ```
 - /root/.bashrc
   ```sh
+  # 利用 Export 命令使用代理
+  export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+  # 取消系统代理
+  unset http_proxy https_proxy all_proxy
+
+  # 对于某些ip或域名可以设置不走代理，如
+  export no_proxy=127.0.0.1,.devops.com,localhost,local,.local,172.28.0.0/16
+
+  # 查看代理
+  env | grep -i proxy
+  
   alias proxyon="export http_proxy=http://127.0.0.1:7893;export https_proxy=http://127.0.0.1:7893;"
   alias proxyoff="export http_proxy='';export https_proxy='';"
   ```
+- 外部控制：外部控制端口为 9090，因此也可以访问 `http://clash.razord.top/`，输入 IP 地址（需本机可以访问的 IP）以及端口号 9090，来进入 Clash Dashboard 进行节点的选择。
+  [Clash RESTful API](https://clash.gitbook.io/doc)
+
+参考链接：
+- [在 Linux 中使用 Clash](https://blog.iswiftai.com/posts/clash-linux/)
+- [Linux 下使用 Clash 科学上网](https://little-star.love/posts/f2114751/)
 
 ## firewalld
 firewall 的配置文件是以 xml 的格式存储在 `/usr/lib/firewalld/` 和 `/etc/firewalld/` 目录中。
