@@ -344,7 +344,7 @@ http {
 ## Clash
 - [mbsurf.xyz linux](https://mbsurf.notion.site/Linux-83fc02864b784cca94537d775e4ddbeb)
 - ~~[clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)~~
-  - [mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.5/mihomo-linux-amd64-v1.18.5.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
+  - [mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.6/mihomo-linux-amd64-v1.18.6.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
 - ~~[/data/www/clash-dashboard](https://github.com/Dreamacro/clash-dashboard)~~
   - [Yet Another Clash Dashboard](https://github.com/haishanh/yacd/archive/gh-pages.zip)
 - /root/.config/clash/config.yaml
@@ -372,14 +372,16 @@ http {
   # 5 个级别：silent / info / warning / error / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
   log-level: error
   # Clash 的 RESTful API
-  external-controller: '0.0.0.0:9090'
+  # external-controller: '0.0.0.0:9090'
+  external-controller: '127.0.0.1:9090'
 
   # RESTful API 的口令，请求头 Authorization: 'Bearer 123456'
   secret: '123456'
 
   # 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`
   # 参数应填写配置目录的相对路径或绝对路径。
-  external-ui: /data/www/clash-dashboard
+  # external-ui: /data/www/clash-dashboard
+  external-ui: /data/yacd-dashboard
   ```
 - 后台启动
 Linux 系统使用 systemd 作为启动服务器管理机制，首先把 Clash 可执行文件拷贝到 /usr/local/bin 目录，相关配置拷贝到 /etc/clash 目录。
@@ -425,10 +427,26 @@ sudo cp Country.mmdb /etc/clash/
   ```
 - 外部控制：外部控制端口为 9090，因此也可以访问 `http://clash.razord.top/`，输入 IP 地址（需本机可以访问的 IP）以及端口号 9090，来进入 Clash Dashboard 进行节点的选择。
   [Clash RESTful API](https://clash.gitbook.io/doc)
+- 查看运行日志:
+  ```sh
+  journalctl -u mihomo -o cat -e
+  # 或者
+  journalctl -u mihomo -o cat -f
+  ```
 
 参考链接：
 - [在 Linux 中使用 Clash](https://blog.iswiftai.com/posts/clash-linux/)
 - [Linux 下使用 Clash 科学上网](https://little-star.love/posts/f2114751/)
+
+## docker
+### 安装
+- [Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
+### 代理
+- [Configure Docker to use a proxy server](https://docs.docker.com/network/proxy/)
+  - [Configure the daemon to use a proxy](https://docs.docker.com/config/daemon/proxy/)
+### 国内镜像
+- [CentOS7-Docker 配置国内镜像源](https://www.cnblogs.com/reasonzzy/p/11127359.html)
+  - [阿里云镜像加速器](https://cr.console.aliyun.com/cn-shanghai/instances/mirrors)
 
 ## firewalld
 firewall 的配置文件是以 xml 的格式存储在 `/usr/lib/firewalld/` 和 `/etc/firewalld/` 目录中。
