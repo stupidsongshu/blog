@@ -590,17 +590,45 @@ decrby num4 5
 append key1 world
 append num1 23
 
+
 # hash: 类似 map
 hset hash1 field1 val1
 hset hash1 field2 val2 field3 val3
-hmset hash1 field4 val4 field5 val5
 
 hget hash1 field1
-hget hash1 field3
+hget hash1 field2
 
-hgetall hash1
+# 批量存储多个键值对
+hmset user1 name jack age 22 sex 1
+hmset user2 name rose age 20 sex 0
 
-hmget hash1 field1 field2
+# 获取多个键值对
+hmget user1 name age
+
+# 获取键值对数量
+hlen user1
+
+# 获取所有键值对
+hgetall user1
+
+# 获取所有键名
+hkeys user1
+
+# 获取所有键值
+hvals user1
+
+# 判断键是否存在
+hexists user1 name
+
+# 增加数值
+hincrby user1 age 5
+
+# 删除键值对
+hdel user1 name age
+
+# 删除整个 hash
+del user1
+
 
 # list
 lpush list1 1
@@ -632,6 +660,7 @@ linsert list2 after 1 y # 在list2中第一个值为1的前面插入y
 
 rpoplpush list1 list2
 
+
 # set: 无序并且元素不重复
 sadd set1 1
 sadd set1 1
@@ -656,6 +685,7 @@ sunion set1 set2 # 并集
 sdiffstore set3 set1 set2 # 将set1与set2的差集存到set3中
 sinterstore set4 set1 set2 # 将set1与set2的交集存到set4中
 sunionstore set5 set1 set2 # 将set1与set2的并集存到set5中
+
 
 # sorted set: 排序、去重
 zadd zset1 50 cicada
