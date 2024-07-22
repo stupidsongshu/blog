@@ -553,11 +553,26 @@ docker exec -it mysql-container env LANG=C.utf8 /bin/bash
 docker run -d --name redis-container -p 6379:6379 -v /Users/squirrel/docker/redis:/data redis
 ```
 ```sh
+# key 的操作
+keys *
+keys key?
+keys key*
+
+exists key1
+
+type key1
+
+del key1 key2
+
+expire key3 100
+ttl key3
+
+rename key3 newkey3
+
 # string
 set key1 hello
 set key2 world
 
-keys "*"
 get key1
 get key2
 
@@ -575,56 +590,98 @@ decrby num4 5
 append key1 world
 append num1 23
 
+# hash: 类似 map
+hset hash1 field1 val1
+hset hash1 field2 val2 field3 val3
+hmset hash1 field4 val4 field5 val5
+
+hget hash1 field1
+hget hash1 field3
+
+hgetall hash1
+
+hmget hash1 field1 field2
+
 # list
 lpush list1 1
 lpush list1 2 3
-rpush list1 4
-rpush list1 5
+rpush list1 4 5
+rpush list1 6
 
-lrange list1 0 -1 # 3 2 1 4 5
+llen list1 # 6
+lrange list1 0 -1 # 3 2 1 4 5 6
 
 lpop list1 # 3
-rpop list1 # 5
+rpop list1 # 6
 
-lrange list1 0 -1
+llen list1 # 4
+lrange list1 0 -1 # 2 1 4 5
 
+lpushx list1 x # lpush如果指定的key不存在，那么先新建再插入到头部；lpushx如果指定的key不存在，则不插入
+rpushx list2 y
+
+rpush list2 1 2 3 1 2 3 1 2 3
+lrem list2 2 3 # 从前往后删除2个值为3的元素
+lrem list2 -2 3 # 从后往前删除2个值为3的元素
+lrem list2 0 2 # 删除所有值为2的元素
+
+lset list2 1 xyz # 将list2下标为1的值设置为xyz
+
+linsert list2 before 1 x # 在list2中第一个值为1的前面插入x
+linsert list2 after 1 y # 在list2中第一个值为1的前面插入y
+
+rpoplpush list1 list2
 
 # set: 无序并且元素不重复
 sadd set1 1
 sadd set1 1
-sadd set1 2
-sadd set1 2
-sadd set1 3
+sadd set1 2 2 3
+
+scard set1 # 3
 
 smembers set1 # 1 2 3
-scard set1 # 3
 
 srem set1 1
 srem set1 2 3
 
 sismember set1 1
 
+srandmember set1 # 随机返回一个元素
+
+sdiff set1 set2 # 差集（在set1中存在但在set2中不存在的元素）
+sdiff set2 set1 # 差集（在set2中存在但在set1中不存在的元素）
+sinter set1 set2 # 交集
+sunion set1 set2 # 并集
+
+sdiffstore set3 set1 set2 # 将set1与set2的差集存到set3中
+sinterstore set4 set1 set2 # 将set1与set2的交集存到set4中
+sunionstore set5 set1 set2 # 将set1与set2的并集存到set5中
 
 # sorted set: 排序、去重
-zadd zset1 5 cicada
-zadd zset1 4 squirrel
-zadd zset1 3 hello
-zadd zset1 6 world
+zadd zset1 50 cicada
+zadd zset1 40 squirrel 30 hello 60 world
 
-zrange zset1 0 -1
+zcard zset1 # 4
+
 zrange zset1 0 2 # 取排名前三
+zrange zset1 0 -1
+zrange zset1 0 -1 withscores # 升序
+zrevrang zset1 0 -1 withscores # 降序
+
+zrangbyscore zset1 30 50
+zrangbyscore zset1 30 50 withscores
+zrangbyscore zset1 30 50 withscores limit 0 2
+
+zcount zset1 30 50
+
+zscore zset1 hello
 
 zincrby zset1 4 world
 
 zrem zset1 hello
 
-# hash: 类似 map
-hset hash1 key1 val1
-hset hash1 key2 val2
-hset hash1 key3 val3
-
-hget hash1 key1
-hget hash1 key2
+zremrangbyrank zset1 0 3
+zremrangbyscore zset1 20 50
 ```
 
 ## Nginx
