@@ -500,3 +500,28 @@ firewall-cmd --reload
 # 重启防火墙
 systemctl restart firewalld
 ```
+
+## java
+[JDK Development Kit 17.0.12 downloads](https://www.oracle.com/cn/java/technologies/downloads/#java17)
+  - [x64 Compressed Archive](https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz)
+
+```sh
+# centos7.9 安装 java17
+
+# 下载jdk
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+# 解压到安装目录
+tar -zxvf jdk-17_linux-x64_bin.tar.gz -C /usr/local/java
+
+# 配置环境变量
+vim /etc/profile
+export JAVA_HOME=/usr/local/java/jdk-17.0.12
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+source /etc/profile
+
+# 查看java版本
+java -version
+```

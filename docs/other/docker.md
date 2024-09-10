@@ -533,6 +533,9 @@ CMD ["pm2-runtime", "/app/main.js"]
 
 ## MySQL
 ```sh
+# 查找MySQL镜像的tags
+curl https://registry.hub.docker.com/v2/repositories/library/mysql/tags?page_size=100
+
 docker run -d --name mysql-container -p 3306:3306 -v /Users/squirrel/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicada mysql
 
 # 数据文件默认安装目录: /var/lib/mysql
