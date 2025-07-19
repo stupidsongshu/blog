@@ -86,6 +86,14 @@
   docker cp containerID:container_path host_path
   ```
 - `docker volume`: 管理数据卷
+  ```sh
+  docker volume --help
+  docker volume ls
+  dcoker volume create volume-name
+  docker volume inspect volume-name
+  docker volume rm volume-name
+  docker inspect volume-name
+  ```
 - `docker cp`: 在容器和本地文件系统之间拷贝文件或目录
   ```sh
   docker cp --help
@@ -101,6 +109,22 @@
   docker cp nginx-container:/etc/nginx/conf.d ~/Desktop/nginx-conf
   docker cp ~/Desktop/nginx-conf/test.conf nginx-container:/etc/nginx/conf.d
   ```
+
+## docker 数据管理
+默认容器的数据是保存在容器的可读写层，当容器被删除时其上的数据将会丢失，所以为了实现数据的持久性则需要选择一种数据持久技术来保存数据，当前有以下两种方式：
+1. 数据卷(Volumes)
+  容器内的数据被存放在宿主机（Linux）一个特定的目录下（/var/lib/docker/volumes）。这个目录只有 Docker 可以管理，其他进程不能修改。如果想持久保存容器的应用数据，Volumes 是 Docker 推荐的挂载方式。
+2. 挂载宿主机目录(Bind mounts)
+  容器内的数据被存放在宿主机文件系统的任意位置，甚至存放到一些重要的系统目录或文件中。除了 Docker 之外的进程也可以任意对它们进行修改
+
+当需要向容器共享文件的时候，使用挂载宿主机目录(Bind mounts)方式；
+当需要将容器数据存储到宿主机的时候，使用数据卷(Volumes)方式。
+```sh
+docker run --name prometheus -d -p 9090:9090 -v /data/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml -v /data/prometheus/data:/prometheus prom/prometheus:v2.53.4
+
+# prometheus_data 为数据卷，可通过 docker inspect prometheus_data 查看数据卷信息
+docker run --name prometheus -d -p 9090:9090 -v /data/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml -v prometheus_data:/prometheus prom/prometheus:v2.53.4
+```
 
 ## Dockerfile
 ```Dockerfile

@@ -1,4 +1,20 @@
 # CentOS
+```sh
+# 查看CentOS的版本号
+lsb_release -a
+cat /etc/centos-release
+cat /etc/redhat-release
+
+# 查看操作系统内核版本
+uname --help
+uname -a
+uname -r
+cat /proc/version
+
+# 查看操作系统位数
+getconf LONG_BIT
+file /bin/ls
+```
 
 ## FHS
 [FHS (Filesystem Hierarchy Standard) 文件系统层次结构标准](https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%A0%87%E5%87%86)
@@ -22,17 +38,9 @@
 **修改配置文件**时一定要**先备份再修改**
 :::
 ::: tip
-- 动态库：Windows系统下是.dll文件，Linux系统下是.so文件
 - 静态库：Windows和Linux系统下都是.lib文件
+- 动态库：Windows系统下是.dll文件，Linux系统下是.so文件
 :::
-
-## command
-```sh
-# 查看系统版本
-cat /etc/redhat-release
-uname -a
-lsb_release -a
-```
 
 ## Mac VMware Fusion
 - [联网问题](https://garryshield.github.io/2016/11/01/mac-vmware-network/)
@@ -86,6 +94,25 @@ systemctl is-active xxx.service
 systemctl is-enabled xxx.service
 ```
 
+## CentOS 7 安装 Git
+[How to install Latest Git ( Git 2.x ) on CentOS 7](https://webmagicinformatica.com/how-to-install-latest-git-git-2-x-on-centos-7/)
+
+[How to Install Git on CentOS 7 With Yum or Latest Repository](https://phoenixnap.com/kb/how-to-install-git-on-centos-7)
+```sh
+# 1. Remove old git
+sudo yum -y remove git
+sudo yum -y remove git-*
+
+# 2. Add End Point CentOS 7 repo
+sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+
+# 3. Once repository is added, install Git 2.x on CentOS 7:
+sudo yum install git
+
+# 4. Check git version after installing git2u-all package
+git --version
+```
+
 ## CentOS 7 安装 MySQL
 - [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
 - [How To Install MySQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7)
@@ -100,6 +127,7 @@ systemctl is-enabled xxx.service
 - [doc](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)
 
 ### 参考
+- [Centos7.9安装Nginx](https://blog.csdn.net/weixin_41680651/article/details/140124650)
 - [Nginx详细安装及配置](https://juejin.cn/post/6991818847179243557)
 - [一份简单够用的 Nginx Location 配置讲解](https://juejin.cn/post/7048952689601806366)
 - [nginx 这一篇就够了](https://juejin.cn/post/6844903944267759624)
@@ -342,6 +370,7 @@ http {
   ```
 
 ## Clash
+### download
 - [mbsurf.xyz linux](https://mbsurf.notion.site/Linux-83fc02864b784cca94537d775e4ddbeb)
 - ~~[clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)~~
   - [mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.6/mihomo-linux-amd64-v1.18.6.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
@@ -383,7 +412,7 @@ http {
   # external-ui: /data/www/clash-dashboard
   external-ui: /data/yacd-dashboard
   ```
-- 后台启动
+### 后台启动
 Linux 系统使用 systemd 作为启动服务器管理机制，首先把 Clash 可执行文件拷贝到 /usr/local/bin 目录，相关配置拷贝到 /etc/clash 目录。
 ```sh
 sudo mkdir /etc/clash
@@ -392,7 +421,7 @@ sudo cp config.yaml /etc/clash/
 sudo cp Country.mmdb /etc/clash/
 ```
 
-创建 systemd 服务配置文件 sudo vim /etc/systemd/system/clash.service：
+创建 systemd 服务配置文件 `sudo vim /etc/systemd/system/clash.service`：
   ```
   [Unit]
   Description=Clash daemon, A rule-based proxy in Go.
@@ -401,13 +430,28 @@ sudo cp Country.mmdb /etc/clash/
   [Service]
   Type=simple
   Restart=always
-  ExecStart=/usr/local/bin/clash -d /etc/clash
+  ExecStart=/usr/local/bin/clash -d /etc/clash/
   # ExecStart=/usr/local/bin/clash -d /root/.config/clash/
   Restart=on-failure
 
   [Install]
   WantedBy=multi-user.target
   ```
+
+  ```sh
+  # 重载 systemctl daemon
+  systemctl daemon-reload
+
+  # 开机自启动
+  systemctl enable clash
+
+  # 启动
+  systemctl start clash
+
+  # 重启 clash 服务
+  systemctl restart clash
+  ```
+
 - /root/.bashrc
   ```sh
   # 利用 Export 命令使用代理
@@ -432,6 +476,8 @@ sudo cp Country.mmdb /etc/clash/
   journalctl -u mihomo -o cat -e
   # 或者
   journalctl -u mihomo -o cat -f
+  # 或者
+  journalctl -xe
   ```
 
 参考链接：
@@ -524,4 +570,45 @@ source /etc/profile
 
 # 查看java版本
 java -version
+```
+
+## ffmpeg
+[FFmpeg](https://ffmpeg.org/)
+
+[How to install FFMPEG on Linux](https://json2video.com/how-to/ffmpeg-course/install-ffmpeg-linux.html)
+
+[Compile FFmpeg on CentOS](https://trac.ffmpeg.org/wiki/CompilationGuide/Centos)
+
+[CentOS 7.6中使用ffmpeg将视频由mp4格式转为m3u8格式](https://blog.csdn.net/just4you/article/details/109251722)
+
+```sh
+# 以下操作均在 /usr/local/src 目录进行
+# 1. 下载&安装nasm：用于编译x264
+wget https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/nasm-2.16.03.tar.gz
+# 解压
+tar xzvf nasm-2.16.03.tar.gz
+cd nasm-2.16.03
+# 配置
+./configure
+# 编译&&安装
+make && make install
+
+# 2. 下载&安装x264：用于视频编码
+git clone https://code.videolan.org/videolan/x264.git
+cd x264
+# 配置
+./configure --prefix=/usr/x264/ --includedir=/usr/local/include --libdir=/usr/local/lib --enable-shared
+# 编译&&安装
+make && make install
+
+# 3. 下载&安装ffmpeg
+# wget http://www.ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz
+wget https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+# 解压
+tar xvJf ffmpeg-7.1.tar.xz
+cd ffmpeg-7.1
+#配置
+./configure --prefix=/usr/local/ffmpeg --enable-gpl --enable-shared  --enable-libx264
+# 编译&&安装
+make && make install
 ```

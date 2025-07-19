@@ -880,6 +880,8 @@ netstat -ant | grep -E ':80|:443' | wc -l
 ```sh
 lsof -i :80
 lsof -i tcp:80
+# 只想获取端口占用的进程ID，可以使用awk工具来提取
+lsof -i :8080 | awk 'NR>1 {print $2}'
 ```
 
 ## 网络故障排除
