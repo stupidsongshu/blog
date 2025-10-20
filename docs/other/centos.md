@@ -14,6 +14,21 @@ cat /proc/version
 # 查看操作系统位数
 getconf LONG_BIT
 file /bin/ls
+
+# 查看CPU信息
+lscpu
+cat /proc/cpuinfo
+cat /proc/cpuinfo | grep "model name"
+cat /proc/cpuinfo | grep "model name" | uniq
+
+# 查看内存信息
+free -h
+cat /proc/meminfo
+cat /proc/meminfo | grep MemTotal
+cat /proc/meminfo | grep MemTotal | awk '{print $2}' | awk '{printf("%.2f\n", $1/1024/1024)}'
+cat /proc/meminfo | grep MemTotal | awk '{printf("%.2f\n", $2/1024/1024)}'
+# dmidecode 命令用于从硬件系统中提取DMI（硬件管理接口）表的内容，可以用来查看物理内存的大小。
+dmidecode -t memory
 ```
 
 ## FHS
@@ -116,6 +131,166 @@ git --version
 ## CentOS 7 安装 MySQL
 - [How to Install MySQL on CentOS 7](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)
 - [How To Install MySQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7)
+
+```sh
+sudo -i
+
+# [Source Installation Prerequisites](https://dev.mysql.com/doc/refman/8.0/en/source-installation-prerequisites.html)
+yum -y update
+yum -y install wget gcc gcc-c++ ncurses ncurses-devel libaio-devel openssl openssl-devel
+yum -y install cmake3
+
+# [centos7.9 GCC4.8升级到9.3](https://blog.csdn.net/linuxxx110/article/details/150053136)
+yum -y install centos-release-scl
+# centos-release-scl 安装完成后，将配置文件修改为阿里云的源
+# /etc/yum.repos.d/CentOS-SCLo-scl.repo 修改为​​​​​​​ baseurl=https://mirrors.aliyun.com/centos/$releasever/sclo/$basearch/sclo/
+# /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo​​​​​​​ 修改为​​​​​​​ baseurl=https://mirrors.aliyun.com/centos/$releasever/sclo/$basearch/rh/
+# 刷新缓存: yum repolist && yum clean all && yum makecache
+yum -y install devtoolset-11-gcc devtoolset-11-gcc-c++ devtoolset-11-binutils
+scl enable devtoolset-11 bash # 临时切换到gcc11环境
+gcc -v
+
+groupadd mysql
+
+# -r: 创建一个系统用户
+# -g mysql: 指定用户的主组为 mysql
+# -s /sbin/nologin: 设置该用户的登录 shell 为 /sbin/nologin，拒绝mysql用户登陆
+useradd -r -g mysql -s /sbin/nologin mysql
+
+cd /root
+# https://dev.mysql.com/downloads/mysql/
+# Select Version: 8.0.43
+# Select Operating System: Source Code
+# Select OS Version: All Operating Systems (Generic) (Architecture Independent)
+wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.43.tar.gz
+tar xzvf mysql-boost-8.0.43.tar.gz
+cd /root/mysql-8.0.43
+
+# [mysql8.0官方编译参数](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html)
+cmake3 . \
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
+-DMYSQL_DATADIR=/data/db/mysql \
+-DSYSCONFDIR=/etc \
+-DMYSQL_TCP_PORT=3306 \
+-DWITH_BOOST=./boost \
+-DDEFAULT_CHARSET=utf8mb4 \
+-DDEFAULT_COLLATION=utf8mb4_general_ci \
+-DENABLED_LOCAL_INFILE=ON \
+-DFORCE_INSOURCE_BUILD=1 \
+-DWITH_INNODB_MEMCACHED=ON \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_FEDERATED_STORAGE_ENGINE=1 \
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+-DWITH_ARCHIVE_STORAGE_ENGINE=1 \
+-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \
+-DWITH_PERFSCHEMA_STORAGE_ENGINE=1;
+
+nproc # 获取 CPU 核心数
+
+# make -j$(nproc) # 使用所有可用的 CPU 核心进行编译，加快速度 8:52 %17, 14:30 87%
+
+# 由于编译时间较长，可使用 screen/tmux 或 nohup 来防止 ssh 会话断开连接
+# 方法1: 使用 screen (推荐)
+screen -S mysql_build # 创建一个名为 mysql_build 的 screen 会话，并进入该会话
+make -j$(nproc) # 按下组合键 Ctrl + A，然后松开，再按 D，主动分离（Detach）当前会话
+screen -ls # 列出所有 screen 会话
+screen -r mysql_build # 重新附着（Attach）到之前的会话
+
+# 方法2 使用 nohup:
+# nohup：保证命令不挂起
+# > make.log：创建一个新的 make.log 文件，如果该文件已存在，则先清空其所有内容，然后从头开始写入输出。
+# >> make.log：如果 make.log 文件不存在，则创建它；如果已存在，则将新的输出追加（Append）到该文件的末尾，保留之前的所有内容。
+# 2>&1：将标准错误（文件描述符 2，stderr）重定向到标准输出（文件描述符 1，stdout）所在的地方。因为 stdout 已经被重定向到 make.log，所以 stderr 也会被写入同一个文件。
+# &：将命令放入后台执行
+nohup make -j$(nproc) >> make.log 2>&1 &
+tail -f /root/mysql-8.0.43/make.log
+
+make install
+
+/usr/local/mysql/bin/mysql --version
+
+echo "PATH=/usr/local/mysql/bin:$PATH" >> /etc/profile
+source /etc/profile
+
+mysql --version
+
+mkdir -p /data/db/mysql
+chmod 755 /data/db/mysql
+chown mysql:mysql /data/db/mysql
+
+```
+
+```sh
+# ~/.ssh/config 中设置 ServerAliveInterval，定期发送保活包来维持连接
+Host * # 对所有主机生效，也可以替换成你的服务器IP
+  ServerAliveInterval 60 # 每隔60秒向服务器发送一个保活包
+  ServerAliveCountMax 5  # 如果连续5次没有收到响应，则断开连接
+```
+
+### 本地MySQLWorkbench通过SSH隧道连接远程服务器MySQL
+如果服务器只开放了 22 和 80 端口，没有开放 3306 端口，在 macOS 上使用 SSH 密钥通过隧道连接 CentOS 7.9 的 MySQL 服务
+
+#### 方法一：使用 MySQL Workbench 内置 SSH 隧道功能（推荐）
+配置 MySQL Workbench 连接
+- 打开 MySQL Workbench，点击 "+" 图标创建新连接
+- 在 "Setup New Connection" 对话框中，填写以下信息：
+
+Connection Method 选项卡：
+- Connection Name: 输入一个有意义的名称（如 "Production DB via SSH"）
+- Connection Method: 选择 `Standard TCP/IP over SSH`
+
+Parameters 选项卡：
+- SSH Hostname: 8.159.138.235:22
+- SSH Username: ecs-user
+- SSH Key File: 点击右侧文件夹图标，选择您的私钥文件 ~/.ssh/ecs-user.pem
+- MySQL Hostname: 127.0.0.1 或 localhost（因为 MySQL 在服务器本地）
+- MySQL Server Port: 3306（MySQL 默认端口）
+- Username: 您的 MySQL 用户名
+- Password: 您的 MySQL 密码
+- Default Schema: （可选）选择默认数据库
+
+MySQL Workbench 会自动建立 SSH 隧道并连接到 MySQL 数据库
+
+#### 方法二：手动创建 SSH 隧道
+1. 在终端中创建 SSH 隧道
+```sh
+# -i ~/.ssh/ecs-user.pem：指定 SSH 私钥文件
+# -N：不执行远程命令，只建立隧道
+# -L 33306:localhost:3306：将本地 33306 端口转发到服务器上的 3306 端口
+# ecs-user@8.159.138.235：您的服务器 SSH 用户名和 IP 地址
+ssh -i ~/.ssh/ecs-user.pem -N -L 33306:localhost:3306 ecs-user@8.159.138.235
+```
+
+2. 配置 MySQL Workbench 连接本地端口
+
+Connection Method 选项卡：
+- Connection Name: 任意名称（如 "Local Tunnel"）
+- Connection Method: 选择 "Standard (TCP/IP)"
+
+Parameters 选项卡：
+- Hostname: 127.0.0.1
+- Port: 33306（与 SSH 命令中指定的本地端口一致）
+- Username: 您的 MySQL 用户名
+- Password: 您的 MySQL 密码
+
+#### 方法三：使用 SSH 配置文件简化连接
+1. 编辑 SSH 配置文件
+```sh
+# 编辑 SSH 配置文件: vim ~/.ssh/config
+Host myserver
+    HostName 8.159.138.235
+    User ecs-user
+    IdentityFile ~/.ssh/ecs-user.pem
+    LocalForward 33306 localhost:3306
+```
+
+2. 使用简化的 SSH 命令建立隧道
+```sh
+ssh -N myserver
+```
+
+3. 配置 MySQL Workbench：与方法二相同，配置 MySQL Workbench 连接到本地 33306 端口。
+
 
 ## Nginx
 - [Website](https://nginx.org/)
@@ -548,6 +723,8 @@ systemctl restart firewalld
 ```
 
 ## java
+[java/technologies](https://www.oracle.com/java/technologies/)
+
 [JDK Development Kit 17.0.12 downloads](https://www.oracle.com/cn/java/technologies/downloads/#java17)
   - [x64 Compressed Archive](https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz)
 
@@ -555,6 +732,7 @@ systemctl restart firewalld
 # centos7.9 安装 java17
 
 # 下载jdk
+# 330730263@qq.com !1qaz@2WSX
 wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 
 # 解压到安装目录
@@ -562,7 +740,7 @@ tar -zxvf jdk-17_linux-x64_bin.tar.gz -C /usr/local/java
 
 # 配置环境变量
 vim /etc/profile
-export JAVA_HOME=/usr/local/java/jdk-17.0.12
+export JAVA_HOME=/usr/local/java/jdk-17.0.16
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
@@ -570,6 +748,91 @@ source /etc/profile
 
 # 查看java版本
 java -version
+```
+
+## redis
+```sh
+sudo -i
+cd /root/
+wget https://github.com/redis/redis/archive/refs/tags/8.2.1.tar.gz
+tar xzvf redis-8.2.1.tar.gz
+cd redis-8.2.1
+# 进行主编译
+make
+# 使用 PREFIX 参数指定安装目录
+make PREFIX=/usr/local/redis install
+
+# 创建 Redis 用户和组（可选但推荐）：为 Redis 服务创建一个专用的系统用户，降低安全风险。
+# sudo groupadd redis
+# sudo useradd -r -g redis -s /bin/false redis
+
+# 创建配置文件、数据目录和日志目录
+# sudo mkdir -p /etc/redis /var/lib/redis /var/log/redis
+
+# 调整目录权限：将数据目录和日志目录的所有权交给 Redis 用户
+# sudo chown -R redis:redis /var/lib/redis /var/log/redis
+# sudo chmod 755 /var/lib/redis /var/log/redis
+
+# 从 Redis 源码目录复制配置文件模板
+cp /root/redis-7.2.0/redis.conf /etc/redis/
+# 修改配置文件
+vim /etc/redis/redis.conf
+bind 127.0.0.1
+port 6379
+daemonize yes
+protected-mode no
+logfile /var/log/redis.log
+pidfile /var/run/redis.pid
+loglevel notice
+save 900 1
+save 300 10
+stop-writes-on-bgsave-error yes
+appendonly yes
+appendfsync always
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64M
+maxmemory 2G
+maxmemory-policy volatile-lru
+maxclients 10000
+maxmemory-samples 5
+slaveof 192.168.1.1 6379
+slave-serve-stale-data yes
+slave-read-only yes
+slave-priority 100
+slave-announce-port 6379
+slave-lazy-flush yes
+slave-repl-timeout 60
+slave-recovery-timeout 60
+slave-announce-ip 192.168.1.1
+slave-ignore-maxmemory yes
+slave-lazy-free-list-length 20
+
+# 调整内核参数（可选但推荐）：防止 Redis 在低内存环境下启动失败，设置 vm.overcommit_memory=1
+echo "vm.overcommit_memory=1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+# 启动
+/usr/local/redis/bin/redis-server /etc/redis/redis.conf
+
+# 系统服务集成与管理，配置 systemd 服务单元：创建服务文件 sudo vim /etc/systemd/system/redis.service
+[Unit]
+Description=Redis In-Memory Data Store
+After=network.target
+
+[Service]
+# User 和 Group 设置为之前创建的 redis
+User=redis
+Group=redis
+# ExecStart 命令中使用了 --daemonize no，这是因为使用 systemd 管理服务时，不应让 Redis 自身进入守护进程模式，而是由 systemd 来监控前台进程。
+# --supervised systemd 选项可以让 Redis 以更好的方式与 systemd 集成。
+ExecStart=/usr/local/redis/bin/redis-server /etc/redis/redis.conf --daemonize no --supervised systemd
+ExecStop=/usr/local/redis/bin/redis-cli shutdown
+Restart=always
+RestartSec=3
+Type=notify
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ## ffmpeg

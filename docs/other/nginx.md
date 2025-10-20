@@ -12,29 +12,32 @@ Nginx 发行版本
 ## 源码编译安装
 ```sh
 # centos 准备 nginx 编译安装环境
-yum install -y gcc-c++ pcre pcre-devel zlib zlib-devel make
+yum install -y gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel make
 
 # 查看 configure 支持的参数
 ./configure --help | more
 
 # 编译配置：会引用auto目录下的bash脚本
 # 会在源代码目录中生成objs目录，其中 objs/ngx_modules.c 文件中包含接下来执行编译时有哪些模块会被编译进 nginx
-./configure --prefix=/usr/local/nginx --with-http_ssl_module
+./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module
 
 # 编译和链接
 make
+# make -j2 # 构建时使用 2 个线程编译，默认是 1 个线程编译
 
 # 安装（覆盖式安装）：将链接出的文件拷贝至正确的位置（比如会覆盖掉/usr/local/nginx/）
 make install
 
 # 测试
+whereis nginx
+/usr/local/nginx/sbin/nginx -v
 /usr/local/nginx/sbin/nginx -V
 
 # 创建软链
 ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 
 # 启动
-/usr/local/nginx/sbin/nginx
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
 
 # 停止
 # /usr/local/nginx/sbin/nginx -s stop

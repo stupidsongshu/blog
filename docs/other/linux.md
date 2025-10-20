@@ -69,7 +69,12 @@ echo $PATH
 
 ```sh
 # 第1步：生成 SSH 公私钥
+# -t rsa：代表密钥类型为rsa密钥对
+# -C: 描述
 ssh-keygen -t rsa -C "test@gmail.com"
+#  -b 2048：代表密钥长度为2048位，默认值为 2048
+#  -f: 代表生成密钥对的文件名以及保存位置
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/test_rsa
 
 # 第2步：把本地主机的公钥复制到远程主机的 `~/.ssh/authorized_keys` 文件中
 # -i: 指定公钥文件
@@ -102,6 +107,8 @@ HOST alpha
   PreferredAuthentications publickey
   IdentityFile ~/.ssh/company_server_rsa
 ```
+
+- [阿里云 实例登录凭证管理（登录名/密码/密钥对）](https://help.aliyun.com/zh/ecs/user-guide/instance-logon-credential-management)
 
 ## 命令的选项风格
 - UNIX风格，必须带一个 "-"
@@ -1020,6 +1027,7 @@ sudo apt upgrade
 |x|显示没有控制终端的进程|
 
 - top
+  - top -c: 显示所有进程的详细信息
   - top -p pid: 查看指定进程ID
 - ps
   - ps -e | more
