@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CentOS | Blog</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="summerycicada">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fed69db2.css" as="style"><link rel="preload" href="/blog/assets/js/app.3ac1a8f7.js" as="script"><link rel="preload" href="/blog/assets/js/2.9fdd9b45.js" as="script"><link rel="preload" href="/blog/assets/js/1.e1286724.js" as="script"><link rel="preload" href="/blog/assets/js/63.b62f8e69.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.03af4b50.js"><link rel="prefetch" href="/blog/assets/js/11.dac88931.js"><link rel="prefetch" href="/blog/assets/js/12.b04b0c9e.js"><link rel="prefetch" href="/blog/assets/js/13.c4cff8fa.js"><link rel="prefetch" href="/blog/assets/js/14.8f840785.js"><link rel="prefetch" href="/blog/assets/js/15.c773a7e9.js"><link rel="prefetch" href="/blog/assets/js/16.3503c883.js"><link rel="prefetch" href="/blog/assets/js/17.0101170a.js"><link rel="prefetch" href="/blog/assets/js/18.6c66d7a8.js"><link rel="prefetch" href="/blog/assets/js/19.6ccc9a2f.js"><link rel="prefetch" href="/blog/assets/js/20.b8537bd1.js"><link rel="prefetch" href="/blog/assets/js/21.637166bb.js"><link rel="prefetch" href="/blog/assets/js/22.e1833d63.js"><link rel="prefetch" href="/blog/assets/js/23.af7da6f3.js"><link rel="prefetch" href="/blog/assets/js/24.55a3be51.js"><link rel="prefetch" href="/blog/assets/js/25.cd72c1a5.js"><link rel="prefetch" href="/blog/assets/js/26.bb7271b1.js"><link rel="prefetch" href="/blog/assets/js/27.b3407221.js"><link rel="prefetch" href="/blog/assets/js/28.c9b387f1.js"><link rel="prefetch" href="/blog/assets/js/29.3a6e00bd.js"><link rel="prefetch" href="/blog/assets/js/3.3f3c2db2.js"><link rel="prefetch" href="/blog/assets/js/30.afdc8abd.js"><link rel="prefetch" href="/blog/assets/js/31.84633648.js"><link rel="prefetch" href="/blog/assets/js/32.7ff3c83c.js"><link rel="prefetch" href="/blog/assets/js/33.70dd9e26.js"><link rel="prefetch" href="/blog/assets/js/34.e82940cd.js"><link rel="prefetch" href="/blog/assets/js/35.c2bf1e2a.js"><link rel="prefetch" href="/blog/assets/js/36.2d56a748.js"><link rel="prefetch" href="/blog/assets/js/37.d2295b33.js"><link rel="prefetch" href="/blog/assets/js/38.d46fe9a1.js"><link rel="prefetch" href="/blog/assets/js/39.0ce93f8f.js"><link rel="prefetch" href="/blog/assets/js/4.4f191d45.js"><link rel="prefetch" href="/blog/assets/js/40.94a941f8.js"><link rel="prefetch" href="/blog/assets/js/41.1c0c3411.js"><link rel="prefetch" href="/blog/assets/js/42.d31ee855.js"><link rel="prefetch" href="/blog/assets/js/43.89d530e0.js"><link rel="prefetch" href="/blog/assets/js/44.e560e942.js"><link rel="prefetch" href="/blog/assets/js/45.39640666.js"><link rel="prefetch" href="/blog/assets/js/46.d7fc6a7d.js"><link rel="prefetch" href="/blog/assets/js/47.926e1753.js"><link rel="prefetch" href="/blog/assets/js/48.e08c3dbc.js"><link rel="prefetch" href="/blog/assets/js/49.8a3d675d.js"><link rel="prefetch" href="/blog/assets/js/5.664bef26.js"><link rel="prefetch" href="/blog/assets/js/50.8225ed1c.js"><link rel="prefetch" href="/blog/assets/js/51.58c49f62.js"><link rel="prefetch" href="/blog/assets/js/52.c794fb9e.js"><link rel="prefetch" href="/blog/assets/js/53.6ff0634b.js"><link rel="prefetch" href="/blog/assets/js/54.f5b1739b.js"><link rel="prefetch" href="/blog/assets/js/55.a7771b59.js"><link rel="prefetch" href="/blog/assets/js/56.ca711a1b.js"><link rel="prefetch" href="/blog/assets/js/57.9d7f1b34.js"><link rel="prefetch" href="/blog/assets/js/58.daad99dd.js"><link rel="prefetch" href="/blog/assets/js/59.e6cb1ef0.js"><link rel="prefetch" href="/blog/assets/js/6.51d5dc40.js"><link rel="prefetch" href="/blog/assets/js/60.58a83f0c.js"><link rel="prefetch" href="/blog/assets/js/61.1d0ebe51.js"><link rel="prefetch" href="/blog/assets/js/62.275c2cd8.js"><link rel="prefetch" href="/blog/assets/js/64.de2d1bc4.js"><link rel="prefetch" href="/blog/assets/js/65.b55a7d66.js"><link rel="prefetch" href="/blog/assets/js/66.3ddf3593.js"><link rel="prefetch" href="/blog/assets/js/67.1f68d90a.js"><link rel="prefetch" href="/blog/assets/js/68.690ec4ef.js"><link rel="prefetch" href="/blog/assets/js/69.8b78e800.js"><link rel="prefetch" href="/blog/assets/js/7.99830abf.js"><link rel="prefetch" href="/blog/assets/js/70.df11d166.js"><link rel="prefetch" href="/blog/assets/js/71.f5b30268.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.cc58001a.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fed69db2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/other/git.html" class="sidebar-link">Git</a></li><li><a href="/blog/other/linux.html" class="sidebar-link">Linux</a></li><li><a href="/blog/other/nginx.html" class="sidebar-link">Nginx</a></li><li><a href="/blog/other/shell.html" class="sidebar-link">Shell</a></li><li><a href="/blog/other/centos.html" aria-current="page" class="active sidebar-link">CentOS</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/other/centos.html#fhs" class="sidebar-link">FHS</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#mac-vmware-fusion" class="sidebar-link">Mac VMware Fusion</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#systemd" class="sidebar-link">systemd</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#centos-7-安装-git" class="sidebar-link">CentOS 7 安装 Git</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#centos-7-安装-mysql" class="sidebar-link">CentOS 7 安装 MySQL</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#nginx" class="sidebar-link">Nginx</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#clash" class="sidebar-link">Clash</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#docker" class="sidebar-link">docker</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#firewalld" class="sidebar-link">firewalld</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#java" class="sidebar-link">java</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#redis" class="sidebar-link">redis</a></li><li class="sidebar-sub-header"><a href="/blog/other/centos.html#ffmpeg" class="sidebar-link">ffmpeg</a></li></ul></li><li><a href="/blog/other/docker.html" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="centos"><a href="#centos" class="header-anchor">#</a> CentOS</h1> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看CentOS的版本号</span>
+lsb_release <span class="token parameter variable">-a</span>
+<span class="token function">cat</span> /etc/centos-release
+<span class="token function">cat</span> /etc/redhat-release
+
+<span class="token comment"># 查看操作系统内核版本</span>
+<span class="token function">uname</span> <span class="token parameter variable">--help</span>
+<span class="token function">uname</span> <span class="token parameter variable">-a</span>
+<span class="token function">uname</span> <span class="token parameter variable">-r</span>
+<span class="token function">cat</span> /proc/version
+
+<span class="token comment"># 查看操作系统位数</span>
+getconf LONG_BIT
+<span class="token function">file</span> /bin/ls
+
+<span class="token comment"># 查看CPU信息</span>
+lscpu
+<span class="token function">cat</span> /proc/cpuinfo
+<span class="token function">cat</span> /proc/cpuinfo <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot;model name&quot;</span>
+<span class="token function">cat</span> /proc/cpuinfo <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot;model name&quot;</span> <span class="token operator">|</span> <span class="token function">uniq</span>
+
+<span class="token comment"># 查看内存信息</span>
+<span class="token function">free</span> <span class="token parameter variable">-h</span>
+<span class="token function">cat</span> /proc/meminfo
+<span class="token function">cat</span> /proc/meminfo <span class="token operator">|</span> <span class="token function">grep</span> MemTotal
+<span class="token function">cat</span> /proc/meminfo <span class="token operator">|</span> <span class="token function">grep</span> MemTotal <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $2}'</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{printf(&quot;%.2f\n&quot;, $1/1024/1024)}'</span>
+<span class="token function">cat</span> /proc/meminfo <span class="token operator">|</span> <span class="token function">grep</span> MemTotal <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{printf(&quot;%.2f\n&quot;, $2/1024/1024)}'</span>
+<span class="token comment"># dmidecode 命令用于从硬件系统中提取DMI（硬件管理接口）表的内容，可以用来查看物理内存的大小。</span>
+dmidecode <span class="token parameter variable">-t</span> memory
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h2 id="fhs"><a href="#fhs" class="header-anchor">#</a> FHS</h2> <p><a href="https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%A0%87%E5%87%86" target="_blank" rel="noopener noreferrer">FHS (Filesystem Hierarchy Standard) 文件系统层次结构标准<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <table><thead><tr><th style="text-align:center;">Name</th> <th>Description</th></tr></thead> <tbody><tr><td style="text-align:center;">/bin</td> <td>存放二进制可执行文件</td></tr> <tr><td style="text-align:center;">/boot</td> <td>存放用于系统引导时使用的各种文件及内核</td></tr> <tr><td style="text-align:center;">/dev</td> <td>存放设备文件</td></tr> <tr><td style="text-align:center;">/etc</td> <td>存放系统管理和配置文件(cron.d定时任务；firewalld防火墙；hosts；my.cnf mysql配置文件；ngnix；rc.d开机自动启动脚本；rpm；ssh；sysconfig内容较多，包含网卡配置文件；vimrc)</td></tr> <tr><td style="text-align:center;">/root</td> <td>超级⽤户(系统管理员)的主目录</td></tr> <tr><td style="text-align:center;">/home</td> <td>存放所有用户⽂件的根目录，是普通⽤户主目录的基点，⽐如⽤户user的主目录就是/home/user，可以用~user表示</td></tr> <tr><td style="text-align:center;">/lib</td> <td>存放跟文件系统中的程序运行所需要的共享库及内核模块。共享库又叫动态链接共享库，作用类似windows里的dll文件，存放了根文件系统程序运行所需的共享文件。</td></tr> <tr><td style="text-align:center;">/mnt</td> <td>系统管理员安装临时文件系统的安装点，系统提供这个⽬录是让⽤户临时挂载其他的⽂件系统。</td></tr> <tr><td style="text-align:center;">/opt</td> <td>额外安装的可选应⽤程序包所放置的位置。</td></tr> <tr><td style="text-align:center;">/proc</td> <td>虚拟⽂件系统目录，是系统内存的映射（不保存在硬盘，储存在内存中）。可直接访问这个目录来获取系统信息（如cpuinfo/meminfo）。</td></tr> <tr><td style="text-align:center;">/tmp</td> <td>用于存放各种临时⽂件，是公⽤的临时⽂件存储点。</td></tr> <tr><td style="text-align:center;">/usr</td> <td>⽤于存放系统应⽤程序，⽐较重要的⽬录/usr/local本地系统管理员软件安装目录 (安装系统级的应用)。这是最庞大的⽬录，要用到的应用程序和文件⼏乎都在这个目录。</td></tr> <tr><td style="text-align:center;">/var</td> <td>⽤于存放运行时需要改变数据的⽂件，也是某些⼤文件的溢出区，⽐方说/var/log各种服务的日志⽂件(系统启动⽇志等。)等。</td></tr></tbody></table> <div class="custom-block danger"><p class="custom-block-title">DANGER</p> <p><strong>修改配置文件</strong>时一定要<strong>先备份再修改</strong></p></div> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li>静态库：Windows和Linux系统下都是.lib文件</li> <li>动态库：Windows系统下是.dll文件，Linux系统下是.so文件</li></ul></div> <h2 id="mac-vmware-fusion"><a href="#mac-vmware-fusion" class="header-anchor">#</a> Mac VMware Fusion</h2> <ul><li><a href="https://garryshield.github.io/2016/11/01/mac-vmware-network/" target="_blank" rel="noopener noreferrer">联网问题<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>重启网络命令
+<ul><li>systemctl restart network</li> <li>service restart network</li></ul></li></ul> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>centos8重启网络命令报错：Failed to restart network.service: Unit network.service not found.</p> <p>改用NetworkManager重启：<a href="https://www.golinuxcloud.com/unit-network-service-not-found-rhel-8-linux/" target="_blank" rel="noopener noreferrer">systemctl restart NetworkManager<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <h2 id="systemd"><a href="#systemd" class="header-anchor">#</a> systemd</h2> <p>systemd是目前Linux系统上主要的系统守护进程管理工具。Systemctl是一个systemd工具，主要负责控制systemd系统和服务管理器。</p> <p>配置文件在 <code>/etc/systemd/system</code></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看服务列表</span>
+systemctl list-unit-files
+systemctl list-unit-files <span class="token parameter variable">--type</span><span class="token operator">=</span>service <span class="token operator">|</span> <span class="token function">grep</span> firewalld
+
+<span class="token comment"># 重新加载系统管理守护进程的配置文件。当systemd配置文件修改后，可使用此命令让系统重新加载配置文件</span>
+systemctl daemon-reload
+
+<span class="token comment"># 加载某个服务的配置文件</span>
+systemctl reload xxx.service
+
+<span class="token comment"># 启动服务</span>
+systemctl start xxx.service
+
+<span class="token comment"># 停止服务</span>
+systemctl stop xxx.service
+
+<span class="token comment"># 重启服务</span>
+systemctl restart xxx.service
+
+<span class="token comment"># 开机启动</span>
+systemctl <span class="token builtin class-name">enable</span> xxx.service
+
+<span class="token comment"># 关闭开机启动</span>
+systemctl disable xxx.service
+
+<span class="token comment"># 查看服务状态</span>
+systemctl status xxx.service
+
+<span class="token comment"># 查看服务状态</span>
+systemctl is-active xxx.service
+
+<span class="token comment"># 查看服务状态</span>
+systemctl is-enabled xxx.service
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h2 id="centos-7-安装-git"><a href="#centos-7-安装-git" class="header-anchor">#</a> CentOS 7 安装 Git</h2> <p><a href="https://webmagicinformatica.com/how-to-install-latest-git-git-2-x-on-centos-7/" target="_blank" rel="noopener noreferrer">How to install Latest Git ( Git 2.x ) on CentOS 7<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://phoenixnap.com/kb/how-to-install-git-on-centos-7" target="_blank" rel="noopener noreferrer">How to Install Git on CentOS 7 With Yum or Latest Repository<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 1. Remove old git</span>
+<span class="token function">sudo</span> yum <span class="token parameter variable">-y</span> remove <span class="token function">git</span>
+<span class="token function">sudo</span> yum <span class="token parameter variable">-y</span> remove git-*
+
+<span class="token comment"># 2. Add End Point CentOS 7 repo</span>
+<span class="token function">sudo</span> yum <span class="token parameter variable">-y</span> <span class="token function">install</span> https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+
+<span class="token comment"># 3. Once repository is added, install Git 2.x on CentOS 7:</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
+
+<span class="token comment"># 4. Check git version after installing git2u-all package</span>
+<span class="token function">git</span> <span class="token parameter variable">--version</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="centos-7-安装-mysql"><a href="#centos-7-安装-mysql" class="header-anchor">#</a> CentOS 7 安装 MySQL</h2> <ul><li><a href="https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/" target="_blank" rel="noopener noreferrer">How to Install MySQL on CentOS 7<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7" target="_blank" rel="noopener noreferrer">How To Install MySQL on CentOS 7<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">sudo</span> <span class="token parameter variable">-i</span>
+
+<span class="token comment"># [Source Installation Prerequisites](https://dev.mysql.com/doc/refman/8.0/en/source-installation-prerequisites.html)</span>
+yum <span class="token parameter variable">-y</span> update
+yum <span class="token parameter variable">-y</span> <span class="token function">install</span> <span class="token function">wget</span> gcc gcc-c++ ncurses ncurses-devel libaio-devel openssl openssl-devel
+yum <span class="token parameter variable">-y</span> <span class="token function">install</span> cmake3
+
+<span class="token comment"># [centos7.9 GCC4.8升级到9.3](https://blog.csdn.net/linuxxx110/article/details/150053136)</span>
+yum <span class="token parameter variable">-y</span> <span class="token function">install</span> centos-release-scl
+<span class="token comment"># centos-release-scl 安装完成后，将配置文件修改为阿里云的源</span>
+<span class="token comment"># /etc/yum.repos.d/CentOS-SCLo-scl.repo 修改为​​​​​​​ baseurl=https://mirrors.aliyun.com/centos/$releasever/sclo/$basearch/sclo/</span>
+<span class="token comment"># /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo​​​​​​​ 修改为​​​​​​​ baseurl=https://mirrors.aliyun.com/centos/$releasever/sclo/$basearch/rh/</span>
+<span class="token comment"># 刷新缓存: yum repolist &amp;&amp; yum clean all &amp;&amp; yum makecache</span>
+yum <span class="token parameter variable">-y</span> <span class="token function">install</span> devtoolset-11-gcc devtoolset-11-gcc-c++ devtoolset-11-binutils
+scl <span class="token builtin class-name">enable</span> devtoolset-11 <span class="token function">bash</span> <span class="token comment"># 临时切换到gcc11环境</span>
+gcc <span class="token parameter variable">-v</span>
+
+<span class="token function">groupadd</span> mysql
+
+<span class="token comment"># -r: 创建一个系统用户</span>
+<span class="token comment"># -g mysql: 指定用户的主组为 mysql</span>
+<span class="token comment"># -s /sbin/nologin: 设置该用户的登录 shell 为 /sbin/nologin，拒绝mysql用户登陆</span>
+<span class="token function">useradd</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">-g</span> mysql <span class="token parameter variable">-s</span> /sbin/nologin mysql
+
+<span class="token builtin class-name">cd</span> /root
+<span class="token comment"># https://dev.mysql.com/downloads/mysql/</span>
+<span class="token comment"># Select Version: 8.0.43</span>
+<span class="token comment"># Select Operating System: Source Code</span>
+<span class="token comment"># Select OS Version: All Operating Systems (Generic) (Architecture Independent)</span>
+<span class="token function">wget</span> https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.43.tar.gz
+<span class="token function">tar</span> xzvf mysql-boost-8.0.43.tar.gz
+<span class="token builtin class-name">cd</span> /root/mysql-8.0.43
+
+<span class="token comment"># [mysql8.0官方编译参数](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html)</span>
+cmake3 <span class="token builtin class-name">.</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DCMAKE_INSTALL_PREFIX</span><span class="token operator">=</span>/usr/local/mysql <span class="token punctuation">\</span>
+<span class="token parameter variable">-DMYSQL_DATADIR</span><span class="token operator">=</span>/data/db/mysql <span class="token punctuation">\</span>
+<span class="token parameter variable">-DSYSCONFDIR</span><span class="token operator">=</span>/etc <span class="token punctuation">\</span>
+<span class="token parameter variable">-DMYSQL_TCP_PORT</span><span class="token operator">=</span><span class="token number">3306</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_BOOST</span><span class="token operator">=</span>./boost <span class="token punctuation">\</span>
+<span class="token parameter variable">-DDEFAULT_CHARSET</span><span class="token operator">=</span>utf8mb4 <span class="token punctuation">\</span>
+<span class="token parameter variable">-DDEFAULT_COLLATION</span><span class="token operator">=</span>utf8mb4_general_ci <span class="token punctuation">\</span>
+<span class="token parameter variable">-DENABLED_LOCAL_INFILE</span><span class="token operator">=</span>ON <span class="token punctuation">\</span>
+<span class="token parameter variable">-DFORCE_INSOURCE_BUILD</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_INNODB_MEMCACHED</span><span class="token operator">=</span>ON <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_INNOBASE_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_FEDERATED_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_BLACKHOLE_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_ARCHIVE_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITHOUT_EXAMPLE_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">-DWITH_PERFSCHEMA_STORAGE_ENGINE</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+nproc <span class="token comment"># 获取 CPU 核心数</span>
+
+<span class="token comment"># make -j$(nproc) # 使用所有可用的 CPU 核心进行编译，加快速度 8:52 %17, 14:30 87%</span>
+
+<span class="token comment"># 由于编译时间较长，可使用 screen/tmux 或 nohup 来防止 ssh 会话断开连接</span>
+<span class="token comment"># 方法1: 使用 screen (推荐)</span>
+<span class="token function">screen</span> <span class="token parameter variable">-S</span> mysql_build <span class="token comment"># 创建一个名为 mysql_build 的 screen 会话，并进入该会话</span>
+<span class="token function">make</span> -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span> <span class="token comment"># 按下组合键 Ctrl + A，然后松开，再按 D，主动分离（Detach）当前会话</span>
+<span class="token function">screen</span> <span class="token parameter variable">-ls</span> <span class="token comment"># 列出所有 screen 会话</span>
+<span class="token function">screen</span> <span class="token parameter variable">-r</span> mysql_build <span class="token comment"># 重新附着（Attach）到之前的会话</span>
+
+<span class="token comment"># 方法2 使用 nohup:</span>
+<span class="token comment"># nohup：保证命令不挂起</span>
+<span class="token comment"># &gt; make.log：创建一个新的 make.log 文件，如果该文件已存在，则先清空其所有内容，然后从头开始写入输出。</span>
+<span class="token comment"># &gt;&gt; make.log：如果 make.log 文件不存在，则创建它；如果已存在，则将新的输出追加（Append）到该文件的末尾，保留之前的所有内容。</span>
+<span class="token comment"># 2&gt;&amp;1：将标准错误（文件描述符 2，stderr）重定向到标准输出（文件描述符 1，stdout）所在的地方。因为 stdout 已经被重定向到 make.log，所以 stderr 也会被写入同一个文件。</span>
+<span class="token comment"># &amp;：将命令放入后台执行</span>
+<span class="token function">nohup</span> <span class="token function">make</span> -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span> <span class="token operator">&gt;&gt;</span> make.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span>
+<span class="token function">tail</span> <span class="token parameter variable">-f</span> /root/mysql-8.0.43/make.log
+
+<span class="token function">make</span> <span class="token function">install</span>
+
+/usr/local/mysql/bin/mysql <span class="token parameter variable">--version</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;PATH=/usr/local/mysql/bin:<span class="token environment constant">$PATH</span>&quot;</span> <span class="token operator">&gt;&gt;</span> /etc/profile
+<span class="token builtin class-name">source</span> /etc/profile
+
+mysql <span class="token parameter variable">--version</span>
+
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /data/db/mysql
+<span class="token function">chmod</span> <span class="token number">755</span> /data/db/mysql
+<span class="token function">chown</span> mysql:mysql /data/db/mysql
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># ~/.ssh/config 中设置 ServerAliveInterval，定期发送保活包来维持连接</span>
+Host * <span class="token comment"># 对所有主机生效，也可以替换成你的服务器IP</span>
+  ServerAliveInterval <span class="token number">60</span> <span class="token comment"># 每隔60秒向服务器发送一个保活包</span>
+  ServerAliveCountMax <span class="token number">5</span>  <span class="token comment"># 如果连续5次没有收到响应，则断开连接</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="本地mysqlworkbench通过ssh隧道连接远程服务器mysql"><a href="#本地mysqlworkbench通过ssh隧道连接远程服务器mysql" class="header-anchor">#</a> 本地MySQLWorkbench通过SSH隧道连接远程服务器MySQL</h3> <p>如果服务器只开放了 22 和 80 端口，没有开放 3306 端口，在 macOS 上使用 SSH 密钥通过隧道连接 CentOS 7.9 的 MySQL 服务</p> <h4 id="方法一-使用-mysql-workbench-内置-ssh-隧道功能-推荐"><a href="#方法一-使用-mysql-workbench-内置-ssh-隧道功能-推荐" class="header-anchor">#</a> 方法一：使用 MySQL Workbench 内置 SSH 隧道功能（推荐）</h4> <p>配置 MySQL Workbench 连接</p> <ul><li>打开 MySQL Workbench，点击 &quot;+&quot; 图标创建新连接</li> <li>在 &quot;Setup New Connection&quot; 对话框中，填写以下信息：</li></ul> <p>Connection Method 选项卡：</p> <ul><li>Connection Name: 输入一个有意义的名称（如 &quot;Production DB via SSH&quot;）</li> <li>Connection Method: 选择 <code>Standard TCP/IP over SSH</code></li></ul> <p>Parameters 选项卡：</p> <ul><li>SSH Hostname: 8.159.138.235:22</li> <li>SSH Username: ecs-user</li> <li>SSH Key File: 点击右侧文件夹图标，选择您的私钥文件 ~/.ssh/ecs-user.pem</li> <li>MySQL Hostname: 127.0.0.1 或 localhost（因为 MySQL 在服务器本地）</li> <li>MySQL Server Port: 3306（MySQL 默认端口）</li> <li>Username: 您的 MySQL 用户名</li> <li>Password: 您的 MySQL 密码</li> <li>Default Schema: （可选）选择默认数据库</li></ul> <p>MySQL Workbench 会自动建立 SSH 隧道并连接到 MySQL 数据库</p> <h4 id="方法二-手动创建-ssh-隧道"><a href="#方法二-手动创建-ssh-隧道" class="header-anchor">#</a> 方法二：手动创建 SSH 隧道</h4> <ol><li>在终端中创建 SSH 隧道</li></ol> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># -i ~/.ssh/ecs-user.pem：指定 SSH 私钥文件</span>
+<span class="token comment"># -N：不执行远程命令，只建立隧道</span>
+<span class="token comment"># -L 33306:localhost:3306：将本地 33306 端口转发到服务器上的 3306 端口</span>
+<span class="token comment"># ecs-user@8.159.138.235：您的服务器 SSH 用户名和 IP 地址</span>
+<span class="token function">ssh</span> <span class="token parameter variable">-i</span> ~/.ssh/ecs-user.pem <span class="token parameter variable">-N</span> <span class="token parameter variable">-L</span> <span class="token number">33306</span>:localhost:3306 ecs-user@8.159.138.235
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ol start="2"><li>配置 MySQL Workbench 连接本地端口</li></ol> <p>Connection Method 选项卡：</p> <ul><li>Connection Name: 任意名称（如 &quot;Local Tunnel&quot;）</li> <li>Connection Method: 选择 &quot;Standard (TCP/IP)&quot;</li></ul> <p>Parameters 选项卡：</p> <ul><li>Hostname: 127.0.0.1</li> <li>Port: 33306（与 SSH 命令中指定的本地端口一致）</li> <li>Username: 您的 MySQL 用户名</li> <li>Password: 您的 MySQL 密码</li></ul> <h4 id="方法三-使用-ssh-配置文件简化连接"><a href="#方法三-使用-ssh-配置文件简化连接" class="header-anchor">#</a> 方法三：使用 SSH 配置文件简化连接</h4> <ol><li>编辑 SSH 配置文件</li></ol> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 编辑 SSH 配置文件: vim ~/.ssh/config</span>
+Host myserver
+    HostName <span class="token number">8.159</span>.138.235
+    User ecs-user
+    IdentityFile ~/.ssh/ecs-user.pem
+    LocalForward <span class="token number">33306</span> localhost:3306
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ol start="2"><li>使用简化的 SSH 命令建立隧道</li></ol> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">ssh</span> <span class="token parameter variable">-N</span> myserver
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ol start="3"><li>配置 MySQL Workbench：与方法二相同，配置 MySQL Workbench 连接到本地 33306 端口。</li></ol> <h2 id="nginx"><a href="#nginx" class="header-anchor">#</a> Nginx</h2> <ul><li><a href="https://nginx.org/" target="_blank" rel="noopener noreferrer">Website<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="文档"><a href="#文档" class="header-anchor">#</a> 文档</h3> <ul><li><a href="https://nginx.org/en/docs/" target="_blank" rel="noopener noreferrer">nginx documentation<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://nginx.org/en/docs/switches.html" target="_blank" rel="noopener noreferrer">Command-line parameters<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="源码安装"><a href="#源码安装" class="header-anchor">#</a> 源码安装</h3> <ul><li><a href="https://nginx.org/en/docs/configure.html" target="_blank" rel="noopener noreferrer">doc<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source" target="_blank" rel="noopener noreferrer">doc<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h3> <ul><li><a href="https://blog.csdn.net/weixin_41680651/article/details/140124650" target="_blank" rel="noopener noreferrer">Centos7.9安装Nginx<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://juejin.cn/post/6991818847179243557" target="_blank" rel="noopener noreferrer">Nginx详细安装及配置<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://juejin.cn/post/7048952689601806366" target="_blank" rel="noopener noreferrer">一份简单够用的 Nginx Location 配置讲解<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://juejin.cn/post/6844903944267759624" target="_blank" rel="noopener noreferrer">nginx 这一篇就够了<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="repo"><a href="#repo" class="header-anchor">#</a> repo</h3> <ul><li>/usr/local/nginx/config/nginx.conf</li></ul> <div class="language-nginx line-numbers-mode"><pre class="language-nginx"><code><span class="token comment">#user  nobody;</span>
+<span class="token directive"><span class="token keyword">user</span>  root</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">worker_processes</span>  <span class="token number">1</span></span><span class="token punctuation">;</span> <span class="token comment">#工作进程：数目。根据硬件调整，通常等于cpu数量或者2倍cpu数量。</span>
+
+<span class="token comment">#error_log  logs/error.log;</span>
+<span class="token comment">#error_log  logs/error.log  notice;</span>
+<span class="token comment">#error_log  logs/error.log  info;</span>
+
+<span class="token comment">#pid        logs/nginx.pid;</span>
+
+
+<span class="token directive"><span class="token keyword">events</span></span> <span class="token punctuation">{</span>
+    <span class="token comment"># 配置每个worker进程连接数上限，nginx支持的总连接数就等于worker_processes * worker_connections</span>
+    <span class="token comment"># 需要注意的是，worker_connections最大为 65536</span>
+    <span class="token directive"><span class="token keyword">worker_connections</span>  <span class="token number">1024</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token directive"><span class="token keyword">http</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">include</span>       mime.types</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">default_type</span>  application/octet-stream</span><span class="token punctuation">;</span>
+
+    <span class="token comment">#log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '</span>
+    <span class="token comment">#                  '$status $body_bytes_sent &quot;$http_referer&quot; '</span>
+    <span class="token comment">#                  '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';</span>
+
+    <span class="token comment">#access_log  logs/access.log  main;</span>
+
+    <span class="token directive"><span class="token keyword">sendfile</span>        <span class="token boolean">on</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">tcp_nopush</span>     <span class="token boolean">on</span></span><span class="token punctuation">;</span>
+
+    <span class="token comment">#keepalive_timeout  0;</span>
+    <span class="token directive"><span class="token keyword">keepalive_timeout</span>  <span class="token number">30</span></span><span class="token punctuation">;</span>
+
+    <span class="token comment">#gzip  on; #开启gzip压缩服务</span>
+
+    <span class="token comment">#autoindex on; #打开目录浏览</span>
+
+    <span class="token comment">#配置虚拟主机</span>
+    <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+        <span class="token directive"><span class="token keyword">listen</span>       <span class="token number">80</span></span><span class="token punctuation">;</span> <span class="token comment">#配置监听端口号</span>
+        <span class="token directive"><span class="token keyword">server_name</span>  localhost</span><span class="token punctuation">;</span> <span class="token comment">#配置访问域名，域名可以有多个，用空格隔开</span>
+
+        <span class="token comment">#charset koi8-r;</span>
+
+        <span class="token comment">#access_log  logs/host.access.log  main;</span>
+
+        <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">#error_page  404              /404.html;</span>
+
+        <span class="token comment"># redirect server error pages to the static page /50x.html</span>
+        <span class="token comment">#</span>
+        <span class="token directive"><span class="token keyword">error_page</span>   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">location</span> = /50x.html</span> <span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token directive"><span class="token keyword">location</span> /blog</span> <span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">root</span> /data/www/</span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">index</span> index.html</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">#location 的参数表示匹配的 URI</span>
+	      <span class="token directive"><span class="token keyword">location</span> /study</span> <span class="token punctuation">{</span>
+            <span class="token comment"># location 中的 root 参数表示：</span>
+            <span class="token comment"># 1. 若参数前不加 / 则表示 nginx的安装路径，例如：默认指定为html，即表示为nginx安装主目录下的html目录</span>
+            <span class="token comment"># 2. 若参数前加 / 则表示 Linux 中的根路径(/)路径</span>
+            <span class="token directive"><span class="token keyword">root</span>  /data/www</span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">index</span> index.html index.htm</span><span class="token punctuation">;</span>
+            <span class="token comment"># fix: vuepress2</span>
+            <span class="token directive"><span class="token keyword">try_files</span> <span class="token variable">$uri</span> <span class="token variable">$uri</span>/ <span class="token variable">$uri</span>.html /index.html?<span class="token variable">$query_string</span></span><span class="token punctuation">;</span>
+            <span class="token comment">#proxy_set_header Host $http_host; # host: 端口</span>
+            <span class="token comment">#proxy_set_header X-Real_IP $remote_addr; # 客户端的 IP 地址</span>
+            <span class="token comment">#proxy_set_header REMOTE-HOST $remote_addr;</span>
+            <span class="token comment">#proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # HTTP 的请求端真实的 IP</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token directive"><span class="token keyword">location</span> /react-blog-admin</span> <span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">root</span> html</span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">index</span> index.html</span><span class="token punctuation">;</span>
+            <span class="token comment"># fix: react-router 刷新 404</span>
+            <span class="token directive"><span class="token keyword">try_files</span> <span class="token variable">$uri</span> <span class="token variable">$uri</span>/ /react-blog-admin/index.html</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">#location /react-blog-admin/api {</span>
+        <span class="token comment">#	rewrite ^/react-blog-admin/(api/.*) http://$host:5000/$1 permanent;</span>
+        <span class="token comment">#}</span>
+
+        <span class="token directive"><span class="token keyword">location</span> /react-blog-admin/api/</span> <span class="token punctuation">{</span>
+            <span class="token comment"># 将原请求的 http 链接 header 头中的 Host 信息放到转发请求中</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$http_host</span></span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> X-Real-Ip <span class="token variable">$remote_addr</span></span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> REMOTE-HOST <span class="token variable">$remote_addr</span></span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span></span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> Content-Length <span class="token variable">$http_content_length</span></span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">proxy_set_header</span> Content-Type <span class="token variable">$http_content_type</span></span><span class="token punctuation">;</span>
+            <span class="token comment">#proxy_pass http://101.132.125.209:5000/api/;</span>
+            <span class="token directive"><span class="token keyword">proxy_pass</span> http://localhost:5000/api/</span><span class="token punctuation">;</span> <span class="token comment"># nodejs_koa_blog</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token directive"><span class="token keyword">location</span> /nginxconfig</span> <span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">root</span> /data/www</span><span class="token punctuation">;</span>
+            <span class="token directive"><span class="token keyword">index</span> index.html</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span>
+        <span class="token comment">#</span>
+        <span class="token comment">#location ~ \.php$ {</span>
+        <span class="token comment">#    proxy_pass   http://127.0.0.1;</span>
+        <span class="token comment">#}</span>
+
+        <span class="token comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span>
+        <span class="token comment">#</span>
+        <span class="token comment">#location ~ \.php$ {</span>
+        <span class="token comment">#    root           html;</span>
+        <span class="token comment">#    fastcgi_pass   127.0.0.1:9000;</span>
+        <span class="token comment">#    fastcgi_index  index.php;</span>
+        <span class="token comment">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span>
+        <span class="token comment">#    include        fastcgi_params;</span>
+        <span class="token comment">#}</span>
+
+        <span class="token comment"># deny access to .htaccess files, if Apache's document root</span>
+        <span class="token comment"># concurs with nginx's one</span>
+        <span class="token comment">#</span>
+        <span class="token comment">#location ~ /\.ht {</span>
+        <span class="token comment">#    deny  all;</span>
+        <span class="token comment">#}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#server {</span>
+    <span class="token comment">#    listen 8080;</span>
+    <span class="token comment">#    server_name www.myweb.com;</span>
+    <span class="token comment">#    location / {</span>
+    <span class="token comment">#        proxy_pass https://www.baidu.com;</span>
+    <span class="token comment">#    }</span>
+    <span class="token comment">#}</span>
+
+    <span class="token comment"># another virtual host using mix of IP-, name-, and port-based configuration</span>
+    <span class="token comment">#</span>
+    <span class="token comment">#server {</span>
+    <span class="token comment">#    listen       8000;</span>
+    <span class="token comment">#    listen       somename:8080;</span>
+    <span class="token comment">#    server_name  somename  alias  another.alias;</span>
+
+    <span class="token comment">#    location / {</span>
+    <span class="token comment">#        root   html;</span>
+    <span class="token comment">#        index  index.html index.htm;</span>
+    <span class="token comment">#    }</span>
+    <span class="token comment">#}</span>
+
+
+    <span class="token comment"># HTTPS server</span>
+    <span class="token comment">#</span>
+    <span class="token comment">#server {</span>
+    <span class="token comment">#    listen       443 ssl;</span>
+    <span class="token comment">#    server_name  localhost;</span>
+
+    <span class="token comment">#    ssl_certificate      cert.pem; #证书位置</span>
+    <span class="token comment">#    ssl_certificate_key  cert.key; #私钥位置</span>
+
+    <span class="token comment">#    ssl_session_cache    shared:SSL:1m;</span>
+    <span class="token comment">#    ssl_session_timeout  5m;</span>
+
+    <span class="token comment">#    ssl_ciphers  HIGH:!aNULL:!MD5; #密码加密方式</span>
+    <span class="token comment">#    ssl_prefer_server_ciphers  on;</span>
+
+    <span class="token comment">#    location / {</span>
+    <span class="token comment">#        root   html;</span>
+    <span class="token comment">#        index  index.html index.htm;</span>
+    <span class="token comment">#    }</span>
+    <span class="token comment">#}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br></div></div><h4 id="nodejs-koa-blog"><a href="#nodejs-koa-blog" class="header-anchor">#</a> nodejs-koa-blog</h4> <ul><li><a href="https://github.com/lfb/nodejs-koa-blog" target="_blank" rel="noopener noreferrer">/data/www/repo/nodejs-koa-blog<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/lfb/react-blog-admin" target="_blank" rel="noopener noreferrer">/data/www/repo/react-blog-admin<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li>.env</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>REACT_APP_API_URL=http://101.132.125.209/react-blog-admin/api
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>package.json</li></ul> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;react-blog-admin&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;private&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;homepage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/react-blog-admin&quot;</span><span class="token punctuation">,</span>
+  ...
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li>src/layouts/AuthenticatedApp/index.jsx</li></ul> <div class="language-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Router</span></span> <span class="token attr-name">basename</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>/react-blog-admin<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Sidebar</span></span> <span class="token attr-name">collapsed</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>collapsed<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li>deploy.sh</li></ul> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">npm</span> run build
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> /usr/local/nginx/html/react-blog-admin
+<span class="token function">mkdir</span> /usr/local/nginx/html/react-blog-admin
+<span class="token function">cp</span> <span class="token parameter variable">-r</span> ./build/* /usr/local/nginx/html/react-blog-admin/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li><a href="https://github.com/lfb/nuxtjs-blog-web.git" target="_blank" rel="noopener noreferrer">/data/www/repo/nuxtjs-blog-web<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li>.env.production</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code># just a flag
+NUXT_APP_ENV = 'production'
+
+# base api
+# BASE_URL = 'https://api.boblog.com/api/v1'
+BASE_URL = 'http://101.132.125.209/react-blog-admin/api/v1'
+BOBLOG_TOKEN = 'BOBLOG_TOKEN'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li>nuxt.config.js</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>{
+  ...
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    transpile: [/^element-ui/],
+  },
+  router: {
+    mode: 'history',
+    base: '/nuxtjs-blog-web',
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div></li></ul> <h2 id="clash"><a href="#clash" class="header-anchor">#</a> Clash</h2> <h3 id="download"><a href="#download" class="header-anchor">#</a> download</h3> <ul><li><a href="https://mbsurf.notion.site/Linux-83fc02864b784cca94537d775e4ddbeb" target="_blank" rel="noopener noreferrer">mbsurf.xyz linux<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><s><a href="https://github.com/Fndroid/clash_for_windows_pkg" target="_blank" rel="noopener noreferrer">clash_for_windows_pkg<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></s> <ul><li><a href="https://github.com/MetaCubeX/mihomo/releases/download/v1.18.6/mihomo-linux-amd64-v1.18.6.gz" target="_blank" rel="noopener noreferrer">mihomo<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://www.meaqua.fun/2022/06/25/clash-install/" target="_blank" rel="noopener noreferrer">在centos安装clashMeta<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li> <li><s><a href="https://github.com/Dreamacro/clash-dashboard" target="_blank" rel="noopener noreferrer">/data/www/clash-dashboard<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></s> <ul><li><a href="https://github.com/haishanh/yacd/archive/gh-pages.zip" target="_blank" rel="noopener noreferrer">Yet Another Clash Dashboard<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li> <li>/root/.config/clash/config.yaml<div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token comment"># HTTP 代理端口</span>
+<span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">7890</span>
+
+<span class="token comment"># SOCKS5 代理端口</span>
+<span class="token key atrule">socks-port</span><span class="token punctuation">:</span> <span class="token number">7891</span>
+
+<span class="token comment"># Linux 和 macOS 的 redir 代理端口</span>
+<span class="token key atrule">redir-port</span><span class="token punctuation">:</span> <span class="token number">7892</span>
+
+<span class="token comment"># HTTP+SOCKS5 代理端口</span>
+<span class="token key atrule">mixed-port</span><span class="token punctuation">:</span> <span class="token number">7893</span>
+
+<span class="token comment"># 允许局域网的连接</span>
+<span class="token key atrule">allow-lan</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+
+<span class="token comment"># 规则模式：Rule（规则） / Global（全局代理）/ Direct（全局直连）</span>
+<span class="token key atrule">mode</span><span class="token punctuation">:</span> Rule
+
+<span class="token comment"># 设置日志输出级别 (默认级别：silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出&gt;</span>
+）。
+<span class="token comment"># 5 个级别：silent / info / warning / error / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。</span>
+<span class="token key atrule">log-level</span><span class="token punctuation">:</span> error
+<span class="token comment"># Clash 的 RESTful API</span>
+<span class="token comment"># external-controller: '0.0.0.0:9090'</span>
+<span class="token key atrule">external-controller</span><span class="token punctuation">:</span> <span class="token string">'127.0.0.1:9090'</span>
+
+<span class="token comment"># RESTful API 的口令，请求头 Authorization: 'Bearer 123456'</span>
+<span class="token key atrule">secret</span><span class="token punctuation">:</span> <span class="token string">'123456'</span>
+
+<span class="token comment"># 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`</span>
+<span class="token comment"># 参数应填写配置目录的相对路径或绝对路径。</span>
+<span class="token comment"># external-ui: /data/www/clash-dashboard</span>
+<span class="token key atrule">external-ui</span><span class="token punctuation">:</span> /data/yacd<span class="token punctuation">-</span>dashboard
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div></li></ul> <h3 id="后台启动"><a href="#后台启动" class="header-anchor">#</a> 后台启动</h3> <p>Linux 系统使用 systemd 作为启动服务器管理机制，首先把 Clash 可执行文件拷贝到 /usr/local/bin 目录，相关配置拷贝到 /etc/clash 目录。</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">sudo</span> <span class="token function">mkdir</span> /etc/clash
+<span class="token function">sudo</span> <span class="token function">cp</span> clash /usr/local/bin
+<span class="token function">sudo</span> <span class="token function">cp</span> config.yaml /etc/clash/
+<span class="token function">sudo</span> <span class="token function">cp</span> Country.mmdb /etc/clash/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>创建 systemd 服务配置文件 <code>sudo vim /etc/systemd/system/clash.service</code>：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[Unit]
+Description=Clash daemon, A rule-based proxy in Go.
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/local/bin/clash -d /etc/clash/
+# ExecStart=/usr/local/bin/clash -d /root/.config/clash/
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 重载 systemctl daemon</span>
+systemctl daemon-reload
+
+<span class="token comment"># 开机自启动</span>
+systemctl <span class="token builtin class-name">enable</span> clash
+
+<span class="token comment"># 启动</span>
+systemctl start clash
+
+<span class="token comment"># 重启 clash 服务</span>
+systemctl restart clash
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><ul><li>/root/.bashrc<div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 利用 Export 命令使用代理</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">https_proxy</span><span class="token operator">=</span>http://127.0.0.1:7890 <span class="token assign-left variable">http_proxy</span><span class="token operator">=</span>http://127.0.0.1:7890 <span class="token assign-left variable">all_proxy</span><span class="token operator">=</span>socks5://127.0.0.1:7890
+
+<span class="token comment"># 取消系统代理</span>
+<span class="token builtin class-name">unset</span> http_proxy https_proxy all_proxy
+
+<span class="token comment"># 对于某些ip或域名可以设置不走代理，如</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">no_proxy</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1,.devops.com,localhost,local,.local,172.28.0.0/16
+
+<span class="token comment"># 查看代理</span>
+<span class="token function">env</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-i</span> proxy
+
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">proxyon</span><span class="token operator">=</span><span class="token string">&quot;export http_proxy=http://127.0.0.1:7893;export https_proxy=http://127.0.0.1:7893;&quot;</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">proxyoff</span><span class="token operator">=</span><span class="token string">&quot;export http_proxy='';export https_proxy='';&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div></li> <li>外部控制：外部控制端口为 9090，因此也可以访问 <code>http://clash.razord.top/</code>，输入 IP 地址（需本机可以访问的 IP）以及端口号 9090，来进入 Clash Dashboard 进行节点的选择。
+<a href="https://clash.gitbook.io/doc" target="_blank" rel="noopener noreferrer">Clash RESTful API<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>查看运行日志:<div class="language-sh line-numbers-mode"><pre class="language-sh"><code>journalctl <span class="token parameter variable">-u</span> mihomo <span class="token parameter variable">-o</span> <span class="token function">cat</span> <span class="token parameter variable">-e</span>
+<span class="token comment"># 或者</span>
+journalctl <span class="token parameter variable">-u</span> mihomo <span class="token parameter variable">-o</span> <span class="token function">cat</span> <span class="token parameter variable">-f</span>
+<span class="token comment"># 或者</span>
+journalctl <span class="token parameter variable">-xe</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></li></ul> <p>参考链接：</p> <ul><li><a href="https://blog.iswiftai.com/posts/clash-linux/" target="_blank" rel="noopener noreferrer">在 Linux 中使用 Clash<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://little-star.love/posts/f2114751/" target="_blank" rel="noopener noreferrer">Linux 下使用 Clash 科学上网<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="docker"><a href="#docker" class="header-anchor">#</a> docker</h2> <h3 id="安装"><a href="#安装" class="header-anchor">#</a> 安装</h3> <ul><li><a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener noreferrer">Install Docker Engine on CentOS<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h3 id="代理"><a href="#代理" class="header-anchor">#</a> 代理</h3> <ul><li><a href="https://docs.docker.com/network/proxy/" target="_blank" rel="noopener noreferrer">Configure Docker to use a proxy server<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li><a href="https://docs.docker.com/config/daemon/proxy/" target="_blank" rel="noopener noreferrer">Configure the daemon to use a proxy<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul> <h3 id="国内镜像"><a href="#国内镜像" class="header-anchor">#</a> 国内镜像</h3> <ul><li><a href="https://www.cnblogs.com/reasonzzy/p/11127359.html" target="_blank" rel="noopener noreferrer">CentOS7-Docker 配置国内镜像源<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li><a href="https://cr.console.aliyun.com/cn-shanghai/instances/mirrors" target="_blank" rel="noopener noreferrer">阿里云镜像加速器<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul> <h2 id="firewalld"><a href="#firewalld" class="header-anchor">#</a> firewalld</h2> <p>firewall 的配置文件是以 xml 的格式存储在 <code>/usr/lib/firewalld/</code> 和 <code>/etc/firewalld/</code> 目录中。</p> <p>firewalld 的字符界面管理工具是 <code>firewall-cmd</code></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看状态</span>
+firewall-cmd <span class="token parameter variable">--state</span>
+systemctl status firewalld
+
+<span class="token comment"># 启动</span>
+systemctl start firewalld
+
+<span class="token comment"># 重启</span>
+systemctl restart firewalld
+
+<span class="token comment"># 停止</span>
+systemctl stop firewalld
+
+<span class="token comment"># 查看是否开机启动</span>
+systemctl is-enabled firewalld
+
+<span class="token comment"># 开启开机自启动</span>
+systemctl <span class="token builtin class-name">enable</span> firewalld
+
+<span class="token comment"># 关闭开机自启动</span>
+systemctl disable firewalld
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h3 id="配置防火墙"><a href="#配置防火墙" class="header-anchor">#</a> 配置防火墙</h3> <ul><li>方法一：直接修改配置文件 /etc/firewalld/zones/public.xml</li> <li>方法二：使用 firewall 命令</li></ul> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看防火墙所有信息</span>
+firewall-cmd --list-all
+
+<span class="token comment"># 查看所有打开的端口</span>
+firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --list-ports
+
+<span class="token comment"># 查看 3306 端口是否对外开放</span>
+firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --query-port<span class="token operator">=</span><span class="token number">3306</span>/tcp
+
+<span class="token comment"># 例如：对外开放/停止3306端口，供外部的计算机访问。</span>
+<span class="token comment"># 该命令方式添加的端口，可在 /etc/firewalld/zones 中的对应配置文件中得到体现</span>
+firewall-cmd <span class="token parameter variable">--permanent</span> <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">3306</span>/tcp
+firewall-cmd <span class="token parameter variable">--permanent</span> <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --remove-port<span class="token operator">=</span><span class="token number">3306</span>/tcp
+
+<span class="token comment"># 修改配置后需要重启防火墙</span>
+firewall-cmd <span class="token parameter variable">--reload</span>
+
+<span class="token comment"># 重启防火墙</span>
+systemctl restart firewalld
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="java"><a href="#java" class="header-anchor">#</a> java</h2> <p><a href="https://www.oracle.com/java/technologies/" target="_blank" rel="noopener noreferrer">java/technologies<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.oracle.com/cn/java/technologies/downloads/#java17" target="_blank" rel="noopener noreferrer">JDK Development Kit 17.0.12 downloads<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li><a href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz" target="_blank" rel="noopener noreferrer">x64 Compressed Archive<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># centos7.9 安装 java17</span>
+
+<span class="token comment"># 下载jdk</span>
+<span class="token comment"># 330730263@qq.com !1qaz@2WSX</span>
+<span class="token function">wget</span> https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+<span class="token comment"># 解压到安装目录</span>
+<span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> jdk-17_linux-x64_bin.tar.gz <span class="token parameter variable">-C</span> /usr/local/java
+
+<span class="token comment"># 配置环境变量</span>
+<span class="token function">vim</span> /etc/profile
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/local/java/jdk-17.0.16
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JRE_HOME</span><span class="token operator">=</span><span class="token variable">${JAVA_HOME}</span>/jre
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">${JAVA_HOME}</span>/lib:<span class="token variable">${JRE_HOME}</span>/lib
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token environment constant">$PATH</span>
+<span class="token builtin class-name">source</span> /etc/profile
+
+<span class="token comment"># 查看java版本</span>
+<span class="token function">java</span> <span class="token parameter variable">-version</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="redis"><a href="#redis" class="header-anchor">#</a> redis</h2> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">sudo</span> <span class="token parameter variable">-i</span>
+<span class="token builtin class-name">cd</span> /root/
+<span class="token function">wget</span> https://github.com/redis/redis/archive/refs/tags/8.2.1.tar.gz
+<span class="token function">tar</span> xzvf redis-8.2.1.tar.gz
+<span class="token builtin class-name">cd</span> redis-8.2.1
+<span class="token comment"># 进行主编译</span>
+<span class="token function">make</span>
+<span class="token comment"># 使用 PREFIX 参数指定安装目录</span>
+<span class="token function">make</span> <span class="token assign-left variable">PREFIX</span><span class="token operator">=</span>/usr/local/redis <span class="token function">install</span>
+
+<span class="token comment"># 创建 Redis 用户和组（可选但推荐）：为 Redis 服务创建一个专用的系统用户，降低安全风险。</span>
+<span class="token comment"># sudo groupadd redis</span>
+<span class="token comment"># sudo useradd -r -g redis -s /bin/false redis</span>
+
+<span class="token comment"># 创建配置文件、数据目录和日志目录</span>
+<span class="token comment"># sudo mkdir -p /etc/redis /var/lib/redis /var/log/redis</span>
+
+<span class="token comment"># 调整目录权限：将数据目录和日志目录的所有权交给 Redis 用户</span>
+<span class="token comment"># sudo chown -R redis:redis /var/lib/redis /var/log/redis</span>
+<span class="token comment"># sudo chmod 755 /var/lib/redis /var/log/redis</span>
+
+<span class="token comment"># 从 Redis 源码目录复制配置文件模板</span>
+<span class="token function">cp</span> /root/redis-7.2.0/redis.conf /etc/redis/
+<span class="token comment"># 修改配置文件</span>
+<span class="token function">vim</span> /etc/redis/redis.conf
+<span class="token builtin class-name">bind</span> <span class="token number">127.0</span>.0.1
+port <span class="token number">6379</span>
+daemonize <span class="token function">yes</span>
+protected-mode no
+logfile /var/log/redis.log
+pidfile /var/run/redis.pid
+loglevel notice
+save <span class="token number">900</span> <span class="token number">1</span>
+save <span class="token number">300</span> <span class="token number">10</span>
+stop-writes-on-bgsave-error <span class="token function">yes</span>
+appendonly <span class="token function">yes</span>
+appendfsync always
+auto-aof-rewrite-percentage <span class="token number">100</span>
+auto-aof-rewrite-min-size 64M
+maxmemory 2G
+maxmemory-policy volatile-lru
+maxclients <span class="token number">10000</span>
+maxmemory-samples <span class="token number">5</span>
+slaveof <span class="token number">192.168</span>.1.1 <span class="token number">6379</span>
+slave-serve-stale-data <span class="token function">yes</span>
+slave-read-only <span class="token function">yes</span>
+slave-priority <span class="token number">100</span>
+slave-announce-port <span class="token number">6379</span>
+slave-lazy-flush <span class="token function">yes</span>
+slave-repl-timeout <span class="token number">60</span>
+slave-recovery-timeout <span class="token number">60</span>
+slave-announce-ip <span class="token number">192.168</span>.1.1
+slave-ignore-maxmemory <span class="token function">yes</span>
+slave-lazy-free-list-length <span class="token number">20</span>
+
+<span class="token comment"># 调整内核参数（可选但推荐）：防止 Redis 在低内存环境下启动失败，设置 vm.overcommit_memory=1</span>
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;vm.overcommit_memory=1&quot;</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> <span class="token parameter variable">-a</span> /etc/sysctl.conf
+<span class="token function">sudo</span> <span class="token function">sysctl</span> <span class="token parameter variable">-p</span>
+
+<span class="token comment"># 启动</span>
+/usr/local/redis/bin/redis-server /etc/redis/redis.conf
+
+<span class="token comment"># 系统服务集成与管理，配置 systemd 服务单元：创建服务文件 sudo vim /etc/systemd/system/redis.service</span>
+<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>Redis In-Memory Data Store
+<span class="token assign-left variable">After</span><span class="token operator">=</span>network.target
+
+<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+<span class="token comment"># User 和 Group 设置为之前创建的 redis</span>
+<span class="token assign-left variable">User</span><span class="token operator">=</span>redis
+<span class="token assign-left variable">Group</span><span class="token operator">=</span>redis
+<span class="token comment"># ExecStart 命令中使用了 --daemonize no，这是因为使用 systemd 管理服务时，不应让 Redis 自身进入守护进程模式，而是由 systemd 来监控前台进程。</span>
+<span class="token comment"># --supervised systemd 选项可以让 Redis 以更好的方式与 systemd 集成。</span>
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/local/redis/bin/redis-server /etc/redis/redis.conf <span class="token parameter variable">--daemonize</span> no <span class="token parameter variable">--supervised</span> systemd
+<span class="token assign-left variable">ExecStop</span><span class="token operator">=</span>/usr/local/redis/bin/redis-cli <span class="token function">shutdown</span>
+<span class="token assign-left variable">Restart</span><span class="token operator">=</span>always
+<span class="token assign-left variable">RestartSec</span><span class="token operator">=</span><span class="token number">3</span>
+<span class="token assign-left variable">Type</span><span class="token operator">=</span>notify
+
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br></div></div><h2 id="ffmpeg"><a href="#ffmpeg" class="header-anchor">#</a> ffmpeg</h2> <p><a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer">FFmpeg<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://json2video.com/how-to/ffmpeg-course/install-ffmpeg-linux.html" target="_blank" rel="noopener noreferrer">How to install FFMPEG on Linux<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener noreferrer">Compile FFmpeg on CentOS<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://blog.csdn.net/just4you/article/details/109251722" target="_blank" rel="noopener noreferrer">CentOS 7.6中使用ffmpeg将视频由mp4格式转为m3u8格式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 以下操作均在 /usr/local/src 目录进行</span>
+<span class="token comment"># 1. 下载&amp;安装nasm：用于编译x264</span>
+<span class="token function">wget</span> https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/nasm-2.16.03.tar.gz
+<span class="token comment"># 解压</span>
+<span class="token function">tar</span> xzvf nasm-2.16.03.tar.gz
+<span class="token builtin class-name">cd</span> nasm-2.16.03
+<span class="token comment"># 配置</span>
+./configure
+<span class="token comment"># 编译&amp;&amp;安装</span>
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span>
+
+<span class="token comment"># 2. 下载&amp;安装x264：用于视频编码</span>
+<span class="token function">git</span> clone https://code.videolan.org/videolan/x264.git
+<span class="token builtin class-name">cd</span> x264
+<span class="token comment"># 配置</span>
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/x264/ <span class="token parameter variable">--includedir</span><span class="token operator">=</span>/usr/local/include <span class="token parameter variable">--libdir</span><span class="token operator">=</span>/usr/local/lib --enable-shared
+<span class="token comment"># 编译&amp;&amp;安装</span>
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span>
+
+<span class="token comment"># 3. 下载&amp;安装ffmpeg</span>
+<span class="token comment"># wget http://www.ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz</span>
+<span class="token function">wget</span> https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+<span class="token comment"># 解压</span>
+<span class="token function">tar</span> xvJf ffmpeg-7.1.tar.xz
+<span class="token builtin class-name">cd</span> ffmpeg-7.1
+<span class="token comment">#配置</span>
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/local/ffmpeg --enable-gpl --enable-shared  --enable-libx264
+<span class="token comment"># 编译&amp;&amp;安装</span>
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">10/20/2025, 9:00:44 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/other/shell.html" class="prev">
+        Shell
+      </a></span> <span class="next"><a href="/blog/other/docker.html">
+        Docker
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.3ac1a8f7.js" defer></script><script src="/blog/assets/js/2.9fdd9b45.js" defer></script><script src="/blog/assets/js/1.e1286724.js" defer></script><script src="/blog/assets/js/63.b62f8e69.js" defer></script>
+  </body>
+</html>

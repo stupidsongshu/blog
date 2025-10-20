@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>事务 | Blog</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="summerycicada">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fed69db2.css" as="style"><link rel="preload" href="/blog/assets/js/app.3ac1a8f7.js" as="script"><link rel="preload" href="/blog/assets/js/2.9fdd9b45.js" as="script"><link rel="preload" href="/blog/assets/js/1.e1286724.js" as="script"><link rel="preload" href="/blog/assets/js/59.e6cb1ef0.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.03af4b50.js"><link rel="prefetch" href="/blog/assets/js/11.dac88931.js"><link rel="prefetch" href="/blog/assets/js/12.b04b0c9e.js"><link rel="prefetch" href="/blog/assets/js/13.c4cff8fa.js"><link rel="prefetch" href="/blog/assets/js/14.8f840785.js"><link rel="prefetch" href="/blog/assets/js/15.c773a7e9.js"><link rel="prefetch" href="/blog/assets/js/16.3503c883.js"><link rel="prefetch" href="/blog/assets/js/17.0101170a.js"><link rel="prefetch" href="/blog/assets/js/18.6c66d7a8.js"><link rel="prefetch" href="/blog/assets/js/19.6ccc9a2f.js"><link rel="prefetch" href="/blog/assets/js/20.b8537bd1.js"><link rel="prefetch" href="/blog/assets/js/21.637166bb.js"><link rel="prefetch" href="/blog/assets/js/22.e1833d63.js"><link rel="prefetch" href="/blog/assets/js/23.af7da6f3.js"><link rel="prefetch" href="/blog/assets/js/24.55a3be51.js"><link rel="prefetch" href="/blog/assets/js/25.cd72c1a5.js"><link rel="prefetch" href="/blog/assets/js/26.bb7271b1.js"><link rel="prefetch" href="/blog/assets/js/27.b3407221.js"><link rel="prefetch" href="/blog/assets/js/28.c9b387f1.js"><link rel="prefetch" href="/blog/assets/js/29.3a6e00bd.js"><link rel="prefetch" href="/blog/assets/js/3.3f3c2db2.js"><link rel="prefetch" href="/blog/assets/js/30.afdc8abd.js"><link rel="prefetch" href="/blog/assets/js/31.84633648.js"><link rel="prefetch" href="/blog/assets/js/32.7ff3c83c.js"><link rel="prefetch" href="/blog/assets/js/33.70dd9e26.js"><link rel="prefetch" href="/blog/assets/js/34.e82940cd.js"><link rel="prefetch" href="/blog/assets/js/35.c2bf1e2a.js"><link rel="prefetch" href="/blog/assets/js/36.2d56a748.js"><link rel="prefetch" href="/blog/assets/js/37.d2295b33.js"><link rel="prefetch" href="/blog/assets/js/38.d46fe9a1.js"><link rel="prefetch" href="/blog/assets/js/39.0ce93f8f.js"><link rel="prefetch" href="/blog/assets/js/4.4f191d45.js"><link rel="prefetch" href="/blog/assets/js/40.94a941f8.js"><link rel="prefetch" href="/blog/assets/js/41.1c0c3411.js"><link rel="prefetch" href="/blog/assets/js/42.d31ee855.js"><link rel="prefetch" href="/blog/assets/js/43.89d530e0.js"><link rel="prefetch" href="/blog/assets/js/44.e560e942.js"><link rel="prefetch" href="/blog/assets/js/45.39640666.js"><link rel="prefetch" href="/blog/assets/js/46.d7fc6a7d.js"><link rel="prefetch" href="/blog/assets/js/47.926e1753.js"><link rel="prefetch" href="/blog/assets/js/48.e08c3dbc.js"><link rel="prefetch" href="/blog/assets/js/49.8a3d675d.js"><link rel="prefetch" href="/blog/assets/js/5.664bef26.js"><link rel="prefetch" href="/blog/assets/js/50.8225ed1c.js"><link rel="prefetch" href="/blog/assets/js/51.58c49f62.js"><link rel="prefetch" href="/blog/assets/js/52.c794fb9e.js"><link rel="prefetch" href="/blog/assets/js/53.6ff0634b.js"><link rel="prefetch" href="/blog/assets/js/54.f5b1739b.js"><link rel="prefetch" href="/blog/assets/js/55.a7771b59.js"><link rel="prefetch" href="/blog/assets/js/56.ca711a1b.js"><link rel="prefetch" href="/blog/assets/js/57.9d7f1b34.js"><link rel="prefetch" href="/blog/assets/js/58.daad99dd.js"><link rel="prefetch" href="/blog/assets/js/6.51d5dc40.js"><link rel="prefetch" href="/blog/assets/js/60.58a83f0c.js"><link rel="prefetch" href="/blog/assets/js/61.1d0ebe51.js"><link rel="prefetch" href="/blog/assets/js/62.275c2cd8.js"><link rel="prefetch" href="/blog/assets/js/63.b62f8e69.js"><link rel="prefetch" href="/blog/assets/js/64.de2d1bc4.js"><link rel="prefetch" href="/blog/assets/js/65.b55a7d66.js"><link rel="prefetch" href="/blog/assets/js/66.3ddf3593.js"><link rel="prefetch" href="/blog/assets/js/67.1f68d90a.js"><link rel="prefetch" href="/blog/assets/js/68.690ec4ef.js"><link rel="prefetch" href="/blog/assets/js/69.8b78e800.js"><link rel="prefetch" href="/blog/assets/js/7.99830abf.js"><link rel="prefetch" href="/blog/assets/js/70.df11d166.js"><link rel="prefetch" href="/blog/assets/js/71.f5b30268.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.cc58001a.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fed69db2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link router-link-active">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link router-link-active">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/mysql/" aria-current="page" class="sidebar-link">MySQL</a></li><li><a href="/blog/mysql/function.html" class="sidebar-link">函数</a></li><li><a href="/blog/mysql/subquery.html" class="sidebar-link">子查询</a></li><li><a href="/blog/mysql/join.html" class="sidebar-link">连接查询</a></li><li><a href="/blog/mysql/sql.html" class="sidebar-link">必知必会</a></li><li><a href="/blog/mysql/dbi.html" class="sidebar-link">索引</a></li><li><a href="/blog/mysql/transaction.html" aria-current="page" class="active sidebar-link">事务</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/mysql/transaction.html#事务的特性-acid" class="sidebar-link">事务的特性 ACID</a></li><li class="sidebar-sub-header"><a href="/blog/mysql/transaction.html#事务的控制" class="sidebar-link">事务的控制</a></li><li class="sidebar-sub-header"><a href="/blog/mysql/transaction.html#事务并发" class="sidebar-link">事务并发</a></li><li class="sidebar-sub-header"><a href="/blog/mysql/transaction.html#事务隔离级别" class="sidebar-link">事务隔离级别</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="事务"><a href="#事务" class="header-anchor">#</a> 事务</h1> <p>在 MySQL 5.5 版本之前，默认的存储引擎是 MyISAM，在 5.5 版本之后默认存储引擎是 <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html" target="_blank" rel="noopener noreferrer">InnoDB<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。InnoDB 和 MyISAM 区别之一就是 InnoDB 支持事务，也可以说这是 InnoDB 取代 MyISAM 的重要原因。</p> <p>事务保证了一次处理的完整性，也保证了数据库中的数据一致性。它是一种高级的数据处理方式，如果我们在增加、删除、修改的时候某一个环节出了错，它允许我们回滚还原。正是因为这个特点，事务非常适合应用在安全性高的场景里，比如金融行业等。</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查看存储引擎（可以看到 MySQL 中只有 InnoDB 支持事务）</span>
+<span class="token keyword">SHOW</span> ENGINES<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Engine</span>             <span class="token operator">|</span> Support <span class="token operator">|</span> <span class="token keyword">Comment</span>                                                        <span class="token operator">|</span> <span class="token keyword">Transactions</span> <span class="token operator">|</span> XA   <span class="token operator">|</span> Savepoints <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span>
+<span class="token operator">|</span> ndbcluster         <span class="token operator">|</span> <span class="token keyword">NO</span>      <span class="token operator">|</span> <span class="token keyword">Clustered</span><span class="token punctuation">,</span> fault<span class="token operator">-</span>tolerant <span class="token keyword">tables</span>                               <span class="token operator">|</span> <span class="token boolean">NULL</span>         <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> FEDERATED          <span class="token operator">|</span> <span class="token keyword">NO</span>      <span class="token operator">|</span> Federated MySQL storage <span class="token keyword">engine</span>                                 <span class="token operator">|</span> <span class="token boolean">NULL</span>         <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> MEMORY             <span class="token operator">|</span> YES     <span class="token operator">|</span> <span class="token keyword">Hash</span> based<span class="token punctuation">,</span> stored <span class="token operator">in</span> memory<span class="token punctuation">,</span> useful <span class="token keyword">for</span> <span class="token keyword">temporary</span> <span class="token keyword">tables</span>      <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">InnoDB</span>             <span class="token operator">|</span> <span class="token keyword">DEFAULT</span> <span class="token operator">|</span> Supports <span class="token keyword">transactions</span><span class="token punctuation">,</span> <span class="token keyword">row</span><span class="token operator">-</span><span class="token keyword">level</span> locking<span class="token punctuation">,</span> <span class="token operator">and</span> <span class="token keyword">foreign</span> <span class="token keyword">keys</span>     <span class="token operator">|</span> YES          <span class="token operator">|</span> YES  <span class="token operator">|</span> YES        <span class="token operator">|</span>
+<span class="token operator">|</span> PERFORMANCE_SCHEMA <span class="token operator">|</span> YES     <span class="token operator">|</span> Performance <span class="token keyword">Schema</span>                                             <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> MyISAM             <span class="token operator">|</span> YES     <span class="token operator">|</span> MyISAM storage <span class="token keyword">engine</span>                                          <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> ndbinfo            <span class="token operator">|</span> <span class="token keyword">NO</span>      <span class="token operator">|</span> MySQL Cluster system information storage <span class="token keyword">engine</span>                <span class="token operator">|</span> <span class="token boolean">NULL</span>         <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token boolean">NULL</span>       <span class="token operator">|</span>
+<span class="token operator">|</span> MRG_MYISAM         <span class="token operator">|</span> YES     <span class="token operator">|</span> Collection <span class="token keyword">of</span> identical MyISAM <span class="token keyword">tables</span>                          <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> BLACKHOLE          <span class="token operator">|</span> YES     <span class="token operator">|</span> <span class="token operator">/</span>dev<span class="token operator">/</span><span class="token boolean">null</span> storage <span class="token keyword">engine</span> <span class="token punctuation">(</span>anything you <span class="token keyword">write</span> <span class="token keyword">to</span> it disappears<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> CSV                <span class="token operator">|</span> YES     <span class="token operator">|</span> CSV storage <span class="token keyword">engine</span>                                             <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">|</span> ARCHIVE            <span class="token operator">|</span> YES     <span class="token operator">|</span> Archive storage <span class="token keyword">engine</span>                                         <span class="token operator">|</span> <span class="token keyword">NO</span>           <span class="token operator">|</span> <span class="token keyword">NO</span>   <span class="token operator">|</span> <span class="token keyword">NO</span>         <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h2 id="事务的特性-acid"><a href="#事务的特性-acid" class="header-anchor">#</a> <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-acid.html" target="_blank" rel="noopener noreferrer">事务的特性 ACID<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></h2> <ul><li>A 是<strong>原子性</strong>（<code>Atomicity</code>）。原子的概念就是不可分割，可以把它理解为组成物质的基本单位，也是进行数据处理操作的基本单位。</li> <li>C 是<strong>一致性</strong>（<code>Consistency</code>）。一致性指的就是数据库在进行事务操作后，会由原来的一致状态，变成另一种一致的状态。也就是说当事务提交后，或者当事务发生回滚后，数据库的完整性约束不能被破坏。</li> <li>I 是<strong>隔离性</strong>（<code>Isolation</code>）。它指的是每个事务都是彼此独立的，不会受到其他事务的执行影响。也就是说一个事务在提交之前，对其他事务都是不可见的。</li> <li>D 是<strong>持久性</strong>（<code>Durability</code>）。事务提交之后对数据的修改是持久性的，即使在系统出故障的情况下，比如系统崩溃或者存储介质发生故障，数据的修改依然是有效的。因为当事务完成，数据库的日志就会被更新，这时可以通过日志，让系统恢复到最后一次成功的更新状态。</li></ul> <p>ACID 可以说是事务的四大特性，在这四个特性中，原子性是基础，隔离性是手段，一致性是约束条件，持久性是目的。</p> <h2 id="事务的控制"><a href="#事务的控制" class="header-anchor">#</a> 事务的控制</h2> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 显式开启一个事务</span>
+<span class="token keyword">START</span> <span class="token keyword">TRANSACTION</span> 或者 <span class="token keyword">BEGIN</span>
+
+<span class="token comment">-- 提交事务。当提交事务后，对数据库的修改是永久性的。</span>
+<span class="token keyword">COMMIT</span>
+
+<span class="token comment">-- 回滚事务。撤销正在进行的所有没有提交的修改，或者将事务回滚到某个保存点。</span>
+<span class="token comment">-- SAVEPOINT：在事务中创建保存点，方便后续针对保存点进行回滚。一个事务中可以存在多个保存点。</span>
+<span class="token keyword">ROLLBACK</span> 或者 <span class="token keyword">ROLLBACK</span> <span class="token keyword">TO</span> <span class="token punctuation">[</span><span class="token keyword">SAVEPOINT</span><span class="token punctuation">]</span>
+
+<span class="token comment">-- 删除某个保存点</span>
+<span class="token keyword">RELEASE</span> <span class="token keyword">SAVEPOINT</span>
+
+<span class="token comment">-- 设置事务的隔离级别</span>
+<span class="token keyword">SET</span> <span class="token keyword">TRANSACTION</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="autocommit"><a href="#autocommit" class="header-anchor">#</a> <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-autocommit-commit-rollback.html" target="_blank" rel="noopener noreferrer">autocommit<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></h3> <p>事务有两种方式，分别为<strong>隐式事务</strong>和<strong>显式事务</strong>。隐式事务实际上就是自动提交，Oracle 默认不自动提交，需要手写 COMMIT 命令，而 <strong>MySQL 默认自动提交</strong>（即在 MySQL 中当 autocommit=1 时，每条 SQL 语句都会自动进行提交）。</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 默认情况下</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@autocommit</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@autocommit</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'autocommit'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> Variable_name <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> autocommit    <span class="token operator">|</span> <span class="token keyword">ON</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 关闭自动提交</span>
+<span class="token keyword">SET</span> autocommit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> @<span class="token variable">@autocommit</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@autocommit</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span>            <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'autocommit'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> Variable_name <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> autocommit    <span class="token operator">|</span> <span class="token keyword">OFF</span>   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 开启自动提交</span>
+<span class="token keyword">SET</span> autocommit <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> @<span class="token variable">@autocommit</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@autocommit</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'autocommit'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> Variable_name <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+<span class="token operator">|</span> autocommit    <span class="token operator">|</span> <span class="token keyword">ON</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h3 id="completion-type"><a href="#completion-type" class="header-anchor">#</a> completion_type</h3> <ul><li>completion=0 是<strong>默认情况</strong>。也就是说当执行 <code>COMMIT</code> 的时候会提交事务，在执行下一个事务时，还需要使用 <code>START TRANSACTION</code> 或者 <code>BEGIN</code> 来开启。<div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 默认情况下</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@completion_type</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@completion_type</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> NO_CHAIN          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'completion_type'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------+----------+</span>
+<span class="token operator">|</span> Variable_name   <span class="token operator">|</span> <span class="token keyword">Value</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+----------+</span>
+<span class="token operator">|</span> completion_type <span class="token operator">|</span> NO_CHAIN <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+----------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div></li> <li>completion=1 时，在提交事务后，相当于执行了 <code>COMMIT AND CHAIN</code>，也就是开启一个<strong>链式事务</strong>，即在提交事务之后会开启一个相同隔离级别的事务（换种说法是在提交之后相当于在下一行写了一个 <code>START TRANSACTION</code> 或 <code>BEGIN</code>）。<div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 设置为 1</span>
+<span class="token keyword">SET</span> @<span class="token variable">@completion_type</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> @<span class="token variable">@completion_type</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@completion_type</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">CHAIN</span>             <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'completion_type'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------+-------+</span>
+<span class="token operator">|</span> Variable_name   <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+-------+</span>
+<span class="token operator">|</span> completion_type <span class="token operator">|</span> <span class="token keyword">CHAIN</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+-------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div></li> <li>completion=2 时， COMMIT=<code>COMMIT AND RELEASE</code>，也就是在提交后会自动与服务器断开连接。<div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 设置为 2</span>
+<span class="token keyword">SET</span> @<span class="token variable">@completion_type</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> @<span class="token variable">@completion_type</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@completion_type</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">RELEASE</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'completion_type'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------+---------+</span>
+<span class="token operator">|</span> Variable_name   <span class="token operator">|</span> <span class="token keyword">Value</span>   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+---------+</span>
+<span class="token operator">|</span> completion_type <span class="token operator">|</span> <span class="token keyword">RELEASE</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------+---------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div></li></ul> <h2 id="事务并发"><a href="#事务并发" class="header-anchor">#</a> 事务并发</h2> <p>SQL-92 标准中定义了事务并发处理时存在的 3 种异常情况：</p> <ul><li>脏读（Dirty Read）：读到了其他事务还没有提交的数据（事务A会读到事务B未提交的数据，在事务B回滚后，事务A读到的就是脏数据）。</li> <li>不可重复读（Nonrepeatable Read）：对某数据进行读取，发现两次读取的结果不同，也就是说没有读到相同的内容。这是因为有其他事务对这个数据同时进行了修改或删除。</li> <li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-next-key-locking.html" target="_blank" rel="noopener noreferrer">幻读（Phantom Read）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>：事务 A 根据条件查询得到了 N 条数据，但此时事务 B 更改或者增加了 M 条符合事务 A 查询条件的数据，这样当事务 A 再次进行查询的时候发现会有 N+M 条数据，产生了幻读。</li></ul> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>不可重复读和幻读都是在先后两次读取的时候发现不一致的情况，但是两种读取略有差别：</p> <p>不可重复读是同一条记录的内容被修改了，重点在于UPDATE或DELETE</p> <p>幻读是查询某一个范围的数据行变多了或者少了，重点在于INSERT</p></div> <h2 id="事务隔离级别"><a href="#事务隔离级别" class="header-anchor">#</a> <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html" target="_blank" rel="noopener noreferrer">事务隔离级别<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></h2> <p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1179611198786848" target="_blank" rel="noopener noreferrer">🔥 廖雪峰-事务Demo<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>SQL-92 标准定义了 4 种隔离级别来解决这些异常情况：</p> <ul><li>读未提交（READ UNCOMMITTED ）：允许读到未提交的数据，这种情况下查询是不会使用锁的，可能会产生脏读、不可重复读、幻读等情况。</li> <li>读已提交（READ COMMITTED）：只能读到已经提交的内容，可以避免脏读的产生，属于 RDBMS 中<strong>常见的默认隔离级别</strong>（比如 <code>Oracle</code>和 <code>SQL Server</code>），但如果想要避免不可重复读或者幻读，就需要在 SQL 查询的时候编写带加锁的 SQL 语句。</li> <li>可重复读（REPEATABLE READ）：保证一个事务在相同查询条件下两次查询得到的数据结果是一致的，可以避免不可重复读和脏读，但无法避免幻读。<strong><code>MySQL</code> 默认的隔离级别就是可重复读</strong>。</li> <li>可串行化（SERIALIZABLE）：将事务进行串行化，也就是在一个队列中按照顺序执行，可串行化是最高级别的隔离等级，可以解决事务读取中所有可能出现的异常情况，但是它牺牲了系统的并发性。</li></ul> <table><thead><tr><th></th> <th>脏读</th> <th>不可重复读</th> <th>幻读</th></tr></thead> <tbody><tr><td>读未提交（READ UNCOMMITTED ）</td> <td>允许</td> <td>允许</td> <td>允许</td></tr> <tr><td>读已提交（READ COMMITTED）</td> <td>禁止</td> <td>允许</td> <td>允许</td></tr> <tr><td>可重复读（REPEATABLE READ）</td> <td>禁止</td> <td>禁止</td> <td>允许</td></tr> <tr><td>可串行化（SERIALIZABLE）</td> <td>禁止</td> <td>禁止</td> <td>禁止</td></tr></tbody></table> <p>可串行化能避免所有的异常情况，而读未提交则允许异常情况发生。</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查看下当前会话的隔离级别</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@transaction_isolation</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@transaction_isolation</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">REPEATABLE</span><span class="token operator">-</span><span class="token keyword">READ</span>         <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'transaction_isolation'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+-----------------+</span>
+<span class="token operator">|</span> Variable_name         <span class="token operator">|</span> <span class="token keyword">Value</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+-----------------+</span>
+<span class="token operator">|</span> transaction_isolation <span class="token operator">|</span> <span class="token keyword">REPEATABLE</span><span class="token operator">-</span><span class="token keyword">READ</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+-----------------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 设置当前会话的隔离级别（降到最低）</span>
+<span class="token keyword">SET</span> <span class="token keyword">SESSION</span> <span class="token keyword">TRANSACTION</span> <span class="token keyword">ISOLATION</span> <span class="token keyword">LEVEL</span> <span class="token keyword">READ</span> <span class="token keyword">UNCOMMITTED</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SHOW</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'transaction_isolation'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+------------------+</span>
+<span class="token operator">|</span> Variable_name         <span class="token operator">|</span> <span class="token keyword">Value</span>            <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+------------------+</span>
+<span class="token operator">|</span> transaction_isolation <span class="token operator">|</span> <span class="token keyword">READ</span><span class="token operator">-</span><span class="token keyword">UNCOMMITTED</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+------------------+</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>隔离级别越低，意味着系统吞吐量（并发程度）越大，但同时也意味着出现异常问题的可能性会更大。在实际使用过程中我们往往需要在性能和正确性上进行权衡和取舍，没有完美的解决方案，只有适合与否。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/13/2024, 6:33:18 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/mysql/dbi.html" class="prev">
+        索引
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.3ac1a8f7.js" defer></script><script src="/blog/assets/js/2.9fdd9b45.js" defer></script><script src="/blog/assets/js/1.e1286724.js" defer></script><script src="/blog/assets/js/59.e6cb1ef0.js" defer></script>
+  </body>
+</html>

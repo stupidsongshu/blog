@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>子查询 | Blog</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="summerycicada">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fed69db2.css" as="style"><link rel="preload" href="/blog/assets/js/app.3ac1a8f7.js" as="script"><link rel="preload" href="/blog/assets/js/2.9fdd9b45.js" as="script"><link rel="preload" href="/blog/assets/js/1.e1286724.js" as="script"><link rel="preload" href="/blog/assets/js/58.daad99dd.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.03af4b50.js"><link rel="prefetch" href="/blog/assets/js/11.dac88931.js"><link rel="prefetch" href="/blog/assets/js/12.b04b0c9e.js"><link rel="prefetch" href="/blog/assets/js/13.c4cff8fa.js"><link rel="prefetch" href="/blog/assets/js/14.8f840785.js"><link rel="prefetch" href="/blog/assets/js/15.c773a7e9.js"><link rel="prefetch" href="/blog/assets/js/16.3503c883.js"><link rel="prefetch" href="/blog/assets/js/17.0101170a.js"><link rel="prefetch" href="/blog/assets/js/18.6c66d7a8.js"><link rel="prefetch" href="/blog/assets/js/19.6ccc9a2f.js"><link rel="prefetch" href="/blog/assets/js/20.b8537bd1.js"><link rel="prefetch" href="/blog/assets/js/21.637166bb.js"><link rel="prefetch" href="/blog/assets/js/22.e1833d63.js"><link rel="prefetch" href="/blog/assets/js/23.af7da6f3.js"><link rel="prefetch" href="/blog/assets/js/24.55a3be51.js"><link rel="prefetch" href="/blog/assets/js/25.cd72c1a5.js"><link rel="prefetch" href="/blog/assets/js/26.bb7271b1.js"><link rel="prefetch" href="/blog/assets/js/27.b3407221.js"><link rel="prefetch" href="/blog/assets/js/28.c9b387f1.js"><link rel="prefetch" href="/blog/assets/js/29.3a6e00bd.js"><link rel="prefetch" href="/blog/assets/js/3.3f3c2db2.js"><link rel="prefetch" href="/blog/assets/js/30.afdc8abd.js"><link rel="prefetch" href="/blog/assets/js/31.84633648.js"><link rel="prefetch" href="/blog/assets/js/32.7ff3c83c.js"><link rel="prefetch" href="/blog/assets/js/33.70dd9e26.js"><link rel="prefetch" href="/blog/assets/js/34.e82940cd.js"><link rel="prefetch" href="/blog/assets/js/35.c2bf1e2a.js"><link rel="prefetch" href="/blog/assets/js/36.2d56a748.js"><link rel="prefetch" href="/blog/assets/js/37.d2295b33.js"><link rel="prefetch" href="/blog/assets/js/38.d46fe9a1.js"><link rel="prefetch" href="/blog/assets/js/39.0ce93f8f.js"><link rel="prefetch" href="/blog/assets/js/4.4f191d45.js"><link rel="prefetch" href="/blog/assets/js/40.94a941f8.js"><link rel="prefetch" href="/blog/assets/js/41.1c0c3411.js"><link rel="prefetch" href="/blog/assets/js/42.d31ee855.js"><link rel="prefetch" href="/blog/assets/js/43.89d530e0.js"><link rel="prefetch" href="/blog/assets/js/44.e560e942.js"><link rel="prefetch" href="/blog/assets/js/45.39640666.js"><link rel="prefetch" href="/blog/assets/js/46.d7fc6a7d.js"><link rel="prefetch" href="/blog/assets/js/47.926e1753.js"><link rel="prefetch" href="/blog/assets/js/48.e08c3dbc.js"><link rel="prefetch" href="/blog/assets/js/49.8a3d675d.js"><link rel="prefetch" href="/blog/assets/js/5.664bef26.js"><link rel="prefetch" href="/blog/assets/js/50.8225ed1c.js"><link rel="prefetch" href="/blog/assets/js/51.58c49f62.js"><link rel="prefetch" href="/blog/assets/js/52.c794fb9e.js"><link rel="prefetch" href="/blog/assets/js/53.6ff0634b.js"><link rel="prefetch" href="/blog/assets/js/54.f5b1739b.js"><link rel="prefetch" href="/blog/assets/js/55.a7771b59.js"><link rel="prefetch" href="/blog/assets/js/56.ca711a1b.js"><link rel="prefetch" href="/blog/assets/js/57.9d7f1b34.js"><link rel="prefetch" href="/blog/assets/js/59.e6cb1ef0.js"><link rel="prefetch" href="/blog/assets/js/6.51d5dc40.js"><link rel="prefetch" href="/blog/assets/js/60.58a83f0c.js"><link rel="prefetch" href="/blog/assets/js/61.1d0ebe51.js"><link rel="prefetch" href="/blog/assets/js/62.275c2cd8.js"><link rel="prefetch" href="/blog/assets/js/63.b62f8e69.js"><link rel="prefetch" href="/blog/assets/js/64.de2d1bc4.js"><link rel="prefetch" href="/blog/assets/js/65.b55a7d66.js"><link rel="prefetch" href="/blog/assets/js/66.3ddf3593.js"><link rel="prefetch" href="/blog/assets/js/67.1f68d90a.js"><link rel="prefetch" href="/blog/assets/js/68.690ec4ef.js"><link rel="prefetch" href="/blog/assets/js/69.8b78e800.js"><link rel="prefetch" href="/blog/assets/js/7.99830abf.js"><link rel="prefetch" href="/blog/assets/js/70.df11d166.js"><link rel="prefetch" href="/blog/assets/js/71.f5b30268.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.cc58001a.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fed69db2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link router-link-active">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link router-link-active">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" class="nav-link">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/mysql/" aria-current="page" class="sidebar-link">MySQL</a></li><li><a href="/blog/mysql/function.html" class="sidebar-link">函数</a></li><li><a href="/blog/mysql/subquery.html" aria-current="page" class="active sidebar-link">子查询</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/mysql/subquery.html#子查询" class="sidebar-link">子查询</a></li></ul></li><li><a href="/blog/mysql/join.html" class="sidebar-link">连接查询</a></li><li><a href="/blog/mysql/sql.html" class="sidebar-link">必知必会</a></li><li><a href="/blog/mysql/dbi.html" class="sidebar-link">索引</a></li><li><a href="/blog/mysql/transaction.html" class="sidebar-link">事务</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="子查询"><a href="#子查询" class="header-anchor">#</a> 子查询</h2> <p>子查询(SubQuery)是指出现在其他 SQL 语句内的 SELECT 子句。</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t1 <span class="token keyword">WHERE</span> col1<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> col2 <span class="token keyword">FROM</span> t2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 其中，SELECT * FROM t1 称为 Outer Query/Outer Statement</span>
+<span class="token comment"># SELECT col2 FROM t2 称为 SubQuery</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li>子查询指嵌套在查询内部，且必须始终出现在圆括号内</li> <li>子查询可以包含多个关键字或条件，如 DISTINCT、GROUP BY、ORDER BY、LIMIT、函数等</li> <li>子查询的外层查询可以是：SELECT, INSERT, UPDATE, SET, DO</li> <li>子查询可以返回标量、一行、一列、子查询</li></ul> <p>子查询可以依据执行的次数划分为<strong>非关联子查询</strong>和<strong>关联子查询</strong>。（<strong>非关联子查询</strong>与主查询的执行无关，只需要执行一次即可；而<strong>关联子查询</strong>，则需要将主查询的字段值传入子查询中进行关联查询。）</p> <ul><li><strong>非关联子查询</strong>：子查询从数据表中查询了数据结果，如果这个数据结果只执行一次，然后这个数据结果作为主查询的条件进行执行，那么这样的子查询叫做<strong>非关联子查询</strong>。</li> <li><strong>关联子查询</strong>：同样，如果子查询需要执行多次，即采用循环的方式，先从外部查询开始，每次都传入子查询进行查询，然后再将结果反馈给外部，这种嵌套的执行方式就称为<strong>关联子查询</strong>。</li></ul> <h3 id="exists-子查询"><a href="#exists-子查询" class="header-anchor">#</a> EXISTS 子查询</h3> <p>关联子查询通常也会和 <code>EXISTS</code> 一起来使用，<code>EXISTS</code> 子查询用来判断条件是否满足，满足的话为 <code>True</code>，不满足为 <code>False</code>。同样，<code>NOT EXISTS</code> 是不存在的意思。</p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查询出场过的球员都有哪些，并且显示他们的姓名、球员 ID 和球队 ID</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>team_id<span class="token punctuation">,</span>player_name
+<span class="token keyword">FROM</span> player
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> player_id <span class="token keyword">FROM</span> player_score <span class="token keyword">WHERE</span> player<span class="token punctuation">.</span>player_id<span class="token operator">=</span>player_score<span class="token punctuation">.</span>player_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="使用比较运算符的子查询"><a href="#使用比较运算符的子查询" class="header-anchor">#</a> 使用比较运算符的子查询</h3> <p>比较运算符：<code>=</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code>、<code>!=</code>、<code>&lt;&gt;</code>、<code>&lt;=&gt;</code></p> <p>语法结构：operand comparison_operator [ANY | SOME | ALL] (subquery)</p> <p>用 <code>ANY</code>, <code>SOME</code>, <code>ALL</code> 修饰（<code>ANY</code> 与 <code>SOME</code> 相同）</p> <h3 id="集合比较子查询"><a href="#集合比较子查询" class="header-anchor">#</a> 集合比较子查询</h3> <p>集合比较子查询的作用是与另一个查询结果集进行比较，我们可以在子查询中使用 <code>IN</code>、<code>ANY</code>、<code>ALL</code> 和 <code>SOME</code> 操作符</p> <p>语法结构：operand comparison_operator [[NOT] IN] (subquery)</p> <table><thead><tr><th>操作符</th> <th>描述</th></tr></thead> <tbody><tr><td>IN</td> <td>判断是否在集合中</td></tr> <tr><td>ANY</td> <td><strong>需要与比较操作符一起使用</strong>，与子查询返回的<strong>任何值</strong>做比较</td></tr> <tr><td>ALL</td> <td><strong>需要与比较操作符一起使用</strong>，与子查询返回的<strong>所有值</strong>做比较</td></tr> <tr><td>SOME</td> <td>实际上是 ANY 的别名，作用相同，一般常用 ANY</td></tr></tbody></table> <p><code>=ANY</code> 或 <code>=SOME</code> 与 <code>IN</code> 等效；<code>!=ALL</code> 或 <code>&lt;&gt;ALL</code> 与 <code>NOT IN</code> 等效</p> <img src="/blog/mysql/subquery-any-some-all.jpg" alt="子查询"> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查询出场过的球员都有哪些，并且显示他们的姓名、球员 ID 和球队 ID</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>team_id<span class="token punctuation">,</span>player_name
+<span class="token keyword">FROM</span> player
+<span class="token keyword">WHERE</span> player_id <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> player_id <span class="token keyword">FROM</span> player_score<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 查询球员表中，比印第安纳步行者（对应的 team_id 为 1002）中任意一个球员身高高的球员信息，并且输出他们的球员 ID、球员姓名和球员身高</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>player_name<span class="token punctuation">,</span>height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> height <span class="token operator">&gt;</span> <span class="token keyword">ANY</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> team_id<span class="token operator">=</span><span class="token number">1002</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>player_name<span class="token punctuation">,</span>height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> height <span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> team_id<span class="token operator">=</span><span class="token number">1002</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 查询球员表中，比印第安纳步行者（对应的 team_id 为 1002）中所有球员身高都高的球员的信息，并且输出球员 ID、球员姓名和球员身高</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>player_name<span class="token punctuation">,</span>height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> height <span class="token operator">&gt;</span> <span class="token keyword">ALL</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> team_id<span class="token operator">=</span><span class="token number">1002</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> player_id<span class="token punctuation">,</span>player_name<span class="token punctuation">,</span>height <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> height <span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> team_id<span class="token operator">=</span><span class="token number">1002</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="子查询作为主查询的计算字段-列"><a href="#子查询作为主查询的计算字段-列" class="header-anchor">#</a> 子查询作为主查询的计算字段(列)</h3> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查询每个球队的球员数</span>
+<span class="token keyword">SELECT</span> team_id<span class="token punctuation">,</span>team_name<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> player <span class="token keyword">WHERE</span> player<span class="token punctuation">.</span>team_id<span class="token operator">=</span>team<span class="token punctuation">.</span>team_id<span class="token punctuation">)</span> <span class="token keyword">AS</span> player_num <span class="token keyword">FROM</span> team<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <h3 id="exists-和-in-子查询效率的比较"><a href="#exists-和-in-子查询效率的比较" class="header-anchor">#</a> <code>EXISTS</code> 和 <code>IN</code> 子查询效率的比较</h3> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> A <span class="token keyword">WHERE</span> cc <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> cc <span class="token keyword">FROM</span> B<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> A <span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> cc <span class="token keyword">FROM</span> B <span class="token keyword">WHERE</span> B<span class="token punctuation">.</span>cc<span class="token operator">=</span>A<span class="token punctuation">.</span>cc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>A 表，又叫主表、外表；B 表，又叫从表、内表</p> <p>实际上在查询过程中，在我们对 cc 列建立索引的情况下，我们还需要判断表 A 和表 B 的大小。如果表 A 比表 B 大，那么 <code>IN</code> 子查询的效率要比 <code>EXISTS</code> 子查询效率高，因为这时 B 表中如果对 cc 列进行了索引，那么 <code>IN</code> 子查询的效率就会比较高。</p> <p>同样，如果表 A 比表 B 小，那么使用 <code>EXISTS</code> 子查询效率会更高，因为我们可以使用到 A 表中对 cc 列的索引，而不用从 B 中进行 cc 列的查询。</p> <ul><li>当查询字段进行了索引时，主表 A 大于从表 B，使用 <code>IN</code> 子查询效率更高</li> <li>相反主表 A 小于从表 B 时，使用 <code>EXISTS</code> 子查询效率更高</li></ul> <h4 id="小表驱动大表"><a href="#小表驱动大表" class="header-anchor">#</a> 小表驱动大表</h4> <p>哪个表小就用哪个表来驱动，A 表小就用 <code>EXISTS</code> （主小从大），B 表小就用 <code>IN</code> （主大从小，大表 IN 小表）。</p> <p>当 A 小于 B 时，用 <code>EXISTS</code>。因为 <code>EXISTS</code> 的实现，相当于外表循环，实现的逻辑类似于：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>for i in A
+  for j in B
+    if j.cc == i.cc then ...
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>当 B 小于 A 时，用 <code>IN</code>，因为实现的逻辑类似于：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>for i in B
+  for j in A
+    if j.cc == i.cc then ...
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="in-与-exists"><a href="#in-与-exists" class="header-anchor">#</a> IN 与 EXISTS</h3> <p>假设 主表 A 有 n 条数据，从表 B 有 m 条数据，表 A 和表 B 中的查询字段采用 B+ 树进行索引，那么两个子查询的执行效率：</p> <ul><li>使用 <code>IN</code>: m * log(n)</li> <li>使用 <code>EXISTS</code>: n * log(m)</li></ul> <p><code>IN</code> 子查询，是<strong>从表</strong>计算出来作为已知值，而 <code>EXISTS</code> 子查询是<strong>主表</strong>作为已知值传递给<strong>从表</strong>。</p> <p>对于 <code>IN</code> 子查询，计算出来的结果作为已知值，就可以使得表 A（n 条数据）可以使用到索引，从而提升检索效率；</p> <p>对于 <code>EXISTS</code> 子查询，外表 A 作为已知值，传递给从表，可以利用从表 B（m 条数据）中的索引，从而提升检索效率。</p> <p>（说明 log 代表以2为底的对数，即 B+ 树的深度）</p> <h3 id="not-in-与-not-exists"><a href="#not-in-与-not-exists" class="header-anchor">#</a> NOT IN 与 NOT EXISTS</h3> <ul><li><code>NOT IN</code> 是先执行子查询，得到一个结果集，将结果集代入外层谓词条件执行主查询，子查询只需要执行一次；</li> <li><code>NOT EXISTS</code> 是先从主查询中取得一条数据，再代入到子查询中，执行一次子查询，判断子查询是否能返回结果，主查询有多少条数据，子查询就要执行多少次。</li></ul> <p><code>IN</code> 有一个缺陷是不能判断 <code>NULL</code>，如果字段存在 <code>NULL</code> 值，则会进行忽略，所以最好使用 <code>NOT EXISTS</code></p></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/14/2022, 9:22:38 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/mysql/function.html" class="prev">
+        函数
+      </a></span> <span class="next"><a href="/blog/mysql/join.html">
+        连接查询
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.3ac1a8f7.js" defer></script><script src="/blog/assets/js/2.9fdd9b45.js" defer></script><script src="/blog/assets/js/1.e1286724.js" defer></script><script src="/blog/assets/js/58.daad99dd.js" defer></script>
+  </body>
+</html>

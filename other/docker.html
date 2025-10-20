@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker | Blog</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="summerycicada">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fed69db2.css" as="style"><link rel="preload" href="/blog/assets/js/app.3ac1a8f7.js" as="script"><link rel="preload" href="/blog/assets/js/2.9fdd9b45.js" as="script"><link rel="preload" href="/blog/assets/js/1.e1286724.js" as="script"><link rel="preload" href="/blog/assets/js/64.de2d1bc4.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.03af4b50.js"><link rel="prefetch" href="/blog/assets/js/11.dac88931.js"><link rel="prefetch" href="/blog/assets/js/12.b04b0c9e.js"><link rel="prefetch" href="/blog/assets/js/13.c4cff8fa.js"><link rel="prefetch" href="/blog/assets/js/14.8f840785.js"><link rel="prefetch" href="/blog/assets/js/15.c773a7e9.js"><link rel="prefetch" href="/blog/assets/js/16.3503c883.js"><link rel="prefetch" href="/blog/assets/js/17.0101170a.js"><link rel="prefetch" href="/blog/assets/js/18.6c66d7a8.js"><link rel="prefetch" href="/blog/assets/js/19.6ccc9a2f.js"><link rel="prefetch" href="/blog/assets/js/20.b8537bd1.js"><link rel="prefetch" href="/blog/assets/js/21.637166bb.js"><link rel="prefetch" href="/blog/assets/js/22.e1833d63.js"><link rel="prefetch" href="/blog/assets/js/23.af7da6f3.js"><link rel="prefetch" href="/blog/assets/js/24.55a3be51.js"><link rel="prefetch" href="/blog/assets/js/25.cd72c1a5.js"><link rel="prefetch" href="/blog/assets/js/26.bb7271b1.js"><link rel="prefetch" href="/blog/assets/js/27.b3407221.js"><link rel="prefetch" href="/blog/assets/js/28.c9b387f1.js"><link rel="prefetch" href="/blog/assets/js/29.3a6e00bd.js"><link rel="prefetch" href="/blog/assets/js/3.3f3c2db2.js"><link rel="prefetch" href="/blog/assets/js/30.afdc8abd.js"><link rel="prefetch" href="/blog/assets/js/31.84633648.js"><link rel="prefetch" href="/blog/assets/js/32.7ff3c83c.js"><link rel="prefetch" href="/blog/assets/js/33.70dd9e26.js"><link rel="prefetch" href="/blog/assets/js/34.e82940cd.js"><link rel="prefetch" href="/blog/assets/js/35.c2bf1e2a.js"><link rel="prefetch" href="/blog/assets/js/36.2d56a748.js"><link rel="prefetch" href="/blog/assets/js/37.d2295b33.js"><link rel="prefetch" href="/blog/assets/js/38.d46fe9a1.js"><link rel="prefetch" href="/blog/assets/js/39.0ce93f8f.js"><link rel="prefetch" href="/blog/assets/js/4.4f191d45.js"><link rel="prefetch" href="/blog/assets/js/40.94a941f8.js"><link rel="prefetch" href="/blog/assets/js/41.1c0c3411.js"><link rel="prefetch" href="/blog/assets/js/42.d31ee855.js"><link rel="prefetch" href="/blog/assets/js/43.89d530e0.js"><link rel="prefetch" href="/blog/assets/js/44.e560e942.js"><link rel="prefetch" href="/blog/assets/js/45.39640666.js"><link rel="prefetch" href="/blog/assets/js/46.d7fc6a7d.js"><link rel="prefetch" href="/blog/assets/js/47.926e1753.js"><link rel="prefetch" href="/blog/assets/js/48.e08c3dbc.js"><link rel="prefetch" href="/blog/assets/js/49.8a3d675d.js"><link rel="prefetch" href="/blog/assets/js/5.664bef26.js"><link rel="prefetch" href="/blog/assets/js/50.8225ed1c.js"><link rel="prefetch" href="/blog/assets/js/51.58c49f62.js"><link rel="prefetch" href="/blog/assets/js/52.c794fb9e.js"><link rel="prefetch" href="/blog/assets/js/53.6ff0634b.js"><link rel="prefetch" href="/blog/assets/js/54.f5b1739b.js"><link rel="prefetch" href="/blog/assets/js/55.a7771b59.js"><link rel="prefetch" href="/blog/assets/js/56.ca711a1b.js"><link rel="prefetch" href="/blog/assets/js/57.9d7f1b34.js"><link rel="prefetch" href="/blog/assets/js/58.daad99dd.js"><link rel="prefetch" href="/blog/assets/js/59.e6cb1ef0.js"><link rel="prefetch" href="/blog/assets/js/6.51d5dc40.js"><link rel="prefetch" href="/blog/assets/js/60.58a83f0c.js"><link rel="prefetch" href="/blog/assets/js/61.1d0ebe51.js"><link rel="prefetch" href="/blog/assets/js/62.275c2cd8.js"><link rel="prefetch" href="/blog/assets/js/63.b62f8e69.js"><link rel="prefetch" href="/blog/assets/js/65.b55a7d66.js"><link rel="prefetch" href="/blog/assets/js/66.3ddf3593.js"><link rel="prefetch" href="/blog/assets/js/67.1f68d90a.js"><link rel="prefetch" href="/blog/assets/js/68.690ec4ef.js"><link rel="prefetch" href="/blog/assets/js/69.8b78e800.js"><link rel="prefetch" href="/blog/assets/js/7.99830abf.js"><link rel="prefetch" href="/blog/assets/js/70.df11d166.js"><link rel="prefetch" href="/blog/assets/js/71.f5b30268.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.cc58001a.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fed69db2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="FrontEnd" class="dropdown-title"><span class="title">FrontEnd</span> <span class="arrow down"></span></button> <button type="button" aria-label="FrontEnd" class="mobile-dropdown-title"><span class="title">FrontEnd</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/fe/" class="nav-link">
+  frontend-road
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/typescript.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/util.html" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/compile.html" class="nav-link">
+  编译
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/interview.html" class="nav-link">
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/snippet.html" class="nav-link">
+  兼容性
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/component.html" class="nav-link">
+  组件化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/engineering.html" class="nav-link">
+  工程化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/module.html" class="nav-link">
+  模块化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/performance.html" class="nav-link">
+  性能优化
+</a></li><li class="dropdown-item"><!----> <a href="/blog/fe/functional-programing.html" class="nav-link">
+  函数式编程
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/nodejs/" class="nav-link">
+  Node.js
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/eventloop.html" class="nav-link">
+  EventLoop
+</a></li><li class="dropdown-item"><!----> <a href="/blog/nodejs/cli.html" class="nav-link">
+  CLI
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/blog/php/" class="nav-link">
+  PHP
+</a></div><div class="nav-item"><a href="/blog/python/" class="nav-link">
+  Python
+</a></div><div class="nav-item"><a href="/blog/http/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="ALG" class="dropdown-title"><span class="title">ALG</span> <span class="arrow down"></span></button> <button type="button" aria-label="ALG" class="mobile-dropdown-title"><span class="title">ALG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/alg/" class="nav-link">
+  算法与数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-1.html" class="nav-link">
+  复杂度分析（上）
+</a></li><li class="dropdown-item"><!----> <a href="/blog/alg/complexity-2.html" class="nav-link">
+  复杂度分析（下）
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/mysql/" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/function.html" class="nav-link">
+  函数
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/subquery.html" class="nav-link">
+  子查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/join.html" class="nav-link">
+  连接查询
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/sql.html" class="nav-link">
+  必知必会
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/dbi.html" class="nav-link">
+  索引
+</a></li><li class="dropdown-item"><!----> <a href="/blog/mysql/transaction.html" class="nav-link">
+  事务
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/other/git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/linux.html" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/nginx.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/shell.html" class="nav-link">
+  Shell
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/centos.html" class="nav-link">
+  CentOS
+</a></li><li class="dropdown-item"><!----> <a href="/blog/other/docker.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Docker
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/movie.html" class="nav-link">
+  movie
+</a></div><div class="nav-item"><a href="https://github.com/stupidsongshu" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/other/git.html" class="sidebar-link">Git</a></li><li><a href="/blog/other/linux.html" class="sidebar-link">Linux</a></li><li><a href="/blog/other/nginx.html" class="sidebar-link">Nginx</a></li><li><a href="/blog/other/shell.html" class="sidebar-link">Shell</a></li><li><a href="/blog/other/centos.html" class="sidebar-link">CentOS</a></li><li><a href="/blog/other/docker.html" aria-current="page" class="active sidebar-link">Docker</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/other/docker.html#command" class="sidebar-link">command</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#docker-数据管理" class="sidebar-link">docker 数据管理</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#dockerfile" class="sidebar-link">Dockerfile</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#pm2" class="sidebar-link">pm2</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#mysql" class="sidebar-link">MySQL</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#redis" class="sidebar-link">Redis</a></li><li class="sidebar-sub-header"><a href="/blog/other/docker.html#nginx" class="sidebar-link">Nginx</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker"><a href="#docker" class="header-anchor">#</a> Docker</h1> <blockquote><p><a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">Docker Hub<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://hub.docker.com/_/nginx" target="_blank" rel="noopener noreferrer">Docker Hub nginx<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br> <a href="https://hub.docker.com/_/node" target="_blank" rel="noopener noreferrer">Docker Hub node<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="command"><a href="#command" class="header-anchor">#</a> command</h2> <ul><li><p><code>docker --help</code></p></li> <li><p><code>docker info</code></p></li> <li><p><code>docker images</code>: 查看镜像列表</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> images
+
+<span class="token function">docker</span> images <span class="token parameter variable">--help</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div></li> <li><p><code>docker ps</code>: 查看容器列表</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看正在运行的容器</span>
+<span class="token function">docker</span> <span class="token function">ps</span>
+<span class="token comment"># 查看停止的容器</span>
+<span class="token function">docker</span> <span class="token function">ps</span> <span class="token parameter variable">-f</span> <span class="token assign-left variable">status</span><span class="token operator">=</span>exited
+<span class="token comment"># 查看全部的容器</span>
+<span class="token function">docker</span> <span class="token function">ps</span> <span class="token parameter variable">-a</span>
+<span class="token comment"># 查看最后一次运行的容器</span>
+<span class="token function">docker</span> <span class="token function">ps</span> <span class="token parameter variable">-l</span>
+
+<span class="token function">docker</span> <span class="token function">ps</span> <span class="token parameter variable">--help</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></li> <li><p><code>docker run</code>: 用来跑镜像，执行后会返回一个容器的 hash</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看帮助文档</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--help</span>
+
+<span class="token comment"># -v 是指定挂载的数据卷</span>
+<span class="token comment"># :ro 代表 readonly，也就是容器内这个目录只读，:rw 表示容器内可以读写这个目录</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--name</span> some-nginx <span class="token parameter variable">-v</span> /some/content:/usr/share/nginx/html:ro <span class="token parameter variable">-d</span> nginx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>数据卷 volume 是把宿主机某个目录挂到容器内。</p> <p>因为容器是镜像跑起来的，下次再用这个镜像跑的还是同样的容器，那你在容器内保存的数据就会消失。</p> <p>所以我们都是把某个宿主机目录，挂载到容器内的某个保存数据的目录，这样数据是保存在宿主机的，下次再用镜像跑一个新容器，只要把这个目录挂载上去就行。</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> run <span class="token parameter variable">--name</span> nginx-test1 <span class="token parameter variable">-p</span> <span class="token number">80</span>:80 <span class="token parameter variable">-v</span> /tmp/aaa:/usr/share/nginx/html <span class="token parameter variable">-e</span> <span class="token assign-left variable">KEY1</span><span class="token operator">=</span>VALUE1 <span class="token parameter variable">-d</span> nginx:latest
+
+<span class="token comment"># --name 是指定容器名</span>
+<span class="token comment"># -p 是端口映射</span>
+<span class="token comment"># -v 是指定数据卷挂载目录</span>
+<span class="token comment"># -e 是指定环境变量</span>
+<span class="token comment"># -d 是后台运行</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div></li> <li><p><code>docker rmi 镜像ID或名称</code>: 删除镜像</p></li> <li><p><code>docker start 容器ID或名称</code>: 启动已经停止的容器</p></li> <li><p><code>docker restart 容器ID或名称</code>: 重启容器</p></li> <li><p><code>docker stop 容器ID或名称</code>: 停止容器</p></li> <li><p><code>docker rm 容器ID或名称</code>: 删除容器</p></li> <li><p><code>docker inspect 容器ID或名称</code>: 查看容器的详情</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 8c300a54bcca 为容器ID，可通过 docker ps -a 获取</span>
+<span class="token function">docker</span> inspect 8c300a54bcca
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></li> <li><p><code>docker logs</code>: 查看容器日志</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> logs 8c300a54bcca
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></li> <li><p><code>docker exec</code>: 在容器的 terminal 里执行命令</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># -i 是 terminal 交互的方式运行</span>
+<span class="token comment"># -t 是 tty 终端类型</span>
+<span class="token comment"># 然后指定容器 id 和 shell 类型，就可以交互的方式在容器内执行命令</span>
+<span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> 8c300a54bcca /bin/bash
+
+<span class="token comment"># 在容器内执行命令时，输入 exit 退出</span>
+<span class="token builtin class-name">exit</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查看容器内部的目录结构</span>
+<span class="token comment"># 1. 容器状态是 UP</span>
+<span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> 容器ID或名称 /bin/bash
+<span class="token function">ls</span> <span class="token parameter variable">-l</span>
+
+<span class="token comment"># 2. 容器状态是 Exited：将容器内的目录拷贝到本地</span>
+<span class="token function">docker</span> <span class="token function">cp</span> containerID:container_path host_path
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div></li> <li><p><code>docker volume</code>: 管理数据卷</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> volume <span class="token parameter variable">--help</span>
+<span class="token function">docker</span> volume <span class="token function">ls</span>
+dcoker volume create volume-name
+<span class="token function">docker</span> volume inspect volume-name
+<span class="token function">docker</span> volume <span class="token function">rm</span> volume-name
+<span class="token function">docker</span> inspect volume-name
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></li> <li><p><code>docker cp</code>: 在容器和本地文件系统之间拷贝文件或目录</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> <span class="token function">cp</span> <span class="token parameter variable">--help</span>
+
+<span class="token comment"># 查看容器</span>
+<span class="token function">docker</span> <span class="token function">ps</span>
+<span class="token comment"># 把nginx容器静态资源目录拷贝到本地</span>
+<span class="token function">docker</span> <span class="token function">cp</span> nginx-container:/usr/share/nginx/html ~/Desktop/nginx-html
+<span class="token comment"># 把本地目录拷贝到nginx容器</span>
+<span class="token function">docker</span> <span class="token function">cp</span> ~/Desktop/nginx-html nginx-container:/usr/share/nginx/html-xxx
+
+<span class="token function">docker</span> <span class="token function">cp</span> nginx-container:/etc/nginx/nginx.conf ~/Desktop/nginx-conf
+<span class="token function">docker</span> <span class="token function">cp</span> nginx-container:/etc/nginx/conf.d ~/Desktop/nginx-conf
+<span class="token function">docker</span> <span class="token function">cp</span> ~/Desktop/nginx-conf/test.conf nginx-container:/etc/nginx/conf.d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></li></ul> <h2 id="docker-数据管理"><a href="#docker-数据管理" class="header-anchor">#</a> docker 数据管理</h2> <p>默认容器的数据是保存在容器的可读写层，当容器被删除时其上的数据将会丢失，所以为了实现数据的持久性则需要选择一种数据持久技术来保存数据，当前有以下两种方式：</p> <ol><li>数据卷(Volumes)
+容器内的数据被存放在宿主机（Linux）一个特定的目录下（/var/lib/docker/volumes）。这个目录只有 Docker 可以管理，其他进程不能修改。如果想持久保存容器的应用数据，Volumes 是 Docker 推荐的挂载方式。</li> <li>挂载宿主机目录(Bind mounts)
+容器内的数据被存放在宿主机文件系统的任意位置，甚至存放到一些重要的系统目录或文件中。除了 Docker 之外的进程也可以任意对它们进行修改</li></ol> <p>当需要向容器共享文件的时候，使用挂载宿主机目录(Bind mounts)方式；
+当需要将容器数据存储到宿主机的时候，使用数据卷(Volumes)方式。</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> run <span class="token parameter variable">--name</span> prometheus <span class="token parameter variable">-d</span> <span class="token parameter variable">-p</span> <span class="token number">9090</span>:9090 <span class="token parameter variable">-v</span> /data/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml <span class="token parameter variable">-v</span> /data/prometheus/data:/prometheus prom/prometheus:v2.53.4
+
+<span class="token comment"># prometheus_data 为数据卷，可通过 docker inspect prometheus_data 查看数据卷信息</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--name</span> prometheus <span class="token parameter variable">-d</span> <span class="token parameter variable">-p</span> <span class="token number">9090</span>:9090 <span class="token parameter variable">-v</span> /data/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml <span class="token parameter variable">-v</span> prometheus_data:/prometheus prom/prometheus:v2.53.4
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="dockerfile"><a href="#dockerfile" class="header-anchor">#</a> Dockerfile</h2> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># FROM: 基于一个基础镜像来修改</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:latest</span>
+
+<span class="token comment"># WORKDIR: 指定当前工作目录</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token comment"># COPY: 把容器外的内容复制到容器内（把 Dockerfile 同级目录下的内容复制到容器内，这里的 . 也就是 /app 目录）</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+
+<span class="token comment"># RUN: 在容器内执行命令</span>
+<span class="token instruction"><span class="token keyword">RUN</span> npm config set registry https://registry.npmmirror.com/</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install -g http-server</span>
+
+<span class="token comment"># EXPOSE: 指定要暴露的端口，声明当前容器要访问的网络端口</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 8080</span>
+
+<span class="token comment"># 把 /app 目录设置为挂载点</span>
+<span class="token comment"># 作用：保证容器内某个目录下的数据一定会被持久化，在没挂载数据卷的时候数据也不会丢失。</span>
+<span class="token instruction"><span class="token keyword">VOLUME</span> /app</span>
+
+<span class="token comment"># CMD: 容器启动的时候执行的命令</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;http-server&quot;</span>, <span class="token string">&quot;-p&quot;</span>, <span class="token string">&quot;8080&quot;</span>]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">ls</span> <span class="token parameter variable">-al</span> /Users/squirrel/Desktop/test/docker-demo
+drwxr-xr-x   <span class="token number">5</span> squirrel  staff   <span class="token number">160</span>  <span class="token number">9</span> <span class="token number">24</span> <span class="token number">21</span>:56 <span class="token builtin class-name">.</span>
+drwxr-xr-x  <span class="token number">41</span> squirrel  staff  <span class="token number">1312</span>  <span class="token number">9</span> <span class="token number">24</span> <span class="token number">20</span>:38 <span class="token punctuation">..</span>
+-rw-r--r--   <span class="token number">1</span> squirrel  staff    <span class="token number">14</span>  <span class="token number">9</span> <span class="token number">24</span> <span class="token number">21</span>:56 .dockerignore
+-rw-r--r--   <span class="token number">1</span> squirrel  staff   <span class="token number">194</span>  <span class="token number">9</span> <span class="token number">24</span> <span class="token number">18</span>:30 Dockerfile
+-rw-r--r--   <span class="token number">1</span> squirrel  staff   <span class="token number">219</span>  <span class="token number">9</span> <span class="token number">24</span> <span class="token number">18</span>:58 index.html
+
+<span class="token comment"># 通过 `docker build` 可以根据 dockerfile 来构建镜像</span>
+<span class="token comment"># aaa 是镜像名，bbb 是镜像的标签</span>
+<span class="token function">docker</span> build <span class="token parameter variable">-t</span> aaa:bbb <span class="token builtin class-name">.</span>
+
+<span class="token comment"># 构建完之后再 run 一下这个新镜像</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--name</span> aaa_bbb_container <span class="token parameter variable">-p</span> <span class="token number">8888</span>:8080 <span class="token parameter variable">-v</span> /Users/squirrel/Desktop/test/docker-demo:/app <span class="token parameter variable">-d</span> aaa:bbb
+
+<span class="token comment"># 打开浏览器，输入 http://localhost:8888 即可看到 index.html 内容</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 在 dockerfile 里指定 VOLUME 之后，如果在 docker run 的时候没有带 -v，那么会放在一个临时的目录里（比如 /var/lib/docker/volumes/3a8ffe15356f2321b2472232a6ae3495cf85449ec9528b717f6d31fce9b7ca9a/_data），这样就算删了容器，数据也可以在这里找回。</span>
+<span class="token comment"># mysql 的 dockerfile 里是必须声明 volume 的，这样就算没通过 -v 指定数据卷，将来也可以找回数据。</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--name</span> aaa_bbb_container2 <span class="token parameter variable">-p</span> <span class="token number">8889</span>:8080 <span class="token parameter variable">-d</span> aaa:bbb
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="dockerignore"><a href="#dockerignore" class="header-anchor">#</a> .dockerignore</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 忽略所有 md 结尾的文件
+*.md
+# 不忽略 README.md
+!README.md
+# 忽略 node_modules 下的所有文件
+node_modules/
+# 忽略 a.txt、b.txt、c.txt 这三个文件
+[a-c].txt
+.git/
+# .DS_Store 是 mac 用于指定目录的图标、背景、字体大小的配置文件
+.DS_Store
+.vscode/
+.dockerignore
+# eslint、prettier 的配置文件在构建镜像时用不到
+.eslintignore
+.eslintrc
+.prettierrc
+.prettierignore
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h3 id="multi-stage-build"><a href="#multi-stage-build" class="header-anchor">#</a> multi-stage build</h3> <p>nestjs Dockerfile:</p> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token instruction"><span class="token keyword">FROM</span> node:20.7.0</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm config set registry https://registry.npmmirror.com/</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm run build</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 3000</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [ <span class="token string">&quot;node&quot;</span>, <span class="token string">&quot;./dist/main.js&quot;</span> ]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>基于 node 20.7.0 的镜像。</p> <p>指定当前目录为容器内的 /app。</p> <p>把文件复制到容器里，设置淘宝的 npm registry，执行 npm install 和 npm run build。</p> <p>指定暴露的端口为 3000，容器跑起来以后执行 node ./dist/main.js 命令。</p></div> <p>优化：</p> <ul><li>之前用的基础的 linux 镜像比较大，可以换成 alpine 的，这是一个 linux 发行版，它裁剪了很多不必要的 linux 功能，使得镜像体积大幅减小。</li> <li>实际上运行的时候只需要 dist 目录下的文件和运行时依赖，源码和构建的依赖是不需要的，但是也保存在了镜像里。这时需要用到 dockerfile 的多阶段构建的语法，第一次构建出 dist 目录，第二次再构建出跑 dist/main.js 的镜像。</li></ul> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># build stage</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:20.7.0-alpine3.18 <span class="token keyword">as</span> build-stage</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> package.json .</span>
+<span class="token instruction"><span class="token keyword">COPY</span> *.lock .</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm config set registry https://registry.npmmirror.com/</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm run build</span>
+
+<span class="token comment"># production stage</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:20.7.0-alpine3.18 <span class="token keyword">as</span> production-stage</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">build-stage</span></span> /app/dist /app</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">build-stage</span></span> /app/package.json /app/package.json</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install --production</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 3000</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;node&quot;</span>, <span class="token string">&quot;/app/main.js&quot;</span>]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>通过 FROM 继承镜像的时候，给当前镜像指定一个名字，比如 build-stage。</p> <p>然后第一个镜像执行 build。</p> <p>之后再通过 FROM 继承 node 镜像创建一个新镜像，在 FROM 后面添加一个 as 来指定当前构建阶段的名字。</p> <p>通过 COPY --from=build-stage 从那个镜像内复制 /app/dist 的文件到当前镜像的 /app 下。</p> <p>还要把 package.json 也复制过来，然后切到 /app 目录执行 npm install --production 只安装 dependencies 依赖</p> <p>这个生产阶段的镜像就指定容器跑起来执行 node /app/main.js 就好了。</p></div> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>在多阶段构建中可以有多个 FROM 指令，每个 FROM 指令都会开始一个新的构建阶段（每个阶段是独立的），并且可以给它一个名字，可以在后续的指令中引用这个阶段。</p> <p>Docker 多阶段构建的最终镜像就是最后一个阶段生成的镜像。在每个阶段都可以运行命令、安装软件、复制文件等等，但只有在最后一个阶段的操作和产生的文件才会包含在最终的 Docker 镜像中。这种设计可以帮助构建更小、更精简的镜像，因为你可以在前面的阶段安装和使用构建工具，然后在最后一个阶段（前面阶段的镜像会被舍弃）只包含运行应用所需要的最小集合的文件和依赖。</p></div> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <h3 id="问题一-为什么不是直接全部复制进去-而是先复制-package-json-安装依赖之后再复制其他文件"><a href="#问题一-为什么不是直接全部复制进去-而是先复制-package-json-安装依赖之后再复制其他文件" class="header-anchor">#</a> 问题一：为什么不是直接全部复制进去？而是先复制 package.json 安装依赖之后再复制其他文件？</h3> <p>docker 是分层存储的，dockerfile 里的每一行指令是一层，会做缓存。</p> <p>每次 docker build 的时候，只会从变化的层开始重新构建，没变的层会直接复用。也就说如果 package.json 没变，那么就不会执行 npm install，直接复用之前的。</p> <p>如果一开始就把所有文件复制进去，那么不管 package.json 变没变，任何一个文件变了都会重新 npm install，这样没法充分利用缓存，性能不好。</p> <h3 id="问题二-为什么不直接删除不需要的文件"><a href="#问题二-为什么不直接删除不需要的文件" class="header-anchor">#</a> 问题二：为什么不直接删除不需要的文件？</h3> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token instruction"><span class="token keyword">FROM</span> node:20</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+<span class="token instruction"><span class="token keyword">RUN</span> npm install</span>
+<span class="token instruction"><span class="token keyword">RUN</span> npm run build</span>
+<span class="token instruction"><span class="token keyword">RUN</span> rm -rf ./src</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;node&quot;</span>, <span class="token string">&quot;dist/main&quot;</span>]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>在 Docker 构建过程中，虽然可以使用 rm 命令来删除不需要的文件，但这并不意味着这些文件不再占用空间。Docker 镜像是由多层文件系统组成的，每一条 Dockerfile 指令都会创建一个新的层。当你在一个层中添加了文件，然后在下一个层中删除这些文件，这些文件仍然会在原来的层中存在，因此它们仍然会占用空间。</p></div> <h3 id="arg"><a href="#arg" class="header-anchor">#</a> ARG</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// test.js</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>aaa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>bbb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// export aaa=1 bbb=2</span>
+<span class="token comment">// node ./test.js</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># arg.Dockerfile</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18-alpine3.14</span>
+
+<span class="token comment"># 使用 ARG 声明构建参数，使用 ${xxx} 来取</span>
+<span class="token instruction"><span class="token keyword">ARG</span> aaa</span>
+<span class="token instruction"><span class="token keyword">ARG</span> bbb</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> ./test.js .</span>
+
+<span class="token comment"># 用 ENV 声明环境变量（ARG 是构建时的参数，ENV 时运行时的变量）</span>
+<span class="token comment"># dockerfile 内换行使用 \</span>
+<span class="token instruction"><span class="token keyword">ENV</span> aaa=<span class="token variable">${aaa}</span> <span class="token operator">\</span>
+    bbb=<span class="token variable">${bbb}</span></span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;node&quot;</span>, <span class="token string">&quot;/app/test.js&quot;</span>]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 构建的时候通过 --build-arg xxx=yyy 传入 ARG 参数的值</span>
+<span class="token function">docker</span> build --build-arg <span class="token assign-left variable">aaa</span><span class="token operator">=</span><span class="token number">3</span> --build-arg <span class="token assign-left variable">bbb</span><span class="token operator">=</span><span class="token number">4</span> <span class="token parameter variable">-t</span> arg-test:first <span class="token parameter variable">-f</span> arg.Dockerfile <span class="token builtin class-name">.</span>
+<span class="token comment"># 跑起来后可以看到容器内拿到的环境变量就是 ENV 设置的</span>
+<span class="token function">docker</span> run <span class="token parameter variable">--name</span> arg-test_container arg-test:first
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="cmd-vs-entrypoint"><a href="#cmd-vs-entrypoint" class="header-anchor">#</a> CMD vs ENTRYPOINT</h3> <p>CMD 和 ENTRYPOINT 都可以用来指定容器跑起来之后运行的命令</p> <blockquote><p>区别：用 CMD 时启动命令是可以重写的，而用 ENTRYPOINT 不会</p></blockquote> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># cmd.Dockerfile</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18.18.0-alpine3.18</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;echo&quot;</span>, <span class="token string">&quot;Hello&quot;</span>, <span class="token string">&quot;World&quot;</span>]</span>
+
+<span class="token comment"># docker build -t cmd-test -f cmd.Dockerfile .</span>
+<span class="token comment"># docker run --name cmd-test_container1 cmd-test # 输出: Hello World</span>
+<span class="token comment"># docker run --name cmd-test_container2 cmd-test echo &quot;cicada&quot; # 输出: cicada</span>
+<span class="token comment"># docker run --name cmd-test_container3 cmd-test node -v # （可以换成任何命令）输出: 18.18.0</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># entrypoint.Dockerfile</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18.18.0-alpine3.18</span>
+
+<span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">&quot;echo&quot;</span>, <span class="token string">&quot;Hello&quot;</span>, <span class="token string">&quot;World&quot;</span>]</span>
+
+<span class="token comment"># docker build -t entrypoint-test -f entrypoint.Dockerfile .</span>
+<span class="token comment"># docker run --name entrypoint-test_container1 entrypoint-test # 输出: Hello World</span>
+<span class="token comment"># docker run --name entrypoint-test_container2 entrypoint-test echo &quot;cicada&quot; # 输出: Hello World echo cicada</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><blockquote><p>ENTRYPOINT 和 CMD 结合使用：当没传参数的时候，执行的是 ENTRYPOINT + CMD 组合的命令，而传入参数的时候，只有 CMD 部分会被覆盖，这就起到了默认值的作用。</p></blockquote> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># entrypoint-cmd.Dockerfile</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18.18.0-alpine3.18</span>
+
+<span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">&quot;echo&quot;</span>, <span class="token string">&quot;Hello&quot;</span>]</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;World&quot;</span>]</span>
+
+<span class="token comment"># docker build -t entrypoint-cmd-test -f entrypoint-cmd.Dockerfile .</span>
+<span class="token comment"># docker run --name entrypoint-cmd-test_container1 entrypoint-cmd-test # 输出: Hello World</span>
+<span class="token comment"># docker run --name entrypoint-cmd-test_container2 entrypoint-cmd-test docker # 输出: Hello docker</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="copy-vs-add"><a href="#copy-vs-add" class="header-anchor">#</a> COPY vs ADD</h3> <p>COPY 和 ADD 都可以把宿主机的文件复制到容器内</p> <blockquote><p>区别：对于 tar.gz 压缩文件的处理，ADD 是把 tar.gz 解压后的文件复制到容器内</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">mkdir</span> <span class="token builtin class-name">test</span>
+<span class="token function">touch</span> test/1
+<span class="token function">touch</span> test/2
+<span class="token function">tar</span> <span class="token parameter variable">-zcvf</span> test.tar.gz ./test
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># copy-add.Dockerfile</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18.18.0-alpine3.18</span>
+
+<span class="token instruction"><span class="token keyword">ADD</span> ./test.tar.gz /a/</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> ./test.tar.gz /b/</span>
+
+<span class="token comment"># docker build -t copy-add-test -f copy-add.Dockerfile .</span>
+<span class="token comment"># docker run -d --name copy-add-test_container copy-add-test</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="network"><a href="#network" class="header-anchor">#</a> network</h3> <p>涉及到多个 docker 容器（如 mysql redis）的通信，可以通过指定宿主机 ip 和端口的方式，因为 mysql、redis 的容器都映射到了宿主机的端口，所以 nest 的容器就可以通过宿主机来实现和其他容器的通信。</p> <p>通过桥接网络的方式进行容器通信更为方便（宿主机 IP 可能会变）。</p> <p>第1步：创建桥接网络</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 通过 docker network 创建桥接网络</span>
+<span class="token function">docker</span> network create common-network
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>第2步：启动代码的依赖容器（如 mysql redis）</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 跑容器的时候要指定 --network，不需要指定和宿主机的端口映射</span>
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--network</span> common-network <span class="token parameter variable">--name</span> mysql-network-container <span class="token parameter variable">-v</span> /Users/squirrel/docker/mysql:/var/lib/mysql <span class="token parameter variable">-e</span> <span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span>cicada mysql
+
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--network</span> common-network <span class="token parameter variable">--name</span> redis-network-container <span class="token parameter variable">-v</span> /Users/squirrel/docker/redis:/data redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>第3步：修改代码，将 host 改为容器名</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>TypeOrmModule<span class="token punctuation">.</span><span class="token function">forRoot</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'mysql'</span><span class="token punctuation">,</span>
+  <span class="token comment">// host: 'localhost',</span>
+  <span class="token comment">// host: '192.168.2.7', // 通过 docker 容器跑起来时需要改成宿主机 IP</span>
+  <span class="token literal-property property">host</span><span class="token operator">:</span> <span class="token string">'mysql-network-container'</span><span class="token punctuation">,</span> <span class="token comment">// docker 桥接网络</span>
+  <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">3306</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">username</span><span class="token operator">:</span> <span class="token string">'hello'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">'world'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">database</span><span class="token operator">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">entities</span><span class="token operator">:</span> <span class="token punctuation">[</span>User<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">synchronize</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">logging</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">poolSize</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">connectorPackage</span><span class="token operator">:</span> <span class="token string">'mysql2'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">extra</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">authPlugin</span><span class="token operator">:</span> <span class="token string">'sha256_password'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+  <span class="token literal-property property">provide</span><span class="token operator">:</span> <span class="token string">'REDIS_CLIENT'</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token function">useFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token function">createClient</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">socket</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// host: 'localhost',</span>
+        <span class="token comment">// host: '192.168.2.7', // 通过 docker 容器跑起来时需要改成宿主机 IP</span>
+        <span class="token literal-property property">host</span><span class="token operator">:</span> <span class="token string">'redis-network-container'</span><span class="token punctuation">,</span> <span class="token comment">// docker 桥接网络</span>
+        <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">6379</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> client<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><p>第4步：依据 Dockerfile 重新构建业务代码镜像并运行</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 构建镜像</span>
+<span class="token function">docker</span> build <span class="token parameter variable">-t</span> nestjs-demo-image <span class="token builtin class-name">.</span>
+<span class="token comment"># 跑容器时要指定和宿主机的端口映射，因为宿主机要访问这个端口</span>
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--network</span> common-network <span class="token parameter variable">-p</span> <span class="token number">3000</span>:3000 <span class="token parameter variable">--name</span> nestjs-demo-container nestjs-demo-image
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>以上步骤比较麻烦需要按顺序启动各个容器，在 docker-compose.yml 中使用桥接网络的写法为：</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.8'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">nest-app</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> ./Dockerfile
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>network<span class="token punctuation">-</span>container
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>network<span class="token punctuation">-</span>container
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">'3000:3000'</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> common<span class="token punctuation">-</span>network
+  <span class="token key atrule">mysql-network-container</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /Users/squirrel/docker/mysql<span class="token punctuation">:</span>/var/lib/mysql
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> common<span class="token punctuation">-</span>network
+  <span class="token key atrule">redis-network-container</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /Users/squirrel/docker/redis<span class="token punctuation">:</span>/data
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> common<span class="token punctuation">-</span>network
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">common-network</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>不指定 networks 也可以，因为 docker-compose 会创建一个默认的桥接网络</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.8'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">nest-app</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> ./
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> ./Dockerfile
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>network<span class="token punctuation">-</span>container
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>network<span class="token punctuation">-</span>container
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">'3000:3000'</span>
+  <span class="token key atrule">mysql-network-container</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /Users/squirrel/docker/mysql<span class="token punctuation">:</span>/var/lib/mysql
+  <span class="token key atrule">redis-network-container</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /Users/squirrel/docker/redis<span class="token punctuation">:</span>/data
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="pm2"><a href="#pm2" class="header-anchor">#</a> pm2</h2> <div class="language-Dockerfile line-numbers-mode"><pre class="language-dockerfile"><code><span class="token comment"># build-stage</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:20.8.0-alpine3.18 <span class="token keyword">as</span> build-stage</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> package.json .</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm config set registry https://registry.npmmirror.com/</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm run build</span>
+
+<span class="token comment"># production-stage</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:20.8.0-alpine3.18 <span class="token keyword">as</span> production-stage</span>
+
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">build-stage</span></span> /app/dist /app</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">build-stage</span></span> /app/package.json /app/package.json</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install --production</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> npm install --global pm2</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 3000</span>
+
+<span class="token comment"># [前端搞部署-docker遇见pm2](https://juejin.cn/post/6976834360511037453)</span>
+<span class="token comment"># [pm2-runtime](https://stackoverflow.com/questions/53962776/whats-the-difference-between-pm2-and-pm2-runtime)</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">&quot;pm2-runtime&quot;</span>, <span class="token string">&quot;/app/main.js&quot;</span>]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h2 id="mysql"><a href="#mysql" class="header-anchor">#</a> MySQL</h2> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 查找MySQL镜像的tags</span>
+<span class="token function">curl</span> https://registry.hub.docker.com/v2/repositories/library/mysql/tags?page_size<span class="token operator">=</span><span class="token number">100</span>
+
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> mysql-container <span class="token parameter variable">-p</span> <span class="token number">3306</span>:3306 <span class="token parameter variable">-v</span> /Users/squirrel/docker/mysql:/var/lib/mysql <span class="token parameter variable">-e</span> <span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span>cicada mysql
+
+<span class="token comment"># 数据文件默认安装目录: /var/lib/mysql</span>
+<span class="token comment"># 配置文件默认位置: /etc/my.cnf 或 /etc/mysql/my.cnf</span>
+
+<span class="token comment"># 在 mysql 容器内执行命令</span>
+<span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> mysql-container /bin/bash
+
+<span class="token comment"># fix: docker mysql 不能输入中文以及中文显示问题 https://www.jianshu.com/p/c352dee7de4e</span>
+<span class="token comment"># 查看当前容器支持的编码格式</span>
+locale <span class="token parameter variable">-a</span>
+<span class="token comment"># 指定编码</span>
+<span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> mysql-container <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>C.utf8 /bin/bash
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h2 id="redis"><a href="#redis" class="header-anchor">#</a> Redis</h2> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> redis-container <span class="token parameter variable">-p</span> <span class="token number">6379</span>:6379 <span class="token parameter variable">-v</span> /Users/squirrel/docker/redis:/data redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># key 的操作</span>
+keys *
+keys key?
+keys key*
+
+exists key1
+
+<span class="token builtin class-name">type</span> key1
+
+del key1 key2
+
+expire key3 <span class="token number">100</span>
+ttl key3
+
+<span class="token function">rename</span> key3 newkey3
+
+<span class="token comment"># string</span>
+<span class="token builtin class-name">set</span> key1 hello
+<span class="token builtin class-name">set</span> key2 world
+
+get key1
+get key2
+
+<span class="token comment"># 自增1（当 key 不存在时先初始化为0再自增1，当 key 存在但无法转为数字时将报错）</span>
+incr num1
+<span class="token comment"># 自减1（当 key 不存在时先初始化为0再自减1，当 key 存在但无法转为数字时将报错）</span>
+decr num2
+
+<span class="token comment"># 自增5（当 key 不存在时先初始化为0再自增5，当 key 存在但无法转为数字时将报错）</span>
+incrby num3 <span class="token number">5</span>
+<span class="token comment"># 自减5（当 key 不存在时先初始化为0再自减5，当 key 存在但无法转为数字时将报错）</span>
+decrby num4 <span class="token number">5</span>
+
+<span class="token comment"># 在第一个 key 后面追加字符串（拼接字符串），返回值为结果字符串的长度</span>
+append key1 world
+append num1 <span class="token number">23</span>
+
+
+<span class="token comment"># hash: 类似 map</span>
+hset hash1 field1 val1
+hset hash1 field2 val2 field3 val3
+
+hget hash1 field1
+hget hash1 field2
+
+<span class="token comment"># 批量存储多个键值对</span>
+hmset user1 name jack age <span class="token number">22</span> sex <span class="token number">1</span>
+hmset user2 name rose age <span class="token number">20</span> sex <span class="token number">0</span>
+
+<span class="token comment"># 获取多个键值对</span>
+hmget user1 name age
+
+<span class="token comment"># 获取键值对数量</span>
+hlen user1
+
+<span class="token comment"># 获取所有键值对</span>
+hgetall user1
+
+<span class="token comment"># 获取所有键名</span>
+hkeys user1
+
+<span class="token comment"># 获取所有键值</span>
+hvals user1
+
+<span class="token comment"># 判断键是否存在</span>
+hexists user1 name
+
+<span class="token comment"># 增加数值</span>
+hincrby user1 age <span class="token number">5</span>
+
+<span class="token comment"># 删除键值对</span>
+hdel user1 name age
+
+<span class="token comment"># 删除整个 hash</span>
+del user1
+
+
+<span class="token comment"># list</span>
+lpush list1 <span class="token number">1</span>
+lpush list1 <span class="token number">2</span> <span class="token number">3</span>
+rpush list1 <span class="token number">4</span> <span class="token number">5</span>
+rpush list1 <span class="token number">6</span>
+
+llen list1 <span class="token comment"># 6</span>
+lrange list1 <span class="token number">0</span> <span class="token parameter variable">-1</span> <span class="token comment"># 3 2 1 4 5 6</span>
+
+lpop list1 <span class="token comment"># 3</span>
+rpop list1 <span class="token comment"># 6</span>
+
+llen list1 <span class="token comment"># 4</span>
+lrange list1 <span class="token number">0</span> <span class="token parameter variable">-1</span> <span class="token comment"># 2 1 4 5</span>
+
+lpushx list1 x <span class="token comment"># lpush如果指定的key不存在，那么先新建再插入到头部；lpushx如果指定的key不存在，则不插入</span>
+rpushx list2 y
+
+rpush list2 <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span>
+lrem list2 <span class="token number">2</span> <span class="token number">3</span> <span class="token comment"># 从前往后删除2个值为3的元素</span>
+lrem list2 <span class="token parameter variable">-2</span> <span class="token number">3</span> <span class="token comment"># 从后往前删除2个值为3的元素</span>
+lrem list2 <span class="token number">0</span> <span class="token number">2</span> <span class="token comment"># 删除所有值为2的元素</span>
+
+lset list2 <span class="token number">1</span> xyz <span class="token comment"># 将list2下标为1的值设置为xyz</span>
+
+linsert list2 before <span class="token number">1</span> x <span class="token comment"># 在list2中第一个值为1的前面插入x</span>
+linsert list2 after <span class="token number">1</span> y <span class="token comment"># 在list2中第一个值为1的前面插入y</span>
+
+rpoplpush list1 list2
+
+
+<span class="token comment"># set: 无序并且元素不重复</span>
+sadd set1 <span class="token number">1</span>
+sadd set1 <span class="token number">1</span>
+sadd set1 <span class="token number">2</span> <span class="token number">2</span> <span class="token number">3</span>
+
+scard set1 <span class="token comment"># 3</span>
+
+smembers set1 <span class="token comment"># 1 2 3</span>
+
+srem set1 <span class="token number">1</span>
+srem set1 <span class="token number">2</span> <span class="token number">3</span>
+
+sismember set1 <span class="token number">1</span>
+
+srandmember set1 <span class="token comment"># 随机返回一个元素</span>
+
+<span class="token function">sdiff</span> set1 set2 <span class="token comment"># 差集（在set1中存在但在set2中不存在的元素）</span>
+<span class="token function">sdiff</span> set2 set1 <span class="token comment"># 差集（在set2中存在但在set1中不存在的元素）</span>
+sinter set1 set2 <span class="token comment"># 交集</span>
+sunion set1 set2 <span class="token comment"># 并集</span>
+
+sdiffstore set3 set1 set2 <span class="token comment"># 将set1与set2的差集存到set3中</span>
+sinterstore set4 set1 set2 <span class="token comment"># 将set1与set2的交集存到set4中</span>
+sunionstore set5 set1 set2 <span class="token comment"># 将set1与set2的并集存到set5中</span>
+
+
+<span class="token comment"># sorted set: 排序、去重</span>
+zadd zset1 <span class="token number">50</span> cicada
+zadd zset1 <span class="token number">40</span> squirrel <span class="token number">30</span> hello <span class="token number">60</span> world
+
+zcard zset1 <span class="token comment"># 4</span>
+
+zrange zset1 <span class="token number">0</span> <span class="token number">2</span> <span class="token comment"># 取排名前三</span>
+zrange zset1 <span class="token number">0</span> <span class="token parameter variable">-1</span>
+zrange zset1 <span class="token number">0</span> <span class="token parameter variable">-1</span> withscores <span class="token comment"># 升序</span>
+zrevrang zset1 <span class="token number">0</span> <span class="token parameter variable">-1</span> withscores <span class="token comment"># 降序</span>
+
+zrangbyscore zset1 <span class="token number">30</span> <span class="token number">50</span>
+zrangbyscore zset1 <span class="token number">30</span> <span class="token number">50</span> withscores
+zrangbyscore zset1 <span class="token number">30</span> <span class="token number">50</span> withscores limit <span class="token number">0</span> <span class="token number">2</span>
+
+zcount zset1 <span class="token number">30</span> <span class="token number">50</span>
+
+zscore zset1 hello
+
+zincrby zset1 <span class="token number">4</span> world
+
+zrem zset1 hello
+
+zremrangbyrank zset1 <span class="token number">0</span> <span class="token number">3</span>
+zremrangbyscore zset1 <span class="token number">20</span> <span class="token number">50</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br></div></div><h2 id="nginx"><a href="#nginx" class="header-anchor">#</a> Nginx</h2> <p>托管静态资源、反向代理动态资源</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 默认配置文件</span>
+/etc/nginx/nginx.conf
+
+<span class="token comment"># 静态资源默认路径</span>
+/usr/share/nginx/html
+
+nginx <span class="token parameter variable">-h</span>
+
+<span class="token comment"># show version and exit</span>
+nginx <span class="token parameter variable">-v</span>
+
+<span class="token comment"># show version and configure options then exit</span>
+nginx <span class="token parameter variable">-V</span>
+
+<span class="token comment"># test configuration and exit</span>
+nginx <span class="token parameter variable">-t</span>
+
+<span class="token comment"># 重新加载配置文件</span>
+nginx <span class="token parameter variable">-s</span> reload
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>location 匹配语法：</p> <ul><li><code>location /aaa</code> 是前缀匹配 /aaa 的路由</li> <li><code>location = /bbb/</code> 是精确匹配 /bbb/ 的路由</li> <li><code>location ~ /ccc.*.html</code> 是正则匹配。可以再加个 * 表示不区分大小写 <code>location ~* /ccc.*.html</code></li> <li><code>location ^~ /ddd</code> 是前缀匹配，但是优先级更高</li></ul> <p>这 4 种语法的优先级为：精确匹配<code>=</code> &gt; 高优先级前缀匹配<code>^~</code> &gt; 正则匹配<code>～ ~*</code> &gt; 普通前缀匹配</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code>upstream nest-server <span class="token punctuation">{</span>
+    <span class="token comment"># 一共有 4 种负载均衡策略：</span>
+    <span class="token comment"># 轮询：默认方式。</span>
+    <span class="token comment"># weight：在轮询基础上增加权重，也就是轮询到的几率不同。</span>
+    <span class="token comment"># ip_hash：按照 ip 的 hash 分配，保证每个访客的请求固定访问一个服务器，解决 session 问题。</span>
+    <span class="token comment"># fair：按照响应时间来分配，这个需要安装 nginx-upstream-fair 插件。</span>
+
+    <span class="token comment"># 负载均衡策略默认为轮询</span>
+    <span class="token comment"># server 192.168.15.62:3001;</span>
+    <span class="token comment"># server 192.168.15.62:3002;</span>
+
+    <span class="token comment"># 带权重的轮询</span>
+    <span class="token comment"># server 192.168.15.62:3001;</span>
+    <span class="token comment"># server 192.168.15.62:3002 weight=2;</span>
+
+    <span class="token comment"># 按照 ip 的 hash 分配</span>
+    ip_hash<span class="token punctuation">;</span>
+    server <span class="token number">192.168</span>.15.62:3001<span class="token punctuation">;</span>
+    server <span class="token number">192.168</span>.15.62:3002<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>
+    listen       <span class="token number">80</span><span class="token punctuation">;</span>
+    listen  <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+    server_name  localhost<span class="token punctuation">;</span>
+
+    <span class="token comment">#access_log  /var/log/nginx/host.access.log  main;</span>
+
+    <span class="token comment"># location / {</span>
+    <span class="token comment">#    root   /usr/share/nginx/html;</span>
+    <span class="token comment">#    index  index.html index.htm;</span>
+    <span class="token comment"># }</span>
+
+    <span class="token comment"># 有等号时代表精确匹配，即只有完全相同的 url 才会匹配这个路由</span>
+    location <span class="token operator">=</span> /111/ <span class="token punctuation">{</span>
+        default_type text/plain<span class="token punctuation">;</span>
+        <span class="token builtin class-name">return</span> <span class="token number">200</span> <span class="token string">&quot;111 success&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 无等号时代表前缀匹配，后面可以是任意路径</span>
+    location /222 <span class="token punctuation">{</span>
+        <span class="token comment"># alias /usr/share/nginx/html;</span>
+        default_type text/plain<span class="token punctuation">;</span>
+        <span class="token comment"># $uri 为当前路径</span>
+        <span class="token builtin class-name">return</span> <span class="token number">200</span> <span class="token variable">$uri</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 前面加上 ~ 后支持正则，区分大小写</span>
+    location ~ ^/333/bbb.*<span class="token punctuation">\</span>.html$ <span class="token punctuation">{</span>
+        <span class="token comment"># alias /usr/share/nginx/html/b.html;</span>
+        default_type text/plain<span class="token punctuation">;</span>
+        <span class="token builtin class-name">return</span> <span class="token number">200</span> <span class="token variable">$uri</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 前面加上 ~* 后支持正则，不区分大小写</span>
+    location ~* ^/444/AAA.*<span class="token punctuation">\</span>.html$ <span class="token punctuation">{</span>
+        default_type text/plain<span class="token punctuation">;</span>
+        <span class="token builtin class-name">return</span> <span class="token number">200</span> <span class="token variable">$uri</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 前面加上 ^~ 后可提高前缀匹配优先级</span>
+    location ^~ /444 <span class="token punctuation">{</span>
+        default_type text/plain<span class="token punctuation">;</span>
+        <span class="token builtin class-name">return</span> <span class="token number">200</span> <span class="token string">'444'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># root 和 alias 的区别为拼接路径时是否包含匹配条件</span>
+    location /520 <span class="token punctuation">{</span>
+        <span class="token comment"># 访问 /520/index.html 实际查找路径为 /usr/share/nginx/html/520/index.html</span>
+        root /usr/share/nginx/html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location /521 <span class="token punctuation">{</span>
+        <span class="token comment"># 访问 /521/index.html 实际查找路径为 /usr/share/nginx/html/index.html</span>
+        <span class="token builtin class-name">alias</span> /usr/share/nginx/html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 反向代理动态资源</span>
+    location ^~ /api <span class="token punctuation">{</span>
+        proxy_set_header name squirrel<span class="token punctuation">;</span> <span class="token comment"># 修改请求、响应</span>
+        <span class="token comment"># proxy_pass http://192.168.15.62:3000;</span>
+        proxy_pass http://nest-server<span class="token punctuation">;</span> <span class="token comment"># 负载均衡</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#error_page  404              /404.html;</span>
+
+    <span class="token comment"># redirect server error pages to the static page /50x.html</span>
+    <span class="token comment">#</span>
+    error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+    location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+        root   /usr/share/nginx/html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span>
+    <span class="token comment">#</span>
+    <span class="token comment">#location ~ \.php$ {</span>
+    <span class="token comment">#    proxy_pass   http://127.0.0.1;</span>
+    <span class="token comment">#}</span>
+
+    <span class="token comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span>
+    <span class="token comment">#</span>
+    <span class="token comment">#location ~ \.php$ {</span>
+    <span class="token comment">#    root           html;</span>
+    <span class="token comment">#    fastcgi_pass   127.0.0.1:9000;</span>
+    <span class="token comment">#    fastcgi_index  index.php;</span>
+    <span class="token comment">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span>
+    <span class="token comment">#    include        fastcgi_params;</span>
+    <span class="token comment">#}</span>
+
+    <span class="token comment"># deny access to .htaccess files, if Apache's document root</span>
+    <span class="token comment"># concurs with nginx's one</span>
+    <span class="token comment">#</span>
+    <span class="token comment">#location ~ /\.ht {</span>
+    <span class="token comment">#    deny  all;</span>
+    <span class="token comment">#}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br></div></div><p>本地开发时将本地某个端口（如：80）代理到本地其他端口（如：3000）</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 第1步：修改本地 host</span>
+<span class="token comment"># sudo vim /etc/hosts</span>
+<span class="token number">127.0</span>.0.1       backend-api.alpha.squirrel.com
+
+<span class="token comment"># 第2步：添加 nginx 配置</span>
+upstream squirrel-backend-api <span class="token punctuation">{</span>
+    <span class="token comment"># server 127.0.0.1:3000; # 不能使用 127.0.0.1 或 localhost，需要使用宿主机的IP</span>
+    <span class="token comment"># server 192.168.2.35:3000; # 宿主机IP可能会变，变化之后需要修改比较麻烦</span>
+    server host.docker.internal:3000<span class="token punctuation">;</span> <span class="token comment"># 推荐写法 [参考](https://github.com/zhangyu921/blog/issues/8)</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>
+    listen       <span class="token number">80</span><span class="token punctuation">;</span>
+    server_name  backend-api.alpha.squirrel.com<span class="token punctuation">;</span>
+
+    location / <span class="token punctuation">{</span>
+        proxy_pass         http://squirrel-backend-api<span class="token punctuation">;</span>
+        proxy_set_header   Cookie <span class="token variable">$http_token</span><span class="token punctuation">;</span>
+        proxy_set_header   Host             <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header   X-Real-IP        <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header   X-Forwarded-For  <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    access_log  /tmp/access_squirrel-backend-api.log  main<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/19/2025, 8:29:20 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/other/centos.html" class="prev">
+        CentOS
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.3ac1a8f7.js" defer></script><script src="/blog/assets/js/2.9fdd9b45.js" defer></script><script src="/blog/assets/js/1.e1286724.js" defer></script><script src="/blog/assets/js/64.de2d1bc4.js" defer></script>
+  </body>
+</html>
