@@ -109,6 +109,7 @@ HOST alpha
 ```
 
 - [阿里云 实例登录凭证管理（登录名/密码/密钥对）](https://help.aliyun.com/zh/ecs/user-guide/instance-logon-credential-management)
+- [Linux SSH免密登录终极指南：三步搞定，效率翻倍](https://mp.weixin.qq.com/s/ZNDRqaerkT5JdSYF8CKYPg)
 
 ## 命令的选项风格
 - UNIX风格，必须带一个 "-"

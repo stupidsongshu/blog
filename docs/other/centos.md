@@ -548,7 +548,8 @@ http {
 ### download
 - [mbsurf.xyz linux](https://mbsurf.notion.site/Linux-83fc02864b784cca94537d775e4ddbeb)
 - ~~[clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)~~
-  - [mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.6/mihomo-linux-amd64-v1.18.6.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
+  - [MetaCubeX/mihomo](https://github.com/MetaCubeX/mihomo/releases/download/v1.18.6/mihomo-linux-amd64-v1.18.6.gz) [在centos安装clashMeta](https://www.meaqua.fun/2022/06/25/clash-install/)
+  - [SagerNet/sing-box](https://github.com/SagerNet/sing-box)
 - ~~[/data/www/clash-dashboard](https://github.com/Dreamacro/clash-dashboard)~~
   - [Yet Another Clash Dashboard](https://github.com/haishanh/yacd/archive/gh-pages.zip)
 - /root/.config/clash/config.yaml

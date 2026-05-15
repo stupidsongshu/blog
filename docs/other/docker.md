@@ -765,13 +765,22 @@ nginx -t
 nginx -s reload
 ```
 
-location 匹配语法：
-- `location /aaa` 是前缀匹配 /aaa 的路由
+location 修饰符和匹配语法：
+- `location /aaa` 是普通前缀匹配 /aaa 的路由
 - `location = /bbb/` 是精确匹配 /bbb/ 的路由
-- `location ~ /ccc.*.html` 是正则匹配。可以再加个 * 表示不区分大小写 `location ~* /ccc.*.html`
-- `location ^~ /ddd` 是前缀匹配，但是优先级更高
+- `location ~ /ccc.*.html` 是正则匹配，区分大小写
+- `location ~* /ccc.*.html` 不区分大小写
+- `location ^~ /ddd` 是前缀匹配，但是优先级更高（前缀匹配 + 截断，前缀匹配命中不再检查正则）
 
 这 4 种语法的优先级为：精确匹配`=` > 高优先级前缀匹配`^~` > 正则匹配`～ ~*` > 普通前缀匹配
+
+nginx 实际匹配算法(顺序很关键):
+1. 先找 `=` 精确匹配，命中就用它，**结束**。
+2. 找所有前缀匹配(`^~` 和无修饰符)，记住**最长**那一条。
+3. 如果最长那条是 `^~` 修饰的，直接用它，**跳过正则**。
+4. 否则按配置出现顺序逐个试 `~` / `~*` 正则，**第一个**命中就用。
+5. 正则全不中，才回退用第 2 步记的最长前缀。
+6. 都没有 → 404。
 
 ```sh
 upstream nest-server {
@@ -916,6 +925,241 @@ server {
         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
     }
 
-    access_log  /tmp/access_squirrel-backend-api.log  main;
+    access_log  /tmp/squirrel-backend-api.access.log  main;
 }
+```
+
+## PHP7+ThinkPHP6
+项目目录结构
+```
+tool-iq-test/
+├── server/                    # 后端项目 (ThinkPHP6)
+│   ├── app/                   # 应用目录
+│   │   ├── controller/        # 控制器
+│   │   │   ├── api/           # 客户端API控制器
+│   │   │   └── admin/         # 管理系统API控制器
+│   │   ├── model/             # 模型
+│   │   ├── service/           # 服务层
+│   │   ├── validate/          # 验证器
+│   │   └── middleware/        # 中间件
+│   ├── config/                # 配置文件
+│   ├── public/                # 公共目录
+│   ├── runtime/               # 运行时目录（注意 php-fpm 需要权限）
+│   └── vendor/                # Composer依赖
+├── client/                    # 客户端项目 (uni-app)
+│   ├── pages/                 # 页面
+│   ├── components/            # 组件
+│   ├── store/                 # 状态管理 (Pinia)
+│   ├── api/                   # 接口请求
+│   ├── utils/                 # 工具函数
+│   └── static/                # 静态资源
+├── admin/                     # 管理系统项目 (React + Ant Design)
+│   ├── src/
+│   │   ├── pages/             # 页面
+│   │   ├── components/        # 组件
+│   │   ├── services/          # API服务
+│   │   ├── models/            # 数据模型
+│   │   ├── utils/             # 工具函数
+│   │   └── layouts/           # 布局组件
+│   ├── config/                # 配置文件
+│   └── public/                # 静态资源
+├── sql/                       # SQL文件
+├── docs/                      # 文档目录
+└── docker/                    # Docker配置
+```
+
+```sh
+# 使用 Composer 创建项目
+cd /Users/admin/Desktop/test/tool-iq-test
+
+docker pull composer:2.2
+
+# --rm 容器停止后自动删除容器本身，避免积累大量停止的容器占用磁盘空间
+# -v "$(pwd):/app" 将宿主机的当前目录映射到容器内部的目录/app
+# composer:2.2 为镜像名
+# topthink/think 不指定版本时默认使用最新版本，topthink/think=6 指定使用版本
+# tp6-demo 为项目目录名，可任意更改
+docker run --rm -v "$(pwd):/app" composer:2.2 create-project topthink/think=6 tp6-demo
+
+# 启动 PHP 容器 tool-iq-test
+docker pull php:7.4-fpm
+docker run -d --name tool-iq-test -p 8000:8000 -v /Users/admin/Desktop/test/tool-iq-test/server:/var/www/php php:7.4-fpm
+```
+
+```sh
+# 配置 PHP 容器与 MySQL 容器
+docker exec -it tool-iq-test /bin/bash
+
+# 安装 pdo_mysql 扩展
+docker-php-ext-install pdo_mysql
+
+# 修改 .env
+DATABASE_TYPE=mysql
+#DATABASE_HOSTNAME=127.0.0.1
+DATABASE_HOSTNAME=host.docker.internal
+DATABASE_DATABASE=iq_test
+DATABASE_USERNAME=root
+DATABASE_PASSWORD=cicada
+DATABASE_HOSTPORT=3306
+DATABASE_CHARSET=utf8mb4
+DATABASE_PREFIX=t_
+
+# 配置文件 config/database.php
+return [
+    // 默认使用的数据库连接配置
+    'default'         => env('database.driver', 'mysql'),
+
+    // 自定义时间查询规则
+    'time_query_rule' => [],
+
+    // 自动写入时间戳字段
+    'auto_timestamp'  => true,
+
+    // 时间字段取出后的默认时间格式
+    'datetime_format' => 'Y-m-d H:i:s',
+
+    // 时间字段配置
+    'datetime_field'  => '',
+
+    // 数据库连接配置信息
+    'connections'     => [
+        'mysql' => [
+            // 数据库类型
+            'type'            => env('database.type', 'mysql'),
+            // 服务器地址
+            'hostname'        => env('database.hostname', '127.0.0.1'),
+            // 数据库名
+            'database'        => env('database.database', 'iq_test'),
+            // 用户名
+            'username'        => env('database.username', 'root'),
+            // 密码
+            'password'        => env('database.password', ''),
+            // 端口
+            'hostport'        => env('database.hostport', '3306'),
+            // 数据库连接参数
+            'params'          => [],
+            // 数据库编码默认采用utf8mb4
+            'charset'         => env('database.charset', 'utf8mb4'),
+            // 数据库表前缀
+            'prefix'          => env('database.prefix', 't_'),
+
+            // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+            'deploy'          => 0,
+            // 数据库读写是否分离 主从式有效
+            'rw_separate'     => false,
+            // 读写分离后 主服务器数量
+            'master_num'      => 1,
+            // 指定从服务器序号
+            'slave_no'        => '',
+            // 是否严格检查字段是否存在
+            'fields_strict'   => true,
+            // 是否需要断线重连
+            'break_reconnect' => false,
+            // 监听SQL
+            'trigger_sql'     => env('app.debug', true),
+            // 开启字段缓存
+            'fields_cache'    => false,
+        ],
+    ],
+];
+
+# 退出后重启容器
+cd /var/www/php/
+# 清空缓存
+php think clear
+# 启动服务
+php think run
+```
+
+```sh
+# 确保 PHP 容器和 Redis 容器处于同一网络
+
+# 1.查看现有网络
+docker network ls
+
+# 2. 创建共享网络（如果没有）
+docker network create thinkphp-network
+# 查看网络详情
+docker network inspect thinkphp-network
+
+# 3. 将两个容器连接到同一网络
+docker network connect thinkphp-network redis-container
+docker network connect thinkphp-network tool-iq-test
+
+# 或者重启容器时指定网络
+docker run --network thinkphp-network --name redis-container -d redis
+docker run --network thinkphp-network --name php-container -d <php镜像>
+
+# 4. 修改 .env
+#REDIS_HOST=127.0.0.1
+REDIS_HOST=redis-container # 将 REDIS_HOST 修改为 redis-container
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_SELECT=0
+
+# 5. 配置文件 config/cache.php
+return [
+    // 默认缓存驱动
+    'default' => env('cache.driver', 'redis'),
+
+    // 缓存连接方式配置
+    'stores'  => [
+        'file' => [
+            // 驱动方式
+            'type'       => 'File',
+            // 缓存保存目录
+            'path'       => '',
+            // 缓存前缀
+            'prefix'     => '',
+            // 缓存有效期 0表示永久缓存
+            'expire'     => 0,
+            // 缓存标签前缀
+            'tag_prefix' => 'tag:',
+            // 序列化机制 例如 ['serialize', 'unserialize']
+            'serialize'  => [],
+        ],
+        // Redis缓存
+        'redis'   =>  [
+            // 驱动方式
+            'type'       => 'Redis',
+            // 服务器地址
+            'host'       => env('redis.host', '127.0.0.1'),
+            // 端口
+            'port'       => env('redis.port', 6379),
+            // 密码
+            'password'   => env('redis.password', ''),
+            // 缓存有效期 0表示永久缓存
+            'expire'     => 0,
+            // 缓存前缀
+            'prefix'     => 'iq_test:',
+            // 缓存标签前缀
+            'tag_prefix' => 'tag:',
+            // 数据库
+            'select'     => env('redis.select', 0),
+            // 超时时间
+            'timeout'    => 0,
+        ],
+    ],
+];
+```
+
+```sh
+# 在 Nginx + PHP-FPM 架构中，Nginx 处理静态文件、转发请求，PHP-FPM 实际执行 PHP 代码
+# PHP 代码需要写入 runtime 目录，所以需要 PHP-FPM 进程用户的写入权限。
+
+# 查看 PHP-FPM 运行用户：
+# 方法1：查看进程
+ps aux | grep php-fpm
+ps aux | grep "php-fpm: pool"
+# 方法2：查看配置文件
+cat /etc/php-fpm.d/www.conf | grep -E "^user|^group"
+
+# 通常会看到类似：
+# user = www
+# group = www
+# 或者 apache、nginx、nobody 等。
+
+# 设置正确的权限：假设 PHP-FPM 用户是 www
+chown -R www:www /path/to/server/runtime
+chmod -R 755 /path/to/server/runtime
 ```
